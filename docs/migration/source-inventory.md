@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T14:01:39-06:00
+Last Updated: 2026-06-21T14:16:18-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -85,6 +85,7 @@ vendor, or third-party integration by itself.
 | Active file | Source material | Promoted | Notes |
 |---|---|---|---|
 | `docs/source-of-truth-map.md` | `docs/migration/reference/uaos-v1/controls/source-of-truth-map.md` plus Rev 2 scaffold state | 2026-06-21T13:58:36-06:00 | Rewritten for Rev 2. It now distinguishes active controls from copied reference material and records the compact future chunk map. |
+| `docs/tool-permission-matrix.md` | `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` plus Rev 2 source-of-truth and device-role controls | 2026-06-21T14:16:18-06:00 | Rewritten for Rev 2. It defines current local, Git/GitHub, DirectLink, Windows/Linux, Android/browser, relay, connector, Graphify, M365, QuickBooks, client-data, vendor, deployment, voice, and model-provider boundaries without activating live connectors. |
 
 ## Not Copied Yet
 
@@ -103,8 +104,7 @@ vendor, or third-party integration by itself.
 
 Review the copied references and decide what becomes active Rev 2 source:
 
-1. promote the active Rev 2 tool permission matrix;
-2. promote runtime, agent, model, and prompt controls;
-3. promote architecture and cross-device specs;
-4. define the Tool Directory schema and tests;
-5. migrate UAOS relay/connector core code only after active docs are clean.
+1. promote runtime, agent, model, and prompt controls;
+2. promote architecture and cross-device specs;
+3. define the Tool Directory schema and tests;
+4. migrate UAOS relay/connector core code only after active docs are clean.

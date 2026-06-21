@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T14:01:39-06:00
+Last Updated: 2026-06-21T14:16:18-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -45,6 +45,7 @@ competing truth stores.
 | `docs/current-build-pathway.md` | Single active pathway, active chunk packet, validation log, and next handoff. |
 | `docs/context-map.md` | Smallest-useful context routing by task. |
 | `docs/source-of-truth-map.md` | Navigation map and compact build chunk route. |
+| `docs/tool-permission-matrix.md` | Active tool, device, connector, and worker permission boundaries. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -58,7 +59,6 @@ migration:
 
 | File | Needed promotion |
 |---|---|
-| `docs/tool-permission-matrix.md` | Replace scaffold placeholder with Rev 2 tool permission controls based on copied v1 reference material. |
 | `docs/architecture.md` | Rewrite with Rev 2 command center, relay, worker, portal, source-of-truth, and connector boundaries. |
 | `docs/agent-inventory.md` | Replace example agent row with Rev 2 agent roles and autonomy limits. |
 | `docs/model-registry.md` | Replace example model row with approved model route posture or explicit no-active-route state. |
@@ -78,7 +78,7 @@ Open these references only when the active chunk calls for them:
 | `docs/migration/reference/uaos-v1/specs/uaos-final-shippable-plan.md` | Freezing Rev 2 product scope, authorized surfaces, final stages, or acceptance tests. |
 | `docs/migration/reference/uaos-v1/specs/cross-device-source-of-truth-foundation.md` | Multi-device source-of-truth design for Android, Windows, Linux, browser, Graphify, and future relay. |
 | `docs/migration/reference/uaos-v1/specs/shared-relay-phone-cockpit-architecture.md` | Relay, phone/tablet cockpit, worker polling, hosted relay, or no-tunnel design. |
-| `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` | Active Rev 2 tool permission matrix promotion. |
+| `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` | Historical source for promoted Rev 2 tool permission controls. |
 | `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` | Runtime instruction promotion before mission-spine migration. |
 | `docs/migration/reference/uaos-v1/specs/connector-registry-client-gateway-boundary.md` | Connector registry and Client Gateway boundary promotion. |
 | `docs/migration/reference/uaos-v1/specs/microsoft-365-business-environment-boundary.md` | M365 planning-only boundary or inventory-only activation decision. |
@@ -127,6 +127,6 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Promote the active Rev 2 tool permission matrix, then runtime/agent controls,
-then architecture specs. Do not migrate UAOS code until those active controls
-are in place.
+Promote runtime/agent controls, then architecture specs, then file migration
+decision records. Do not migrate UAOS code until those active controls are in
+place.

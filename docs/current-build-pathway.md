@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T14:01:39-06:00
+Last Updated: 2026-06-21T14:18:18-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -87,7 +87,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Place shared master env | complete | 2026-06-21T13:22:58-06:00 | codex session | Secure archive copied to `C:\Users\adamg\01. Code Projects\.env.master` for parent-level local project access. |
 | Publish private GitHub remote | complete | 2026-06-21T13:36:09-06:00 | codex session | Private repository target is `Adamgdwn/gail-ai-operating-system-rev-2`; initial scaffold commit and push are part of Chunk Three. |
 | Promote Rev 2 source-of-truth map | complete | 2026-06-21T14:01:39-06:00 | codex session | Chunk Four promoted active navigation, status timestamp formatting, compact future chunk routing, and required-doc registration. |
-| Handoff next chunk | pending | 2026-06-21T14:01:39-06:00 | codex session | Next bounded task is promoting the active Rev 2 tool permission matrix. |
+| Promote Rev 2 tool permission matrix | complete | 2026-06-21T14:16:18-06:00 | codex session | Chunk Five promoted active tool, device, connector, and worker permission boundaries without activating live connectors. |
+| Handoff next chunk | pending | 2026-06-21T14:16:18-06:00 | codex session | Next bounded task is promoting runtime, agent, model, and prompt controls. |
 
 ## Compact Future Chunk Map
 
@@ -324,6 +325,68 @@ Stop condition:
 - Stop after active navigation is promoted, the process timestamp format is
   recorded, validation passes, and the next active-controls chunk is clear.
 
+## Chunk Five - Promote Rev 2 Tool Permission Matrix
+
+Status: complete (2026-06-21T14:16:18-06:00)
+
+Completion target: Task complete
+
+Budget class: Tiny
+
+Objective:
+
+Promote the copied v1 tool permission controls into the active Rev 2
+permission matrix, scoped to the new private GitHub source of truth, local
+validation, DirectLink-as-transport, Windows/Linux worker posture, Android and
+browser portal posture, relay planning, connector planning, and current stop
+triggers.
+
+Acceptance criteria:
+
+- [x] `docs/tool-permission-matrix.md` no longer contains the scaffold example.
+- [x] The matrix states the current Rev 2 posture, default deny rule, approval
+  gates, and action risk tiers.
+- [x] Local repo, shell, Git, GitHub, DirectLink, Windows, Linux, Android,
+  browser, relay, connector registry, Graphify, model-provider, M365,
+  QuickBooks/accounting, Client Gateway, vendor/deployment, and voice surfaces
+  have explicit current boundaries.
+- [x] Live connectors, client data, hosted relay, production, billing, finance,
+  payment, account, tenant, and destructive actions remain blocked until later
+  explicit approval.
+- [x] Source map and source inventory record the matrix as promoted active Rev
+  2 source.
+- [x] Next bounded task points to runtime, agent, model, and prompt control
+  promotion.
+
+Inputs:
+
+- `docs/tool-permission-matrix.md`
+- `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md`
+- `docs/source-of-truth-map.md`
+- `docs/migration/source-inventory.md`
+- `docs/current-build-pathway.md`
+
+Outputs:
+
+- Active Rev 2 `docs/tool-permission-matrix.md`.
+- Updated source map, migration inventory, changelog, and active pathway.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh`
+- `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .`
+- `git diff --check`
+- targeted search for scaffold placeholder text and complete-status formatting
+- forbidden filename scan
+- strict secret-pattern scan
+- `git status --short`
+
+Stop condition:
+
+- Stop after active tool permissions are promoted, validation passes, the
+  runtime/agent-controls handoff is clear, and the chunk is committed and
+  pushed.
+
 ## Timestamp Rule
 
 Use ISO-style timestamps for work notes, handoffs, decisions, exceptions, release notes, and validation records. Prefer the local command:
@@ -363,7 +426,16 @@ date -Iseconds
 | 2026-06-21T14:01:39-06:00 | targeted source map and complete-status search | pass | Active Rev 2 docs route to `docs/source-of-truth-map.md`; bare `Status: complete` matches remain only in copied v1 reference request records. |
 | 2026-06-21T14:01:39-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, or export filenames found in tracked or untracked non-ignored files. |
 | 2026-06-21T14:01:39-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
+| 2026-06-21T14:12:35-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Five edits. |
+| 2026-06-21T14:16:18-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings after tool permission matrix promotion. |
+| 2026-06-21T14:16:18-06:00 | `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` | pass | `project-control.yaml` schema passed after tool permission matrix promotion. |
+| 2026-06-21T14:16:18-06:00 | `git diff --check` | pass | No whitespace errors; Git reported expected line-ending normalization warning for the pathway file. |
+| 2026-06-21T14:16:18-06:00 | targeted matrix placeholder and complete-status search | pass | No scaffold placeholder and no bare completed-status lines in active chunk docs. |
+| 2026-06-21T14:16:18-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
+| 2026-06-21T14:16:18-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
+| 2026-06-21T14:17:39-06:00 | targeted matrix placeholder and complete-status search | failed, then fixed | The check caught its own validation-log wording; the wording was changed to avoid self-referential placeholder text. |
+| 2026-06-21T14:18:18-06:00 | targeted matrix placeholder and complete-status search | pass | Final rerun passed after validation-log wording fix. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, the next bounded task is to promote the active Rev 2 tool permission matrix, and no UAOS code migration has started yet.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, the next bounded task is to promote runtime, agent, model, and prompt controls, and no UAOS code migration has started yet.

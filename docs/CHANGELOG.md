@@ -21,3 +21,6 @@
   source-of-truth push.
 - Promoted the active Rev 2 `docs/source-of-truth-map.md` from copied v1
   reference material, including device roles and compact future chunk phases.
+- Promoted the active Rev 2 `docs/tool-permission-matrix.md` from copied v1
+  reference material, keeping live business connectors, client data, hosted
+  relay, and production actions blocked until later explicit approval.
