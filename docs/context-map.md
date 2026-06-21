@@ -26,6 +26,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Task | Load First |
 |---|---|
 | Current plan, chunking, validation, or handoff | Active plan named by `START_HERE.md`; default `docs/current-build-pathway.md` |
+| Source-of-truth routing, active versus reference docs, device roles, or compact future chunk map | `docs/source-of-truth-map.md` |
 | Engineering standards map | `docs/standards/README.md` |
 | Context windows, token budgets, compaction, scoped reads, or handoffs | `docs/standards/context-hygiene-standard.md` |
 | Durable implementation, design quality, testing discipline, or AI coding fundamentals | `docs/policy/durable-development-engineering-policy.md` |

@@ -28,6 +28,7 @@ controls:
     - README.md
     - START_HERE.md
     - docs/context-map.md
+    - docs/source-of-truth-map.md
     - docs/architecture.md
     - docs/current-build-pathway.md
     - docs/manual.md

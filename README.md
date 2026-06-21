@@ -35,6 +35,7 @@ connector activation chunk exists.
 
 - `docs/architecture.md`
 - `docs/context-map.md`
+- `docs/source-of-truth-map.md`
 - `docs/current-build-pathway.md`
 - `docs/manual.md`
 - `docs/roadmap.md`

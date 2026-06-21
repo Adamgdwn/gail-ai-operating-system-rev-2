@@ -1,7 +1,8 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Status: initial separation inventory
+Last Updated: 2026-06-21T14:01:39-06:00
+Status: active separation inventory
 Owner: Adam Goodwin
 
 ## Purpose
@@ -79,6 +80,12 @@ vendor, or third-party integration by itself.
 | `docs/migration/reference/uaos-v1/requests/REQ-0058-closeout-turnover-and-work-tracking.md` | `L:\Applications\user-ai-operating-system\docs\requests\REQ-0058-closeout-turnover-and-work-tracking.md` | Turnover and work tracking closeout. |
 | `docs/migration/reference/uaos-v1/apps/cockpit-command-proof-README.md` | `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\README.md` | Static cockpit proof notes. |
 
+## Promoted Into Active Rev 2 Controls
+
+| Active file | Source material | Promoted | Notes |
+|---|---|---|---|
+| `docs/source-of-truth-map.md` | `docs/migration/reference/uaos-v1/controls/source-of-truth-map.md` plus Rev 2 scaffold state | 2026-06-21T13:58:36-06:00 | Rewritten for Rev 2. It now distinguishes active controls from copied reference material and records the compact future chunk map. |
+
 ## Not Copied Yet
 
 - DirectLink operational scripts, indicators, runbooks, and skill files.
@@ -96,6 +103,8 @@ vendor, or third-party integration by itself.
 
 Review the copied references and decide what becomes active Rev 2 source:
 
-1. promote/rewrite the Rev 2 command-center plan into `docs/specs`;
-2. define the Tool Directory schema and tests;
-3. migrate UAOS relay/connector core code only after active docs are clean.
+1. promote the active Rev 2 tool permission matrix;
+2. promote runtime, agent, model, and prompt controls;
+3. promote architecture and cross-device specs;
+4. define the Tool Directory schema and tests;
+5. migrate UAOS relay/connector core code only after active docs are clean.

@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-21T13:39:01-06:00
+Last Updated: 2026-06-21T14:01:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -21,6 +21,7 @@ Current priorities:
 - apply `docs/policy/durable-development-engineering-policy.md` during implementation
 - apply `docs/standards/ship-ready-engineering-standard.md` before declaring meaningful work complete
 - use `docs/context-map.md` as the short routing map for task-specific context loads
+- use `docs/source-of-truth-map.md` when deciding what is active Rev 2 source versus copied reference material
 - keep startup lean: use short repo orientation first, then trigger governance, Graphify, plugins, MCP tools, and release checks by task risk or scope
 - use Graphify before broad source exploration or architecture analysis, using workspace routing plus repo-local semantic graphs for heavy active repos
 - fill in project commands in `AI_BOOTSTRAP.md`
@@ -67,4 +68,6 @@ Update this file only when the top-level plan or handoff point changes. Put deta
 
 After compaction or a context clear, restart from the latest handoff/work packet,
 then run `git status --short`, read the short repo-local instructions, and open
-only the active plan and files needed for the next objective.
+only the active plan and files needed for the next objective. Use
+`docs/source-of-truth-map.md` when the next objective needs source routing,
+device-role context, or migration boundary context.

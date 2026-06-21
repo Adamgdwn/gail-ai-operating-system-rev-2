@@ -19,3 +19,5 @@
 - Created the private GitHub repository
   `Adamgdwn/gail-ai-operating-system-rev-2` for the Rev 2 scaffold and initial
   source-of-truth push.
+- Promoted the active Rev 2 `docs/source-of-truth-map.md` from copied v1
+  reference material, including device roles and compact future chunk phases.

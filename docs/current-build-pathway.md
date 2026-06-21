@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T13:39:01-06:00
+Last Updated: 2026-06-21T14:01:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -58,6 +58,13 @@ A good chunk has:
 - an explicit stop condition or escalation trigger
 - a timestamped status note
 
+When a chunk body is marked complete, put the completion timestamp on the same
+line as the status, for example:
+
+```md
+Status: complete (2026-06-21T13:58:36-06:00)
+```
+
 Use second-level Markdown headings for active and planned chunks so they are easy to scan. Spell out the chunk number in the heading:
 
 ```md
@@ -79,11 +86,25 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Archive Linux master env | complete | 2026-06-21T13:09:23-06:00 | codex session | `/home/adamgoodwin/code/.env.master` copied by `scp` to a Windows-only secure archive outside all repos. |
 | Place shared master env | complete | 2026-06-21T13:22:58-06:00 | codex session | Secure archive copied to `C:\Users\adamg\01. Code Projects\.env.master` for parent-level local project access. |
 | Publish private GitHub remote | complete | 2026-06-21T13:36:09-06:00 | codex session | Private repository target is `Adamgdwn/gail-ai-operating-system-rev-2`; initial scaffold commit and push are part of Chunk Three. |
-| Handoff next chunk | pending | 2026-06-21T13:36:09-06:00 | codex session | Next bounded task remains promoting the active Rev 2 command-center plan into `docs/specs`. |
+| Promote Rev 2 source-of-truth map | complete | 2026-06-21T14:01:39-06:00 | codex session | Chunk Four promoted active navigation, status timestamp formatting, compact future chunk routing, and required-doc registration. |
+| Handoff next chunk | pending | 2026-06-21T14:01:39-06:00 | codex session | Next bounded task is promoting the active Rev 2 tool permission matrix. |
+
+## Compact Future Chunk Map
+
+Use these phase boundaries to keep future sessions token-friendly. Each future
+chunk still needs its own packet, validation, commit, push, and handoff.
+
+| Phase | Chunk range | Purpose |
+|---|---|---|
+| Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 source-of-truth, tool permissions, runtime controls, architecture specs, and file migration decisions. |
+| Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate or rewrite the no-network mission spine, connector registry, Graphify handoff, relay envelope, relay store, tests, and proof runner. |
+| Phase 3 - First usable portal | Chunks Sixteen to Twenty | Build the browser command center, mobile-responsive Android/tablet views, approval actions, and evidence/handoff views. |
+| Phase 4 - Multi-device worker model | Chunks Twenty-One to Twenty-Five | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
+| Phase 5 - Full system build | Chunks Twenty-Six onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
 
 ## Chunk One - Governed Workspace Separation
 
-Status: complete
+Status: complete (2026-06-21T12:53:00-06:00)
 
 Completion target: Task complete
 
@@ -146,7 +167,7 @@ Next action:
 
 ## Chunk Two - Retire Rev 1 And Archive Master Env
 
-Status: complete
+Status: complete (2026-06-21T13:09:23-06:00)
 
 Completion target: Task complete
 
@@ -201,7 +222,7 @@ Stop condition:
 
 ## Chunk Three - Publish Private GitHub Remote
 
-Status: complete
+Status: complete (2026-06-21T13:39:01-06:00)
 
 Completion target: Task complete
 
@@ -248,6 +269,61 @@ Stop condition:
 - Stop after the private remote is created, the scaffold commit is pushed, and
   the next migration task is still clearly recorded.
 
+## Chunk Four - Promote Rev 2 Source Of Truth Map
+
+Status: complete (2026-06-21T14:01:39-06:00)
+
+Completion target: Task complete
+
+Budget class: Tiny
+
+Objective:
+
+Promote the source-of-truth navigation map into active Rev 2 controls, record
+the user-requested complete-status timestamp format, and preserve the approved
+future chunk route in a token-friendly form.
+
+Acceptance criteria:
+
+- [x] `docs/source-of-truth-map.md` exists as an active Rev 2 navigation map.
+- [x] Active source-of-truth docs are distinguished from copied v1 reference
+  material.
+- [x] Device roles for Windows, Linux, Android, browser, GitHub, and Graphify
+  are recorded without granting new live connector authority.
+- [x] Future compact chunk phases cover active controls, file migration and
+  initial build-out, first portal, multi-device workers, and full system build.
+- [x] Existing completed chunk body status lines include completion timestamps.
+- [x] Next bounded task points to active tool permission matrix promotion.
+
+Inputs:
+
+- `START_HERE.md`
+- `docs/current-build-pathway.md`
+- `docs/context-map.md`
+- `docs/migration/source-inventory.md`
+- `docs/migration/reference/uaos-v1/controls/source-of-truth-map.md`
+- copied v1 cross-device and relay references
+
+Outputs:
+
+- Active Rev 2 `docs/source-of-truth-map.md`.
+- Updated source routing in `START_HERE.md`, `docs/context-map.md`, and
+  `README.md`.
+- Updated migration inventory, changelog, and active pathway.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh`
+- `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .`
+- `git diff --check`
+- targeted search for stale references to missing active `docs/source-of-truth-map.md`
+- `git status --short`
+
+Stop condition:
+
+- Stop after active navigation is promoted, the process timestamp format is
+  recorded, validation passes, and the next active-controls chunk is clear.
+
 ## Timestamp Rule
 
 Use ISO-style timestamps for work notes, handoffs, decisions, exceptions, release notes, and validation records. Prefer the local command:
@@ -280,7 +356,14 @@ date -Iseconds
 | 2026-06-21T13:39:01-06:00 | `gh repo create Adamgdwn/gail-ai-operating-system-rev-2 --private --source . --remote origin --push` | pass | Private repository created, `origin` set, and `main` pushed with commit `12fa8c3`. |
 | 2026-06-21T13:39:01-06:00 | `gh repo view Adamgdwn/gail-ai-operating-system-rev-2 --json nameWithOwner,visibility,url,defaultBranchRef` | pass | GitHub reports `visibility: PRIVATE` and default branch `main`. |
 | 2026-06-21T13:39:01-06:00 | `git status -sb` | pass | Local `main` is tracking `origin/main` with no uncommitted changes after initial push. |
+| 2026-06-21T13:58:36-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Four edits. |
+| 2026-06-21T14:01:39-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings after source-of-truth promotion. |
+| 2026-06-21T14:01:39-06:00 | `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` | pass | `project-control.yaml` schema passed after adding `docs/source-of-truth-map.md` to required docs. |
+| 2026-06-21T14:01:39-06:00 | `git diff --check` | pass | No whitespace errors; Git reported expected line-ending normalization warnings for previously CRLF files. |
+| 2026-06-21T14:01:39-06:00 | targeted source map and complete-status search | pass | Active Rev 2 docs route to `docs/source-of-truth-map.md`; bare `Status: complete` matches remain only in copied v1 reference request records. |
+| 2026-06-21T14:01:39-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, or export filenames found in tracked or untracked non-ignored files. |
+| 2026-06-21T14:01:39-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, the next bounded task is to promote the active Rev 2 command-center plan into `docs/specs`, and no UAOS code migration has started yet.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, the next bounded task is to promote the active Rev 2 tool permission matrix, and no UAOS code migration has started yet.
