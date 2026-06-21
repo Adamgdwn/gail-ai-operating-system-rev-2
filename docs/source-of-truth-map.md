@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T16:00:50-06:00
+Last Updated: 2026-06-21T16:14:14-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -64,7 +64,7 @@ competing truth stores.
 | Record | Current role |
 |---|---|
 | `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | Local no-network mission envelopes, validation, deterministic planning, policy decisions, stop triggers, and JSON record store. |
-| `tests/test_mission_spine.py` | Focused behavior tests for the Chunk Nine local mission spine slice. |
+| `tests/test_mission_spine.py` | Expanded local mission-spine behavior tests for stop triggers, policy gates, validation failures, and file boundaries. |
 
 ## Active Placeholders To Promote
 
@@ -137,9 +137,10 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Ten only from `docs/migration/file-migration-decisions.md` and the
-active mission-spine package. Do not migrate any UAOS code outside the approved
-queue or broaden into connectors, portal, worker behavior, hosted relay, live
-business systems, client data, or production. Preserve Chunk Twelve as the
-explicit enhanced Graphify checkpoint before broad source exploration,
-architecture rerouting, or graph-dependent migration work.
+Begin Chunk Eleven only from `docs/migration/file-migration-decisions.md`, the
+active permission controls, and the selected connector-registry references. Do
+not migrate any UAOS code outside the approved queue or broaden into live
+connectors, portal behavior, worker behavior, hosted relay, live business
+systems, client data, or production. Preserve Chunk Twelve as the explicit
+enhanced Graphify checkpoint before broad source exploration, architecture
+rerouting, or graph-dependent migration work.

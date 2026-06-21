@@ -49,15 +49,28 @@ STOP_ACTION_TYPES: Mapping[str, str] = {
     "production_or_deployment_action": "Production launch, deployment, DNS, infrastructure, or public release actions require explicit approval.",
     "connector_profile_required": "Live connector or third-party account access requires an approved connector profile first.",
     "hosted_relay_or_worker_action": "Hosted relay, persistent worker, public ingress, or worker polling behavior is outside the local mission spine.",
+    "portal_or_relay_live_action": "Phone, tablet, browser, or relay approvals cannot execute live connector actions until a later boundary exists.",
     "graphify_action_execution": "Graphify may provide read-only context later; it cannot approve or execute actions.",
     "raw_payload_retention": "Raw logs, raw audio, unredacted screenshots, and sensitive payload dumps must stay out of Rev 2 records.",
+    "unreviewed_client_visibility": "Client-visible AI findings must remain internal until review and client-data boundaries are approved.",
     "external_tool_request": "Requested tools must stay inside the approved local no-network tool set.",
     "mission_validation_failed": "Mission records must pass local Rev 2 validation before planning.",
 }
 
 STOP_KEYWORD_MAP: tuple[tuple[tuple[str, ...], str], ...] = (
     (("secret", "token", "password", "api key", "credential", "private key"), "secret_exposure"),
-    (("client data", "customer data", "client-controlled", "client gateway assessment"), "client_data_access"),
+    (
+        (
+            "client data",
+            "client-data",
+            "customer data",
+            "client-controlled",
+            "client gateway assessment",
+            "client gateway workspace",
+            "public prospect intake",
+        ),
+        "client_data_access",
+    ),
     (("send email", "send message", "send outlook", "send teams", "post to teams", "sms"), "external_message_send"),
     (
         (
@@ -103,12 +116,33 @@ STOP_KEYWORD_MAP: tuple[tuple[tuple[str, ...], str], ...] = (
     ),
     (("subscription", "license", "contract", "vendor account", "paid plan"), "vendor_account_action"),
     (("git reset --hard", "git clean -fd", "force push", "delete branch"), "destructive_git_operation"),
-    (("delete repo", "delete project", "delete production", "delete remote"), "destructive_delete"),
+    (("delete repo", "delete repository", "delete project", "delete production", "delete remote"), "destructive_delete"),
     (("production launch", "public launch", "deploy production", "change dns", "domain record"), "production_or_deployment_action"),
     (("connect m365", "connect microsoft 365", "connect quickbooks", "connect aws", "connect dropbox", "live connector"), "connector_profile_required"),
     (("hosted relay", "persistent worker", "worker polling", "public ingress"), "hosted_relay_or_worker_action"),
+    (
+        (
+            "approve live m365 from phone",
+            "phone and execute",
+            "tablet and execute",
+            "browser and execute",
+            "relay approval",
+            "execute the connector",
+        ),
+        "portal_or_relay_live_action",
+    ),
     (("execute graphify", "run graphify recommendation", "mutate files from graphify"), "graphify_action_execution"),
     (("raw log", "raw audio", "voice recording", "unredacted screenshot", "sensitive payload"), "raw_payload_retention"),
+    (
+        (
+            "publish ai findings",
+            "client-visible",
+            "client visible",
+            "guided ai labs review",
+            "unreviewed client",
+        ),
+        "unreviewed_client_visibility",
+    ),
 )
 
 

@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T16:00:50-06:00
+Last Updated: 2026-06-21T16:14:14-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -42,7 +42,8 @@ The first safe code queue is:
 1. Chunk Nine: rewrite the local no-network mission spine from selected v1
    mission and policy modules. Complete as of
    2026-06-21T15:39:29-06:00.
-2. Chunk Ten: migrate or rewrite focused mission-spine tests.
+2. Chunk Ten: migrate or rewrite focused mission-spine tests. Complete as of
+   2026-06-21T16:14:14-06:00.
 3. Chunk Eleven: rewrite the connector registry foundation as local schema and
    validation only.
 4. Chunk Twelve: activate the enhanced Graphify handoff checkpoint as
@@ -62,7 +63,7 @@ outside this queue.
 |---|---|---:|---|
 | `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | `mission.py`, `planner.py`, `policy.py` | 2026-06-21T15:39:29-06:00 | Local no-network mission envelopes, deterministic local plans, permission decisions, validation results, and JSON store only. |
 | `packages/uaos-core/src/gail_ai_operating_system/__init__.py` | Rev 2 package interface | 2026-06-21T15:39:29-06:00 | Public local package exports only. |
-| `tests/test_mission_spine.py` | Selected mission-spine behavior from v1 references | 2026-06-21T15:39:29-06:00 | Focused Chunk Nine behavior tests; broader safety-evaluation test migration remains Chunk Ten. |
+| `tests/test_mission_spine.py` | Selected mission-spine behavior plus `test_safety_evaluations.py` | 2026-06-21T16:14:14-06:00 | Focused Chunk Nine behavior tests plus Chunk Ten local no-network safety stop-trigger, permission-gate, validation, and file-boundary tests. |
 
 ## Candidate Decisions
 
@@ -74,7 +75,7 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\policy.py` | yes | `rewrite` | Chunk Nine | Use as a policy-gate reference for local no-network mission validation only. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\planner.py` | yes | `rewrite` | Chunk Nine | Use as planning-flow reference; remove v1 path assumptions and any external action assumptions. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\mission.py` | yes | `rewrite` | Chunk Nine | Use as mission-record reference; Rev 2 target must be local, deterministic, and no-network. |
-| `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | yes | `rewrite` | Chunk Ten | Convert into Rev 2 behavior tests around stop triggers and permission gates. |
+| `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | yes | `rewrite` | Chunk Ten | Converted into Rev 2 behavior tests around stop triggers, permission gates, risk-tier blocking, and local file boundaries without external services. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite as connector profile schema and validation only; no live connector access. |
 | `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite tests for planning-only connector profiles, data classes, approval gates, and denied live actions. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite as enhanced read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
@@ -135,7 +136,8 @@ Stop before migration when:
 ## Current Boundary
 
 Chunk Nine has rewritten the approved mission, planner, and policy references
-into the first active local Rev 2 code slice.
+into the first active local Rev 2 code slice. Chunk Ten has expanded its local
+mission-spine safety tests from the approved v1 safety-evaluation reference.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation

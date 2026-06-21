@@ -48,3 +48,7 @@
 - Scheduled Chunk Twelve as the explicit enhanced Graphify checkpoint for
   graph-aware routing, repo-local graph setup checks, and read-only handoff
   validation before broader migration exploration.
+- Expanded the Rev 2 mission-spine safety tests from the approved v1
+  `test_safety_evaluations.py` reference, adding stop-trigger, default-deny,
+  risk-tier, validation, and local store file-boundary coverage without
+  activating live connectors or runtime behavior.

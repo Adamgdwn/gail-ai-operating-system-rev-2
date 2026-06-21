@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T16:02:28-06:00
+Last Updated: 2026-06-21T16:14:14-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -93,7 +93,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record file migration decisions | complete | 2026-06-21T15:20:04-06:00 | codex session | Chunk Eight created `docs/migration/file-migration-decisions.md`, classified the first rewrite-focused code queue, and preserved exclusions for secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 copying. |
 | Migrate local mission spine | complete | 2026-06-21T15:42:12-06:00 | codex session | Chunk Nine rewrote the approved v1 mission, planner, and policy references as a local no-network Rev 2 mission spine with focused tests. |
 | Schedule enhanced Graphify checkpoint | complete | 2026-06-21T16:00:50-06:00 | codex session | Chunk Twelve is now the explicit enhanced Graphify checkpoint for graph-aware routing, repo-local graph setup checks, and read-only handoff validation before broader migration exploration. |
-| Handoff next chunk | pending | 2026-06-21T16:00:50-06:00 | codex session | Next bounded task is still Chunk Ten: expand mission-spine tests from the selected v1 safety-evaluation reference without broadening into connectors, portal, or worker behavior. |
+| Migrate mission-spine safety tests | complete | 2026-06-21T16:14:14-06:00 | codex session | Chunk Ten expanded the local mission-spine safety loop from the selected v1 safety-evaluation reference, covering stop triggers, default-deny policy, risk-tier blocking, and local store file boundaries. |
+| Handoff next chunk | pending | 2026-06-21T16:14:14-06:00 | codex session | Next bounded task is Chunk Eleven: migrate the connector registry foundation as local schema and validation only, with no live connector credentials or API calls. |
 
 ## Current Completion Boundary
 
@@ -101,7 +102,8 @@ Rev 2 is not complete. Completed rows in the active path mean only that those
 bounded chunks are done. The current project state is active controls plus the
 first local code slice: source-of-truth, tool permission, runtime, agent,
 model, prompt, architecture, and file migration decision controls are promoted,
-and the local no-network mission spine exists under the Rev 2 core package.
+and the local no-network mission spine exists under the Rev 2 core package with
+expanded safety and file-boundary tests.
 No portal build, worker model, relay store, hosted relay, live connector
 activation, client-data workflow, or production release has started. Project
 completion remains a human decision after the release-decision chunk.
@@ -689,7 +691,7 @@ Stop condition:
 
 ## Chunk Ten - Migrate Mission Spine Tests
 
-Status: planned
+Status: complete (2026-06-21T16:14:14-06:00)
 
 Completion target: Task complete
 
@@ -703,6 +705,18 @@ boundaries. Acceptance: tests prove local behavior without external services.
 Validation: targeted test run, governance preflight if controls changed,
 secret scan, diff check, commit, push. Stop: once the local mission spine has a
 repeatable safety loop.
+
+Completion notes:
+
+- Expanded `tests/test_mission_spine.py` from the approved v1
+  `test_safety_evaluations.py` reference.
+- Added local no-network coverage for destructive Git, client-data and Client
+  Gateway workspace requests, live connector setup, M365 reads/sends/admin
+  changes, phone/relay live approvals, Graphify execution, raw payload
+  retention, unreviewed client-visible findings, default-deny policy, risk-tier
+  blocking, and local store file boundaries.
+- Updated the mission-spine stop vocabulary only where needed for those local
+  safety tests.
 
 ## Chunk Eleven - Migrate Connector Registry Foundation
 
@@ -1256,7 +1270,9 @@ date -Iseconds
 | 2026-06-21T15:39:29-06:00 | `python -m py_compile packages\uaos-core\src\gail_ai_operating_system\mission_spine.py packages\uaos-core\src\gail_ai_operating_system\__init__.py tests\test_mission_spine.py` | pass | Mission-spine source and tests compile. |
 | 2026-06-21T15:42:12-06:00 | final Chunk Nine validation bundle | pass | Governance preflight, schema validation, unit tests, syntax compile, `git diff --check`, mission-spine import smoke, routing search, complete-status search, forbidden filename scan, and strict secret-pattern scan passed. |
 | 2026-06-21T16:02:28-06:00 | enhanced Graphify pathway update | pass | Governance preflight, schema validation, `git diff --check`, targeted routing search, bare completed-status search, forbidden filename scan, and strict secret-pattern scan passed; Chunk Twelve is now the explicit enhanced Graphify checkpoint before broad source exploration or graph-dependent migration work. |
+| 2026-06-21T16:14:14-06:00 | Chunk Ten mission-spine safety test migration | pass | Read only the approved v1 `tests\test_safety_evaluations.py` reference, expanded local mission-spine tests to 14 passing unit tests, and kept connectors, portal, worker behavior, hosted relay, client data, live business systems, and production out of scope. |
+| 2026-06-21T16:16:54-06:00 | final Chunk Ten validation bundle | pass | Governance preflight, schema validation, 14 unit tests, syntax compile, `git diff --check`, targeted routing search, complete-status formatting check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, and the first executable Rev 2 code slice now lives at `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` with tests in `tests/test_mission_spine.py`. The next bounded task is Chunk Ten: expand mission-spine tests from `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` without broadening into connectors, portal, worker behavior, hosted relay, client data, live business systems, or production.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, and the first executable Rev 2 code slice now lives at `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` with expanded safety tests in `tests/test_mission_spine.py`. The next bounded task is Chunk Eleven: rewrite the connector registry foundation from selected v1 references as local schema and validation only, without live connector credentials, API calls, portal behavior, worker behavior, hosted relay, client data, live business systems, or production.
