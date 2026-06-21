@@ -41,3 +41,7 @@
   migration queue as rewrite-focused while keeping secrets, logs, generated
   artifacts, live connector state, client data, raw audio, bulk v1 package
   copying, and production behavior out of Rev 2.
+- Rewrote the approved v1 mission, planner, and policy references as the Rev 2
+  local no-network mission spine in
+  `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`, with
+  focused unit tests in `tests/test_mission_spine.py`.

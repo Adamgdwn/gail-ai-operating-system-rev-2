@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T15:03:45-06:00
+Last Updated: 2026-06-21T15:39:29-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -28,15 +28,17 @@ Active now:
 - copied v1 reference documents under `docs/migration/reference/uaos-v1`;
 - active controls for source routing, tool permissions, runtime posture, agent
   inventory, model routes, and prompt sources;
+- local no-network mission spine package at
+  `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`;
+- focused mission-spine tests in `tests/test_mission_spine.py`;
 - documentation and local validation chunks only.
 
 Not active yet:
 
-- executable mission spine;
 - browser command center;
 - Android phone or tablet portal;
 - Windows or Linux worker bootstrap;
-- relay record store or worker claim loop;
+- relay envelope validator, relay record store, or worker claim loop;
 - hosted relay;
 - live Microsoft 365, QuickBooks, billing, vendor, client-data, or deployment
   connectors;
@@ -74,7 +76,7 @@ current state, policy boundary, and stale-state checks before acting.
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Not built in Rev 2. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work or own permanent audit truth alone. |
 | Future hosted relay | Not approved. | Possible low-latency queue, notification, session, and heartbeat service after GitHub-backed proof. | Requires explicit owner approval, auth/session design, threat model, retention rule, and disable path. |
-| Rev 2 mission spine | Not migrated. | Local deterministic runtime for mission envelopes, policy gate, validation, and action logs. | No autonomous mission loop until schemas, tests, runtime controls, and disable behavior exist. |
+| Rev 2 mission spine | Local no-network mission envelopes, deterministic planning, policy gate, validation, and JSON record store. | Local deterministic runtime for future approved mission records, evidence references, and action logs. | No autonomous mission loop, connector call, worker claim, relay polling, or production action until later controls exist. |
 | Graphify knowledge spoke | Reference-only planning posture in Rev 2. | Read-only graph context, handoff records, recommendations as mission candidates. | Graphify recommendations are not execution approval and must pass Rev 2 policy before work. |
 | Connector registry | Link-only seed records and planning references. | Governed connector profiles with owner, workspace, data class, approval gate, audit, and retention rules. | Profiles are permission structure, not permission or credentials. |
 | Model and prompt controls | Current Codex coding session only for repo collaboration. | Future runtime route only after model and prompt approval records exist. | No production runtime model, BYOK provider, client-data route, or connector-driving prompt is approved. |

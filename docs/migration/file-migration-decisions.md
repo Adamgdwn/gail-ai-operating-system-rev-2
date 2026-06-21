@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T15:20:04-06:00
+Last Updated: 2026-06-21T15:39:29-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -40,7 +40,8 @@ needed for that chunk.
 The first safe code queue is:
 
 1. Chunk Nine: rewrite the local no-network mission spine from selected v1
-   mission and policy modules.
+   mission and policy modules. Complete as of
+   2026-06-21T15:39:29-06:00.
 2. Chunk Ten: migrate or rewrite focused mission-spine tests.
 3. Chunk Eleven: rewrite the connector registry foundation as local schema and
    validation only.
@@ -54,6 +55,14 @@ The first safe code queue is:
 Portal source, Android-specific behavior, Windows/Linux worker bootstrap,
 hosted relay, notifications, live connectors, and production release remain
 outside this queue.
+
+## Implemented Rewrites
+
+| Active Rev 2 file | Source references | Completed | Boundary |
+|---|---|---:|---|
+| `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | `mission.py`, `planner.py`, `policy.py` | 2026-06-21T15:39:29-06:00 | Local no-network mission envelopes, deterministic local plans, permission decisions, validation results, and JSON store only. |
+| `packages/uaos-core/src/gail_ai_operating_system/__init__.py` | Rev 2 package interface | 2026-06-21T15:39:29-06:00 | Public local package exports only. |
+| `tests/test_mission_spine.py` | Selected mission-spine behavior from v1 references | 2026-06-21T15:39:29-06:00 | Focused Chunk Nine behavior tests; broader safety-evaluation test migration remains Chunk Ten. |
 
 ## Candidate Decisions
 
@@ -125,8 +134,10 @@ Stop before migration when:
 
 ## Current Boundary
 
-This record does not migrate code.
+Chunk Nine has rewritten the approved mission, planner, and policy references
+into the first active local Rev 2 code slice.
 
-It only creates the approved queue and exclusion list for future migration
-chunks. Rev 2 remains a private governed control repository with local
-validation and Git/GitHub closeout only.
+This record still blocks bulk copying and all files outside the approved queue.
+Rev 2 remains a private governed repository with local no-network validation
+and Git/GitHub closeout only. No connector, portal, worker, hosted relay,
+client-data, live business-system, or production behavior is active.

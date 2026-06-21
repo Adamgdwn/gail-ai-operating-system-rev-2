@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T15:20:04-06:00
+Last Updated: 2026-06-21T15:39:29-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -93,12 +93,20 @@ vendor, or third-party integration by itself.
 | `docs/architecture.md` | Copied v1 cross-device, relay, final shippable, connector, M365, Graphify, and cockpit proof references plus active Rev 2 controls | 2026-06-21T15:03:45-06:00 | Rewritten for Rev 2. It defines the active source spine, device roles, portal, worker, relay, connector, Graphify, data, and verification boundaries without migrating code or activating runtime behavior. |
 | `docs/migration/file-migration-decisions.md` | Source inventory, active controls, copied v1 request records, and targeted existence checks for named v1 source candidates | 2026-06-21T15:20:04-06:00 | Created for Rev 2. It classifies the first code migration queue as rewrite-focused and excludes secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 package copying. |
 
+## Rewritten Into Active Rev 2 Code
+
+| Active file | Source material | Rewritten | Notes |
+|---|---|---|---|
+| `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\mission.py`, `planner.py`, and `policy.py` | 2026-06-21T15:39:29-06:00 | Rewritten for Rev 2 as local no-network mission envelopes, deterministic local plans, validation results, permission decisions, and local JSON store. No v1 file was bulk-copied. |
+| `tests/test_mission_spine.py` | Selected behavior from the same mission-spine references | 2026-06-21T15:39:29-06:00 | Focused behavior tests for Chunk Nine. Broader safety-evaluation test migration remains Chunk Ten. |
+
 ## Not Copied Yet
 
 - DirectLink operational scripts, indicators, runbooks, and skill files.
-- UAOS Python code, tests, static cockpit source, action logs, generated files,
-  or local runtime artifacts. Candidate code paths are now classified in
-  `docs/migration/file-migration-decisions.md`, but no code has been copied.
+- Remaining UAOS Python code, selected v1 safety tests, static cockpit source,
+  action logs, generated files, or local runtime artifacts. Candidate code
+  paths are classified in `docs/migration/file-migration-decisions.md`; only
+  the Chunk Nine mission spine has been rewritten into active Rev 2 source.
 - Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
   accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
   logs, or raw audio.
@@ -109,7 +117,7 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Use `docs/migration/file-migration-decisions.md` to begin Chunk Nine. The next
-bounded task is to rewrite the local no-network mission spine from the approved
-queue, then add focused mission-spine tests. Do not migrate any file that is not
-listed in the decision record.
+Use `docs/migration/file-migration-decisions.md` to begin Chunk Ten. The next
+bounded task is to expand mission-spine tests from the approved v1
+`tests\test_safety_evaluations.py` reference. Do not migrate any file that is
+not listed in the decision record.

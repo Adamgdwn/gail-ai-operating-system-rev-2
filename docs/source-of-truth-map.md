@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T15:20:04-06:00
+Last Updated: 2026-06-21T15:39:29-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -58,6 +58,13 @@ competing truth stores.
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
 | `docs/standards/ship-ready-engineering-standard.md` | Completion labels and ship-readiness evidence gate. |
+
+## Active Rev 2 Code
+
+| Record | Current role |
+|---|---|
+| `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | Local no-network mission envelopes, validation, deterministic planning, policy decisions, stop triggers, and JSON record store. |
+| `tests/test_mission_spine.py` | Focused behavior tests for the Chunk Nine local mission spine slice. |
 
 ## Active Placeholders To Promote
 
@@ -130,6 +137,7 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Nine only from `docs/migration/file-migration-decisions.md`. Do not
-migrate any UAOS code outside the approved queue or without the validation
-listed in the active pathway.
+Begin Chunk Ten only from `docs/migration/file-migration-decisions.md` and the
+active mission-spine package. Do not migrate any UAOS code outside the approved
+queue or broaden into connectors, portal, worker behavior, hosted relay, live
+business systems, client data, or production.

@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T15:20:04-06:00
+Last Updated: 2026-06-21T15:42:12-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -91,18 +91,19 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Promote runtime and agent controls | complete | 2026-06-21T14:46:16-06:00 | codex session | Chunk Six promoted active runtime instructions, agent inventory, model registry, and prompt register without activating live runtime behavior. |
 | Promote Rev 2 architecture specs | complete | 2026-06-21T15:03:45-06:00 | codex session | Chunk Seven promoted active source spine, portal, worker, relay, Graphify, connector, data, and verification architecture without code migration. |
 | Record file migration decisions | complete | 2026-06-21T15:20:04-06:00 | codex session | Chunk Eight created `docs/migration/file-migration-decisions.md`, classified the first rewrite-focused code queue, and preserved exclusions for secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 copying. |
-| Handoff next chunk | pending | 2026-06-21T15:20:04-06:00 | codex session | Next bounded task is Chunk Nine: rewrite the local no-network mission spine from the approved migration queue. |
+| Migrate local mission spine | complete | 2026-06-21T15:42:12-06:00 | codex session | Chunk Nine rewrote the approved v1 mission, planner, and policy references as a local no-network Rev 2 mission spine with focused tests. |
+| Handoff next chunk | pending | 2026-06-21T15:42:12-06:00 | codex session | Next bounded task is Chunk Ten: expand mission-spine tests from the selected v1 safety-evaluation reference without broadening into connectors, portal, or worker behavior. |
 
 ## Current Completion Boundary
 
 Rev 2 is not complete. Completed rows in the active path mean only that those
-bounded chunks are done. The current project state is active control promotion
-plus migration-decision readiness: source-of-truth, tool permission, runtime,
-agent, model, prompt, architecture, and file migration decision controls are
-promoted. The first code migration queue is bounded, but no UAOS code
-migration, portal build, worker model, hosted relay, live connector activation,
-client-data workflow, or production release has started. Project completion
-remains a human decision after the release-decision chunk.
+bounded chunks are done. The current project state is active controls plus the
+first local code slice: source-of-truth, tool permission, runtime, agent,
+model, prompt, architecture, and file migration decision controls are promoted,
+and the local no-network mission spine exists under the Rev 2 core package.
+No portal build, worker model, relay store, hosted relay, live connector
+activation, client-data workflow, or production release has started. Project
+completion remains a human decision after the release-decision chunk.
 
 ## Compact Future Chunk Map
 
@@ -621,20 +622,69 @@ Stop condition:
 
 ## Chunk Nine - Migrate Local Mission Spine
 
-Status: planned
+Status: complete (2026-06-21T15:42:12-06:00)
 
 Completion target: Task complete
 
 Budget class: Medium
 
-Plan packet:
+Objective:
 
-Inputs: approved migration decision record and selected v1 mission-spine code.
-Outputs: Rev 2 local-only mission spine with no network side effects.
-Acceptance: mission records can be created, read, and validated locally under
-Rev 2 naming and governance. Validation: unit tests, type or syntax checks,
-secret scan, diff check, commit, push. Stop: before connector, portal, or
-worker behavior.
+Rewrite the selected v1 mission, planner, and policy references into a Rev 2
+local no-network mission spine.
+
+Acceptance criteria:
+
+- [x] Mission envelopes can be created under Rev 2 owner, domain,
+  data-classification, and `A1 local no-network` rules.
+- [x] Mission records can be saved and loaded locally as JSON without writing
+  runtime artifacts into the repo.
+- [x] Deterministic local plans include only local dry-run actions when no stop
+  trigger is present.
+- [x] Policy decisions fail closed for stop triggers, unapproved tools,
+  malformed mission records, non-local data classes, and higher-risk actions.
+- [x] No connector, portal, worker, hosted relay, persistent service, live
+  GitHub adapter, client-data, M365, QuickBooks, billing, finance, vendor, or
+  production behavior was activated.
+
+Inputs:
+
+- `docs/migration/file-migration-decisions.md`
+- `docs/migration/source-inventory.md`
+- `docs/source-of-truth-map.md`
+- `docs/tool-permission-matrix.md`
+- `docs/agent-runtime-instructions.md`
+- `docs/architecture.md`
+- `L:\Applications\user-ai-operating-system\uaos_agent_spine\mission.py`
+- `L:\Applications\user-ai-operating-system\uaos_agent_spine\planner.py`
+- `L:\Applications\user-ai-operating-system\uaos_agent_spine\policy.py`
+
+Outputs:
+
+- `packages/uaos-core/src/gail_ai_operating_system/__init__.py`
+- `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`
+- `tests/test_mission_spine.py`
+- Updated source map, source inventory, migration decisions, domain language,
+  README, changelog, architecture, and active pathway records.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh`
+- `python -m unittest discover -s tests`
+- `python -m py_compile packages\uaos-core\src\gail_ai_operating_system\mission_spine.py packages\uaos-core\src\gail_ai_operating_system\__init__.py tests\test_mission_spine.py`
+- `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .`
+- `git diff --check`
+- targeted mission-spine import and routing checks
+- targeted complete-status search
+- forbidden filename scan
+- strict secret-pattern scan
+- `git status --short`
+
+Stop condition:
+
+- Stop after the local mission spine and focused tests pass validation, docs
+  route the new package correctly, and Chunk Ten is clearly bounded to expanded
+  mission-spine tests only.
 
 ## Chunk Ten - Migrate Mission Spine Tests
 
@@ -1192,7 +1242,13 @@ date -Iseconds
 | 2026-06-21T15:20:04-06:00 | migration decision vocabulary check | pass | Decision record includes rewrite, archive, exclude, and later-review decisions for candidate sources. |
 | 2026-06-21T15:20:04-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
 | 2026-06-21T15:20:04-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 references. |
+| 2026-06-21T15:34:02-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Nine code migration. |
+| 2026-06-21T15:39:29-06:00 | selected v1 mission-spine inspection | pass | Read only the approved `mission.py`, `planner.py`, and `policy.py` references from the superseded v1 package. |
+| 2026-06-21T15:39:29-06:00 | local mission spine rewrite | pass | Added Rev 2 mission envelope, local planner, policy gate, validation result, and JSON store without network side effects. |
+| 2026-06-21T15:39:29-06:00 | `python -m unittest discover -s tests` | pass | 9 mission-spine unit tests passed. |
+| 2026-06-21T15:39:29-06:00 | `python -m py_compile packages\uaos-core\src\gail_ai_operating_system\mission_spine.py packages\uaos-core\src\gail_ai_operating_system\__init__.py tests\test_mission_spine.py` | pass | Mission-spine source and tests compile. |
+| 2026-06-21T15:42:12-06:00 | final Chunk Nine validation bundle | pass | Governance preflight, schema validation, unit tests, syntax compile, `git diff --check`, mission-spine import smoke, routing search, complete-status search, forbidden filename scan, and strict secret-pattern scan passed. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, the next bounded task is Chunk Nine to rewrite the local no-network mission spine from the approved migration queue, and no UAOS code migration has started yet.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, and the first executable Rev 2 code slice now lives at `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` with tests in `tests/test_mission_spine.py`. The next bounded task is Chunk Ten: expand mission-spine tests from `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` without broadening into connectors, portal, worker behavior, hosted relay, client data, live business systems, or production.

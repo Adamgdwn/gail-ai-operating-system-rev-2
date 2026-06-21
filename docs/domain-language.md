@@ -16,7 +16,11 @@ When a term changes, update this file and the affected code or documentation in 
 
 | Term | Meaning | Avoid Saying | Code/Docs Usage |
 |---|---|---|---|
-| Example Term | Clear definition | Vague synonym | Where and how this term appears. |
+| Mission envelope | Local structured record of an operator intent, request ID, domain, approval level, data class, and dry-run state. | command blob, task data | `MissionEnvelope`, pathway chunks, future portal mission views. |
+| Mission action | One proposed local action inside a mission plan before the policy gate evaluates it. | step, task, tool call | `MissionAction`, mission-spine tests, future evidence views. |
+| Policy decision | The result of evaluating a mission action against current Rev 2 boundaries. | approval result, tool result | `PolicyDecision`, permission gate tests, future worker evidence. |
+| Stop trigger | A policy reason that turns proposed work into a stop-for-approval record instead of executable behavior. | error, failure, block | `detect_stop_trigger`, tool permission matrix, pathway validation notes. |
+| Local no-network | Current execution boundary where mission-spine behavior can validate and store synthetic/local records but cannot call connectors, hosted relay, workers, or production systems. | offline mode, sandbox | Mission spine, architecture, runtime controls, tests. |
 
 ## Naming Guidance
 
