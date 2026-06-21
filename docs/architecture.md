@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T15:39:29-06:00
+Last Updated: 2026-06-21T16:00:50-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -52,7 +52,8 @@ Devices and services have roles:
 
 - Windows and Linux can become trusted workers.
 - Android and browser surfaces can become cockpits.
-- Graphify can become a knowledge spoke.
+- Graphify can become an enhanced knowledge spoke for routing and handoff
+  acceleration.
 - GitHub remains the durable private spine.
 - Relay records coordinate work but do not execute work or replace durable
   records.
@@ -240,8 +241,9 @@ Any future live connector must have:
 
 Graphify remains a knowledge spoke, not an execution surface.
 
-Future Rev 2 may consume Graphify handoff records or graph references to reduce
-repeated repository reading and help route work. The architecture boundary is:
+Future Rev 2 may consume Graphify handoff records, workspace graph references,
+or repo-local graph updates to reduce repeated repository reading and help
+route work. The architecture boundary is:
 
 ```text
 Graphify graph or handoff record
@@ -251,8 +253,12 @@ Graphify graph or handoff record
         -> worker execution only if allowed
 ```
 
-Graphify must not approve execution, mutate Rev 2 source, index secrets, or
-replace request, relay, worker, connector, or release controls.
+The enhanced Graphify checkpoint belongs before broad source exploration,
+architecture rerouting, dependency tracing, or graph-dependent migration work.
+
+Graphify must not approve execution, mutate Rev 2 source, index secrets, upload
+graphs, run full semantic rebuilds outside chunk scope, or replace request,
+relay, worker, connector, or release controls.
 
 ## Data And Evidence Boundaries
 

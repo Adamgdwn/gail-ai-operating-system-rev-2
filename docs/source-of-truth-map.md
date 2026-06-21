@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T15:39:29-06:00
+Last Updated: 2026-06-21T16:00:50-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -115,7 +115,7 @@ ledger remain in `docs/current-build-pathway.md`.
 | Phase | Chunk range | Purpose |
 |---|---|---|
 | Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 navigation, permission, runtime, architecture, and migration-decision controls. |
-| Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate/rewrite the no-network mission spine, connector registry, Graphify handoff, relay envelope, relay store, tests, and proof runner. |
+| Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate/rewrite the no-network mission spine, connector registry, enhanced Graphify handoff checkpoint, relay envelope, relay store, tests, and proof runner. |
 | Phase 3 - First usable portal | Chunks Sixteen to Twenty | Build the browser command center, mobile-responsive views, approval actions, and evidence/handoff views. |
 | Phase 4 - Multi-device worker model | Chunks Twenty-One to Twenty-Five | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
 | Phase 5 - Full system build | Chunks Twenty-Six onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
@@ -140,4 +140,6 @@ Stop and require explicit owner approval before:
 Begin Chunk Ten only from `docs/migration/file-migration-decisions.md` and the
 active mission-spine package. Do not migrate any UAOS code outside the approved
 queue or broaden into connectors, portal, worker behavior, hosted relay, live
-business systems, client data, or production.
+business systems, client data, or production. Preserve Chunk Twelve as the
+explicit enhanced Graphify checkpoint before broad source exploration,
+architecture rerouting, or graph-dependent migration work.

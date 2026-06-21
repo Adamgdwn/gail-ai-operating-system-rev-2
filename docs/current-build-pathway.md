@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T15:42:12-06:00
+Last Updated: 2026-06-21T16:02:28-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -92,7 +92,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Promote Rev 2 architecture specs | complete | 2026-06-21T15:03:45-06:00 | codex session | Chunk Seven promoted active source spine, portal, worker, relay, Graphify, connector, data, and verification architecture without code migration. |
 | Record file migration decisions | complete | 2026-06-21T15:20:04-06:00 | codex session | Chunk Eight created `docs/migration/file-migration-decisions.md`, classified the first rewrite-focused code queue, and preserved exclusions for secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 copying. |
 | Migrate local mission spine | complete | 2026-06-21T15:42:12-06:00 | codex session | Chunk Nine rewrote the approved v1 mission, planner, and policy references as a local no-network Rev 2 mission spine with focused tests. |
-| Handoff next chunk | pending | 2026-06-21T15:42:12-06:00 | codex session | Next bounded task is Chunk Ten: expand mission-spine tests from the selected v1 safety-evaluation reference without broadening into connectors, portal, or worker behavior. |
+| Schedule enhanced Graphify checkpoint | complete | 2026-06-21T16:00:50-06:00 | codex session | Chunk Twelve is now the explicit enhanced Graphify checkpoint for graph-aware routing, repo-local graph setup checks, and read-only handoff validation before broader migration exploration. |
+| Handoff next chunk | pending | 2026-06-21T16:00:50-06:00 | codex session | Next bounded task is still Chunk Ten: expand mission-spine tests from the selected v1 safety-evaluation reference without broadening into connectors, portal, or worker behavior. |
 
 ## Current Completion Boundary
 
@@ -113,7 +114,7 @@ chunk still needs its own packet, validation, commit, push, and handoff.
 | Phase | Chunk range | Purpose |
 |---|---|---|
 | Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 source-of-truth, tool permissions, runtime controls, architecture specs, and file migration decisions. |
-| Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate or rewrite the no-network mission spine, connector registry, Graphify handoff, relay envelope, relay store, tests, and proof runner. |
+| Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate or rewrite the no-network mission spine, connector registry, enhanced Graphify handoff checkpoint, relay envelope, relay store, tests, and proof runner. |
 | Phase 3 - First usable portal | Chunks Sixteen to Twenty | Build the browser command center, mobile-responsive Android/tablet views, approval actions, and evidence/handoff views. |
 | Phase 4 - Multi-device worker model | Chunks Twenty-One to Twenty-Five | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
 | Phase 5 - Full system build | Chunks Twenty-Six onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
@@ -720,22 +721,28 @@ permissions and stop triggers but do not activate live services. Validation:
 schema tests, JSON/YAML parse checks, forbidden live-secret scan, diff check,
 commit, push. Stop: before any live connector credentials or API calls.
 
-## Chunk Twelve - Migrate Graphify Handoff Validator
+## Chunk Twelve - Activate Enhanced Graphify Handoff Checkpoint
 
 Status: planned
 
 Completion target: Task complete
 
-Budget class: Small
+Budget class: Medium
 
 Plan packet:
 
-Inputs: Graphify policy, active context hygiene standard, and selected v1
-handoff references. Outputs: local validation for graph-aware handoff records
-without broad graph rebuilds. Acceptance: validator supports context routing
-and compaction handoffs while preserving secret exclusions. Validation:
-targeted tests, sample handoff validation, diff check, commit, push. Stop:
-before broad source exploration or full semantic graph work.
+Inputs: Graphify policy, active context hygiene standard, selected v1 handoff
+references, workspace graph route, and repo-local Graphify setup status.
+Outputs: enhanced Graphify route for Rev 2, repo-local graph setup or update
+instructions, and local validation for graph-aware handoff records without
+source mutation. Acceptance: agents can use Graphify to reduce raw source reads
+before broad exploration or architecture routing, while recommendations remain
+mission candidates that require Rev 2 policy approval. Validation: Graphify
+capability probe or documented blocker, targeted tests, sample handoff
+validation, graph-output and secret-exclusion check, diff check, commit, push.
+Stop: before graph upload, source mutation through Graphify, full semantic
+rebuild outside chunk scope, or treating a Graphify recommendation as execution
+approval.
 
 ## Chunk Thirteen - Migrate Relay Envelope Validator
 
@@ -1248,6 +1255,7 @@ date -Iseconds
 | 2026-06-21T15:39:29-06:00 | `python -m unittest discover -s tests` | pass | 9 mission-spine unit tests passed. |
 | 2026-06-21T15:39:29-06:00 | `python -m py_compile packages\uaos-core\src\gail_ai_operating_system\mission_spine.py packages\uaos-core\src\gail_ai_operating_system\__init__.py tests\test_mission_spine.py` | pass | Mission-spine source and tests compile. |
 | 2026-06-21T15:42:12-06:00 | final Chunk Nine validation bundle | pass | Governance preflight, schema validation, unit tests, syntax compile, `git diff --check`, mission-spine import smoke, routing search, complete-status search, forbidden filename scan, and strict secret-pattern scan passed. |
+| 2026-06-21T16:02:28-06:00 | enhanced Graphify pathway update | pass | Governance preflight, schema validation, `git diff --check`, targeted routing search, bare completed-status search, forbidden filename scan, and strict secret-pattern scan passed; Chunk Twelve is now the explicit enhanced Graphify checkpoint before broad source exploration or graph-dependent migration work. |
 
 ## Next Handoff
 

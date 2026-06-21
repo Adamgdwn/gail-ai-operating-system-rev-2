@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T15:39:29-06:00
+Last Updated: 2026-06-21T16:00:50-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -45,8 +45,8 @@ The first safe code queue is:
 2. Chunk Ten: migrate or rewrite focused mission-spine tests.
 3. Chunk Eleven: rewrite the connector registry foundation as local schema and
    validation only.
-4. Chunk Twelve: rewrite the Graphify handoff validator as read-only candidate
-   validation only.
+4. Chunk Twelve: activate the enhanced Graphify handoff checkpoint as
+   read-only routing and candidate validation only.
 5. Chunk Thirteen: rewrite the relay envelope validator.
 6. Chunk Fourteen: rewrite the relay record store and single-worker claim
    proof.
@@ -77,9 +77,9 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | yes | `rewrite` | Chunk Ten | Convert into Rev 2 behavior tests around stop triggers and permission gates. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite as connector profile schema and validation only; no live connector access. |
 | `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite tests for planning-only connector profiles, data classes, approval gates, and denied live actions. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite as read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Rewrite only if the active chunk needs adapter shape; no Graphify mutation or source indexing. |
-| `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite tests for candidate validation and denied execution authority. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite as enhanced read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Rewrite only if the active checkpoint needs adapter shape; no Graphify mutation, graph upload, or unapproved source indexing. |
+| `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite tests for candidate validation, denied execution authority, and enhanced Graphify routing boundaries. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite with Rev 2 source spine, device roles, stale-state checks, and unsafe-payload rejection. |
 | `L:\Applications\user-ai-operating-system\tests\test_relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite tests for no-network relay envelopes and denied unsafe payloads. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite local record store and single-worker claim proof only; no hosted relay or polling daemon. |

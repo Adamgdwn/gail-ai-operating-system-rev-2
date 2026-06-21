@@ -45,3 +45,6 @@
   local no-network mission spine in
   `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`, with
   focused unit tests in `tests/test_mission_spine.py`.
+- Scheduled Chunk Twelve as the explicit enhanced Graphify checkpoint for
+  graph-aware routing, repo-local graph setup checks, and read-only handoff
+  validation before broader migration exploration.
