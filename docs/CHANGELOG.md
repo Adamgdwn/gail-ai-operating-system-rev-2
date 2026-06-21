@@ -61,3 +61,7 @@
   handoff references as local read-only route/candidate validation with focused
   tests, without graph upload, source mutation, live adapter calls, or full
   semantic rebuild behavior.
+- Rewrote the selected v1 relay envelope references as Rev 2 local-file-only
+  relay envelope schema validation with focused tests for stale approvals,
+  malformed JSON shapes, unsafe payloads, denied hosted relay or worker
+  polling, and blocked live connector/client-data behavior.

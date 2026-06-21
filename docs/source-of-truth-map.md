@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T16:48:17-06:00
+Last Updated: 2026-06-21T17:09:24-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -70,6 +70,8 @@ competing truth stores.
 | `tests/test_connector_registry.py` | Local connector registry tests for planning-only profiles, live-capability rejection, client-controlled gates, dry-run-only decisions, JSON round trips, and duplicate IDs. |
 | `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | Local read-only Graphify route status and handoff candidate validation for approved graph references. |
 | `tests/test_graphify_handoff.py` | Local Graphify handoff tests for route readiness, candidate validation, policy-gated dry-run actions, denied execution/mutation, evidence checks, and sensitive-boundary rejection. |
+| `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | Local no-network relay envelope schema validation for intent, approval, status, evidence, and handoff records. |
+| `tests/test_relay_envelope.py` | Local relay envelope tests for safe references, dry-run policy gates, malformed JSON shapes, stale or expired approvals, denied hosted relay or worker polling, and unsafe payload rejection. |
 
 ## Active Placeholders To Promote
 
@@ -142,7 +144,7 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Thirteen: rewrite the relay envelope validator from the selected v1
-relay references. Keep the work local and no-network. Do not broaden into
-hosted relay, worker polling, portal behavior, client data, live connectors,
-live business systems, or production.
+Begin Chunk Fourteen: rewrite the relay record store and single-worker claim
+proof from the selected v1 relay store references. Keep the work local and
+no-network. Do not broaden into hosted relay, worker bootstrap scripts, portal
+behavior, client data, live connectors, live business systems, or production.

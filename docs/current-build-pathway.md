@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T16:52:51-06:00
+Last Updated: 2026-06-21T17:13:25-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -96,7 +96,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Migrate mission-spine safety tests | complete | 2026-06-21T16:14:14-06:00 | codex session | Chunk Ten expanded the local mission-spine safety loop from the selected v1 safety-evaluation reference, covering stop triggers, default-deny policy, risk-tier blocking, and local store file boundaries. |
 | Migrate connector registry foundation | complete | 2026-06-21T16:29:12-06:00 | codex session | Chunk Eleven rewrote the selected v1 connector registry reference as local planning-only profile schema, JSON-safe serialization, dry-run request evaluation, and default-deny tests without live connector credentials or API calls. |
 | Activate enhanced Graphify handoff checkpoint | complete | 2026-06-21T16:48:17-06:00 | codex session | Chunk Twelve added the active Graphify checkpoint doc, local route status, and read-only handoff candidate validation with focused tests. |
-| Handoff next chunk | pending | 2026-06-21T16:48:17-06:00 | codex session | Next bounded task is Chunk Thirteen: rewrite the relay envelope validator. |
+| Migrate relay envelope validator | complete | 2026-06-21T17:09:24-06:00 | codex session | Chunk Thirteen rewrote the selected v1 relay envelope references as local no-network Rev 2 schema validation and unsafe/stale envelope tests. |
+| Handoff next chunk | pending | 2026-06-21T17:09:24-06:00 | codex session | Next bounded task is Chunk Fourteen: build the relay store and single-worker claim proof. |
 
 ## Current Completion Boundary
 
@@ -105,9 +106,10 @@ bounded chunks are done. The current project state is active controls plus the
 first local code slice: source-of-truth, tool permission, runtime, agent,
 model, prompt, architecture, file migration decision, and Graphify handoff
 checkpoint controls are promoted, and the local no-network mission spine,
-planning-only connector registry, and read-only Graphify handoff validator
-exist under the Rev 2 core package with expanded safety, permission,
-file-boundary, and graph-candidate tests.
+planning-only connector registry, read-only Graphify handoff validator, and
+local relay envelope validator exist under the Rev 2 core package with
+expanded safety, permission, file-boundary, graph-candidate, unsafe-payload,
+and stale-state tests.
 No portal build, worker model, relay store, hosted relay, live connector
 activation, client-data workflow, or production release has started. Project
 completion remains a human decision after the release-decision chunk.
@@ -800,7 +802,7 @@ Completion notes:
 
 ## Chunk Thirteen - Migrate Relay Envelope Validator
 
-Status: planned
+Status: complete (2026-06-21T17:09:24-06:00)
 
 Completion target: Task complete
 
@@ -814,6 +816,28 @@ approval, status, evidence, and handoff records. Acceptance: envelopes are
 local files only and contain no secrets or client data. Validation: schema
 tests, malformed-envelope tests, secret scan, diff check, commit, push. Stop:
 before any persistent hosted relay or cross-device execution loop.
+
+Completion notes:
+
+- Read only the approved v1 `relay_envelope.py`,
+  `test_relay_envelope.py`, and copied `REQ-0055` request record references.
+- Added Rev 2 `RelayEnvelope`, `RelayValidationContext`, and
+  `validate_relay_envelope` for local-file-only intent, approval, status,
+  evidence, and handoff records.
+- Validates schema version, project ID, record type, device role, approval
+  ceiling, known connector IDs, Graphify handoff state, observed-state
+  freshness, optional approval expiry, safe evidence references, and required
+  relay stop triggers.
+- Rejects hosted relay transport, active worker polling, inbound worker modes,
+  unknown devices/connectors, stale or superseded envelopes, conflicting
+  records, raw secrets, raw logs, raw audio, client-data-full payloads,
+  unsafe filesystem refs, live connector actions, Microsoft 365 content reads,
+  Client Gateway assessment stages, and Graphify execution status.
+- Updated the core package exports and local mission-spine action allowlist
+  for dry-run `relay_envelope_validate` actions only.
+- Kept relay persistence, worker claims, hosted relay, portal behavior,
+  client data, live connectors, live business systems, and production out of
+  scope.
 
 ## Chunk Fourteen - Build Relay Store And Worker Claim Proof
 
@@ -1316,6 +1340,8 @@ date -Iseconds
 | 2026-06-21T16:31:59-06:00 | final Chunk Eleven validation bundle | pass | Governance preflight, schema validation, 25 unit tests, syntax compile, connector registry JSON round trip, Tool Directory JSON parse, `git diff --check`, targeted routing search, complete-status formatting check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 | 2026-06-21T16:48:17-06:00 | Chunk Twelve Graphify handoff checkpoint | pass | Read the canonical Graphify governance file, probed the existing workspace graph and CLI availability, inspected only the approved v1 `graphify_handoff.py`, `graphify_adapter.py`, and `test_graphify_handoff.py` references, and rewrote local read-only route/candidate validation without graph upload, source mutation, full semantic rebuild, live adapter, portal, worker, hosted relay, client data, live systems, or production behavior. |
 | 2026-06-21T16:52:51-06:00 | final Chunk Twelve validation bundle | pass | Governance preflight, schema validation, 35 unit tests, syntax compile, sample Graphify handoff validation, Tool Directory JSON parse, `git diff --check`, graph-output exclusion check, routing registration check, complete-status formatting check excluding copied v1 references, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
+| 2026-06-21T17:09:24-06:00 | Chunk Thirteen relay envelope validator | pass | Read only the approved v1 `relay_envelope.py`, `test_relay_envelope.py`, and `REQ-0055` references, then rewrote local no-network relay envelope schema validation and focused tests without hosted relay, worker polling, portal behavior, client data, live connectors, live business systems, or production behavior. |
+| 2026-06-21T17:13:25-06:00 | final Chunk Thirteen validation bundle | pass | Governance preflight, schema validation, 49 unit tests, syntax compile, relay smoke validation, Tool Directory JSON parse, `git diff --check`, routing registration check, complete-status formatting check excluding copied v1 references, graph-output exclusion check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 
 ## Next Handoff
 
@@ -1344,7 +1370,10 @@ tests in `tests/test_connector_registry.py`, and the active read-only Graphify
 handoff checkpoint now lives in `docs/graphify-handoff-checkpoint.md` with
 local validation code in
 `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` and tests
-in `tests/test_graphify_handoff.py`. The next bounded task is Chunk Thirteen:
-rewrite the relay envelope validator without hosted relay, worker polling,
-portal behavior, client data, live connectors, live business systems, or
-production behavior.
+in `tests/test_graphify_handoff.py`, and the local relay envelope validator
+now lives in
+`packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` with tests
+in `tests/test_relay_envelope.py`. The next bounded task is Chunk Fourteen:
+build the local relay store and single-worker claim proof without hosted
+relay, worker bootstrap scripts, portal behavior, client data, live
+connectors, live business systems, or production behavior.

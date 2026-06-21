@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T16:48:17-06:00
+Last Updated: 2026-06-21T17:09:24-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -34,6 +34,8 @@ Active now:
 - active read-only Graphify handoff checkpoint at
   `docs/graphify-handoff-checkpoint.md` plus local candidate validation in
   `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`;
+- local no-network relay envelope validator at
+  `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py`;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -41,7 +43,7 @@ Not active yet:
 - browser command center;
 - Android phone or tablet portal;
 - Windows or Linux worker bootstrap;
-- relay envelope validator, relay record store, or worker claim loop;
+- relay record store or worker claim loop;
 - hosted relay;
 - live Microsoft 365, QuickBooks, billing, vendor, client-data, or deployment
   connectors;
@@ -83,6 +85,7 @@ current state, policy boundary, and stale-state checks before acting.
 | Rev 2 mission spine | Local no-network mission envelopes, deterministic planning, policy gate, validation, and JSON record store. | Local deterministic runtime for future approved mission records, evidence references, and action logs. | No autonomous mission loop, connector call, worker claim, relay polling, or production action until later controls exist. |
 | Graphify knowledge spoke | Active read-only route status and handoff candidate validation. | Read-only graph context, handoff records, recommendations as mission candidates. | Graphify recommendations are not execution approval and must pass Rev 2 policy before work. |
 | Connector registry | Link-only seed records and planning references. | Governed connector profiles with owner, workspace, data class, approval gate, audit, and retention rules. | Profiles are permission structure, not permission or credentials. |
+| Relay envelopes | Local-file-only schema validation for intent, approval, status, evidence, and handoff records. | Future relay records for device/cockpit coordination before worker claims or hosted relay. | Envelopes carry safe summaries and references only; no persistence, polling, hosted relay, client data, raw payloads, or execution authority is active. |
 | Model and prompt controls | Current Codex coding session only for repo collaboration. | Future runtime route only after model and prompt approval records exist. | No production runtime model, BYOK provider, client-data route, or connector-driving prompt is approved. |
 
 ## Source-Of-Truth Flow

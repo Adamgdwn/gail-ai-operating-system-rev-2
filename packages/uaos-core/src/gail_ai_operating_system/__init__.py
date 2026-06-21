@@ -41,6 +41,14 @@ from .mission_spine import (
     detect_stop_trigger,
     validate_mission,
 )
+from .relay_envelope import (
+    PROJECT_ID,
+    SCHEMA_VERSION,
+    RelayEnvelope,
+    RelayValidationContext,
+    RelayValidationReport,
+    validate_relay_envelope,
+)
 
 __all__ = [
     "ConnectorOperationRequest",
@@ -65,7 +73,12 @@ __all__ = [
     "MissionValidationResult",
     "PermissionGate",
     "PolicyDecision",
+    "PROJECT_ID",
     "REPO_LOCAL_GRAPH_PATH",
+    "RelayEnvelope",
+    "RelayValidationContext",
+    "RelayValidationReport",
+    "SCHEMA_VERSION",
     "WORKSPACE_GRAPH_PATH",
     "build_local_plan",
     "build_graphify_route_status",
@@ -78,4 +91,5 @@ __all__ = [
     "validate_connector_registry",
     "validate_graphify_handoff_payload",
     "validate_mission",
+    "validate_relay_envelope",
 ]

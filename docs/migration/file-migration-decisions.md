@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T16:48:17-06:00
+Last Updated: 2026-06-21T17:09:24-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -49,7 +49,8 @@ The first safe code queue is:
 4. Chunk Twelve: activate the enhanced Graphify handoff checkpoint as
    read-only routing and candidate validation only. Complete as of
    2026-06-21T16:48:17-06:00.
-5. Chunk Thirteen: rewrite the relay envelope validator.
+5. Chunk Thirteen: rewrite the relay envelope validator. Complete as of
+   2026-06-21T17:09:24-06:00.
 6. Chunk Fourteen: rewrite the relay record store and single-worker claim
    proof.
 7. Chunk Fifteen: build a local no-network proof runner.
@@ -69,6 +70,8 @@ outside this queue.
 | `tests/test_connector_registry.py` | `test_connector_registry.py` | 2026-06-21T16:29:12-06:00 | Tests for planning-only profile validity, JSON round trips, denied live capabilities, client-controlled approval gates, local dry-run decisions, unknown connector denial, and duplicate IDs. |
 | `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | `graphify_handoff.py` plus route shape from `graphify_adapter.py` | 2026-06-21T16:48:17-06:00 | Local read-only Graphify route status and handoff candidate validation only. No live adapter, HTTP fetch, graph upload, source mutation, full semantic rebuild, or execution approval. |
 | `tests/test_graphify_handoff.py` | `test_graphify_handoff.py` | 2026-06-21T16:48:17-06:00 | Tests for route readiness, accepted read-only candidates, policy-gated dry-run mission actions, denied executed/mutating recommendations, evidence checks, sensitive-path rejection, live/client-data rejection, unapproved graph references, and required Graphify stop triggers. |
+| `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | `relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Local-file-only relay envelope schema validation for intent, approval, status, evidence, and handoff records. No hosted relay, worker polling, portal behavior, live connector action, client data, raw payload, or production behavior. |
+| `tests/test_relay_envelope.py` | `test_relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Tests for safe references, malformed JSON shapes, stale or expired approvals, hosted relay denial, worker polling denial, live connector denial, Graphify execution denial, and unsafe payload rejection. |
 
 ## Candidate Decisions
 
@@ -86,8 +89,8 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Converted into Rev 2 local read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Inspected for route shape only. No live adapter, HTTP fetch, Graphify mutation, graph upload, or unapproved source indexing was copied. |
 | `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Converted into Rev 2 tests for candidate validation, denied execution authority, evidence checks, and enhanced Graphify routing boundaries. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite with Rev 2 source spine, device roles, stale-state checks, and unsafe-payload rejection. |
-| `L:\Applications\user-ai-operating-system\tests\test_relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite tests for no-network relay envelopes and denied unsafe payloads. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Converted into Rev 2 local-file-only relay envelope validation with Rev 2 source spine, device roles, stale-state checks, and unsafe-payload rejection. |
+| `L:\Applications\user-ai-operating-system\tests\test_relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Converted into Rev 2 tests for no-network relay envelopes, stale approval/state rejection, hosted relay denial, worker polling denial, and unsafe payload rejection. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite local record store and single-worker claim proof only; no hosted relay or polling daemon. |
 | `L:\Applications\user-ai-operating-system\tests\test_relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite tests for local persistence, stale-state rejection, and claim conflict behavior. |
 | `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\README.md` | yes | `archive` | already copied | Keep the README as reference for future portal UX and validation. |
@@ -147,7 +150,9 @@ Chunk Eleven has rewritten the connector registry foundation from the selected
 v1 connector registry references as local schema, validation, JSON-safe
 serialization, and dry-run/default-deny request evaluation only. Chunk Twelve
 has rewritten the selected Graphify handoff references as local read-only route
-status and candidate validation only.
+status and candidate validation only. Chunk Thirteen has rewritten the selected
+relay envelope references as local-file-only schema validation and safety tests
+only.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
