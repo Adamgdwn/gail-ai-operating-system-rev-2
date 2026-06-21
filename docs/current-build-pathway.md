@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T14:18:18-06:00
+Last Updated: 2026-06-21T14:33:43-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -88,7 +88,15 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Publish private GitHub remote | complete | 2026-06-21T13:36:09-06:00 | codex session | Private repository target is `Adamgdwn/gail-ai-operating-system-rev-2`; initial scaffold commit and push are part of Chunk Three. |
 | Promote Rev 2 source-of-truth map | complete | 2026-06-21T14:01:39-06:00 | codex session | Chunk Four promoted active navigation, status timestamp formatting, compact future chunk routing, and required-doc registration. |
 | Promote Rev 2 tool permission matrix | complete | 2026-06-21T14:16:18-06:00 | codex session | Chunk Five promoted active tool, device, connector, and worker permission boundaries without activating live connectors. |
-| Handoff next chunk | pending | 2026-06-21T14:16:18-06:00 | codex session | Next bounded task is promoting runtime, agent, model, and prompt controls. |
+| Handoff next chunk | pending | 2026-06-21T14:33:43-06:00 | codex session | Next bounded task is promoting runtime, agent, model, and prompt controls. Planned chunk headings now continue below through the release decision. |
+
+## Current Completion Boundary
+
+Rev 2 is not complete. Completed rows in the active path mean only that those
+bounded chunks are done. The current project state is active control promotion:
+no UAOS code migration, portal build, worker model, hosted relay, live
+connector activation, client-data workflow, or production release has started.
+Project completion remains a human decision after the release-decision chunk.
 
 ## Compact Future Chunk Map
 
@@ -102,6 +110,10 @@ chunk still needs its own packet, validation, commit, push, and handoff.
 | Phase 3 - First usable portal | Chunks Sixteen to Twenty | Build the browser command center, mobile-responsive Android/tablet views, approval actions, and evidence/handoff views. |
 | Phase 4 - Multi-device worker model | Chunks Twenty-One to Twenty-Five | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
 | Phase 5 - Full system build | Chunks Twenty-Six onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
+
+The compact chunk packets below are the planned runway. A future chunk may be
+expanded when activated, but it should not absorb unrelated chunks just because
+the plan is visible here.
 
 ## Chunk One - Governed Workspace Separation
 
@@ -387,6 +399,552 @@ Stop condition:
   runtime/agent-controls handoff is clear, and the chunk is committed and
   pushed.
 
+## Chunk Six - Promote Runtime And Agent Controls
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Tiny
+
+Plan packet:
+
+Inputs: active placeholders for agent inventory, model registry, prompt
+register, the active tool permission matrix, and copied v1 runtime controls.
+Outputs: active Rev 2 runtime, agent, model, and prompt controls. Acceptance:
+current A1 autonomy, approved model/prompt posture, inactive future agents, and
+blocked live connector behavior are explicit. Validation: governance preflight,
+schema validation, targeted placeholder search, secret-pattern scan, diff
+check, commit, push. Stop: after controls are promoted without starting code
+migration or live connector work.
+
+## Chunk Seven - Promote Architecture Specs
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: copied v1 architecture, DirectLink, relay, cockpit, and cross-device
+references plus active source-of-truth controls. Outputs: active Rev 2
+architecture specs for source of truth, portal surfaces, workers, relay
+records, and connector boundaries. Acceptance: Windows, Linux, Android,
+browser, GitHub, and future hosted surfaces have clear roles. Validation:
+governance preflight, schema validation, link/path checks, targeted search for
+stale v1 authority language, diff check, commit, push. Stop: before any app or
+worker code migration.
+
+## Chunk Eight - Record File Migration Decisions
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: source inventory, copied v1 references, active control docs, and
+candidate v1 code folders. Outputs: migration decision record marking each
+candidate source as promote, rewrite, archive, exclude, or later review.
+Acceptance: no secrets, logs, client data, raw audio, generated artifacts, or
+live connector state enter the repo. Validation: inventory reconciliation,
+forbidden filename scan, strict secret-pattern scan, diff check, commit, push.
+Stop: when the first code migration queue is safe and bounded.
+
+## Chunk Nine - Migrate Local Mission Spine
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: approved migration decision record and selected v1 mission-spine code.
+Outputs: Rev 2 local-only mission spine with no network side effects.
+Acceptance: mission records can be created, read, and validated locally under
+Rev 2 naming and governance. Validation: unit tests, type or syntax checks,
+secret scan, diff check, commit, push. Stop: before connector, portal, or
+worker behavior.
+
+## Chunk Ten - Migrate Mission Spine Tests
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: migrated mission spine and selected v1 test references. Outputs:
+focused Rev 2 tests for mission state, validation, failure cases, and file
+boundaries. Acceptance: tests prove local behavior without external services.
+Validation: targeted test run, governance preflight if controls changed,
+secret scan, diff check, commit, push. Stop: once the local mission spine has a
+repeatable safety loop.
+
+## Chunk Eleven - Migrate Connector Registry Foundation
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: tool permission matrix, source-of-truth map, migration decisions, and
+selected v1 connector registry references. Outputs: Rev 2 connector registry
+schema and local validation only. Acceptance: registry entries describe
+permissions and stop triggers but do not activate live services. Validation:
+schema tests, JSON/YAML parse checks, forbidden live-secret scan, diff check,
+commit, push. Stop: before any live connector credentials or API calls.
+
+## Chunk Twelve - Migrate Graphify Handoff Validator
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: Graphify policy, active context hygiene standard, and selected v1
+handoff references. Outputs: local validation for graph-aware handoff records
+without broad graph rebuilds. Acceptance: validator supports context routing
+and compaction handoffs while preserving secret exclusions. Validation:
+targeted tests, sample handoff validation, diff check, commit, push. Stop:
+before broad source exploration or full semantic graph work.
+
+## Chunk Thirteen - Migrate Relay Envelope Validator
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: relay references, tool permissions, architecture specs, and migration
+decisions. Outputs: Rev 2 relay envelope schema and validator for intent,
+approval, status, evidence, and handoff records. Acceptance: envelopes are
+local files only and contain no secrets or client data. Validation: schema
+tests, malformed-envelope tests, secret scan, diff check, commit, push. Stop:
+before any persistent hosted relay or cross-device execution loop.
+
+## Chunk Fourteen - Build Relay Store And Worker Claim Proof
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: relay envelope validator, architecture specs, and worker role
+boundaries. Outputs: local Git-backed relay store proof with claim, status, and
+evidence records. Acceptance: worker claim behavior is deterministic, stale
+state is rejected, and no device receives more authority than documented.
+Validation: local tests, conflict-case tests, diff check, commit, push. Stop:
+before Windows/Linux worker bootstrap scripts.
+
+## Chunk Fifteen - Build Local Proof Runner
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: mission spine, connector registry foundation, relay envelope validator,
+and relay store proof. Outputs: local proof runner that exercises one complete
+no-network mission path. Acceptance: a mission can move from intent to
+validated evidence locally. Validation: full local proof run, test suite,
+governance preflight, secret scan, diff check, commit, push. Stop: before UI
+or live connector work.
+
+## Chunk Sixteen - Choose App Shell
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: architecture specs, portal requirements, current repo tooling, and
+local proof runner behavior. Outputs: app-shell decision record and initial
+project structure for the browser command center. Acceptance: selected shell
+supports Windows, Linux, Android phone, Android tablet, and browser workflows.
+Validation: dependency review, minimal build check, diff check, commit, push.
+Stop: before feature UI implementation.
+
+## Chunk Seventeen - Build Operating Cockpit Shell
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: app-shell decision and relay/mission proof data. Outputs: first
+browser cockpit shell showing missions, approvals, worker status, and evidence
+areas from local sample data. Acceptance: first screen is the usable cockpit,
+not a landing page. Validation: build, lint or equivalent checks, responsive
+smoke test, screenshot review if available, commit, push. Stop: before
+approval mutation behavior.
+
+## Chunk Eighteen - Build Mobile-Responsive Cockpit
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: cockpit shell and device role specs. Outputs: Android phone, Android
+tablet, desktop Windows, and desktop Linux responsive layouts. Acceptance:
+operators can review status, approvals, and evidence cleanly on each target
+viewport. Validation: responsive browser checks, screenshot review, build, diff
+check, commit, push. Stop: before adding real approval actions.
+
+## Chunk Nineteen - Add Approval Actions
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: mobile cockpit, relay envelope validator, relay store, and tool
+permission matrix. Outputs: local approval, reject, hold, and request-more-info
+actions writing governed relay records. Acceptance: actions are auditable,
+stale-state protected, and do not execute live tools. Validation: UI tests or
+manual proof, relay record tests, diff check, commit, push. Stop: before
+production or hosted authorization.
+
+## Chunk Twenty - Build Evidence And Handoff Views
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: cockpit shell, approval actions, relay records, and context hygiene
+standard. Outputs: evidence viewer and chunk handoff view for compact resume
+across devices. Acceptance: a future agent can resume from durable records
+without needing chat history. Validation: sample mission proof, responsive
+checks, handoff validation, commit, push. Stop: before multi-worker bootstrap.
+
+## Chunk Twenty-One - Build Windows Worker Bootstrap
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: worker architecture, relay store, local proof runner, and Windows
+operator workspace constraints. Outputs: Windows worker bootstrap for local
+claim, run, evidence write, and stop behavior. Acceptance: worker runs only
+approved local no-network tasks. Validation: local bootstrap test, stale claim
+test, secret scan, diff check, commit, push. Stop: before Linux worker
+bootstrap.
+
+## Chunk Twenty-Two - Build Linux Worker Bootstrap
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: worker architecture, relay store, local proof runner, and Linux
+reference/worker boundaries. Outputs: Linux worker bootstrap that clones or
+pulls the private repo and claims approved work without tunnel dependence.
+Acceptance: Linux acts as a worker, not as Rev 2 source of truth. Validation:
+local or DirectLink-assisted dry run, claim/evidence tests, diff check, commit,
+push. Stop: before cross-worker identity enforcement.
+
+## Chunk Twenty-Three - Add Worker Identity And Role Checks
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: Windows worker, Linux worker, tool permission matrix, and relay
+records. Outputs: explicit worker identity, role, and capability checks.
+Acceptance: worker permissions are enforced before claim or execution.
+Validation: allowed and denied role tests, stale-state tests, diff check,
+commit, push. Stop: before GitHub-backed relay synchronization.
+
+## Chunk Twenty-Four - Add GitHub-Backed Relay Records
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: private GitHub remote, relay store, worker checks, and portal views.
+Outputs: GitHub-backed relay record flow for device-independent status,
+approval, claim, and evidence records. Acceptance: devices coordinate through
+private GitHub records, not through persistent tunneling. Validation: local
+branch/commit proof, conflict tests, push/pull proof, diff check, commit, push.
+Stop: before hosted relay services.
+
+## Chunk Twenty-Five - Add Conflict And Recovery Behavior
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: GitHub-backed relay records, worker identity checks, and portal
+approval flows. Outputs: conflict detection, retry, stale claim cleanup,
+operator override, and recovery records. Acceptance: failed or competing work
+can be recovered without silent state loss. Validation: conflict scenario
+tests, manual proof, diff check, commit, push. Stop: before auth or hosted
+relay design.
+
+## Chunk Twenty-Six - Design Auth And Session Boundaries
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: portal, relay, worker model, tool permissions, and future hosted relay
+needs. Outputs: auth/session design for local, private GitHub, and potential
+hosted surfaces. Acceptance: no production auth is activated; data classes,
+roles, tokens, and session expiry are specified. Validation: governance review,
+threat-model checklist, diff check, commit, push. Stop: before implementation
+or provider configuration.
+
+## Chunk Twenty-Seven - Evaluate Hosted Relay
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: local relay proof, GitHub-backed relay behavior, auth design, and
+device requirements. Outputs: hosted relay decision record with options,
+risks, costs, and approval gates. Acceptance: hosting is evaluated without
+creating infrastructure or public ingress. Validation: decision review,
+security/risk checklist, diff check, commit, push. Stop: before provisioning.
+
+## Chunk Twenty-Eight - Prototype Hosted Relay
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Large
+
+Plan packet:
+
+Inputs: approved hosted relay decision, auth/session design, relay schema, and
+worker model. Outputs: minimal hosted relay prototype behind approved controls.
+Acceptance: prototype has disable path, logs only safe metadata, and excludes
+client data and live connector execution unless separately approved.
+Validation: local and hosted smoke tests, security checks, rollback runbook,
+commit, push. Stop: on any unresolved auth, secret, public ingress, or data
+classification issue.
+
+## Chunk Twenty-Nine - Add Notification Layer
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: approval flows, hosted or GitHub-backed relay posture, and device role
+specs. Outputs: notification design and minimal approved status notifications.
+Acceptance: notifications are opt-in, auditable, and do not leak sensitive
+content. Validation: notification dry run, safe payload review, diff check,
+commit, push. Stop: before customer or business-system communications.
+
+## Chunk Thirty - Activate Microsoft 365 Inventory If Approved
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Large
+
+Plan packet:
+
+Inputs: explicit Adam approval, tool permission matrix update, auth/session
+design, connector registry, and M365 boundary docs. Outputs: inventory-only
+M365 connector posture, if approved. Acceptance: no mail send, Teams send,
+tenant/admin mutation, or content extraction beyond approved inventory scope.
+Validation: dry run, permission review, safe-log review, governance preflight,
+commit, push. Stop: unless explicit approval and credentials boundary are in
+place.
+
+## Chunk Thirty-One - Activate GitHub Adapter
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: connector registry, relay records, private GitHub remote, and tool
+permission matrix. Outputs: governed GitHub adapter for repo metadata, issues,
+PRs, and approved workflow support. Acceptance: adapter follows risk tiers,
+dry-run where practical, and never mutates outside approved repos or branches.
+Validation: adapter tests, dry-run proof, safe-log review, commit, push. Stop:
+before broader vendor account access.
+
+## Chunk Thirty-Two - Define Client Gateway Boundary
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: portal, relay, auth design, connector registry, and client-data stop
+triggers. Outputs: Client Gateway boundary spec and activation checklist.
+Acceptance: client data remains blocked until classification, consent, storage,
+retention, and deletion controls are approved. Validation: governance review,
+data-boundary checklist, diff check, commit, push. Stop: before any real
+client data enters the system.
+
+## Chunk Thirty-Three - Add Vendor And Subscription Intelligence
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Large
+
+Plan packet:
+
+Inputs: connector registry, vendor/account stop triggers, approval flows, and
+safe evidence views. Outputs: local or approved-read vendor/subscription
+intelligence workflow. Acceptance: no billing mutation, payment movement,
+account change, or vendor communication occurs. Validation: dry run, safe-log
+review, governance preflight, tests, commit, push. Stop: before finance,
+payment, or account-change authority.
+
+## Chunk Thirty-Four - Write Runbooks And Disable Procedures
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Plan packet:
+
+Inputs: all active architecture, portal, relay, worker, auth, connector, and
+notification controls. Outputs: operator runbooks, emergency stop, credential
+rotation notes, disable procedures, and recovery procedures. Acceptance:
+operator can stop or roll back every active surface. Validation: runbook
+walkthrough, link checks, governance preflight, commit, push. Stop: before
+pilot mission.
+
+## Chunk Thirty-Five - Run Pilot Mission
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Large
+
+Plan packet:
+
+Inputs: local/hosted relay posture, portal, workers, runbooks, and approved
+connector boundaries. Outputs: one documented pilot mission from intent through
+approval, execution, evidence, handoff, and recovery. Acceptance: pilot stays
+inside approved data and tool boundaries and produces durable evidence.
+Validation: pilot transcript, test suite, runbook checks, governance preflight,
+commit, push. Stop: on any boundary breach or unapproved connector need.
+
+## Chunk Thirty-Six - Perform Ship-Readiness Hardening
+
+Status: planned
+
+Completion target: Release ready
+
+Budget class: Strategic
+
+Plan packet:
+
+Inputs: pilot results, active code, controls, runbooks, tests, and standards.
+Outputs: release-readiness evidence package, resolved high-risk gaps, and
+known residual risks. Acceptance: Definition of Shipped evidence supports a
+human release decision. Validation: full test suite, security and secret
+checks, governance preflight, runbook proof, commit, push. Stop: before
+declaring project completion.
+
+## Chunk Thirty-Seven - Make Release Decision
+
+Status: planned
+
+Completion target: Release ready
+
+Budget class: Strategic
+
+Plan packet:
+
+Inputs: ship-readiness evidence, pilot results, risk register, runbooks,
+release checklist, and Adam's decision. Outputs: release decision record:
+ship, hold, limited pilot, or redesign. Acceptance: only Adam decides project
+completion; agents may report evidence and bounded completion states.
+Validation: decision record, final status update, tagged release only if
+approved, commit, push. Stop: at human release decision.
+
 ## Timestamp Rule
 
 Use ISO-style timestamps for work notes, handoffs, decisions, exceptions, release notes, and validation records. Prefer the local command:
@@ -435,6 +993,13 @@ date -Iseconds
 | 2026-06-21T14:16:18-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
 | 2026-06-21T14:17:39-06:00 | targeted matrix placeholder and complete-status search | failed, then fixed | The check caught its own validation-log wording; the wording was changed to avoid self-referential placeholder text. |
 | 2026-06-21T14:18:18-06:00 | targeted matrix placeholder and complete-status search | pass | Final rerun passed after validation-log wording fix. |
+| 2026-06-21T14:33:43-06:00 | pathway planned-chunk correction | pass | Added a current completion boundary and planned chunk headings from Chunk Six through Chunk Thirty-Seven so the pathway does not imply project completion after Chunk Five. |
+| 2026-06-21T14:33:43-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings after pathway roadmap correction. |
+| 2026-06-21T14:33:43-06:00 | `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` | pass | `project-control.yaml` schema still passes. |
+| 2026-06-21T14:33:43-06:00 | `git diff --check` | pass | No whitespace errors; Git reported expected line-ending normalization warning for the pathway file. |
+| 2026-06-21T14:33:43-06:00 | targeted planned-chunk and complete-status search | failed, then fixed | First heading count included instructional code-block examples; rerun checked required future chunk headings and no bare completed-status lines. |
+| 2026-06-21T14:33:43-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
+| 2026-06-21T14:33:43-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
 
 ## Next Handoff
 
