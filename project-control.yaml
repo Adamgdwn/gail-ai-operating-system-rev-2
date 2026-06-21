@@ -42,6 +42,7 @@ controls:
     - docs/CHANGELOG.md
     - docs/risks/risk-register.md
     - docs/migration/source-inventory.md
+    - docs/migration/file-migration-decisions.md
     - docs/tool-permission-matrix.md
     - docs/agent-runtime-instructions.md
     - docs/agent-inventory.md

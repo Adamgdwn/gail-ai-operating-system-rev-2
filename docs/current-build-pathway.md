@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T15:03:45-06:00
+Last Updated: 2026-06-21T15:20:04-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -90,17 +90,19 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Promote Rev 2 tool permission matrix | complete | 2026-06-21T14:16:18-06:00 | codex session | Chunk Five promoted active tool, device, connector, and worker permission boundaries without activating live connectors. |
 | Promote runtime and agent controls | complete | 2026-06-21T14:46:16-06:00 | codex session | Chunk Six promoted active runtime instructions, agent inventory, model registry, and prompt register without activating live runtime behavior. |
 | Promote Rev 2 architecture specs | complete | 2026-06-21T15:03:45-06:00 | codex session | Chunk Seven promoted active source spine, portal, worker, relay, Graphify, connector, data, and verification architecture without code migration. |
-| Handoff next chunk | pending | 2026-06-21T15:03:45-06:00 | codex session | Next bounded task is recording file migration decisions before any UAOS code migration. |
+| Record file migration decisions | complete | 2026-06-21T15:20:04-06:00 | codex session | Chunk Eight created `docs/migration/file-migration-decisions.md`, classified the first rewrite-focused code queue, and preserved exclusions for secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 copying. |
+| Handoff next chunk | pending | 2026-06-21T15:20:04-06:00 | codex session | Next bounded task is Chunk Nine: rewrite the local no-network mission spine from the approved migration queue. |
 
 ## Current Completion Boundary
 
 Rev 2 is not complete. Completed rows in the active path mean only that those
-bounded chunks are done. The current project state is active control promotion:
-source-of-truth, tool permission, runtime, agent, model, prompt, and
-architecture controls are promoted; file migration decisions remain ahead. No
-UAOS code migration, portal build, worker model, hosted relay, live connector
-activation, client-data workflow, or production release has started. Project
-completion remains a human decision after the release-decision chunk.
+bounded chunks are done. The current project state is active control promotion
+plus migration-decision readiness: source-of-truth, tool permission, runtime,
+agent, model, prompt, architecture, and file migration decision controls are
+promoted. The first code migration queue is bounded, but no UAOS code
+migration, portal build, worker model, hosted relay, live connector activation,
+client-data workflow, or production release has started. Project completion
+remains a human decision after the release-decision chunk.
 
 ## Compact Future Chunk Map
 
@@ -547,21 +549,75 @@ Stop condition:
 
 ## Chunk Eight - Record File Migration Decisions
 
-Status: planned
+Status: complete (2026-06-21T15:20:04-06:00)
 
 Completion target: Task complete
 
 Budget class: Small
 
-Plan packet:
+Objective:
 
-Inputs: source inventory, copied v1 references, active control docs, and
-candidate v1 code folders. Outputs: migration decision record marking each
-candidate source as promote, rewrite, archive, exclude, or later review.
-Acceptance: no secrets, logs, client data, raw audio, generated artifacts, or
-live connector state enter the repo. Validation: inventory reconciliation,
-forbidden filename scan, strict secret-pattern scan, diff check, commit, push.
-Stop: when the first code migration queue is safe and bounded.
+Record the file-level migration decisions that future Rev 2 code chunks must
+use before touching UAOS v1 source.
+
+Acceptance criteria:
+
+- [x] `docs/migration/file-migration-decisions.md` exists as an active migration
+  decision record.
+- [x] Candidate sources are marked as `promote`, `rewrite`, `archive`,
+  `exclude`, or `later review`.
+- [x] The first code migration queue is bounded to mission spine, tests,
+  connector registry, Graphify handoff, relay envelope, relay store, and proof
+  runner work.
+- [x] Bulk v1 package copying is blocked.
+- [x] Secrets, logs, client data, raw audio, generated artifacts, local runtime
+  state, live connector state, and production behavior remain excluded.
+- [x] Source map, context map, source inventory, project control, changelog, and
+  pathway records route future migration work through the decision record.
+- [x] No UAOS code, tests, app source, runtime state, hosted relay, worker,
+  portal, or connector behavior was migrated.
+
+Inputs:
+
+- `docs/migration/source-inventory.md`
+- `docs/source-of-truth-map.md`
+- `docs/architecture.md`
+- `docs/tool-permission-matrix.md`
+- `docs/agent-runtime-instructions.md`
+- copied v1 request records for relay envelope, relay store, final plan, and
+  closeout
+- copied v1 cockpit proof README
+- targeted existence checks for named v1 source candidates under
+  `L:\Applications\user-ai-operating-system`
+
+Outputs:
+
+- Active `docs/migration/file-migration-decisions.md`.
+- Updated `project-control.yaml`.
+- Updated `docs/source-of-truth-map.md`.
+- Updated `docs/context-map.md`.
+- Updated `docs/migration/source-inventory.md`.
+- Updated `docs/CHANGELOG.md`.
+- Updated active pathway and handoff.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh`
+- `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .`
+- targeted v1 candidate existence checks
+- migration decision routing and inventory reconciliation check
+- targeted active-doc search for missing decision routing and bare completed
+  status lines
+- forbidden filename scan
+- strict secret-pattern scan
+- `git diff --check`
+- `git status --short`
+
+Stop condition:
+
+- Stop after the first code migration queue is explicit, validation passes, and
+  Chunk Nine can start from the decision record without needing broad v1 source
+  exploration.
 
 ## Chunk Nine - Migrate Local Mission Spine
 
@@ -1125,7 +1181,18 @@ date -Iseconds
 | 2026-06-21T15:03:45-06:00 | targeted architecture placeholder, stale-authority, routing, and complete-status checks | pass | No architecture scaffold text, stale v1 authority language, or bare completed-status lines in active Chunk Seven docs; active architecture routing is registered. |
 | 2026-06-21T15:03:45-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
 | 2026-06-21T15:03:45-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 references. |
+| 2026-06-21T15:13:19-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Eight edits. |
+| 2026-06-21T15:13:19-06:00 | targeted v1 migration candidate existence checks | pass | Named mission, connector registry, Graphify, relay, cockpit, and validation candidate paths exist under the superseded v1 source for future file-level review. |
+| 2026-06-21T15:20:04-06:00 | file migration decision record | pass | Created active `docs/migration/file-migration-decisions.md`, registered routing, and kept the first code queue rewrite-focused with no UAOS code copied. |
+| 2026-06-21T15:20:04-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings after file migration decision routing. |
+| 2026-06-21T15:20:04-06:00 | `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` | pass | `project-control.yaml` schema passed after adding `docs/migration/file-migration-decisions.md` to required docs. |
+| 2026-06-21T15:20:04-06:00 | `git diff --check` | pass | No whitespace errors; Git reported expected line-ending normalization warning for the pathway file. |
+| 2026-06-21T15:20:04-06:00 | migration decision routing and inventory reconciliation check | pass | Project control, source map, context map, source inventory, active pathway, and changelog all route future migration work through the decision record. |
+| 2026-06-21T15:20:04-06:00 | targeted complete-status search | failed, then fixed | First run used PowerShell-incompatible glob arguments; rerun with `rg` glob controls found no bare completed-status lines in active docs. |
+| 2026-06-21T15:20:04-06:00 | migration decision vocabulary check | pass | Decision record includes rewrite, archive, exclude, and later-review decisions for candidate sources. |
+| 2026-06-21T15:20:04-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
+| 2026-06-21T15:20:04-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 references. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, the next bounded task is to record file migration decisions, and no UAOS code migration has started yet.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, the next bounded task is Chunk Nine to rewrite the local no-network mission spine from the approved migration queue, and no UAOS code migration has started yet.

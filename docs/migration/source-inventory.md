@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T15:03:45-06:00
+Last Updated: 2026-06-21T15:20:04-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -91,12 +91,14 @@ vendor, or third-party integration by itself.
 | `docs/model-registry.md` | Rev 2 scaffold placeholder plus current model-provider boundary in the tool permission matrix | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records that only the current coding-session model route is active for repo collaboration and no production runtime or BYOK model route is approved. |
 | `docs/prompt-register.md` | Rev 2 scaffold placeholder plus active repo instruction files | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records active instruction sources and the approval requirements for future runtime prompts. |
 | `docs/architecture.md` | Copied v1 cross-device, relay, final shippable, connector, M365, Graphify, and cockpit proof references plus active Rev 2 controls | 2026-06-21T15:03:45-06:00 | Rewritten for Rev 2. It defines the active source spine, device roles, portal, worker, relay, connector, Graphify, data, and verification boundaries without migrating code or activating runtime behavior. |
+| `docs/migration/file-migration-decisions.md` | Source inventory, active controls, copied v1 request records, and targeted existence checks for named v1 source candidates | 2026-06-21T15:20:04-06:00 | Created for Rev 2. It classifies the first code migration queue as rewrite-focused and excludes secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 package copying. |
 
 ## Not Copied Yet
 
 - DirectLink operational scripts, indicators, runbooks, and skill files.
 - UAOS Python code, tests, static cockpit source, action logs, generated files,
-  or local runtime artifacts.
+  or local runtime artifacts. Candidate code paths are now classified in
+  `docs/migration/file-migration-decisions.md`, but no code has been copied.
 - Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
   accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
   logs, or raw audio.
@@ -107,10 +109,7 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Review the copied references and decide what becomes active Rev 2 source or
-stays excluded:
-
-1. record file migration decisions;
-2. define the Tool Directory schema and tests;
-3. migrate or rewrite UAOS relay/connector core code only after active decisions
-   are clean and validated.
+Use `docs/migration/file-migration-decisions.md` to begin Chunk Nine. The next
+bounded task is to rewrite the local no-network mission spine from the approved
+queue, then add focused mission-spine tests. Do not migrate any file that is not
+listed in the decision record.

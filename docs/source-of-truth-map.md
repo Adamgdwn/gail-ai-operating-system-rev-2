@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T15:03:45-06:00
+Last Updated: 2026-06-21T15:20:04-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -34,6 +34,7 @@ competing truth stores.
 | 4 | `docs/context-map.md` | Task-specific context routing and files to avoid. |
 | 5 | `project-control.yaml` | Use case, selected risk tier, selected governance level, required docs, and agent autonomy posture. |
 | 6 | `docs/migration/source-inventory.md` | What was copied, what was excluded, and what remains reference-only. |
+| 7 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
 
 ## Active Rev 2 Controls
 
@@ -52,6 +53,7 @@ competing truth stores.
 | `docs/prompt-register.md` | Active prompt and instruction register plus future runtime prompt approval requirements. |
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
+| `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -128,5 +130,6 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Record file migration decisions next. Do not migrate UAOS code until migration
-decisions are explicit, bounded, and validated.
+Begin Chunk Nine only from `docs/migration/file-migration-decisions.md`. Do not
+migrate any UAOS code outside the approved queue or without the validation
+listed in the active pathway.

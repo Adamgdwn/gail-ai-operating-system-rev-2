@@ -36,3 +36,8 @@
   private GitHub source spine, portal, worker, relay, Graphify, connector, data,
   and verification boundaries without migrating code or activating runtime
   behavior.
+- Added active file migration decisions in
+  `docs/migration/file-migration-decisions.md`, classifying the first v1 code
+  migration queue as rewrite-focused while keeping secrets, logs, generated
+  artifacts, live connector state, client data, raw audio, bulk v1 package
+  copying, and production behavior out of Rev 2.
