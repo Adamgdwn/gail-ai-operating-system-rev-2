@@ -52,3 +52,7 @@
   `test_safety_evaluations.py` reference, adding stop-trigger, default-deny,
   risk-tier, validation, and local store file-boundary coverage without
   activating live connectors or runtime behavior.
+- Rewrote the selected v1 connector registry reference as the Rev 2 local
+  planning-only connector registry, adding profile validation, JSON-safe
+  serialization, dry-run request evaluation, default-deny stop decisions, and
+  focused tests without activating live connector credentials or API calls.

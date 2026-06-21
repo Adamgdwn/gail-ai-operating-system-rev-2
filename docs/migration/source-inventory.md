@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T16:14:14-06:00
+Last Updated: 2026-06-21T16:29:12-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -99,6 +99,8 @@ vendor, or third-party integration by itself.
 |---|---|---|---|
 | `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\mission.py`, `planner.py`, and `policy.py` | 2026-06-21T15:39:29-06:00 | Rewritten for Rev 2 as local no-network mission envelopes, deterministic local plans, validation results, permission decisions, and local JSON store. No v1 file was bulk-copied. |
 | `tests/test_mission_spine.py` | Selected mission-spine behavior plus `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | 2026-06-21T16:14:14-06:00 | Expanded local no-network behavior tests for stop triggers, permission gates, validation failures, and local store file boundaries. |
+| `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | 2026-06-21T16:29:12-06:00 | Rewritten for Rev 2 as local planning-only connector profile schema, validation, JSON-safe serialization, dry-run operation evaluation, and default-deny stop decisions. No connector credentials or live adapter behavior were copied. |
+| `tests/test_connector_registry.py` | `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | 2026-06-21T16:29:12-06:00 | Rewritten tests for planning-only connector profiles, live-capability rejection, client-controlled approval gates, local dry-run decisions, JSON round trips, and duplicate connector IDs. |
 
 ## Not Copied Yet
 
@@ -106,8 +108,8 @@ vendor, or third-party integration by itself.
 - Remaining UAOS Python code, static cockpit source, action logs, generated
   files, or local runtime artifacts. Candidate code
   paths are classified in `docs/migration/file-migration-decisions.md`; only
-  the mission spine and expanded mission-spine tests have been rewritten into
-  active Rev 2 source.
+  the mission spine, expanded mission-spine tests, connector registry, and
+  connector registry tests have been rewritten into active Rev 2 source.
 - Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
   accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
   logs, or raw audio.
@@ -118,7 +120,7 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Use `docs/migration/file-migration-decisions.md` to begin Chunk Eleven. The
-next bounded task is to rewrite the connector registry foundation from approved
-v1 references as local schema and validation only. Do not migrate any file that
-is not listed in the decision record.
+Use `docs/migration/file-migration-decisions.md` to begin Chunk Twelve. The
+next bounded task is to activate the enhanced Graphify handoff checkpoint as
+read-only routing and candidate validation only. Do not migrate any file that is
+not listed in the decision record.

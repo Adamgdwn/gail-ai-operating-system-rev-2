@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T16:14:14-06:00
+Last Updated: 2026-06-21T16:29:12-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -45,7 +45,7 @@ The first safe code queue is:
 2. Chunk Ten: migrate or rewrite focused mission-spine tests. Complete as of
    2026-06-21T16:14:14-06:00.
 3. Chunk Eleven: rewrite the connector registry foundation as local schema and
-   validation only.
+   validation only. Complete as of 2026-06-21T16:29:12-06:00.
 4. Chunk Twelve: activate the enhanced Graphify handoff checkpoint as
    read-only routing and candidate validation only.
 5. Chunk Thirteen: rewrite the relay envelope validator.
@@ -64,6 +64,8 @@ outside this queue.
 | `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | `mission.py`, `planner.py`, `policy.py` | 2026-06-21T15:39:29-06:00 | Local no-network mission envelopes, deterministic local plans, permission decisions, validation results, and JSON store only. |
 | `packages/uaos-core/src/gail_ai_operating_system/__init__.py` | Rev 2 package interface | 2026-06-21T15:39:29-06:00 | Public local package exports only. |
 | `tests/test_mission_spine.py` | Selected mission-spine behavior plus `test_safety_evaluations.py` | 2026-06-21T16:14:14-06:00 | Focused Chunk Nine behavior tests plus Chunk Ten local no-network safety stop-trigger, permission-gate, validation, and file-boundary tests. |
+| `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | `connector_registry.py` | 2026-06-21T16:29:12-06:00 | Local planning-only connector profile schema, validation, JSON-safe serialization, dry-run operation evaluation, duplicate-ID checks, and default-deny stop decisions only. |
+| `tests/test_connector_registry.py` | `test_connector_registry.py` | 2026-06-21T16:29:12-06:00 | Tests for planning-only profile validity, JSON round trips, denied live capabilities, client-controlled approval gates, local dry-run decisions, unknown connector denial, and duplicate IDs. |
 
 ## Candidate Decisions
 
@@ -76,8 +78,8 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\planner.py` | yes | `rewrite` | Chunk Nine | Use as planning-flow reference; remove v1 path assumptions and any external action assumptions. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\mission.py` | yes | `rewrite` | Chunk Nine | Use as mission-record reference; Rev 2 target must be local, deterministic, and no-network. |
 | `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | yes | `rewrite` | Chunk Ten | Converted into Rev 2 behavior tests around stop triggers, permission gates, risk-tier blocking, and local file boundaries without external services. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite as connector profile schema and validation only; no live connector access. |
-| `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | yes | `rewrite` | Chunk Eleven | Rewrite tests for planning-only connector profiles, data classes, approval gates, and denied live actions. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | yes | `rewrite` | Chunk Eleven | Converted into Rev 2 local planning-only connector profile schema and validation with no live connector access. |
+| `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | yes | `rewrite` | Chunk Eleven | Converted into Rev 2 behavior tests for planning-only profiles, data classes, approval gates, local dry-run decisions, and denied live actions. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite as enhanced read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Rewrite only if the active checkpoint needs adapter shape; no Graphify mutation, graph upload, or unapproved source indexing. |
 | `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite tests for candidate validation, denied execution authority, and enhanced Graphify routing boundaries. |
@@ -138,8 +140,11 @@ Stop before migration when:
 Chunk Nine has rewritten the approved mission, planner, and policy references
 into the first active local Rev 2 code slice. Chunk Ten has expanded its local
 mission-spine safety tests from the approved v1 safety-evaluation reference.
+Chunk Eleven has rewritten the connector registry foundation from the selected
+v1 connector registry references as local schema, validation, JSON-safe
+serialization, and dry-run/default-deny request evaluation only.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
-and Git/GitHub closeout only. No connector, portal, worker, hosted relay,
+and Git/GitHub closeout only. No live connector, portal, worker, hosted relay,
 client-data, live business-system, or production behavior is active.

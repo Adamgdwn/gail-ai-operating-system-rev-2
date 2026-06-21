@@ -1,5 +1,19 @@
 """Core Rev 2 package for local GAIL AI Operating System behavior."""
 
+from .connector_registry import (
+    ConnectorOperationRequest,
+    ConnectorPermissionDecision,
+    ConnectorProfile,
+    ConnectorRegistry,
+    ConnectorRegistryReport,
+    ConnectorValidationIssue,
+    ConnectorValidationReport,
+    initial_connector_profiles,
+    profiles_from_json,
+    profiles_to_json,
+    validate_connector_profile,
+    validate_connector_registry,
+)
 from .mission_spine import (
     DEFAULT_APPROVAL_LEVEL,
     LocalMissionStore,
@@ -18,6 +32,13 @@ from .mission_spine import (
 )
 
 __all__ = [
+    "ConnectorOperationRequest",
+    "ConnectorPermissionDecision",
+    "ConnectorProfile",
+    "ConnectorRegistry",
+    "ConnectorRegistryReport",
+    "ConnectorValidationIssue",
+    "ConnectorValidationReport",
     "DEFAULT_APPROVAL_LEVEL",
     "LocalMissionStore",
     "MissionAction",
@@ -31,5 +52,10 @@ __all__ = [
     "build_local_plan",
     "create_mission",
     "detect_stop_trigger",
+    "initial_connector_profiles",
+    "profiles_from_json",
+    "profiles_to_json",
+    "validate_connector_profile",
+    "validate_connector_registry",
     "validate_mission",
 ]

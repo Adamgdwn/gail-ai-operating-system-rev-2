@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T16:14:14-06:00
+Last Updated: 2026-06-21T16:29:12-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -65,6 +65,8 @@ competing truth stores.
 |---|---|
 | `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` | Local no-network mission envelopes, validation, deterministic planning, policy decisions, stop triggers, and JSON record store. |
 | `tests/test_mission_spine.py` | Expanded local mission-spine behavior tests for stop triggers, policy gates, validation failures, and file boundaries. |
+| `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | Local planning-only connector profile schema, validation, JSON-safe serialization, dry-run request evaluation, and default-deny stop decisions. |
+| `tests/test_connector_registry.py` | Local connector registry tests for planning-only profiles, live-capability rejection, client-controlled gates, dry-run-only decisions, JSON round trips, and duplicate IDs. |
 
 ## Active Placeholders To Promote
 
@@ -137,10 +139,11 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Eleven only from `docs/migration/file-migration-decisions.md`, the
-active permission controls, and the selected connector-registry references. Do
-not migrate any UAOS code outside the approved queue or broaden into live
-connectors, portal behavior, worker behavior, hosted relay, live business
-systems, client data, or production. Preserve Chunk Twelve as the explicit
-enhanced Graphify checkpoint before broad source exploration, architecture
-rerouting, or graph-dependent migration work.
+Begin Chunk Twelve as the explicit enhanced Graphify checkpoint before broad
+source exploration, architecture rerouting, or graph-dependent migration work.
+Use the Graphify policy, active context hygiene standard, selected v1 handoff
+references, and existing graph route only for read-only routing and candidate
+validation. Do not broaden into source mutation through Graphify, graph upload,
+full semantic rebuild outside chunk scope, live connectors, portal behavior,
+worker behavior, hosted relay, live business systems, client data, or
+production.
