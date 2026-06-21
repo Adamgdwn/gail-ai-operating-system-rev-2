@@ -56,3 +56,8 @@
   planning-only connector registry, adding profile validation, JSON-safe
   serialization, dry-run request evaluation, default-deny stop decisions, and
   focused tests without activating live connector credentials or API calls.
+- Added the active Rev 2 Graphify handoff checkpoint in
+  `docs/graphify-handoff-checkpoint.md` and rewrote the selected v1 Graphify
+  handoff references as local read-only route/candidate validation with focused
+  tests, without graph upload, source mutation, live adapter calls, or full
+  semantic rebuild behavior.

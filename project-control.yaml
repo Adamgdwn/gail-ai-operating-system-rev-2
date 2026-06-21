@@ -48,6 +48,7 @@ controls:
     - docs/agent-inventory.md
     - docs/model-registry.md
     - docs/prompt-register.md
+    - docs/graphify-handoff-checkpoint.md
   machine_enforcement:
     - required-file-check
     - lint

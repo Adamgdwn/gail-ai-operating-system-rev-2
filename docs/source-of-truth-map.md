@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T16:29:12-06:00
+Last Updated: 2026-06-21T16:48:17-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -51,6 +51,7 @@ competing truth stores.
 | `docs/agent-inventory.md` | Active agent-like roles, current statuses, autonomy posture, and non-approved future workers/surfaces. |
 | `docs/model-registry.md` | Active model route posture and future model approval requirements. |
 | `docs/prompt-register.md` | Active prompt and instruction register plus future runtime prompt approval requirements. |
+| `docs/graphify-handoff-checkpoint.md` | Active read-only Graphify route, current graph/tool status, handoff payload contract, and stop boundaries. |
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
@@ -67,6 +68,8 @@ competing truth stores.
 | `tests/test_mission_spine.py` | Expanded local mission-spine behavior tests for stop triggers, policy gates, validation failures, and file boundaries. |
 | `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | Local planning-only connector profile schema, validation, JSON-safe serialization, dry-run request evaluation, and default-deny stop decisions. |
 | `tests/test_connector_registry.py` | Local connector registry tests for planning-only profiles, live-capability rejection, client-controlled gates, dry-run-only decisions, JSON round trips, and duplicate IDs. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | Local read-only Graphify route status and handoff candidate validation for approved graph references. |
+| `tests/test_graphify_handoff.py` | Local Graphify handoff tests for route readiness, candidate validation, policy-gated dry-run actions, denied execution/mutation, evidence checks, and sensitive-boundary rejection. |
 
 ## Active Placeholders To Promote
 
@@ -139,11 +142,7 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Twelve as the explicit enhanced Graphify checkpoint before broad
-source exploration, architecture rerouting, or graph-dependent migration work.
-Use the Graphify policy, active context hygiene standard, selected v1 handoff
-references, and existing graph route only for read-only routing and candidate
-validation. Do not broaden into source mutation through Graphify, graph upload,
-full semantic rebuild outside chunk scope, live connectors, portal behavior,
-worker behavior, hosted relay, live business systems, client data, or
-production.
+Begin Chunk Thirteen: rewrite the relay envelope validator from the selected v1
+relay references. Keep the work local and no-network. Do not broaden into
+hosted relay, worker polling, portal behavior, client data, live connectors,
+live business systems, or production.

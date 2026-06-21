@@ -14,6 +14,17 @@ from .connector_registry import (
     validate_connector_profile,
     validate_connector_registry,
 )
+from .graphify_handoff import (
+    GRAPHIFY_CONNECTOR_ID,
+    REPO_LOCAL_GRAPH_PATH,
+    WORKSPACE_GRAPH_PATH,
+    GraphifyHandoffCandidate,
+    GraphifyHandoffRejection,
+    GraphifyHandoffValidationReport,
+    GraphifyRouteStatus,
+    build_graphify_route_status,
+    validate_graphify_handoff_payload,
+)
 from .mission_spine import (
     DEFAULT_APPROVAL_LEVEL,
     LocalMissionStore,
@@ -40,6 +51,11 @@ __all__ = [
     "ConnectorValidationIssue",
     "ConnectorValidationReport",
     "DEFAULT_APPROVAL_LEVEL",
+    "GRAPHIFY_CONNECTOR_ID",
+    "GraphifyHandoffCandidate",
+    "GraphifyHandoffRejection",
+    "GraphifyHandoffValidationReport",
+    "GraphifyRouteStatus",
     "LocalMissionStore",
     "MissionAction",
     "MissionEnvelope",
@@ -49,7 +65,10 @@ __all__ = [
     "MissionValidationResult",
     "PermissionGate",
     "PolicyDecision",
+    "REPO_LOCAL_GRAPH_PATH",
+    "WORKSPACE_GRAPH_PATH",
     "build_local_plan",
+    "build_graphify_route_status",
     "create_mission",
     "detect_stop_trigger",
     "initial_connector_profiles",
@@ -57,5 +76,6 @@ __all__ = [
     "profiles_to_json",
     "validate_connector_profile",
     "validate_connector_registry",
+    "validate_graphify_handoff_payload",
     "validate_mission",
 ]

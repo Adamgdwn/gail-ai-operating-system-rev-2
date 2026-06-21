@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T16:29:12-06:00
+Last Updated: 2026-06-21T16:48:17-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -92,6 +92,7 @@ vendor, or third-party integration by itself.
 | `docs/prompt-register.md` | Rev 2 scaffold placeholder plus active repo instruction files | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records active instruction sources and the approval requirements for future runtime prompts. |
 | `docs/architecture.md` | Copied v1 cross-device, relay, final shippable, connector, M365, Graphify, and cockpit proof references plus active Rev 2 controls | 2026-06-21T15:03:45-06:00 | Rewritten for Rev 2. It defines the active source spine, device roles, portal, worker, relay, connector, Graphify, data, and verification boundaries without migrating code or activating runtime behavior. |
 | `docs/migration/file-migration-decisions.md` | Source inventory, active controls, copied v1 request records, and targeted existence checks for named v1 source candidates | 2026-06-21T15:20:04-06:00 | Created for Rev 2. It classifies the first code migration queue as rewrite-focused and excludes secrets, logs, generated artifacts, live connector state, client data, raw audio, and bulk v1 package copying. |
+| `docs/graphify-handoff-checkpoint.md` | Graphify governance policy, active context hygiene standard, selected v1 Graphify handoff references, workspace graph route, and local probe results | 2026-06-21T16:48:17-06:00 | Created for Rev 2. It records the active read-only Graphify route, current workspace/repo-local graph status, CLI availability, handoff payload contract, and stop boundaries. |
 
 ## Rewritten Into Active Rev 2 Code
 
@@ -101,6 +102,8 @@ vendor, or third-party integration by itself.
 | `tests/test_mission_spine.py` | Selected mission-spine behavior plus `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | 2026-06-21T16:14:14-06:00 | Expanded local no-network behavior tests for stop triggers, permission gates, validation failures, and local store file boundaries. |
 | `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | 2026-06-21T16:29:12-06:00 | Rewritten for Rev 2 as local planning-only connector profile schema, validation, JSON-safe serialization, dry-run operation evaluation, and default-deny stop decisions. No connector credentials or live adapter behavior were copied. |
 | `tests/test_connector_registry.py` | `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | 2026-06-21T16:29:12-06:00 | Rewritten tests for planning-only connector profiles, live-capability rejection, client-controlled approval gates, local dry-run decisions, JSON round trips, and duplicate connector IDs. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` plus Graphify route shape from `graphify_adapter.py` | 2026-06-21T16:48:17-06:00 | Rewritten for Rev 2 as local read-only route status and handoff candidate validation. No live adapter, network fetch, graph upload, source mutation, or full semantic rebuild behavior was copied. |
+| `tests/test_graphify_handoff.py` | `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | 2026-06-21T16:48:17-06:00 | Rewritten tests for route readiness, accepted read-only candidates, policy-gated dry-run mission actions, denied execution/mutation, evidence checks, sensitive-path rejection, live/client-data rejection, and required Graphify stop triggers. |
 
 ## Not Copied Yet
 
@@ -108,8 +111,9 @@ vendor, or third-party integration by itself.
 - Remaining UAOS Python code, static cockpit source, action logs, generated
   files, or local runtime artifacts. Candidate code
   paths are classified in `docs/migration/file-migration-decisions.md`; only
-  the mission spine, expanded mission-spine tests, connector registry, and
-  connector registry tests have been rewritten into active Rev 2 source.
+  the mission spine, expanded mission-spine tests, connector registry,
+  connector registry tests, Graphify handoff checkpoint, and Graphify handoff
+  tests have been rewritten into active Rev 2 source.
 - Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
   accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
   logs, or raw audio.
@@ -120,7 +124,7 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Use `docs/migration/file-migration-decisions.md` to begin Chunk Twelve. The
-next bounded task is to activate the enhanced Graphify handoff checkpoint as
-read-only routing and candidate validation only. Do not migrate any file that is
-not listed in the decision record.
+Use `docs/migration/file-migration-decisions.md` to begin Chunk Thirteen. The
+next bounded task is to rewrite the relay envelope validator from the selected
+v1 relay references. Do not migrate any file that is not listed in the decision
+record.

@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T16:29:12-06:00
+Last Updated: 2026-06-21T16:48:17-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -47,7 +47,8 @@ The first safe code queue is:
 3. Chunk Eleven: rewrite the connector registry foundation as local schema and
    validation only. Complete as of 2026-06-21T16:29:12-06:00.
 4. Chunk Twelve: activate the enhanced Graphify handoff checkpoint as
-   read-only routing and candidate validation only.
+   read-only routing and candidate validation only. Complete as of
+   2026-06-21T16:48:17-06:00.
 5. Chunk Thirteen: rewrite the relay envelope validator.
 6. Chunk Fourteen: rewrite the relay record store and single-worker claim
    proof.
@@ -66,6 +67,8 @@ outside this queue.
 | `tests/test_mission_spine.py` | Selected mission-spine behavior plus `test_safety_evaluations.py` | 2026-06-21T16:14:14-06:00 | Focused Chunk Nine behavior tests plus Chunk Ten local no-network safety stop-trigger, permission-gate, validation, and file-boundary tests. |
 | `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` | `connector_registry.py` | 2026-06-21T16:29:12-06:00 | Local planning-only connector profile schema, validation, JSON-safe serialization, dry-run operation evaluation, duplicate-ID checks, and default-deny stop decisions only. |
 | `tests/test_connector_registry.py` | `test_connector_registry.py` | 2026-06-21T16:29:12-06:00 | Tests for planning-only profile validity, JSON round trips, denied live capabilities, client-controlled approval gates, local dry-run decisions, unknown connector denial, and duplicate IDs. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | `graphify_handoff.py` plus route shape from `graphify_adapter.py` | 2026-06-21T16:48:17-06:00 | Local read-only Graphify route status and handoff candidate validation only. No live adapter, HTTP fetch, graph upload, source mutation, full semantic rebuild, or execution approval. |
+| `tests/test_graphify_handoff.py` | `test_graphify_handoff.py` | 2026-06-21T16:48:17-06:00 | Tests for route readiness, accepted read-only candidates, policy-gated dry-run mission actions, denied executed/mutating recommendations, evidence checks, sensitive-path rejection, live/client-data rejection, unapproved graph references, and required Graphify stop triggers. |
 
 ## Candidate Decisions
 
@@ -80,9 +83,9 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\tests\test_safety_evaluations.py` | yes | `rewrite` | Chunk Ten | Converted into Rev 2 behavior tests around stop triggers, permission gates, risk-tier blocking, and local file boundaries without external services. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\connector_registry.py` | yes | `rewrite` | Chunk Eleven | Converted into Rev 2 local planning-only connector profile schema and validation with no live connector access. |
 | `L:\Applications\user-ai-operating-system\tests\test_connector_registry.py` | yes | `rewrite` | Chunk Eleven | Converted into Rev 2 behavior tests for planning-only profiles, data classes, approval gates, local dry-run decisions, and denied live actions. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite as enhanced read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
-| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Rewrite only if the active checkpoint needs adapter shape; no Graphify mutation, graph upload, or unapproved source indexing. |
-| `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Rewrite tests for candidate validation, denied execution authority, and enhanced Graphify routing boundaries. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Converted into Rev 2 local read-only handoff validation; Graphify remains a knowledge spoke, not execution approval. |
+| `L:\Applications\user-ai-operating-system\uaos_agent_spine\graphify_adapter.py` | yes | `rewrite` | Chunk Twelve | Inspected for route shape only. No live adapter, HTTP fetch, Graphify mutation, graph upload, or unapproved source indexing was copied. |
+| `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | yes | `rewrite` | Chunk Twelve | Converted into Rev 2 tests for candidate validation, denied execution authority, evidence checks, and enhanced Graphify routing boundaries. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite with Rev 2 source spine, device roles, stale-state checks, and unsafe-payload rejection. |
 | `L:\Applications\user-ai-operating-system\tests\test_relay_envelope.py` | yes | `rewrite` | Chunk Thirteen | Rewrite tests for no-network relay envelopes and denied unsafe payloads. |
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite local record store and single-worker claim proof only; no hosted relay or polling daemon. |
@@ -142,9 +145,12 @@ into the first active local Rev 2 code slice. Chunk Ten has expanded its local
 mission-spine safety tests from the approved v1 safety-evaluation reference.
 Chunk Eleven has rewritten the connector registry foundation from the selected
 v1 connector registry references as local schema, validation, JSON-safe
-serialization, and dry-run/default-deny request evaluation only.
+serialization, and dry-run/default-deny request evaluation only. Chunk Twelve
+has rewritten the selected Graphify handoff references as local read-only route
+status and candidate validation only.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
 and Git/GitHub closeout only. No live connector, portal, worker, hosted relay,
-client-data, live business-system, or production behavior is active.
+Graphify source mutation, graph upload, full semantic rebuild, client-data,
+live business-system, or production behavior is active.

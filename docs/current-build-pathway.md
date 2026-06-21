@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T16:29:12-06:00
+Last Updated: 2026-06-21T16:52:51-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -95,17 +95,19 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Schedule enhanced Graphify checkpoint | complete | 2026-06-21T16:00:50-06:00 | codex session | Chunk Twelve is now the explicit enhanced Graphify checkpoint for graph-aware routing, repo-local graph setup checks, and read-only handoff validation before broader migration exploration. |
 | Migrate mission-spine safety tests | complete | 2026-06-21T16:14:14-06:00 | codex session | Chunk Ten expanded the local mission-spine safety loop from the selected v1 safety-evaluation reference, covering stop triggers, default-deny policy, risk-tier blocking, and local store file boundaries. |
 | Migrate connector registry foundation | complete | 2026-06-21T16:29:12-06:00 | codex session | Chunk Eleven rewrote the selected v1 connector registry reference as local planning-only profile schema, JSON-safe serialization, dry-run request evaluation, and default-deny tests without live connector credentials or API calls. |
-| Handoff next chunk | pending | 2026-06-21T16:29:12-06:00 | codex session | Next bounded task is Chunk Twelve: activate the enhanced Graphify handoff checkpoint as read-only routing and candidate validation only. |
+| Activate enhanced Graphify handoff checkpoint | complete | 2026-06-21T16:48:17-06:00 | codex session | Chunk Twelve added the active Graphify checkpoint doc, local route status, and read-only handoff candidate validation with focused tests. |
+| Handoff next chunk | pending | 2026-06-21T16:48:17-06:00 | codex session | Next bounded task is Chunk Thirteen: rewrite the relay envelope validator. |
 
 ## Current Completion Boundary
 
 Rev 2 is not complete. Completed rows in the active path mean only that those
 bounded chunks are done. The current project state is active controls plus the
 first local code slice: source-of-truth, tool permission, runtime, agent,
-model, prompt, architecture, and file migration decision controls are promoted,
-and the local no-network mission spine plus planning-only connector registry
-exist under the Rev 2 core package with expanded safety, permission, and
-file-boundary tests.
+model, prompt, architecture, file migration decision, and Graphify handoff
+checkpoint controls are promoted, and the local no-network mission spine,
+planning-only connector registry, and read-only Graphify handoff validator
+exist under the Rev 2 core package with expanded safety, permission,
+file-boundary, and graph-candidate tests.
 No portal build, worker model, relay store, hosted relay, live connector
 activation, client-data workflow, or production release has started. Project
 completion remains a human decision after the release-decision chunk.
@@ -753,7 +755,7 @@ Completion notes:
 
 ## Chunk Twelve - Activate Enhanced Graphify Handoff Checkpoint
 
-Status: planned
+Status: complete (2026-06-21T16:48:17-06:00)
 
 Completion target: Task complete
 
@@ -773,6 +775,28 @@ validation, graph-output and secret-exclusion check, diff check, commit, push.
 Stop: before graph upload, source mutation through Graphify, full semantic
 rebuild outside chunk scope, or treating a Graphify recommendation as execution
 approval.
+
+Completion notes:
+
+- Added `docs/graphify-handoff-checkpoint.md` as the active Rev 2 route for
+  Graphify governance, workspace graph status, CLI availability, repo-local
+  setup/update instructions, handoff payload contract, and stop boundaries.
+- Added `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`
+  as local no-network route status and handoff candidate validation for
+  approved Graphify graph references.
+- Added `tests/test_graphify_handoff.py` for route readiness, accepted
+  read-only candidates, policy-gated dry-run mission actions, denied executed
+  or mutating recommendations, evidence checks, sensitive-path rejection,
+  live/client-data rejection, unapproved graph references, and required
+  `graphify_action_execution` stop triggers.
+- Updated the core package exports and local mission-spine action allowlist for
+  dry-run `graphify_handoff_read` proposal actions only.
+- Confirmed the workspace graph exists locally and the Linux Graphify CLI is
+  available, while Windows PATH does not currently expose `graphify` or
+  `graphify-setup-project`; no repo-local graph was created in this chunk.
+- Kept graph upload, source mutation through Graphify, full semantic rebuild,
+  live Graphify adapter/HTTP fetch, portal behavior, worker behavior, hosted
+  relay, client data, live business systems, and production out of scope.
 
 ## Chunk Thirteen - Migrate Relay Envelope Validator
 
@@ -1290,7 +1314,37 @@ date -Iseconds
 | 2026-06-21T16:16:54-06:00 | final Chunk Ten validation bundle | pass | Governance preflight, schema validation, 14 unit tests, syntax compile, `git diff --check`, targeted routing search, complete-status formatting check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 | 2026-06-21T16:29:12-06:00 | Chunk Eleven connector registry migration | pass | Read only the approved v1 `uaos_agent_spine\connector_registry.py` and `tests\test_connector_registry.py` references, rewrote local planning-only profile schema and tests, and kept live connector credentials, API calls, portal behavior, worker behavior, hosted relay, client data, live business systems, and production out of scope. |
 | 2026-06-21T16:31:59-06:00 | final Chunk Eleven validation bundle | pass | Governance preflight, schema validation, 25 unit tests, syntax compile, connector registry JSON round trip, Tool Directory JSON parse, `git diff --check`, targeted routing search, complete-status formatting check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
+| 2026-06-21T16:48:17-06:00 | Chunk Twelve Graphify handoff checkpoint | pass | Read the canonical Graphify governance file, probed the existing workspace graph and CLI availability, inspected only the approved v1 `graphify_handoff.py`, `graphify_adapter.py`, and `test_graphify_handoff.py` references, and rewrote local read-only route/candidate validation without graph upload, source mutation, full semantic rebuild, live adapter, portal, worker, hosted relay, client data, live systems, or production behavior. |
+| 2026-06-21T16:52:51-06:00 | final Chunk Twelve validation bundle | pass | Governance preflight, schema validation, 35 unit tests, syntax compile, sample Graphify handoff validation, Tool Directory JSON parse, `git diff --check`, graph-output exclusion check, routing registration check, complete-status formatting check excluding copied v1 references, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, active architecture now lives in `docs/architecture.md`, active file migration decisions now live in `docs/migration/file-migration-decisions.md`, the first executable Rev 2 code slice now lives at `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` with expanded safety tests in `tests/test_mission_spine.py`, and the local planning-only connector registry now lives at `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` with tests in `tests/test_connector_registry.py`. The next bounded task is Chunk Twelve: activate the enhanced Graphify handoff checkpoint as read-only routing and candidate validation only, without source mutation through Graphify, graph upload, full semantic rebuild outside chunk scope, live connectors, portal behavior, worker behavior, hosted relay, client data, live business systems, or production.
+Next agent should use lean startup for ordinary scoped work: check `git status
+--short`, read short repo-local instructions, use `docs/context-map.md` when
+routing is unclear, inspect targeted files, and run targeted validation. After
+compaction or a context clear, resume from this handoff: the Rev 2 workspace
+scaffold is complete, reference docs live under
+`docs/migration/reference/uaos-v1`, Linux UAOS v1 is
+superseded-reference-only, the Linux master env has a Windows-only secure
+archive outside all repos plus a shared parent-level working copy at
+`C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is
+`Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes
+`docs/source-of-truth-map.md`, active tool permissions now live in
+`docs/tool-permission-matrix.md`, active runtime and agent controls now live in
+`docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`,
+`docs/model-registry.md`, and `docs/prompt-register.md`, active architecture
+now lives in `docs/architecture.md`, active file migration decisions now live
+in `docs/migration/file-migration-decisions.md`, the first executable Rev 2
+code slice now lives at
+`packages/uaos-core/src/gail_ai_operating_system/mission_spine.py` with
+expanded safety tests in `tests/test_mission_spine.py`, the local planning-only
+connector registry now lives at
+`packages/uaos-core/src/gail_ai_operating_system/connector_registry.py` with
+tests in `tests/test_connector_registry.py`, and the active read-only Graphify
+handoff checkpoint now lives in `docs/graphify-handoff-checkpoint.md` with
+local validation code in
+`packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` and tests
+in `tests/test_graphify_handoff.py`. The next bounded task is Chunk Thirteen:
+rewrite the relay envelope validator without hosted relay, worker polling,
+portal behavior, client data, live connectors, live business systems, or
+production behavior.
