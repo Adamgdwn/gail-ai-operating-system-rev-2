@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T14:16:18-06:00
+Last Updated: 2026-06-21T14:46:16-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -46,6 +46,10 @@ competing truth stores.
 | `docs/context-map.md` | Smallest-useful context routing by task. |
 | `docs/source-of-truth-map.md` | Navigation map and compact build chunk route. |
 | `docs/tool-permission-matrix.md` | Active tool, device, connector, and worker permission boundaries. |
+| `docs/agent-runtime-instructions.md` | Active runtime scope, A1 autonomy, planning/execution separation, stale-state rules, and stop behavior. |
+| `docs/agent-inventory.md` | Active agent-like roles, current statuses, autonomy posture, and non-approved future workers/surfaces. |
+| `docs/model-registry.md` | Active model route posture and future model approval requirements. |
+| `docs/prompt-register.md` | Active prompt and instruction register plus future runtime prompt approval requirements. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -60,9 +64,6 @@ migration:
 | File | Needed promotion |
 |---|---|
 | `docs/architecture.md` | Rewrite with Rev 2 command center, relay, worker, portal, source-of-truth, and connector boundaries. |
-| `docs/agent-inventory.md` | Replace example agent row with Rev 2 agent roles and autonomy limits. |
-| `docs/model-registry.md` | Replace example model row with approved model route posture or explicit no-active-route state. |
-| `docs/prompt-register.md` | Replace example prompt row with actual instruction/prompt register posture. |
 | `docs/risks/risk-register.md` | Replace example risk row with current Rev 2 risks and stop triggers. |
 
 ## Reference-Only Material
@@ -79,7 +80,7 @@ Open these references only when the active chunk calls for them:
 | `docs/migration/reference/uaos-v1/specs/cross-device-source-of-truth-foundation.md` | Multi-device source-of-truth design for Android, Windows, Linux, browser, Graphify, and future relay. |
 | `docs/migration/reference/uaos-v1/specs/shared-relay-phone-cockpit-architecture.md` | Relay, phone/tablet cockpit, worker polling, hosted relay, or no-tunnel design. |
 | `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` | Historical source for promoted Rev 2 tool permission controls. |
-| `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` | Runtime instruction promotion before mission-spine migration. |
+| `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` | Historical source for promoted Rev 2 runtime controls. |
 | `docs/migration/reference/uaos-v1/specs/connector-registry-client-gateway-boundary.md` | Connector registry and Client Gateway boundary promotion. |
 | `docs/migration/reference/uaos-v1/specs/microsoft-365-business-environment-boundary.md` | M365 planning-only boundary or inventory-only activation decision. |
 | `docs/migration/reference/uaos-v1/requests/REQ-0055-local-relay-envelope-validator.md` | Relay envelope code/test migration. |
@@ -127,6 +128,5 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Promote runtime/agent controls, then architecture specs, then file migration
-decision records. Do not migrate UAOS code until those active controls are in
-place.
+Promote architecture specs, then file migration decision records. Do not
+migrate UAOS code until those active controls are in place.

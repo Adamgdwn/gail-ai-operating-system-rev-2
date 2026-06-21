@@ -35,7 +35,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Architecture decisions or system shape | `docs/architecture.md` and relevant ADRs |
 | Domain terms or naming | `docs/domain-language.md` |
 | Deployment, release, rollback, or environment changes | `docs/deployment-guide.md`, `docs/runbook.md`, and release standards |
-| Agent autonomy, tools, prompts, models, or permissions | `docs/agent-inventory.md`, `docs/model-registry.md`, `docs/prompt-register.md`, and `docs/tool-permission-matrix.md` |
+| Agent autonomy, runtime behavior, tools, prompts, models, or permissions | `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, `docs/prompt-register.md`, and `docs/tool-permission-matrix.md` |
 
 ## Search Before Loading
 

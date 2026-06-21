@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T14:33:43-06:00
+Last Updated: 2026-06-21T14:46:16-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -88,15 +88,18 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Publish private GitHub remote | complete | 2026-06-21T13:36:09-06:00 | codex session | Private repository target is `Adamgdwn/gail-ai-operating-system-rev-2`; initial scaffold commit and push are part of Chunk Three. |
 | Promote Rev 2 source-of-truth map | complete | 2026-06-21T14:01:39-06:00 | codex session | Chunk Four promoted active navigation, status timestamp formatting, compact future chunk routing, and required-doc registration. |
 | Promote Rev 2 tool permission matrix | complete | 2026-06-21T14:16:18-06:00 | codex session | Chunk Five promoted active tool, device, connector, and worker permission boundaries without activating live connectors. |
-| Handoff next chunk | pending | 2026-06-21T14:33:43-06:00 | codex session | Next bounded task is promoting runtime, agent, model, and prompt controls. Planned chunk headings now continue below through the release decision. |
+| Promote runtime and agent controls | complete | 2026-06-21T14:46:16-06:00 | codex session | Chunk Six promoted active runtime instructions, agent inventory, model registry, and prompt register without activating live runtime behavior. |
+| Handoff next chunk | pending | 2026-06-21T14:46:16-06:00 | codex session | Next bounded task is promoting architecture specs before any UAOS code migration. |
 
 ## Current Completion Boundary
 
 Rev 2 is not complete. Completed rows in the active path mean only that those
 bounded chunks are done. The current project state is active control promotion:
-no UAOS code migration, portal build, worker model, hosted relay, live
-connector activation, client-data workflow, or production release has started.
-Project completion remains a human decision after the release-decision chunk.
+source-of-truth, tool permission, runtime, agent, model, and prompt controls
+are promoted; architecture specs and file migration decisions remain ahead. No
+UAOS code migration, portal build, worker model, hosted relay, live connector
+activation, client-data workflow, or production release has started. Project
+completion remains a human decision after the release-decision chunk.
 
 ## Compact Future Chunk Map
 
@@ -401,22 +404,68 @@ Stop condition:
 
 ## Chunk Six - Promote Runtime And Agent Controls
 
-Status: planned
+Status: complete (2026-06-21T14:46:16-06:00)
 
 Completion target: Task complete
 
 Budget class: Tiny
 
-Plan packet:
+Objective:
 
-Inputs: active placeholders for agent inventory, model registry, prompt
-register, the active tool permission matrix, and copied v1 runtime controls.
-Outputs: active Rev 2 runtime, agent, model, and prompt controls. Acceptance:
-current A1 autonomy, approved model/prompt posture, inactive future agents, and
-blocked live connector behavior are explicit. Validation: governance preflight,
-schema validation, targeted placeholder search, secret-pattern scan, diff
-check, commit, push. Stop: after controls are promoted without starting code
-migration or live connector work.
+Promote runtime, agent, model, and prompt controls into active Rev 2 source so
+the next architecture and migration chunks can proceed without relying on
+scaffold placeholders or v1 runtime authority.
+
+Acceptance criteria:
+
+- [x] `docs/agent-runtime-instructions.md` exists as an active Rev 2 runtime
+  control.
+- [x] `docs/agent-inventory.md` replaces the scaffold example row with active
+  and future inactive Rev 2 agent roles.
+- [x] `docs/model-registry.md` replaces the scaffold example row with current
+  model-route posture and explicit no-production-runtime approval.
+- [x] `docs/prompt-register.md` replaces the scaffold example row with active
+  instruction sources and future prompt approval requirements.
+- [x] Current autonomy remains `A1`.
+- [x] Live connectors, client data, hosted relay, persistent workers,
+  production runtime behavior, and code migration remain blocked.
+- [x] Source map, source inventory, project control, context routing, changelog,
+  and handoff records point to the promoted controls.
+
+Inputs:
+
+- `docs/agent-inventory.md`
+- `docs/model-registry.md`
+- `docs/prompt-register.md`
+- `docs/tool-permission-matrix.md`
+- `docs/source-of-truth-map.md`
+- `docs/migration/source-inventory.md`
+- `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md`
+
+Outputs:
+
+- Active Rev 2 `docs/agent-runtime-instructions.md`.
+- Active Rev 2 `docs/agent-inventory.md`.
+- Active Rev 2 `docs/model-registry.md`.
+- Active Rev 2 `docs/prompt-register.md`.
+- Updated project control, context routing, source map, migration inventory,
+  changelog, and active pathway.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh`
+- `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .`
+- `git diff --check`
+- targeted search for scaffold placeholder text, active control routing, and
+  complete-status formatting
+- forbidden filename scan
+- strict secret-pattern scan
+- `git status --short`
+
+Stop condition:
+
+- Stop after controls are promoted, validation passes, the architecture-spec
+  handoff is clear, and the chunk is committed and pushed.
 
 ## Chunk Seven - Promote Architecture Specs
 
@@ -1000,7 +1049,15 @@ date -Iseconds
 | 2026-06-21T14:33:43-06:00 | targeted planned-chunk and complete-status search | failed, then fixed | First heading count included instructional code-block examples; rerun checked required future chunk headings and no bare completed-status lines. |
 | 2026-06-21T14:33:43-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
 | 2026-06-21T14:33:43-06:00 | strict secret-pattern scan | pass | No strict secret-looking assignments found outside copied v1 reference records. |
+| 2026-06-21T14:41:16-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Six edits. |
+| 2026-06-21T14:46:16-06:00 | runtime, agent, model, and prompt control promotion | pass | Added active runtime instructions and promoted registries; no live runtime, worker, connector, client-data, hosted relay, production, or code migration authority was activated. |
+| 2026-06-21T14:46:16-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings after Chunk Six promotion. |
+| 2026-06-21T14:46:16-06:00 | `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` | pass | `project-control.yaml` schema passed after registering runtime, model, and prompt controls. |
+| 2026-06-21T14:46:16-06:00 | `git diff --check` | pass | No whitespace errors; Git reported expected line-ending normalization warning for the pathway file. |
+| 2026-06-21T14:46:16-06:00 | targeted control placeholder, routing, and complete-status search | pass | No scaffold placeholder examples or bare completed-status lines in active Chunk Six docs; promoted controls are routed from project control, context map, source map, inventory, and pathway. |
+| 2026-06-21T14:46:16-06:00 | forbidden filename scan | pass | No `.env`, key, credential, secret, invoice, QuickBooks, token, or export filenames found in tracked or untracked non-ignored files. |
+| 2026-06-21T14:46:16-06:00 | strict secret-pattern scan | failed, then fixed | First run failed from PowerShell regex quoting; rerun with a pattern variable passed with no strict secret-looking assignments outside copied v1 references. |
 
 ## Next Handoff
 
-Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, the next bounded task is to promote runtime, agent, model, and prompt controls, and no UAOS code migration has started yet.
+Next agent should use lean startup for ordinary scoped work: check `git status --short`, read short repo-local instructions, use `docs/context-map.md` when routing is unclear, inspect targeted files, and run targeted validation. After compaction or a context clear, resume from this handoff: the Rev 2 workspace scaffold is complete, reference docs live under `docs/migration/reference/uaos-v1`, Linux UAOS v1 is superseded-reference-only, the Linux master env has a Windows-only secure archive outside all repos plus a shared parent-level working copy at `C:\Users\adamg\01. Code Projects\.env.master`, the private GitHub remote is `Adamgdwn/gail-ai-operating-system-rev-2`, active navigation now includes `docs/source-of-truth-map.md`, active tool permissions now live in `docs/tool-permission-matrix.md`, active runtime and agent controls now live in `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, and `docs/prompt-register.md`, the next bounded task is to promote architecture specs, and no UAOS code migration has started yet.

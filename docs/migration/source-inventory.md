@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T14:16:18-06:00
+Last Updated: 2026-06-21T14:46:16-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -86,6 +86,10 @@ vendor, or third-party integration by itself.
 |---|---|---|---|
 | `docs/source-of-truth-map.md` | `docs/migration/reference/uaos-v1/controls/source-of-truth-map.md` plus Rev 2 scaffold state | 2026-06-21T13:58:36-06:00 | Rewritten for Rev 2. It now distinguishes active controls from copied reference material and records the compact future chunk map. |
 | `docs/tool-permission-matrix.md` | `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` plus Rev 2 source-of-truth and device-role controls | 2026-06-21T14:16:18-06:00 | Rewritten for Rev 2. It defines current local, Git/GitHub, DirectLink, Windows/Linux, Android/browser, relay, connector, Graphify, M365, QuickBooks, client-data, vendor, deployment, voice, and model-provider boundaries without activating live connectors. |
+| `docs/agent-runtime-instructions.md` | `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` plus Rev 2 tool permissions and current A1 posture | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It defines current local-only runtime scope, planning/execution separation, stale-state checks, stop behavior, evidence rules, and future runtime prerequisites without migrating v1 code. |
+| `docs/agent-inventory.md` | Rev 2 scaffold placeholder plus current Rev 2 source-of-truth and device-role controls | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It lists the current Codex repo collaborator and future inactive runtime, worker, portal, and Graphify roles. |
+| `docs/model-registry.md` | Rev 2 scaffold placeholder plus current model-provider boundary in the tool permission matrix | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records that only the current coding-session model route is active for repo collaboration and no production runtime or BYOK model route is approved. |
+| `docs/prompt-register.md` | Rev 2 scaffold placeholder plus active repo instruction files | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records active instruction sources and the approval requirements for future runtime prompts. |
 
 ## Not Copied Yet
 
@@ -104,7 +108,7 @@ vendor, or third-party integration by itself.
 
 Review the copied references and decide what becomes active Rev 2 source:
 
-1. promote runtime, agent, model, and prompt controls;
-2. promote architecture and cross-device specs;
+1. promote architecture and cross-device specs;
+2. record file migration decisions;
 3. define the Tool Directory schema and tests;
 4. migrate UAOS relay/connector core code only after active docs are clean.

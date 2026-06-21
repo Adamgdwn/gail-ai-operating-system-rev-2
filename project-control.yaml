@@ -43,7 +43,10 @@ controls:
     - docs/risks/risk-register.md
     - docs/migration/source-inventory.md
     - docs/tool-permission-matrix.md
+    - docs/agent-runtime-instructions.md
     - docs/agent-inventory.md
+    - docs/model-registry.md
+    - docs/prompt-register.md
   machine_enforcement:
     - required-file-check
     - lint
@@ -53,8 +56,10 @@ exceptions: []
 agent_controls:
   applicable: true
   autonomy_level: A1
-  model_registry: []
-  prompt_registry: []
+  model_registry:
+    - docs/model-registry.md
+  prompt_registry:
+    - docs/prompt-register.md
 agentic_coding:
   principle: "The repository remembers. Agents rent context."
   default_budget: medium

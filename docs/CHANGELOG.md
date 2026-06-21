@@ -27,3 +27,8 @@
 - Expanded `docs/current-build-pathway.md` with an explicit current completion
   boundary and planned chunk headings from Chunk Six through the release
   decision so completed chunks cannot be mistaken for project completion.
+- Promoted Rev 2 runtime, agent, model, and prompt controls with active
+  `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`,
+  `docs/model-registry.md`, and `docs/prompt-register.md`; no live runtime,
+  worker, connector, client-data, hosted relay, or production authority was
+  activated.
