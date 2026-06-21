@@ -1,0 +1,101 @@
+# Source Inventory
+
+Created: 2026-06-21T12:45:36-06:00
+Status: initial separation inventory
+Owner: Adam Goodwin
+
+## Purpose
+
+This inventory records the first copied reference material for GAIL AI Operating
+System Rev 2.
+
+The copied files are reference inputs only. They are not active Rev 2 controls
+until a later chunk promotes, rewrites, or supersedes them.
+
+## Source Roots
+
+| Source | Role | Migration posture |
+|---|---|---|
+| `C:\Users\adamg\DirectLink` | Windows/Linux transport, status, and shared skill tooling | Do not migrate operational files into Rev 2. |
+| `L:\Applications\user-ai-operating-system` | Existing UAOS v1 proof, docs, mission spine, relay, connector registry, and cockpit proof | Copy selected docs first; migrate code only after separation is clean. |
+| `L:\agents\New Build Agent` | Governance scaffold and control standards | Used to scaffold this workspace; do not vendor-copy the full governance repo. |
+| `C:\Users\adamg\.gail-secure\linux-env-master` | Windows-only operator archive of the Linux master environment file | Not a project source. Never commit, migrate, or copy into Rev 2. Use only as an explicit owner-approved local operator reference. |
+| `C:\Users\adamg\01. Code Projects\.env.master` | Shared Windows working copy of the Linux master environment file | Parent-level operator config for local projects. Do not commit, copy into repo folders, or treat as an approved live connector boundary by itself. |
+
+## Superseded Source Status
+
+As of 2026-06-21, the Linux UAOS v1 workspace at
+`L:\Applications\user-ai-operating-system` is marked
+`superseded-reference-only`. Its top-level `README.md`, `START_HERE.md`,
+`AGENTS.md`, `project-control.yaml`, and
+`SUPERSEDED_BY_GAIL_AI_OPERATING_SYSTEM_REV_2.md` now direct agents away from
+new Rev 1 implementation work and toward this Rev 2 workspace.
+
+## Secure Operator Archives
+
+The Linux master environment file was copied from
+`/home/adamgoodwin/code/.env.master` to a Windows-only secure archive outside
+all repos:
+
+`C:\Users\adamg\.gail-secure\linux-env-master\.env.master.pop-os.20260621-130834`
+
+The archive folder has restricted Windows ACLs for the current Windows user,
+SYSTEM, and Administrators. A metadata-only `archive-manifest.tsv` sits beside
+the archived file. Secret contents were not inspected, summarized, or copied
+into Rev 2.
+
+## Shared Working Environment Copy
+
+For project-wide local access, the same Linux master environment file is also
+available outside all individual repos at:
+
+`C:\Users\adamg\01. Code Projects\.env.master`
+
+This file is hidden and ACL-restricted to the current Windows user, SYSTEM, and
+Administrators. It is a parent-level operator config file so future projects can
+reference one shared Windows path. It is not Rev 2 source, is not committed, and
+does not approve any live Microsoft 365, QuickBooks, finance, billing, client,
+vendor, or third-party integration by itself.
+
+## Copied UAOS v1 References
+
+| Destination | Source | Why copied |
+|---|---|---|
+| `docs/migration/reference/uaos-v1/specs/uaos-final-shippable-plan.md` | `L:\Applications\user-ai-operating-system\docs\specs\uaos-final-shippable-plan.md` | Baseline v1 finish-line and stage order. |
+| `docs/migration/reference/uaos-v1/specs/microsoft-365-business-environment-boundary.md` | `L:\Applications\user-ai-operating-system\docs\specs\microsoft-365-business-environment-boundary.md` | M365 boundary and stop triggers. |
+| `docs/migration/reference/uaos-v1/specs/connector-registry-client-gateway-boundary.md` | `L:\Applications\user-ai-operating-system\docs\specs\connector-registry-client-gateway-boundary.md` | Connector registry and Client Gateway controls. |
+| `docs/migration/reference/uaos-v1/specs/shared-relay-phone-cockpit-architecture.md` | `L:\Applications\user-ai-operating-system\docs\specs\shared-relay-phone-cockpit-architecture.md` | Cross-device relay architecture reference. |
+| `docs/migration/reference/uaos-v1/specs/cross-device-source-of-truth-foundation.md` | `L:\Applications\user-ai-operating-system\docs\specs\cross-device-source-of-truth-foundation.md` | Source-of-truth and authorized surface model. |
+| `docs/migration/reference/uaos-v1/specs/graphify-workspace-cockpit-uaos-integration.md` | `L:\Applications\user-ai-operating-system\docs\specs\graphify-workspace-cockpit-uaos-integration.md` | Graphify/UAOS boundary. |
+| `docs/migration/reference/uaos-v1/specs/subscription-vendor-intelligence.md` | `L:\Applications\user-ai-operating-system\docs\specs\subscription-vendor-intelligence.md` | Vendor and subscription intelligence requirement. |
+| `docs/migration/reference/uaos-v1/specs/manual-subscription-vendor-register.md` | `L:\Applications\user-ai-operating-system\docs\specs\manual-subscription-vendor-register.md` | Manual vendor register fields. |
+| `docs/migration/reference/uaos-v1/specs/manual-vendor-register-learning-test.md` | `L:\Applications\user-ai-operating-system\docs\specs\manual-vendor-register-learning-test.md` | First safe vendor-register learning sample. |
+| `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` | `L:\Applications\user-ai-operating-system\docs\tool-permission-matrix.md` | Existing tool permission controls. |
+| `docs/migration/reference/uaos-v1/controls/source-of-truth-map.md` | `L:\Applications\user-ai-operating-system\docs\source-of-truth-map.md` | Current v1 source map. |
+| `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` | `L:\Applications\user-ai-operating-system\docs\agent-runtime-instructions.md` | Existing runtime stop rules and allowed posture. |
+| `docs/migration/reference/uaos-v1/requests/REQ-0055-local-relay-envelope-validator.md` | `L:\Applications\user-ai-operating-system\docs\requests\REQ-0055-local-relay-envelope-validator.md` | Relay envelope validator evidence. |
+| `docs/migration/reference/uaos-v1/requests/REQ-0056-local-relay-record-store-worker-claim-proof.md` | `L:\Applications\user-ai-operating-system\docs\requests\REQ-0056-local-relay-record-store-worker-claim-proof.md` | Relay store and worker claim evidence. |
+| `docs/migration/reference/uaos-v1/requests/REQ-0057-uaos-final-shippable-plan.md` | `L:\Applications\user-ai-operating-system\docs\requests\REQ-0057-uaos-final-shippable-plan.md` | Final plan request record. |
+| `docs/migration/reference/uaos-v1/requests/REQ-0058-closeout-turnover-and-work-tracking.md` | `L:\Applications\user-ai-operating-system\docs\requests\REQ-0058-closeout-turnover-and-work-tracking.md` | Turnover and work tracking closeout. |
+| `docs/migration/reference/uaos-v1/apps/cockpit-command-proof-README.md` | `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\README.md` | Static cockpit proof notes. |
+
+## Not Copied Yet
+
+- DirectLink operational scripts, indicators, runbooks, and skill files.
+- UAOS Python code, tests, static cockpit source, action logs, generated files,
+  or local runtime artifacts.
+- Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
+  accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
+  logs, or raw audio.
+- The Linux master environment archive. It exists outside this repo as an
+  operator-held secure copy and is not Rev 2 configuration.
+- The shared parent-level `.env.master` working copy. It remains outside Rev 2
+  and should be referenced by path only when explicitly needed.
+
+## Next Migration Chunk
+
+Review the copied references and decide what becomes active Rev 2 source:
+
+1. promote/rewrite the Rev 2 command-center plan into `docs/specs`;
+2. define the Tool Directory schema and tests;
+3. migrate UAOS relay/connector core code only after active docs are clean.

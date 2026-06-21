@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "seed-link-only",
+  "rule": "These entries are navigation and planning records only. They do not authorize live account access, API calls, billing actions, content reads, writes, sends, exports, or client-data handling.",
+  "tools": [
+    {
+      "tool_id": "microsoft-365-guided-ai-labs",
+      "display_name": "Microsoft 365",
+      "category": "business-operations",
+      "business_purpose": "Email, calendar, documents, identity, collaboration, and future Guided AI Labs workspace surfaces.",
+      "owner": "Adam Goodwin",
+      "launch_url": "https://www.microsoft365.com/",
+      "connector_profile_id": "m365-guided-ai-labs-business",
+      "data_class": "internal",
+      "access_status": "planning-only",
+      "windows_access_mode": "browser-or-app-link; future approved Windows broker for M365-specific work",
+      "linux_access_mode": "browser-link only; no token or tenant secret transfer through DirectLink",
+      "stop_triggers": [
+        "live content read",
+        "Outlook or Teams send",
+        "calendar/task/file write",
+        "Entra/admin/permission/billing change",
+        "client data"
+      ],
+      "notes": "Existing UAOS boundary keeps M365 planning-only until Adam approves inventory-only activation."
+    },
+    {
+      "tool_id": "quickbooks-guided-ai-labs",
+      "display_name": "QuickBooks",
+      "category": "finance-accounting",
+      "business_purpose": "Accounting, bookkeeping, invoices, expenses, taxes, and financial review surfaces.",
+      "owner": "Adam Goodwin",
+      "launch_url": "https://quickbooks.intuit.com/",
+      "connector_profile_id": "",
+      "data_class": "confidential",
+      "access_status": "link-only",
+      "windows_access_mode": "browser-link only until finance connector boundary exists",
+      "linux_access_mode": "browser-link only; no exports, tokens, or accounting files through DirectLink",
+      "stop_triggers": [
+        "accounting data read",
+        "invoice or payment action",
+        "billing or subscription change",
+        "tax/payroll/client financial data",
+        "export or API connection"
+      ],
+      "notes": "No QuickBooks API, export, report, invoice, payment, or billing workflow is approved in this seed."
+    },
+    {
+      "tool_id": "github",
+      "display_name": "GitHub",
+      "category": "source-control",
+      "business_purpose": "Repositories, issues, pull requests, commits, release records, and source-of-truth workflow.",
+      "owner": "Adam Goodwin",
+      "launch_url": "https://github.com/",
+      "connector_profile_id": "github-uaos-private-repo",
+      "data_class": "internal",
+      "access_status": "existing-tooling; dry-run/default approval gates still apply",
+      "windows_access_mode": "browser, git, gh where authenticated",
+      "linux_access_mode": "browser, git, gh where authenticated",
+      "stop_triggers": [
+        "public repo exposure",
+        "secret exposure",
+        "destructive repo setting",
+        "production release promotion"
+      ],
+      "notes": "Use current UAOS GitHub adapter material as reference before any Rev 2 live adapter work."
+    },
+    {
+      "tool_id": "graphify-workspace-cockpit",
+      "display_name": "Graphify Workspace Cockpit",
+      "category": "knowledge-spoke",
+      "business_purpose": "Knowledge lookup, graph snapshots, decisions, recommendations, and read-only UAOS handoff records.",
+      "owner": "Adam Goodwin",
+      "launch_url": "",
+      "local_path": "L:\\agents\\graphify-workspace-cockpit",
+      "connector_profile_id": "graphify-workspace-cockpit-handoff",
+      "data_class": "internal",
+      "access_status": "reference/read-only",
+      "windows_access_mode": "L: path reference and browser if service is running",
+      "linux_access_mode": "/home/adamgoodwin/code/agents/graphify-workspace-cockpit",
+      "stop_triggers": [
+        "Graphify write",
+        "queued action execution",
+        "secret indexing",
+        "client-data ingestion"
+      ],
+      "notes": "Graphify remains the knowledge spoke; Rev 2 should not duplicate graph/chat/source-selection ownership."
+    }
+  ]
+}

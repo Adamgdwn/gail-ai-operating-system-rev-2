@@ -1,0 +1,21 @@
+# Changelog
+
+## 2026-06-21
+
+- Created the governed `GAIL AI Operating System Rev 2` workspace from the New
+  Build Agent scaffold.
+- Set canonical slug to `gail-ai-operating-system-rev-2`.
+- Kept owner-selected `governance_level: 1` while setting runtime autonomy to
+  `A1`.
+- Added initial migration, Tool Directory, command-center, core package, and
+  test folders.
+- Copied selected UAOS v1 reference docs into `docs/migration/reference/uaos-v1`.
+- Added link-only Tool Directory seed records for Microsoft 365, QuickBooks,
+  GitHub, and Graphify.
+- Marked the Linux UAOS v1 workspace as superseded-reference-only so new work
+  routes to Rev 2.
+- Archived `/home/adamgoodwin/code/.env.master` to a Windows-only secure local
+  folder outside all repos; no secret values were copied into Rev 2 docs.
+- Created the private GitHub repository
+  `Adamgdwn/gail-ai-operating-system-rev-2` for the Rev 2 scaffold and initial
+  source-of-truth push.

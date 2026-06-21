@@ -1,0 +1,33 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node/build artifacts
+node_modules/
+dist/
+build/
+.next/
+.vite/
+
+# Local agent/runtime output
+tmp/
+logs/
+*.log
+graphify-out/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
