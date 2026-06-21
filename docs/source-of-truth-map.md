@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T14:46:16-06:00
+Last Updated: 2026-06-21T15:03:45-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -50,6 +50,7 @@ competing truth stores.
 | `docs/agent-inventory.md` | Active agent-like roles, current statuses, autonomy posture, and non-approved future workers/surfaces. |
 | `docs/model-registry.md` | Active model route posture and future model approval requirements. |
 | `docs/prompt-register.md` | Active prompt and instruction register plus future runtime prompt approval requirements. |
+| `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -63,7 +64,6 @@ migration:
 
 | File | Needed promotion |
 |---|---|
-| `docs/architecture.md` | Rewrite with Rev 2 command center, relay, worker, portal, source-of-truth, and connector boundaries. |
 | `docs/risks/risk-register.md` | Replace example risk row with current Rev 2 risks and stop triggers. |
 
 ## Reference-Only Material
@@ -76,13 +76,13 @@ Open these references only when the active chunk calls for them:
 
 | Reference | Use before |
 |---|---|
-| `docs/migration/reference/uaos-v1/specs/uaos-final-shippable-plan.md` | Freezing Rev 2 product scope, authorized surfaces, final stages, or acceptance tests. |
-| `docs/migration/reference/uaos-v1/specs/cross-device-source-of-truth-foundation.md` | Multi-device source-of-truth design for Android, Windows, Linux, browser, Graphify, and future relay. |
-| `docs/migration/reference/uaos-v1/specs/shared-relay-phone-cockpit-architecture.md` | Relay, phone/tablet cockpit, worker polling, hosted relay, or no-tunnel design. |
+| `docs/migration/reference/uaos-v1/specs/uaos-final-shippable-plan.md` | Historical source for promoted Rev 2 architecture and future acceptance-test planning. |
+| `docs/migration/reference/uaos-v1/specs/cross-device-source-of-truth-foundation.md` | Historical source for promoted Rev 2 multi-device source-of-truth architecture. |
+| `docs/migration/reference/uaos-v1/specs/shared-relay-phone-cockpit-architecture.md` | Historical source for promoted Rev 2 relay, phone/tablet cockpit, worker polling, hosted relay, and no-tunnel architecture. |
 | `docs/migration/reference/uaos-v1/controls/tool-permission-matrix.md` | Historical source for promoted Rev 2 tool permission controls. |
 | `docs/migration/reference/uaos-v1/controls/agent-runtime-instructions.md` | Historical source for promoted Rev 2 runtime controls. |
-| `docs/migration/reference/uaos-v1/specs/connector-registry-client-gateway-boundary.md` | Connector registry and Client Gateway boundary promotion. |
-| `docs/migration/reference/uaos-v1/specs/microsoft-365-business-environment-boundary.md` | M365 planning-only boundary or inventory-only activation decision. |
+| `docs/migration/reference/uaos-v1/specs/connector-registry-client-gateway-boundary.md` | Historical source for promoted Rev 2 connector boundary architecture and future connector registry migration. |
+| `docs/migration/reference/uaos-v1/specs/microsoft-365-business-environment-boundary.md` | Historical source for promoted Rev 2 M365 planning-only architecture and future inventory-only activation decision. |
 | `docs/migration/reference/uaos-v1/requests/REQ-0055-local-relay-envelope-validator.md` | Relay envelope code/test migration. |
 | `docs/migration/reference/uaos-v1/requests/REQ-0056-local-relay-record-store-worker-claim-proof.md` | Relay store and single-worker claim migration. |
 
@@ -128,5 +128,5 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Promote architecture specs, then file migration decision records. Do not
-migrate UAOS code until those active controls are in place.
+Record file migration decisions next. Do not migrate UAOS code until migration
+decisions are explicit, bounded, and validated.

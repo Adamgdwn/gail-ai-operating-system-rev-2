@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T14:46:16-06:00
+Last Updated: 2026-06-21T15:03:45-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -90,6 +90,7 @@ vendor, or third-party integration by itself.
 | `docs/agent-inventory.md` | Rev 2 scaffold placeholder plus current Rev 2 source-of-truth and device-role controls | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It lists the current Codex repo collaborator and future inactive runtime, worker, portal, and Graphify roles. |
 | `docs/model-registry.md` | Rev 2 scaffold placeholder plus current model-provider boundary in the tool permission matrix | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records that only the current coding-session model route is active for repo collaboration and no production runtime or BYOK model route is approved. |
 | `docs/prompt-register.md` | Rev 2 scaffold placeholder plus active repo instruction files | 2026-06-21T14:46:16-06:00 | Rewritten for Rev 2. It records active instruction sources and the approval requirements for future runtime prompts. |
+| `docs/architecture.md` | Copied v1 cross-device, relay, final shippable, connector, M365, Graphify, and cockpit proof references plus active Rev 2 controls | 2026-06-21T15:03:45-06:00 | Rewritten for Rev 2. It defines the active source spine, device roles, portal, worker, relay, connector, Graphify, data, and verification boundaries without migrating code or activating runtime behavior. |
 
 ## Not Copied Yet
 
@@ -106,9 +107,10 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Review the copied references and decide what becomes active Rev 2 source:
+Review the copied references and decide what becomes active Rev 2 source or
+stays excluded:
 
-1. promote architecture and cross-device specs;
-2. record file migration decisions;
-3. define the Tool Directory schema and tests;
-4. migrate UAOS relay/connector core code only after active docs are clean.
+1. record file migration decisions;
+2. define the Tool Directory schema and tests;
+3. migrate or rewrite UAOS relay/connector core code only after active decisions
+   are clean and validated.

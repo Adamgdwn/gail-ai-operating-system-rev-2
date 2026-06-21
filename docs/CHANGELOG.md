@@ -32,3 +32,7 @@
   `docs/model-registry.md`, and `docs/prompt-register.md`; no live runtime,
   worker, connector, client-data, hosted relay, or production authority was
   activated.
+- Promoted active Rev 2 architecture in `docs/architecture.md`, defining the
+  private GitHub source spine, portal, worker, relay, Graphify, connector, data,
+  and verification boundaries without migrating code or activating runtime
+  behavior.
