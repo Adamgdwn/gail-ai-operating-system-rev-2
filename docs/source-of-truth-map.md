@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T17:09:24-06:00
+Last Updated: 2026-06-21T18:15:57-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -102,6 +102,30 @@ Open these references only when the active chunk calls for them:
 | `docs/migration/reference/uaos-v1/requests/REQ-0055-local-relay-envelope-validator.md` | Relay envelope code/test migration. |
 | `docs/migration/reference/uaos-v1/requests/REQ-0056-local-relay-record-store-worker-claim-proof.md` | Relay store and single-worker claim migration. |
 
+## External Local Reference Material
+
+The AG Operations Microsoft 365 setup repo is a local orientation source for
+future bridge design, not an active Rev 2 source of truth:
+
+`C:\Users\adamg\01. Code Projects\AG Operations Workspace Setup`
+
+Open these files only for approved M365 bridge, connector, cockpit, or
+cross-workspace architecture work:
+
+| Reference | Use before |
+|---|---|
+| `M365_STAGE_9_AGENTIC_OS_BRIDGE_READINESS.md` | Future M365 adapter or bridge posture decisions. |
+| `M365_GRAPHIFY_UAOS_ALIGNMENT.md` | Deciding the M365, Graphify, and Rev 2 split. |
+| `docs/AGENTIC_M365_READINESS.md` | Mapping M365 G0-G4 readiness to Rev 2 connector and approval levels. |
+| `config/M365_STAGE_9_AGENT_CAPABILITY_MODEL.json` | Candidate M365 Coordinator and Support Agent capability boundaries. |
+| `config/M365_STAGE_9_BRIDGE_READINESS_CONTROL.json` | Adapter contracts, risk controls, app posture options, and graduation gates. |
+| `docs/CARD_PLAN_AGENT_CONTROL_PLANE.md` | Agent Action Log, Decision Register, Tool Permission Review, and approval-control surface design. |
+| `docs/WORKSPACE_CHUNK_7_FINAL_USABILITY_WALKTHROUGH.md` | Current M365 workspace handoff state and carried-forward blockers. |
+
+Do not read or copy `M365_ENVIRONMENT.local.env`, live Microsoft 365 tenant
+content, OneDrive content, raw logs, client data, secrets, permission payloads,
+or setup-helper credentials into Rev 2.
+
 ## Device Roles
 
 | Surface | Rev 2 role | Boundary |
@@ -113,6 +137,7 @@ Open these references only when the active chunk calls for them:
 | Browser | Shared cockpit surface across desktop and mobile. | Reads/writes governed records through approved local or relay paths; must not become a second source of truth. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
+| Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
 
 ## Compact Build Chunk Map
 
@@ -146,5 +171,7 @@ Stop and require explicit owner approval before:
 
 Begin Chunk Fourteen: rewrite the relay record store and single-worker claim
 proof from the selected v1 relay store references. Keep the work local and
-no-network. Do not broaden into hosted relay, worker bootstrap scripts, portal
-behavior, client data, live connectors, live business systems, or production.
+no-network. The Microsoft 365 / AG Operations bridge orientation is recorded
+for later connector and cockpit work, but Chunk Fourteen must not broaden into
+M365 adapter work, hosted relay, worker bootstrap scripts, portal behavior,
+client data, live connectors, live business systems, or production.

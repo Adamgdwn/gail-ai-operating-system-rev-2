@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T17:13:25-06:00
+Last Updated: 2026-06-21T18:15:57-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -97,7 +97,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Migrate connector registry foundation | complete | 2026-06-21T16:29:12-06:00 | codex session | Chunk Eleven rewrote the selected v1 connector registry reference as local planning-only profile schema, JSON-safe serialization, dry-run request evaluation, and default-deny tests without live connector credentials or API calls. |
 | Activate enhanced Graphify handoff checkpoint | complete | 2026-06-21T16:48:17-06:00 | codex session | Chunk Twelve added the active Graphify checkpoint doc, local route status, and read-only handoff candidate validation with focused tests. |
 | Migrate relay envelope validator | complete | 2026-06-21T17:09:24-06:00 | codex session | Chunk Thirteen rewrote the selected v1 relay envelope references as local no-network Rev 2 schema validation and unsafe/stale envelope tests. |
-| Handoff next chunk | pending | 2026-06-21T17:09:24-06:00 | codex session | Next bounded task is Chunk Fourteen: build the relay store and single-worker claim proof. |
+| Record M365 bridge orientation | complete | 2026-06-21T18:11:59-06:00 | codex session | Inter-chunk architecture note records how AG Operations / Microsoft 365 should feed the future cockpit as a governed business substrate, with no live connector activation. |
+| Handoff next chunk | pending | 2026-06-21T18:11:59-06:00 | codex session | Next bounded task remains Chunk Fourteen: build the relay store and single-worker claim proof. |
 
 ## Current Completion Boundary
 
@@ -109,7 +110,11 @@ checkpoint controls are promoted, and the local no-network mission spine,
 planning-only connector registry, read-only Graphify handoff validator, and
 local relay envelope validator exist under the Rev 2 core package with
 expanded safety, permission, file-boundary, graph-candidate, unsafe-payload,
-and stale-state tests.
+and stale-state tests. A read-only inter-chunk Microsoft 365 / AG Operations
+bridge orientation is recorded in the architecture and source-of-truth docs;
+it confirms that M365 should feed future cockpit work through approved records,
+safe summaries, action logs, decisions, and links rather than raw content or
+direct execution authority.
 No portal build, worker model, relay store, hosted relay, live connector
 activation, client-data workflow, or production release has started. Project
 completion remains a human decision after the release-decision chunk.
@@ -839,6 +844,43 @@ Completion notes:
   client data, live connectors, live business systems, and production out of
   scope.
 
+## Inter-Chunk Note - Microsoft 365 Bridge Orientation
+
+Status: complete (2026-06-21T18:11:59-06:00)
+
+Completion target: Task complete
+
+Budget class: Tiny
+
+Purpose:
+
+Record the read-only orientation pass on how the AG Operations Microsoft 365
+workspace should feed the future agentic operating system cockpit.
+
+Summary:
+
+- Microsoft 365 should act as the governed business substrate: identity,
+  SharePoint records, Lists, Planner tasks, Teams coordination, Exchange
+  signals, Forms intake, CRM records, and audit surfaces.
+- Graphify remains the knowledge and decision intelligence spoke.
+- Rev 2 remains the mission spine, policy gate, approval, relay, worker,
+  evidence, and rollback authority.
+- The future cockpit should consume approved M365 metadata, safe summaries,
+  action-log records, decision records, task/list state, and durable links.
+- The future bridge should map the AG Operations G0-G4 model onto Rev 2
+  connector and approval boundaries: read-only, propose/log, approved internal
+  write, restricted external/access write, and blocked autonomous actions.
+- No live Microsoft 365 tenant read, OneDrive content read, app consent,
+  permission change, Outlook/Teams send, client-data access, setup-helper grant
+  reuse, connector call, or unattended automation was performed or approved.
+
+Docs updated:
+
+- `docs/architecture.md`
+- `docs/source-of-truth-map.md`
+- `docs/current-build-pathway.md`
+- `docs/CHANGELOG.md`
+
 ## Chunk Fourteen - Build Relay Store And Worker Claim Proof
 
 Status: planned
@@ -1342,6 +1384,8 @@ date -Iseconds
 | 2026-06-21T16:52:51-06:00 | final Chunk Twelve validation bundle | pass | Governance preflight, schema validation, 35 unit tests, syntax compile, sample Graphify handoff validation, Tool Directory JSON parse, `git diff --check`, graph-output exclusion check, routing registration check, complete-status formatting check excluding copied v1 references, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
 | 2026-06-21T17:09:24-06:00 | Chunk Thirteen relay envelope validator | pass | Read only the approved v1 `relay_envelope.py`, `test_relay_envelope.py`, and `REQ-0055` references, then rewrote local no-network relay envelope schema validation and focused tests without hosted relay, worker polling, portal behavior, client data, live connectors, live business systems, or production behavior. |
 | 2026-06-21T17:13:25-06:00 | final Chunk Thirteen validation bundle | pass | Governance preflight, schema validation, 49 unit tests, syntax compile, relay smoke validation, Tool Directory JSON parse, `git diff --check`, routing registration check, complete-status formatting check excluding copied v1 references, graph-output exclusion check, forbidden filename scan, and strict secret-pattern scan passed; only the existing pathway CRLF warning appeared. |
+| 2026-06-21T18:11:59-06:00 | Microsoft 365 / AG Operations bridge orientation | pass | Read local AG Operations bridge-readiness and agent-control docs at summary level, recorded the future M365 business-substrate posture in active Rev 2 docs, and did not read live M365 content, OneDrive material, environment files, tenant data, secrets, or activate connector behavior. |
+| 2026-06-21T18:15:57-06:00 | final M365 bridge documentation closeout | pass | Governance preflight, schema validation, 49 unit tests, Tool Directory JSON parse, `git diff --check`, routing search, complete-status formatting check, changed-file forbidden filename scan, and changed-file strict secret-pattern scan passed. The only Git warning was the known pathway CRLF normalization notice; a broader strict scan detects the existing synthetic relay-envelope unsafe-payload test fixture. |
 
 ## Next Handoff
 
@@ -1373,7 +1417,10 @@ local validation code in
 in `tests/test_graphify_handoff.py`, and the local relay envelope validator
 now lives in
 `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` with tests
-in `tests/test_relay_envelope.py`. The next bounded task is Chunk Fourteen:
-build the local relay store and single-worker claim proof without hosted
-relay, worker bootstrap scripts, portal behavior, client data, live
-connectors, live business systems, or production behavior.
+in `tests/test_relay_envelope.py`. The Microsoft 365 / AG Operations bridge
+orientation is recorded in `docs/architecture.md` and
+`docs/source-of-truth-map.md`; it is for later connector/cockpit work only.
+The next bounded task is Chunk Fourteen: build the local relay store and
+single-worker claim proof without M365 adapter work, hosted relay, worker
+bootstrap scripts, portal behavior, client data, live connectors, live
+business systems, or production behavior.

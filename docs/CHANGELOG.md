@@ -65,3 +65,8 @@
   relay envelope schema validation with focused tests for stale approvals,
   malformed JSON shapes, unsafe payloads, denied hosted relay or worker
   polling, and blocked live connector/client-data behavior.
+- Recorded an inter-chunk Microsoft 365 / AG Operations bridge orientation in
+  the active architecture and source-of-truth docs: M365 is the future governed
+  business substrate feeding the cockpit through approved records, safe
+  summaries, action logs, decisions, task/list state, and links, while Rev 2
+  retains mission policy, approvals, relay, workers, evidence, and stop rules.

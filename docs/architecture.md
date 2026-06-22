@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T17:09:24-06:00
+Last Updated: 2026-06-21T18:15:57-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -36,6 +36,8 @@ Active now:
   `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`;
 - local no-network relay envelope validator at
   `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py`;
+- inter-chunk Microsoft 365 / AG Operations bridge orientation recorded as
+  architecture only;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -84,6 +86,7 @@ current state, policy boundary, and stale-state checks before acting.
 | Future hosted relay | Not approved. | Possible low-latency queue, notification, session, and heartbeat service after GitHub-backed proof. | Requires explicit owner approval, auth/session design, threat model, retention rule, and disable path. |
 | Rev 2 mission spine | Local no-network mission envelopes, deterministic planning, policy gate, validation, and JSON record store. | Local deterministic runtime for future approved mission records, evidence references, and action logs. | No autonomous mission loop, connector call, worker claim, relay polling, or production action until later controls exist. |
 | Graphify knowledge spoke | Active read-only route status and handoff candidate validation. | Read-only graph context, handoff records, recommendations as mission candidates. | Graphify recommendations are not execution approval and must pass Rev 2 policy before work. |
+| Microsoft 365 / AG Operations business substrate | Local architecture references reviewed for bridge posture only. | Identity, SharePoint records, Lists, Planner tasks, Teams coordination, Exchange signals, Forms intake, and audit surfaces feeding governed mission candidates through approved adapters. | Planning-only in Rev 2; no live tenant reads, content ingestion, Outlook/Teams sends, app consent, permission changes, client data, or setup-helper grant reuse. |
 | Connector registry | Link-only seed records and planning references. | Governed connector profiles with owner, workspace, data class, approval gate, audit, and retention rules. | Profiles are permission structure, not permission or credentials. |
 | Relay envelopes | Local-file-only schema validation for intent, approval, status, evidence, and handoff records. | Future relay records for device/cockpit coordination before worker claims or hosted relay. | Envelopes carry safe summaries and references only; no persistence, polling, hosted relay, client data, raw payloads, or execution authority is active. |
 | Model and prompt controls | Current Codex coding session only for repo collaboration. | Future runtime route only after model and prompt approval records exist. | No production runtime model, BYOK provider, client-data route, or connector-driving prompt is approved. |
@@ -243,6 +246,53 @@ Any future live connector must have:
 - disable or rollback path;
 - explicit owner approval for the activated capability.
 
+## Microsoft 365 Bridge Posture
+
+Microsoft 365 should feed the cockpit as the governed business substrate, not
+as the central cockpit brain or execution authority.
+
+The intended separation is:
+
+```text
+Microsoft 365
+  -> identity, records, tasks, signals, collaboration, audit
+Graphify
+  -> knowledge map, decisions, recommendations, handoff candidates
+Rev 2
+  -> mission spine, policy gate, approvals, relay records, workers, evidence
+```
+
+The future bridge should read approved metadata, source links, action-log
+records, decision records, Planner/List state, CRM records, and reviewed
+summaries from Microsoft 365. It should not copy raw Microsoft 365 content into
+Rev 2 by default.
+
+The safe future flow is:
+
+```text
+M365 record or signal
+  -> approved M365 adapter reads metadata or a reviewed safe summary
+    -> Rev 2 connector profile and policy gate validate the request
+      -> mission candidate or relay envelope
+        -> browser or Android cockpit approval/status/evidence view
+          -> worker claim and execution only after approval
+            -> evidence links back to Rev 2 and M365 action logs
+```
+
+The AG Operations Stage 9 bridge posture maps cleanly onto Rev 2:
+
+- G0 read-only inventory, classification, summary, and gap detection;
+- G1 propose-and-log records, especially suggested Agent Action Log rows;
+- G2 approved internal writes to Lists, Planner, drafts, and evidence;
+- G3 restricted external or access writes requiring explicit approval;
+- G4 blocked autonomous actions.
+
+Rev 2 still treats every Microsoft 365 capability as planning-only until a
+later connector activation chunk creates the adapter profile, permission
+design, rollback worksheet, dry-run tests, action logging, and explicit owner
+approval. The future adapter must not reuse broad setup-helper grants as
+production bridge power.
+
 ## Graphify Architecture
 
 Graphify remains a knowledge spoke, not an execution surface.
@@ -316,6 +366,7 @@ being introduced.
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
+| Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
 | Connector registry entries are not credentials or permission. | Active | Live connector use needs separate approval, tests, and data boundaries. |
 
 ## Non-Goals For Current Architecture Chunk
@@ -344,3 +395,22 @@ This active architecture was rewritten from these copied reference inputs:
 
 Those files remain reference-only unless a later chunk promotes specific code,
 tests, or records under Rev 2 controls.
+
+## External Local Orientation Inputs
+
+On 2026-06-21, an inter-chunk read-only pass reviewed local documentation from
+`C:\Users\adamg\01. Code Projects\AG Operations Workspace Setup` to align the
+future Microsoft 365 bridge posture with Rev 2. The reviewed inputs were
+architecture and control records only, including:
+
+- `M365_STAGE_9_AGENTIC_OS_BRIDGE_READINESS.md`;
+- `M365_GRAPHIFY_UAOS_ALIGNMENT.md`;
+- `docs/AGENTIC_M365_READINESS.md`;
+- `config/M365_STAGE_9_AGENT_CAPABILITY_MODEL.json`;
+- `config/M365_STAGE_9_BRIDGE_READINESS_CONTROL.json`;
+- `docs/CARD_PLAN_AGENT_CONTROL_PLANE.md`;
+- `docs/WORKSPACE_CHUNK_7_FINAL_USABILITY_WALKTHROUGH.md`.
+
+No live Microsoft 365 content, OneDrive material, tenant data, local
+environment file, secret value, app consent, permission change, connector call,
+or unattended automation was read or activated during that pass.
