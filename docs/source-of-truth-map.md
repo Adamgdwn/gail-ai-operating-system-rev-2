@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T19:49:09-06:00
+Last Updated: 2026-06-21T20:01:42-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -75,6 +75,8 @@ competing truth stores.
 | `tests/test_relay_envelope.py` | Local relay envelope tests for safe references, dry-run policy gates, malformed JSON shapes, stale or expired approvals, denied hosted relay or worker polling, and unsafe payload rejection. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` | Local no-network relay record store proof for validated envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. |
 | `tests/test_relay_store.py` | Local relay store tests for persistence, reload, policy-gated claim validation, stale state rejection, duplicate worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payloads. |
+| `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` | Local no-network proof runner that exercises one mission path from intent through policy, connector registry, relay envelope, relay store, trusted-worker claim, reference-only evidence, and completed relay status. |
+| `tests/test_local_proof_runner.py` | Local proof-runner tests for complete mission-to-evidence proof, reference-only payload safety, and stop-trigger failure before relay records are written. |
 
 ## Active Placeholders To Promote
 
@@ -196,11 +198,12 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Fifteen: build a local no-network proof runner across the mission
-spine, connector registry, relay envelope validator, and relay store. Keep the
-work local and no-network. The Microsoft 365 / AG Operations bridge orientation
-is recorded for later connector and cockpit work, but Chunk Fifteen must not
-broaden into M365 adapter work, hosted relay, worker bootstrap scripts, portal
-behavior, Freedom phone-link integration, Freedom code changes, generated config
-import, Freedom business-partner runtime integration, client data, live
-connectors, live business systems, or production.
+Begin Chunk Sixteen: define the Freedom phone-interface and agentic business
+partner boundary before portal or integration work. Keep the work planning-only:
+Freedom remains the preferred phone-side operator link and high-level agentic
+business partner reference, while Rev 2 remains the governed mission, relay,
+policy, connector, evidence, and worker spine. Do not broaden into Freedom code
+import, generated config reads, Freedom modification, Freedom runtime/provider
+activation, a competing Android surface, M365 adapter work, hosted relay, worker
+bootstrap scripts, portal behavior, client data, live connectors, live business
+systems, or production.

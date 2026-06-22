@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T19:49:09-06:00
+Last Updated: 2026-06-21T20:04:23-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -102,7 +102,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Review Freedom Engine archive relationship | complete | 2026-06-21T18:53:33-06:00 | codex session | Inter-chunk objective review records that Freedom remains Adam's current operating partner OS, Rev 2 remains the clean governed mission/relay/worker spine, and future convergence should happen through translated contracts and bridge records rather than wholesale repo merge. |
 | Record Freedom phone-interface anchor | complete | 2026-06-21T19:29:48-06:00 | codex session | Plan updated so Freedom is a substantial future anchor and likely phone-side interface, while Rev 2 remains the governed spine and no code, merge, import, generated config, or runtime activation occurs until a bounded later chunk. |
 | Record Freedom agentic business partner anchor | complete | 2026-06-21T19:49:09-06:00 | codex session | Plan updated so Freedom is preserved and elevated as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities; no code, merge, import, generated config, secret read, or runtime activation occurs until a bounded later chunk. |
-| Handoff next chunk | pending | 2026-06-21T19:49:09-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
+| Build local proof runner | complete | 2026-06-21T20:01:42-06:00 | codex session | Chunk Fifteen added a local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store, with focused tests and a direct smoke run. |
+| Handoff next chunk | pending | 2026-06-21T20:01:42-06:00 | codex session | Next bounded task is Chunk Sixteen: define the Freedom phone-interface and agentic business partner boundary before portal or integration work. |
 
 ## Current Completion Boundary
 
@@ -112,10 +113,11 @@ first local code slice: source-of-truth, tool permission, runtime, agent,
 model, prompt, architecture, file migration decision, and Graphify handoff
 checkpoint controls are promoted, and the local no-network mission spine,
 planning-only connector registry, read-only Graphify handoff validator, and
-local relay envelope validator, and local relay record store proof exist under
-the Rev 2 core package with expanded safety, permission, file-boundary,
-graph-candidate, unsafe-payload, stale-state, duplicate-claim, trusted-worker,
-and reference-only evidence tests. A read-only inter-chunk Microsoft 365 / AG
+local relay envelope validator, local relay record store proof, and local proof
+runner exist under the Rev 2 core package with expanded safety, permission,
+file-boundary, graph-candidate, unsafe-payload, stale-state, duplicate-claim,
+trusted-worker, reference-only evidence, and mission-to-evidence proof tests. A
+read-only inter-chunk Microsoft 365 / AG
 Operations bridge orientation is recorded in the architecture and
 source-of-truth docs; it confirms that M365 should feed future cockpit work
 through approved records, safe summaries, action logs, decisions, and links
@@ -935,7 +937,7 @@ Completion notes:
 
 ## Chunk Fifteen - Build Local Proof Runner
 
-Status: planned
+Status: complete (2026-06-21T20:01:42-06:00)
 
 Completion target: Integration complete
 
@@ -949,6 +951,21 @@ no-network mission path. Acceptance: a mission can move from intent to
 validated evidence locally. Validation: full local proof run, test suite,
 governance preflight, secret scan, diff check, commit, push. Stop: before UI
 or live connector work.
+
+Result:
+
+- Added `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py`
+  as a local orchestrator that creates a dry-run mission, validates the local
+  plan, checks the connector registry, validates and persists a relay envelope,
+  accepts one trusted-worker claim, attaches reference-only evidence, and marks
+  the relay record completed.
+- Added `tests/test_local_proof_runner.py` covering the complete proof path,
+  reference-only payload safety, and stop-trigger failure before relay records
+  are written.
+- Exposed `run_local_proof`, `LocalProofReport`, `LocalProofStep`, and
+  `LocalProofError` from the core package.
+- No UI, portal, hosted relay, M365 adapter, Freedom runtime, client data, live
+  connector, live business system, or production behavior was added.
 
 ## Chunk Sixteen - Define Freedom Phone Interface And Business Partner Boundary
 
@@ -1461,6 +1478,10 @@ date -Iseconds
 | 2026-06-21T19:34:18-06:00 | Freedom phone-interface planning validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and stale chunk-heading/range reference check passed. The only Git warning was the known pathway CRLF normalization notice. |
 | 2026-06-21T19:49:09-06:00 | Freedom agentic business partner planning | pass | Updated the active pathway, Freedom objective review, architecture, source-of-truth map, migration decisions, and changelog to preserve and elevate Freedom as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities. No Freedom code was copied, imported, modified, activated, or merged. |
 | 2026-06-21T19:53:20-06:00 | Freedom business partner planning validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and stale Chunk Sixteen heading check passed. The only Git warning was the known pathway CRLF normalization notice. |
+| 2026-06-21T19:57:56-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Fifteen code work. |
+| 2026-06-21T20:01:42-06:00 | Chunk Fifteen local proof runner | pass | Added the local no-network proof runner and focused tests. Focused proof-runner tests passed: 3 tests. Full unit discovery passed: 64 tests. Syntax compile, package import smoke, and direct proof-runner smoke checks passed. |
+| 2026-06-21T20:04:23-06:00 | final Chunk Fifteen validation bundle | pass | Governance preflight, project-control schema validation, 64 unit tests, syntax compile, package import smoke, direct proof-runner smoke, Tool Directory JSON parse, `git diff --check`, routing/export search, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, and changed-file strict secret-pattern scan passed. The only Git warning was the known pathway CRLF normalization notice; an initial broad complete-status check surfaced copied v1 reference records and was rerun with the correct exclusion. |
+| 2026-06-21T20:04:23-06:00 | Graphify incremental update attempt | not run | `graphify update . --no-cluster` could not run because the `graphify` CLI is not available on the Windows shell PATH. No graph files were modified. |
 
 ## Next Handoff
 
@@ -1495,7 +1516,9 @@ now lives in
 in `tests/test_relay_envelope.py`, and the local relay record store and
 trusted-worker claim proof now lives in
 `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` with tests in
-`tests/test_relay_store.py`. The Microsoft 365 / AG Operations bridge
+`tests/test_relay_store.py`, and the local no-network proof runner now lives in
+`packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` with
+tests in `tests/test_local_proof_runner.py`. The Microsoft 365 / AG Operations bridge
 orientation is recorded in `docs/architecture.md` and
 `docs/source-of-truth-map.md`; it is for later connector/cockpit work only.
 The Freedom Engine archive objective review is recorded in
@@ -1510,8 +1533,11 @@ gateway/desktop-host, and bridge reference; do not bulk-copy Freedom source,
 read secret values, import generated runtime config, modify Freedom code, or
 activate Freedom runtime/provider behavior in Rev 2 until the dedicated Freedom
 phone-link boundary and a later explicit integration chunk permit it.
-The next bounded task is Chunk Fifteen: build the local no-network proof runner
-across the mission spine, connector registry, relay envelope validator, and
-relay store without M365 adapter work, hosted relay, worker bootstrap scripts,
-portal behavior, Freedom runtime work, client data, live connectors, live
+The next bounded task is Chunk Sixteen: define the Freedom phone-interface and
+agentic business partner boundary before any portal or integration work. Keep
+Freedom as the preferred phone-side operator link and high-level agentic
+business partner reference, but do not import Freedom code, read generated
+config, modify Freedom, activate Freedom runtime/provider behavior, build a
+competing Android surface, or broaden into M365 adapter work, hosted relay,
+worker bootstrap scripts, portal behavior, client data, live connectors, live
 business systems, or production behavior.

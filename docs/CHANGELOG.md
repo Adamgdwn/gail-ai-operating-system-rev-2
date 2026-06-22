@@ -95,3 +95,9 @@
   memory, voice/mobile interaction, and operator-run judgment, while still
   blocking code import, generated config, secret reads, runtime activation, and
   Freedom modification until later bounded chunks.
+- Added the Chunk Fifteen local no-network proof runner in
+  `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py`,
+  exercising one mission from dry-run intent through policy, connector registry,
+  relay envelope validation, relay store persistence, trusted-worker claim,
+  reference-only evidence, and completed relay status with focused tests in
+  `tests/test_local_proof_runner.py`.

@@ -25,6 +25,12 @@ from .graphify_handoff import (
     build_graphify_route_status,
     validate_graphify_handoff_payload,
 )
+from .local_proof_runner import (
+    LocalProofError,
+    LocalProofReport,
+    LocalProofStep,
+    run_local_proof,
+)
 from .mission_spine import (
     DEFAULT_APPROVAL_LEVEL,
     LocalMissionStore,
@@ -78,6 +84,9 @@ __all__ = [
     "GraphifyHandoffRejection",
     "GraphifyHandoffValidationReport",
     "GraphifyRouteStatus",
+    "LocalProofError",
+    "LocalProofReport",
+    "LocalProofStep",
     "LocalMissionStore",
     "LocalRelayRecordStore",
     "MissionAction",
@@ -118,4 +127,5 @@ __all__ = [
     "validate_graphify_handoff_payload",
     "validate_mission",
     "validate_relay_envelope",
+    "run_local_proof",
 ]
