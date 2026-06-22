@@ -121,3 +121,7 @@
   proof runner. Approval mutations, live relay writes, Freedom runtime access,
   M365/QuickBooks adapters, worker bootstrap, live connectors, client data,
   and production behavior remain blocked.
+- Recorded the hub-and-spoke command-center direction for Chunk Nineteen and
+  boxed up the session with low-token restart guidance in `START_HERE.md`, the
+  active pathway handoff, `CARRY_FORWARD.md`, and the AG Operations work
+  tracking folder.

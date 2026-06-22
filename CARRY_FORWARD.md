@@ -1,6 +1,6 @@
 # Carry-Forward Flags
 
-Last Updated: <timestamp>
+Last Updated: 2026-06-21T22:14:07-06:00
 Status: empty
 
 Use this file to record anything that must survive a context reset:

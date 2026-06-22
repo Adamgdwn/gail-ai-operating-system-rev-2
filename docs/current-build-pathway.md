@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T22:06:30-06:00
+Last Updated: 2026-06-21T22:14:07-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -107,7 +107,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Choose app shell | complete | 2026-06-21T21:15:59-06:00 | codex session | Chunk Seventeen selected the Vite React TypeScript browser shell, added `docs/decisions/app-shell-command-center.md`, and created the initial buildable `apps/command-center` scaffold without feature UI, service worker, auth, relay calls, Freedom runtime, M365 adapter, worker bootstrap, live connectors, or production behavior. |
 | Build operating cockpit shell | complete | 2026-06-21T21:56:24-06:00 | codex session | Chunk Eighteen replaced the placeholder browser scaffold with a read-only cockpit shell showing local sample mission, approval-boundary, worker/device, evidence, and connector-posture areas without approval mutation, live relay, Freedom runtime, M365 adapter, worker bootstrap, live connector, client-data, or production behavior. |
 | Record hub-and-spoke cockpit vision | complete | 2026-06-21T22:06:30-06:00 | codex session | Plan updated so Chunk Nineteen should shape the command center as an operator-centered hub with a talk-first core and observable governed spokes arced around it for M365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device surfaces. |
-| Handoff next chunk | pending | 2026-06-21T22:06:30-06:00 | codex session | Next bounded task is Chunk Nineteen: harden the multi-viewport cockpit surface around the hub-and-spoke command-center model for desktop, Android tablet/browser, and phone-browser fallback while preserving Freedom as the phone anchor. |
+| Box up session handoff | complete | 2026-06-21T22:14:07-06:00 | codex session | START_HERE, this pathway handoff, CARRY_FORWARD, changelog, and external AG Operations work tracking were refreshed for a low-token restart at Chunk Nineteen. |
+| Handoff next chunk | pending | 2026-06-21T22:14:07-06:00 | codex session | Next bounded task is Chunk Nineteen: harden the multi-viewport cockpit surface around the hub-and-spoke command-center model for desktop, Android tablet/browser, and phone-browser fallback while preserving Freedom as the phone anchor. |
 
 ## Current Completion Boundary
 
@@ -1587,8 +1588,17 @@ date -Iseconds
 | 2026-06-21T21:51:21-06:00 | app build and responsive smoke | pass | `npm --prefix apps/command-center run build` passed. Playwright using the system Edge channel captured desktop and mobile screenshots at `tmp/screenshots/command-center-chunk18-playwright-edge-desktop.png` and `tmp/screenshots/command-center-chunk18-playwright-edge-mobile.png`; mobile text wrapping was adjusted after the first raw Edge capture exposed overflow. |
 | 2026-06-21T21:56:24-06:00 | final Chunk Eighteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The first `npm ci` attempt failed because the running Vite dev server locked the Rolldown native binding; the command-center Vite process was stopped, `npm ci` was rerun successfully, and the dev server was scheduled to restart after validation. The only Git warning was the known pathway CRLF normalization notice. |
 | 2026-06-21T22:06:30-06:00 | hub-and-spoke cockpit planning update | pass | Updated the active pathway so Chunk Nineteen treats the command center as a talk-first operator hub with observable governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device surfaces. No code, live connector, approval action, Freedom runtime, M365 adapter, QuickBooks adapter, client-data, or production behavior was added. |
+| 2026-06-21T22:14:07-06:00 | end-of-session box-up | pass | Refreshed `START_HERE.md`, `docs/current-build-pathway.md`, `CARRY_FORWARD.md`, `docs/CHANGELOG.md`, and `C:\Users\adamg\AG Operations\01. Strategy and Planning\01. Work Tracking\GAIL AI Operating System Rev 2 - Work Tracking.md` so the next session can restart from Chunk Nineteen with low token load. |
 
 ## Next Handoff
+
+Low-token restart:
+
+1. Run `git status --short`.
+2. Read `AGENTS.md`.
+3. Read `START_HERE.md`.
+4. Read this section plus Chunk Nineteen only.
+5. Open the command-center app files when ready to build.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
 --short`, read short repo-local instructions, use `docs/context-map.md` when
