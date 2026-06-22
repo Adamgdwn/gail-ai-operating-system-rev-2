@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T19:29:48-06:00
+Last Updated: 2026-06-21T19:49:09-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -55,7 +55,7 @@ competing truth stores.
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
-| `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom phone-interface anchor posture, and selective fold-in/fold-back boundaries. |
+| `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom phone-interface anchor posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -131,6 +131,7 @@ or setup-helper credentials into Rev 2.
 
 The downloaded Freedom Engine archive is an external orientation source for
 operating-partner runtime, the preferred future phone-interface anchor,
+self-learning, research, agent/tool calling, business memory,
 mobile/gateway/desktop-host, Action Fabric, Device Mesh, storage-map, and
 operator-run design:
 
@@ -146,9 +147,10 @@ Do not bulk-copy Freedom source into Rev 2. Do not read, copy, summarize, or
 commit Freedom secret values, generated mobile runtime config, `.local-data`,
 build outputs, APKs, provider state, Supabase runtime data, contacts, email
 data, memories, raw transcripts, logs, or release artifacts. Freedom remains
-Adam's current operating partner OS and is now the preferred future phone-side
-operator link; Rev 2 remains the clean governed mission, relay, policy, and
-worker spine until a later bridge chunk changes that boundary explicitly.
+Adam's current operating partner OS, high-level agentic business partner, and
+preferred future phone-side operator link; Rev 2 remains the clean governed
+mission, relay, policy, and worker spine until a later bridge chunk changes
+that boundary explicitly.
 
 ## Device Roles
 
@@ -156,13 +158,13 @@ worker spine until a later bridge chunk changes that boundary explicitly.
 |---|---|---|
 | Windows | Current operator workspace and future trusted worker. | May edit/push Rev 2 repo and run local validation; live business connectors remain blocked until approved. |
 | Linux | Superseded v1 reference host and future trusted worker clone. | Not the Rev 2 project home; future Linux work must pull from private GitHub and preserve Rev 2 controls. |
-| Android phone | Freedom-anchored future operator link. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, and safe evidence summaries; no local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
+| Android phone | Freedom-anchored future operator link. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; no local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
 | Browser | Shared cockpit surface across desktop and mobile. | Reads/writes governed records through approved local or relay paths; must not become a second source of truth. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
-| Freedom Engine | Current operating partner OS and preferred future phone-interface anchor candidate. | Reference and bridge-planning only; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
+| Freedom Engine | Current operating partner OS, high-level agentic business partner, and preferred future phone-interface anchor candidate. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
 
 ## Compact Build Chunk Map
 
@@ -173,7 +175,7 @@ ledger remain in `docs/current-build-pathway.md`.
 |---|---|---|
 | Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 navigation, permission, runtime, architecture, and migration-decision controls. |
 | Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate/rewrite the no-network mission spine, connector registry, enhanced Graphify handoff checkpoint, relay envelope, relay store, tests, and proof runner. |
-| Phase 3 - First usable portal | Chunks Sixteen to Twenty-One | Define the Freedom phone-interface boundary, choose the browser/app shell around that anchor, then build approval, evidence, and handoff views. |
+| Phase 3 - First usable portal | Chunks Sixteen to Twenty-One | Define the Freedom phone-interface and agentic business partner preservation boundary, choose the browser/app shell around that anchor, then build approval, evidence, and handoff views. |
 | Phase 4 - Multi-device worker model | Chunks Twenty-Two to Twenty-Six | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
 | Phase 5 - Full system build | Chunks Twenty-Seven onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
 
@@ -200,4 +202,5 @@ work local and no-network. The Microsoft 365 / AG Operations bridge orientation
 is recorded for later connector and cockpit work, but Chunk Fifteen must not
 broaden into M365 adapter work, hosted relay, worker bootstrap scripts, portal
 behavior, Freedom phone-link integration, Freedom code changes, generated config
-import, client data, live connectors, live business systems, or production.
+import, Freedom business-partner runtime integration, client data, live
+connectors, live business systems, or production.

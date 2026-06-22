@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T19:29:48-06:00
+Last Updated: 2026-06-21T19:49:09-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -112,7 +112,8 @@ outside this queue.
 
 The downloaded Freedom Engine archive was reviewed on 2026-06-21 as an
 external operating-partner OS reference and later recorded as the preferred
-future phone-interface anchor candidate, not as active Rev 2 source.
+future phone-interface anchor candidate and high-level agentic business partner
+capability source, not as active Rev 2 source.
 
 Active review record:
 
@@ -124,6 +125,9 @@ Decision summary:
 |---|---|---|---|
 | Freedom monorepo root | `later review` | none | Do not bulk-copy or merge into Rev 2. Freedom remains Adam's current operating partner OS and likely phone-side operator link. |
 | Freedom operator-run lifecycle and evidence vocabulary | `rewrite` | after Chunk Fifteen | Translate into Rev 2 mission/run/evidence records after the local proof runner exists. |
+| Freedom self-learning, learning reviews, and business-memory loops | `rewrite` | after Chunk Sixteen | Preserve and elevate as governed learning, evidence, and memory-reference records. Do not import raw memories, logs, contacts, email data, provider state, or Supabase runtime data. |
+| Freedom research and programming-request workflows | `rewrite` | after Chunk Sixteen | Translate into Rev 2 mission candidates, research/evidence records, and approval gates. Do not activate live web, provider, or tool-calling behavior without later connector boundaries. |
+| Freedom agent/tool calling and tool-selection concepts | `later review` | connector/runtime activation chunks | Treat as core agentic business partner capability input. Requires connector profiles, capability gates, dry-run tests, explicit approval, rollback, and secret containment before runtime use. |
 | Freedom consequence review model | `rewrite` | approval/connector chunks | Use as design input for higher-risk approval gates, not active runtime behavior. |
 | Freedom Device Mesh and environment capability contracts | `rewrite` | portal/worker chunks | Translate as planning-only device and capability schemas before worker bootstrap or portal execution. |
 | Freedom Action Fabric request/plan/result/evidence concepts | `rewrite` | action-classification chunks | Use after Rev 2 has proof-runner semantics; do not activate low-risk execution routes yet. |

@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T19:29:48-06:00
+Last Updated: 2026-06-21T19:49:09-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -101,7 +101,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Migrate relay store and worker claim proof | complete | 2026-06-21T18:38:23-06:00 | codex session | Chunk Fourteen rewrote the selected v1 relay store references as local no-network Rev 2 record persistence, status/evidence records, and single trusted-worker claim proof tests. |
 | Review Freedom Engine archive relationship | complete | 2026-06-21T18:53:33-06:00 | codex session | Inter-chunk objective review records that Freedom remains Adam's current operating partner OS, Rev 2 remains the clean governed mission/relay/worker spine, and future convergence should happen through translated contracts and bridge records rather than wholesale repo merge. |
 | Record Freedom phone-interface anchor | complete | 2026-06-21T19:29:48-06:00 | codex session | Plan updated so Freedom is a substantial future anchor and likely phone-side interface, while Rev 2 remains the governed spine and no code, merge, import, generated config, or runtime activation occurs until a bounded later chunk. |
-| Handoff next chunk | pending | 2026-06-21T19:29:48-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
+| Record Freedom agentic business partner anchor | complete | 2026-06-21T19:49:09-06:00 | codex session | Plan updated so Freedom is preserved and elevated as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities; no code, merge, import, generated config, secret read, or runtime activation occurs until a bounded later chunk. |
+| Handoff next chunk | pending | 2026-06-21T19:49:09-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
 
 ## Current Completion Boundary
 
@@ -125,10 +126,15 @@ should remain Adam's current operating partner OS while Rev 2 remains the clean
 governed mission, relay, policy, connector, evidence, and worker spine. Future
 Freedom convergence should happen through translated contracts, safe summaries,
 and bridge records, not wholesale source/runtime import. As of
-2026-06-21T19:29:48-06:00, Freedom is also recorded as the substantial future
-phone-interface anchor candidate for Rev 2. That changes the portal path: after
-the local proof runner, the next portal planning chunk must define the Freedom
-phone-link boundary before choosing or building any competing Android surface.
+2026-06-21T19:49:09-06:00, Freedom is also recorded as the substantial future
+phone-interface anchor candidate and as a high-level agentic business partner
+whose self-learning, research, agent/tool calling, business memory,
+voice/mobile, operator-run, gateway, and desktop-host capabilities must be
+preserved and elevated through bounded bridge contracts rather than flattened
+into a simple mobile UI. That changes the portal path: after the local proof
+runner, the next portal planning chunk must define the Freedom phone-link and
+business-partner capability boundary before choosing or building any competing
+Android surface.
 No portal build, worker bootstrap or persistent worker model, hosted relay,
 live connector activation, Freedom runtime activation, client-data workflow, or
 production release has
@@ -144,7 +150,7 @@ chunk still needs its own packet, validation, commit, push, and handoff.
 |---|---|---|
 | Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 source-of-truth, tool permissions, runtime controls, architecture specs, and file migration decisions. |
 | Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate or rewrite the no-network mission spine, connector registry, enhanced Graphify handoff checkpoint, relay envelope, relay store, tests, and proof runner. |
-| Phase 3 - First usable portal | Chunks Sixteen to Twenty-One | Define the Freedom phone-interface boundary, choose the browser/app shell around that anchor, then build approval, evidence, and handoff views. |
+| Phase 3 - First usable portal | Chunks Sixteen to Twenty-One | Define the Freedom phone-interface and agentic business partner preservation boundary, choose the browser/app shell around that anchor, then build approval, evidence, and handoff views. |
 | Phase 4 - Multi-device worker model | Chunks Twenty-Two to Twenty-Six | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
 | Phase 5 - Full system build | Chunks Twenty-Seven onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
 
@@ -944,7 +950,7 @@ validated evidence locally. Validation: full local proof run, test suite,
 governance preflight, secret scan, diff check, commit, push. Stop: before UI
 or live connector work.
 
-## Chunk Sixteen - Define Freedom Phone Interface Boundary
+## Chunk Sixteen - Define Freedom Phone Interface And Business Partner Boundary
 
 Status: planned
 
@@ -956,11 +962,15 @@ Plan packet:
 
 Inputs: local proof runner output, Freedom Engine objective review, architecture
 specs, source-of-truth map, device role specs, and file migration decisions.
-Outputs: a bounded Freedom phone-link decision record defining Freedom as the
-substantial phone-interface anchor candidate, the first neutral bridge record
-shapes, the no-import boundary, and the later approval gate for any Freedom
-code or runtime work. Acceptance: the plan clearly says what Freedom may feed
-into Rev 2, what Rev 2 may feed back to Freedom, and what remains prohibited.
+Outputs: a bounded Freedom phone-link and business-partner decision record
+defining Freedom as the substantial phone-interface anchor candidate and a
+high-level agentic business partner capability source; the first neutral bridge
+record shapes for safe summaries, runs, evidence, learning, research, action
+requests, and agent/tool-calling intents; the no-import boundary; and the later
+approval gate for any Freedom code or runtime work. Acceptance: the plan
+clearly says what Freedom may feed into Rev 2, what Rev 2 may feed back to
+Freedom, which high-level capabilities must be preserved and elevated, and what
+remains prohibited.
 Validation: docs routing check, complete-status formatting check, forbidden
 filename scan, strict secret-pattern scan, diff check, commit, push. Stop:
 before copying Freedom source, reading secret values, importing generated
@@ -1449,6 +1459,8 @@ date -Iseconds
 | 2026-06-21T18:53:33-06:00 | Freedom Engine archive objective review | pass | Used Graphify policy as far as available, inspected `C:\Users\adamg\Downloads\the-freedom-engine-os-main.zip` through a temporary extraction, recorded a summary-only review, and updated routing controls. No Freedom source was copied into active Rev 2, no secret values were recorded, and no Freedom runtime, provider, relay, mobile, gateway, desktop-host, Supabase, email, voice, or production behavior was activated. |
 | 2026-06-21T19:29:48-06:00 | Freedom phone-interface anchor planning | pass | Updated the active pathway so Freedom is the substantial future phone-interface anchor candidate after Chunk Fifteen. The update created a dedicated Chunk Sixteen planning boundary before app-shell work and preserved the no-code, no-merge, no-import, no-generated-config, no-secret-read, and no-runtime-activation stop rules. |
 | 2026-06-21T19:34:18-06:00 | Freedom phone-interface planning validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and stale chunk-heading/range reference check passed. The only Git warning was the known pathway CRLF normalization notice. |
+| 2026-06-21T19:49:09-06:00 | Freedom agentic business partner planning | pass | Updated the active pathway, Freedom objective review, architecture, source-of-truth map, migration decisions, and changelog to preserve and elevate Freedom as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities. No Freedom code was copied, imported, modified, activated, or merged. |
+| 2026-06-21T19:53:20-06:00 | Freedom business partner planning validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and stale Chunk Sixteen heading check passed. The only Git warning was the known pathway CRLF normalization notice. |
 
 ## Next Handoff
 

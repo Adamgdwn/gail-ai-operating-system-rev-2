@@ -89,3 +89,9 @@
   planning boundary before app-shell work and preserved the no-code, no-merge,
   no-import, no-generated-config, no-secret-read, and no-runtime-activation
   boundary until a later approved integration chunk.
+- Updated the Freedom planning boundary to preserve and elevate Freedom as a
+  high-level agentic business partner, including self-learning, research,
+  programming-request handling, agent/tool calling, tool selection, business
+  memory, voice/mobile interaction, and operator-run judgment, while still
+  blocking code import, generated config, secret reads, runtime activation, and
+  Freedom modification until later bounded chunks.
