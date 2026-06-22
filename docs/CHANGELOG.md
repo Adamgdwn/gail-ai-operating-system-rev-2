@@ -83,3 +83,9 @@
   review keeps Freedom as a future contract, UX, gateway/desktop-host, and
   bridge reference only, with no source import, secret capture, runtime
   activation, provider access, or production behavior.
+- Updated the active pathway, architecture, source-of-truth map, and migration
+  decisions to treat Freedom as the substantial future phone-interface anchor
+  candidate after the local proof runner. Added a dedicated Chunk Sixteen
+  planning boundary before app-shell work and preserved the no-code, no-merge,
+  no-import, no-generated-config, no-secret-read, and no-runtime-activation
+  boundary until a later approved integration chunk.

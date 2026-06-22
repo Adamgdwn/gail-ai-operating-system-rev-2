@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T18:53:33-06:00
+Last Updated: 2026-06-21T19:29:48-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -41,7 +41,8 @@ Active now:
 - inter-chunk Microsoft 365 / AG Operations bridge orientation recorded as
   architecture only;
 - inter-chunk Freedom Engine objective review recorded as architecture and
-  migration routing only;
+  migration routing only, with Freedom now identified as the substantial
+  future phone-interface anchor candidate;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -87,14 +88,14 @@ current state, policy boundary, and stale-state checks before acting.
 | Windows operator workspace | Current local editing and validation environment. | Trusted worker and operator surface after bootstrap controls exist. | No live business connectors, persistent worker service, or broad local filesystem automation without later approval. |
 | Linux reference or worker surface | Superseded v1 reference host only. | Trusted worker clone that pulls from private GitHub. | Linux is not the Rev 2 source of truth and must not rely on tunnel-dependent operation. |
 | Browser command center | Not built. | Main shared cockpit for desktop and mobile browser use. | Must read and write governed records through approved local or relay paths, not become a second truth store. |
-| Android phone cockpit | Not built. | Intent capture, approval, pause/resume, status, and safe evidence review. | No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, or direct connector access. |
+| Android phone cockpit | Not built in Rev 2. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, status, and safe evidence review; Rev 2 may provide a browser fallback or compatibility surface later. | No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, direct connector access, generated Freedom config import, or Freedom runtime activation without a bounded later chunk. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
 | Future hosted relay | Not approved. | Possible low-latency queue, notification, session, and heartbeat service after GitHub-backed proof. | Requires explicit owner approval, auth/session design, threat model, retention rule, and disable path. |
 | Rev 2 mission spine | Local no-network mission envelopes, deterministic planning, policy gate, validation, and JSON record store. | Local deterministic runtime for future approved mission records, evidence references, and action logs. | No autonomous mission loop, connector call, worker claim, relay polling, or production action until later controls exist. |
 | Graphify knowledge spoke | Active read-only route status and handoff candidate validation. | Read-only graph context, handoff records, recommendations as mission candidates. | Graphify recommendations are not execution approval and must pass Rev 2 policy before work. |
 | Microsoft 365 / AG Operations business substrate | Local architecture references reviewed for bridge posture only. | Identity, SharePoint records, Lists, Planner tasks, Teams coordination, Exchange signals, Forms intake, and audit surfaces feeding governed mission candidates through approved adapters. | Planning-only in Rev 2; no live tenant reads, content ingestion, Outlook/Teams sends, app consent, permission changes, client data, or setup-helper grant reuse. |
-| Freedom Engine operating partner OS | Downloaded archive reviewed at summary level with no code import or runtime activation. | Operating-partner runtime, voice/mobile/desktop UX, gateway/desktop-host coordination, Action Fabric, Device Mesh, model routing, storage-map, and operator-run patterns feeding Rev 2 bridge candidates. | Reference and bridge-planning only; no secret values, generated runtime config, local state, APKs, logs, provider state, Supabase runtime data, contacts, email data, memories, raw transcripts, or live Freedom services in Rev 2. |
+| Freedom Engine operating partner OS | Downloaded archive reviewed at summary level with no code import or runtime activation. | Substantial phone-interface anchor candidate plus operating-partner runtime, voice/mobile/desktop UX, gateway/desktop-host coordination, Action Fabric, Device Mesh, model routing, storage-map, and operator-run patterns feeding Rev 2 bridge candidates. | Reference and bridge-planning only until a bounded phone-link or integration chunk; no secret values, generated runtime config, local state, APKs, logs, provider state, Supabase runtime data, contacts, email data, memories, raw transcripts, live Freedom services, code merge, or source import in Rev 2. |
 | Connector registry | Link-only seed records and planning references. | Governed connector profiles with owner, workspace, data class, approval gate, audit, and retention rules. | Profiles are permission structure, not permission or credentials. |
 | Relay envelopes | Local-file-only schema validation for intent, approval, status, evidence, and handoff records. | Future relay records for device/cockpit coordination before worker claims or hosted relay. | Envelopes carry safe summaries and references only; persistence is limited to the local relay store proof with no polling, hosted relay, client data, raw payloads, or execution authority. |
 | Model and prompt controls | Current Codex coding session only for repo collaboration. | Future runtime route only after model and prompt approval records exist. | No production runtime model, BYOK provider, client-data route, or connector-driving prompt is approved. |
@@ -134,9 +135,11 @@ participates in work:
 
 ## Portal And Cockpit Architecture
 
-The first usable cockpit should be browser-first and mobile-responsive so the
-same operating surface works from Windows, Linux, Android phone, Android
-tablet, and ordinary desktop browsers.
+The first usable cockpit should keep Rev 2 browser-first for Windows, Linux,
+Android tablet, and ordinary desktop browsers while treating Freedom as the
+preferred phone-interface anchor candidate. The app-shell choice should be made
+after a dedicated Freedom phone-link boundary chunk defines what crosses
+between Freedom and Rev 2.
 
 Expected first portal capabilities:
 
@@ -149,6 +152,8 @@ Expected first portal capabilities:
 - link to durable records, commits, validation output summaries, and future
   worker status;
 - show Graphify handoff candidates as read-only context, not as approved work.
+- interoperate with the Freedom phone link through safe records once that
+  boundary is defined.
 
 The portal must not:
 
@@ -157,6 +162,8 @@ The portal must not:
 - expose raw secrets, raw logs, raw audio, or unrestricted filesystem paths;
 - become a separate source of truth;
 - activate connectors or production actions by UI affordance alone.
+- duplicate or replace Freedom's phone work before the Freedom phone-link
+  boundary is explicitly defined.
 
 ## Worker Architecture
 
@@ -303,11 +310,12 @@ production bridge power.
 
 ## Freedom Engine Bridge Posture
 
-Freedom Engine is Adam's current operating partner OS. It already has mature
-runtime and product ideas that Rev 2 has not activated yet: a Next.js control
-plane, Android companion, local gateway, desktop host, voice runtime,
-operator-run ledger, Action Fabric contracts, Device Mesh contracts, storage
-persistence map, and Supabase-backed business memory surfaces.
+Freedom Engine is Adam's current operating partner OS and the preferred
+phone-interface anchor candidate for Rev 2. It already has mature runtime and
+product ideas that Rev 2 has not activated yet: a Next.js control plane,
+Android companion, local gateway, desktop host, voice runtime, operator-run
+ledger, Action Fabric contracts, Device Mesh contracts, storage persistence
+map, and Supabase-backed business memory surfaces.
 
 The objective review in
 `docs/migration/freedom-engine-objective-review.md` concludes that the repos
@@ -330,7 +338,10 @@ The strongest fold-in candidates are operator-run lifecycle vocabulary,
 evidence vocabulary, consequence review, Device Mesh, environment capability
 snapshots, Action Fabric classification, storage persistence rules, and
 gateway/desktop-host pairing and evidence patterns. These should be translated
-or rewritten in later Rev 2 chunks, not copied directly from Freedom.
+or rewritten in later Rev 2 chunks, not copied directly from Freedom. The
+phone-interface path should start with a dedicated boundary record after the
+local proof runner, then a browser/app-shell decision that treats Freedom as
+the phone anchor rather than racing to build a separate native Android portal.
 
 Rev 2 must not import Freedom generated mobile runtime config, `.local-data`,
 build outputs, APKs, provider state, Supabase runtime data, contacts, email
@@ -408,12 +419,12 @@ being introduced.
 |---|---|---|
 | Private GitHub is the durable spine. | Active | It gives Rev 2 a private, auditable, device-independent source of truth. |
 | DirectLink is transport/status only. | Active | It can help with explicit cross-machine work, but Rev 2 should not depend on tunneling for normal operation. |
-| Browser-first cockpit before native apps. | Active direction | It reaches Windows, Linux, Android phone, Android tablet, and desktop browsers with one first surface. |
+| Browser-first Rev 2 cockpit with Freedom as phone anchor. | Active direction | Rev 2 should reach Windows, Linux, Android tablet, and desktop browsers through a browser/app shell, while Freedom carries the first phone-side operator link unless a later chunk decides otherwise. |
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
-| Freedom Engine is operating-partner runtime, not the Rev 2 spine. | Active direction | Freedom should feed mature runtime, UX, and action-ledger patterns into Rev 2 through safe bridge records; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
+| Freedom Engine is operating-partner runtime and phone-interface anchor candidate, not the Rev 2 spine. | Active direction | Freedom should carry the first phone-side link and feed mature runtime, UX, and action-ledger patterns into Rev 2 through safe bridge records; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
 | Connector registry entries are not credentials or permission. | Active | Live connector use needs separate approval, tests, and data boundaries. |
 | Local relay store proof exists before worker bootstrap. | Active | Claim and stale-state semantics now have a deterministic local proof before Windows/Linux worker services or hosted relay are evaluated. |
 
@@ -469,4 +480,7 @@ temporary local extraction. The review recorded the objective relationship in
 `docs/migration/freedom-engine-objective-review.md`. No Freedom code was copied
 into active Rev 2 source, no secret values were printed or recorded, and no
 Freedom gateway, desktop-host, mobile, relay, Supabase, LiveKit, OpenAI, email,
-or production behavior was activated.
+or production behavior was activated. On 2026-06-21T19:29:48-06:00, the plan
+was updated to treat Freedom as the substantial future phone-interface anchor
+candidate while preserving the no-code, no-merge, no-import, no-generated-config,
+and no-runtime-activation boundary until a dedicated later chunk.

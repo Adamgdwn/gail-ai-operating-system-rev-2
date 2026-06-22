@@ -1,6 +1,7 @@
 # Freedom Engine Objective Review
 
 Created: 2026-06-21T18:53:33-06:00
+Last Updated: 2026-06-21T19:29:48-06:00
 Status: active review
 Owner: Adam Goodwin
 
@@ -9,10 +10,12 @@ Owner: Adam Goodwin
 This review records the objective relationship between the downloaded Freedom
 Engine archive and GAIL AI Operating System Rev 2.
 
-Freedom is currently Adam's operating partner OS. Rev 2 is the clean governed
+Freedom is currently Adam's operating partner OS and the intended substantial
+phone-interface anchor candidate for Rev 2. Rev 2 is the clean governed
 agentic cockpit and worker spine being rebuilt from first principles. This
 review decides what should be folded into Rev 2, what should remain in Freedom,
-and what should become a bridge between the systems.
+what Freedom should own as the phone-side operating link, and what should
+become a bridge between the systems.
 
 ## Reviewed Input
 
@@ -38,14 +41,15 @@ under the Windows temp folder, not the Rev 2 repo.
 
 Do not fold either repository wholesale into the other.
 
-Freedom should remain the current operating partner OS and mature runtime
-surface. Rev 2 should remain the clean governed source-of-truth, mission,
-relay, policy, and worker spine.
+Freedom should remain the current operating partner OS, mature runtime surface,
+and likely phone-side interface. Rev 2 should remain the clean governed
+source-of-truth, mission, relay, policy, and worker spine.
 
 The right direction is selective convergence:
 
 - translate Freedom's proven contracts and workflow ideas into Rev 2 records;
-- reuse Freedom's mobile, gateway, desktop-host, and control-plane patterns as
+- treat Freedom's mobile surface as the first phone-interface anchor candidate,
+  then reuse Freedom's gateway, desktop-host, and control-plane patterns as
   design references when those Rev 2 chunks become active;
 - bridge Freedom to Rev 2 through governed records, safe summaries, action
   logs, evidence links, and approved adapter profiles;
@@ -162,6 +166,9 @@ blindly.
    pairing, stand-alone mode, desktop-linked state, approval surfaces,
    interruption, hold/resume, offline import, and degraded-state truth should
    influence the Rev 2 portal/mobile design once the portal stack is active.
+   Freedom is the preferred first phone-interface anchor candidate, so Rev 2
+   should define a compatibility boundary before building a separate native
+   Android surface.
 
 ## Best Fold-Back Candidates Into Freedom
 
@@ -186,7 +193,8 @@ Use a three-spoke model:
 
 ```text
 Freedom Engine
-  -> operating partner runtime, voice, mobile companion, gateway, business UX
+  -> operating partner runtime, phone interface, voice, mobile companion,
+     gateway, business UX
 
 GAIL AI Operating System Rev 2
   -> governed mission spine, policy gate, relay records, worker claims,
@@ -199,7 +207,8 @@ Microsoft 365 / AG Operations
 
 Freedom should not become the only durable truth store for Rev 2 worker claims.
 Rev 2 should not swallow Freedom's live runtime stack before the local proof
-runner, portal, worker, connector, and hosted relay chunks earn it.
+runner, phone-link boundary, portal, worker, connector, and hosted relay chunks
+earn it.
 
 ## Sequencing Recommendation
 
@@ -216,11 +225,14 @@ Then insert a future Freedom bridge phase before broad portal/runtime work:
 3. Translate Freedom's evidence vocabulary into Rev 2 evidence records.
 4. Translate Device Mesh and environment capability snapshots into Rev 2
    planning-only schemas.
-5. Decide the first portal stack using Freedom's UX as reference, not as a
-   direct code import.
-6. Build a one-way read-only Freedom-to-Rev-2 bridge candidate that emits safe
+5. Define the Freedom phone-link boundary as the first portal planning step:
+   what Freedom may show, what Rev 2 may expose, what actions may return, and
+   what remains blocked.
+6. Decide the browser/app shell around Freedom as the phone anchor, not as a
+   direct code import or competing native Android rebuild.
+7. Build a one-way read-only Freedom-to-Rev-2 bridge candidate that emits safe
    summaries and references only.
-7. Activate any live Freedom runtime connector only after explicit connector
+8. Activate any live Freedom runtime connector only after explicit connector
    profiles, tests, approval gates, rollback, and secret containment exist.
 
 ## Objective Decision Matrix
@@ -230,7 +242,7 @@ Then insert a future Freedom bridge phase before broad portal/runtime work:
 | Freedom monorepo | Keep separate | It is active, higher-risk, and live-runtime-shaped. |
 | Rev 2 mission spine | Keep primary for new cockpit spine | It is clean, governed, local, and no-network. |
 | Shared contracts | Translate selectively | Strong concepts, but TypeScript/Zod shape should not dictate Rev 2 core package. |
-| Freedom Android app | Later UX/reference source | Useful workflows, but too coupled to Freedom gateway, relay, voice, and generated runtime config. |
+| Freedom Android app | Phone-interface anchor candidate | Useful workflows and prior investment should anchor the first phone-side operator link, but generated config, app code, and runtime coupling are still blocked until a bounded integration chunk. |
 | Freedom gateway/desktop-host | Later worker reference | Strong pairing/heartbeat/evidence ideas, but active runtime code is not Rev 2-approved. |
 | Freedom Supabase schema | Reference only | Rev 2 has no hosted runtime store active yet. |
 | Freedom voice runtime | Reference only | Rev 2 has no voice or LiveKit/OpenAI runtime activation. |
@@ -245,6 +257,8 @@ Stop and ask before:
 - copying any Freedom file into active Rev 2 source;
 - reading or recording secret values from Freedom env, generated config, or
   provider setup files;
+- modifying Freedom code or building a Rev 2 Android replacement before the
+  dedicated phone-link boundary is defined;
 - importing Freedom local state, APKs, logs, mobile build output, runtime
   cache, Supabase exports, contacts, email data, memories, raw transcripts, or
   provider traces;
@@ -256,8 +270,8 @@ Stop and ask before:
 
 ## Bottom Line
 
-Freedom is ahead in user-facing operating-partner experience. Rev 2 is ahead in
-clean governed spine design.
+Freedom is ahead in user-facing operating-partner experience, especially the
+phone-side link. Rev 2 is ahead in clean governed spine design.
 
 The systems should converge through contracts, records, and bridges, not by
 merging repos. Rev 2 should learn from Freedom's working patterns, then expose a

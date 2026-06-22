@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T18:53:33-06:00
+Last Updated: 2026-06-21T19:29:48-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -100,7 +100,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record M365 bridge orientation | complete | 2026-06-21T18:11:59-06:00 | codex session | Inter-chunk architecture note records how AG Operations / Microsoft 365 should feed the future cockpit as a governed business substrate, with no live connector activation. |
 | Migrate relay store and worker claim proof | complete | 2026-06-21T18:38:23-06:00 | codex session | Chunk Fourteen rewrote the selected v1 relay store references as local no-network Rev 2 record persistence, status/evidence records, and single trusted-worker claim proof tests. |
 | Review Freedom Engine archive relationship | complete | 2026-06-21T18:53:33-06:00 | codex session | Inter-chunk objective review records that Freedom remains Adam's current operating partner OS, Rev 2 remains the clean governed mission/relay/worker spine, and future convergence should happen through translated contracts and bridge records rather than wholesale repo merge. |
-| Handoff next chunk | pending | 2026-06-21T18:53:33-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
+| Record Freedom phone-interface anchor | complete | 2026-06-21T19:29:48-06:00 | codex session | Plan updated so Freedom is a substantial future anchor and likely phone-side interface, while Rev 2 remains the governed spine and no code, merge, import, generated config, or runtime activation occurs until a bounded later chunk. |
+| Handoff next chunk | pending | 2026-06-21T19:29:48-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
 
 ## Current Completion Boundary
 
@@ -123,7 +124,11 @@ Engine objective review is recorded in
 should remain Adam's current operating partner OS while Rev 2 remains the clean
 governed mission, relay, policy, connector, evidence, and worker spine. Future
 Freedom convergence should happen through translated contracts, safe summaries,
-and bridge records, not wholesale source/runtime import.
+and bridge records, not wholesale source/runtime import. As of
+2026-06-21T19:29:48-06:00, Freedom is also recorded as the substantial future
+phone-interface anchor candidate for Rev 2. That changes the portal path: after
+the local proof runner, the next portal planning chunk must define the Freedom
+phone-link boundary before choosing or building any competing Android surface.
 No portal build, worker bootstrap or persistent worker model, hosted relay,
 live connector activation, Freedom runtime activation, client-data workflow, or
 production release has
@@ -139,9 +144,9 @@ chunk still needs its own packet, validation, commit, push, and handoff.
 |---|---|---|
 | Phase 1 - Active controls | Chunks Four to Eight | Promote Rev 2 source-of-truth, tool permissions, runtime controls, architecture specs, and file migration decisions. |
 | Phase 2 - File migration and initial build-out | Chunks Nine to Fifteen | Migrate or rewrite the no-network mission spine, connector registry, enhanced Graphify handoff checkpoint, relay envelope, relay store, tests, and proof runner. |
-| Phase 3 - First usable portal | Chunks Sixteen to Twenty | Build the browser command center, mobile-responsive Android/tablet views, approval actions, and evidence/handoff views. |
-| Phase 4 - Multi-device worker model | Chunks Twenty-One to Twenty-Five | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
-| Phase 5 - Full system build | Chunks Twenty-Six onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
+| Phase 3 - First usable portal | Chunks Sixteen to Twenty-One | Define the Freedom phone-interface boundary, choose the browser/app shell around that anchor, then build approval, evidence, and handoff views. |
+| Phase 4 - Multi-device worker model | Chunks Twenty-Two to Twenty-Six | Add Windows/Linux worker bootstrap, role checks, GitHub-backed relay records, and conflict recovery. |
+| Phase 5 - Full system build | Chunks Twenty-Seven onward | Evaluate hosted relay, notifications, approved connector activation, Client Gateway boundaries, vendor intelligence, runbooks, pilot, and release decision. |
 
 The compact chunk packets below are the planned runway. A future chunk may be
 expanded when activated, but it should not absorb unrelated chunks just because
@@ -939,7 +944,30 @@ validated evidence locally. Validation: full local proof run, test suite,
 governance preflight, secret scan, diff check, commit, push. Stop: before UI
 or live connector work.
 
-## Chunk Sixteen - Choose App Shell
+## Chunk Sixteen - Define Freedom Phone Interface Boundary
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: local proof runner output, Freedom Engine objective review, architecture
+specs, source-of-truth map, device role specs, and file migration decisions.
+Outputs: a bounded Freedom phone-link decision record defining Freedom as the
+substantial phone-interface anchor candidate, the first neutral bridge record
+shapes, the no-import boundary, and the later approval gate for any Freedom
+code or runtime work. Acceptance: the plan clearly says what Freedom may feed
+into Rev 2, what Rev 2 may feed back to Freedom, and what remains prohibited.
+Validation: docs routing check, complete-status formatting check, forbidden
+filename scan, strict secret-pattern scan, diff check, commit, push. Stop:
+before copying Freedom source, reading secret values, importing generated
+config, modifying Freedom code, activating Freedom runtime, or building a new
+Android surface that bypasses the Freedom-anchor decision.
+
+## Chunk Seventeen - Choose App Shell
 
 Status: planned
 
@@ -950,13 +978,15 @@ Budget class: Small
 Plan packet:
 
 Inputs: architecture specs, portal requirements, current repo tooling, and
-local proof runner behavior. Outputs: app-shell decision record and initial
-project structure for the browser command center. Acceptance: selected shell
-supports Windows, Linux, Android phone, Android tablet, and browser workflows.
+local proof runner behavior plus the Freedom phone-interface boundary. Outputs:
+app-shell decision record and initial project structure for the browser command
+center or local portal surface. Acceptance: selected shell supports Windows,
+Linux, browser workflows, Android tablet/browser review, and the Freedom phone
+link without duplicating Freedom's phone work prematurely.
 Validation: dependency review, minimal build check, diff check, commit, push.
 Stop: before feature UI implementation.
 
-## Chunk Seventeen - Build Operating Cockpit Shell
+## Chunk Eighteen - Build Operating Cockpit Shell
 
 Status: planned
 
@@ -973,7 +1003,7 @@ not a landing page. Validation: build, lint or equivalent checks, responsive
 smoke test, screenshot review if available, commit, push. Stop: before
 approval mutation behavior.
 
-## Chunk Eighteen - Build Mobile-Responsive Cockpit
+## Chunk Nineteen - Build Multi-Viewport Cockpit Surface
 
 Status: planned
 
@@ -983,13 +1013,16 @@ Budget class: Medium
 
 Plan packet:
 
-Inputs: cockpit shell and device role specs. Outputs: Android phone, Android
-tablet, desktop Windows, and desktop Linux responsive layouts. Acceptance:
-operators can review status, approvals, and evidence cleanly on each target
-viewport. Validation: responsive browser checks, screenshot review, build, diff
-check, commit, push. Stop: before adding real approval actions.
+Inputs: cockpit shell, device role specs, and Freedom phone-interface boundary.
+Outputs: Android tablet/browser, desktop Windows, desktop Linux, and fallback
+mobile-browser responsive layouts, plus clear handoff expectations for the
+Freedom phone interface. Acceptance: operators can review status, approvals,
+and evidence cleanly on each target viewport without claiming that Rev 2 has
+replaced Freedom on the phone. Validation: responsive browser checks,
+screenshot review, build, diff check, commit, push. Stop: before adding real
+approval actions or Freedom runtime integration.
 
-## Chunk Nineteen - Add Approval Actions
+## Chunk Twenty - Add Approval Actions
 
 Status: planned
 
@@ -1006,7 +1039,7 @@ stale-state protected, and do not execute live tools. Validation: UI tests or
 manual proof, relay record tests, diff check, commit, push. Stop: before
 production or hosted authorization.
 
-## Chunk Twenty - Build Evidence And Handoff Views
+## Chunk Twenty-One - Build Evidence And Handoff Views
 
 Status: planned
 
@@ -1022,7 +1055,7 @@ across devices. Acceptance: a future agent can resume from durable records
 without needing chat history. Validation: sample mission proof, responsive
 checks, handoff validation, commit, push. Stop: before multi-worker bootstrap.
 
-## Chunk Twenty-One - Build Windows Worker Bootstrap
+## Chunk Twenty-Two - Build Windows Worker Bootstrap
 
 Status: planned
 
@@ -1039,7 +1072,7 @@ approved local no-network tasks. Validation: local bootstrap test, stale claim
 test, secret scan, diff check, commit, push. Stop: before Linux worker
 bootstrap.
 
-## Chunk Twenty-Two - Build Linux Worker Bootstrap
+## Chunk Twenty-Three - Build Linux Worker Bootstrap
 
 Status: planned
 
@@ -1056,7 +1089,7 @@ Acceptance: Linux acts as a worker, not as Rev 2 source of truth. Validation:
 local or DirectLink-assisted dry run, claim/evidence tests, diff check, commit,
 push. Stop: before cross-worker identity enforcement.
 
-## Chunk Twenty-Three - Add Worker Identity And Role Checks
+## Chunk Twenty-Four - Add Worker Identity And Role Checks
 
 Status: planned
 
@@ -1072,7 +1105,7 @@ Acceptance: worker permissions are enforced before claim or execution.
 Validation: allowed and denied role tests, stale-state tests, diff check,
 commit, push. Stop: before GitHub-backed relay synchronization.
 
-## Chunk Twenty-Four - Add GitHub-Backed Relay Records
+## Chunk Twenty-Five - Add GitHub-Backed Relay Records
 
 Status: planned
 
@@ -1089,7 +1122,7 @@ private GitHub records, not through persistent tunneling. Validation: local
 branch/commit proof, conflict tests, push/pull proof, diff check, commit, push.
 Stop: before hosted relay services.
 
-## Chunk Twenty-Five - Add Conflict And Recovery Behavior
+## Chunk Twenty-Six - Add Conflict And Recovery Behavior
 
 Status: planned
 
@@ -1106,7 +1139,7 @@ can be recovered without silent state loss. Validation: conflict scenario
 tests, manual proof, diff check, commit, push. Stop: before auth or hosted
 relay design.
 
-## Chunk Twenty-Six - Design Auth And Session Boundaries
+## Chunk Twenty-Seven - Design Auth And Session Boundaries
 
 Status: planned
 
@@ -1123,7 +1156,7 @@ roles, tokens, and session expiry are specified. Validation: governance review,
 threat-model checklist, diff check, commit, push. Stop: before implementation
 or provider configuration.
 
-## Chunk Twenty-Seven - Evaluate Hosted Relay
+## Chunk Twenty-Eight - Evaluate Hosted Relay
 
 Status: planned
 
@@ -1139,7 +1172,7 @@ risks, costs, and approval gates. Acceptance: hosting is evaluated without
 creating infrastructure or public ingress. Validation: decision review,
 security/risk checklist, diff check, commit, push. Stop: before provisioning.
 
-## Chunk Twenty-Eight - Prototype Hosted Relay
+## Chunk Twenty-Nine - Prototype Hosted Relay
 
 Status: planned
 
@@ -1157,7 +1190,7 @@ Validation: local and hosted smoke tests, security checks, rollback runbook,
 commit, push. Stop: on any unresolved auth, secret, public ingress, or data
 classification issue.
 
-## Chunk Twenty-Nine - Add Notification Layer
+## Chunk Thirty - Add Notification Layer
 
 Status: planned
 
@@ -1173,7 +1206,7 @@ Acceptance: notifications are opt-in, auditable, and do not leak sensitive
 content. Validation: notification dry run, safe payload review, diff check,
 commit, push. Stop: before customer or business-system communications.
 
-## Chunk Thirty - Activate Microsoft 365 Inventory If Approved
+## Chunk Thirty-One - Activate Microsoft 365 Inventory If Approved
 
 Status: planned
 
@@ -1191,7 +1224,7 @@ Validation: dry run, permission review, safe-log review, governance preflight,
 commit, push. Stop: unless explicit approval and credentials boundary are in
 place.
 
-## Chunk Thirty-One - Activate GitHub Adapter
+## Chunk Thirty-Two - Activate GitHub Adapter
 
 Status: planned
 
@@ -1208,7 +1241,7 @@ dry-run where practical, and never mutates outside approved repos or branches.
 Validation: adapter tests, dry-run proof, safe-log review, commit, push. Stop:
 before broader vendor account access.
 
-## Chunk Thirty-Two - Define Client Gateway Boundary
+## Chunk Thirty-Three - Define Client Gateway Boundary
 
 Status: planned
 
@@ -1225,7 +1258,7 @@ retention, and deletion controls are approved. Validation: governance review,
 data-boundary checklist, diff check, commit, push. Stop: before any real
 client data enters the system.
 
-## Chunk Thirty-Three - Add Vendor And Subscription Intelligence
+## Chunk Thirty-Four - Add Vendor And Subscription Intelligence
 
 Status: planned
 
@@ -1242,7 +1275,7 @@ account change, or vendor communication occurs. Validation: dry run, safe-log
 review, governance preflight, tests, commit, push. Stop: before finance,
 payment, or account-change authority.
 
-## Chunk Thirty-Four - Write Runbooks And Disable Procedures
+## Chunk Thirty-Five - Write Runbooks And Disable Procedures
 
 Status: planned
 
@@ -1259,7 +1292,7 @@ operator can stop or roll back every active surface. Validation: runbook
 walkthrough, link checks, governance preflight, commit, push. Stop: before
 pilot mission.
 
-## Chunk Thirty-Five - Run Pilot Mission
+## Chunk Thirty-Six - Run Pilot Mission
 
 Status: planned
 
@@ -1276,7 +1309,7 @@ inside approved data and tool boundaries and produces durable evidence.
 Validation: pilot transcript, test suite, runbook checks, governance preflight,
 commit, push. Stop: on any boundary breach or unapproved connector need.
 
-## Chunk Thirty-Six - Perform Ship-Readiness Hardening
+## Chunk Thirty-Seven - Perform Ship-Readiness Hardening
 
 Status: planned
 
@@ -1293,7 +1326,7 @@ human release decision. Validation: full test suite, security and secret
 checks, governance preflight, runbook proof, commit, push. Stop: before
 declaring project completion.
 
-## Chunk Thirty-Seven - Make Release Decision
+## Chunk Thirty-Eight - Make Release Decision
 
 Status: planned
 
@@ -1414,6 +1447,8 @@ date -Iseconds
 | 2026-06-21T18:41:48-06:00 | final Chunk Fourteen validation bundle | pass | Governance preflight, schema validation, 61 unit tests, syntax compile, package import smoke, Tool Directory JSON parse, `git diff --check`, routing registration check, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, and changed-file strict secret-pattern scan passed. The only Git warning was the known pathway CRLF normalization notice; an initial broad complete-status check surfaced copied v1 reference request records and was rerun with the correct exclusion. |
 | 2026-06-21T18:42:49-06:00 | Graphify incremental update attempt | not run | `graphify update . --no-cluster` could not run because the `graphify` CLI is not available on the Windows shell PATH. No graph files were modified. |
 | 2026-06-21T18:53:33-06:00 | Freedom Engine archive objective review | pass | Used Graphify policy as far as available, inspected `C:\Users\adamg\Downloads\the-freedom-engine-os-main.zip` through a temporary extraction, recorded a summary-only review, and updated routing controls. No Freedom source was copied into active Rev 2, no secret values were recorded, and no Freedom runtime, provider, relay, mobile, gateway, desktop-host, Supabase, email, voice, or production behavior was activated. |
+| 2026-06-21T19:29:48-06:00 | Freedom phone-interface anchor planning | pass | Updated the active pathway so Freedom is the substantial future phone-interface anchor candidate after Chunk Fifteen. The update created a dedicated Chunk Sixteen planning boundary before app-shell work and preserved the no-code, no-merge, no-import, no-generated-config, no-secret-read, and no-runtime-activation stop rules. |
+| 2026-06-21T19:34:18-06:00 | Freedom phone-interface planning validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and stale chunk-heading/range reference check passed. The only Git warning was the known pathway CRLF normalization notice. |
 
 ## Next Handoff
 
@@ -1456,9 +1491,13 @@ The Freedom Engine archive objective review is recorded in
 `docs/architecture.md`, `docs/source-of-truth-map.md`, and
 `docs/migration/file-migration-decisions.md`; it confirms that Freedom remains
 Adam's current operating partner OS while Rev 2 remains the clean governed
-mission, relay, policy, evidence, connector, and worker spine. Use Freedom as a
-future contract, UX, gateway/desktop-host, and bridge reference only; do not
-bulk-copy Freedom source or activate Freedom runtime/provider behavior in Rev 2.
+mission, relay, policy, evidence, connector, and worker spine. Freedom is now
+also recorded as the substantial future phone-interface anchor candidate. Use
+Freedom as the likely phone-side operator link and as a future contract, UX,
+gateway/desktop-host, and bridge reference; do not bulk-copy Freedom source,
+read secret values, import generated runtime config, modify Freedom code, or
+activate Freedom runtime/provider behavior in Rev 2 until the dedicated Freedom
+phone-link boundary and a later explicit integration chunk permit it.
 The next bounded task is Chunk Fifteen: build the local no-network proof runner
 across the mission spine, connector registry, relay envelope validator, and
 relay store without M365 adapter work, hosted relay, worker bootstrap scripts,
