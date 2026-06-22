@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T18:42:49-06:00
+Last Updated: 2026-06-21T18:53:33-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -99,7 +99,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Migrate relay envelope validator | complete | 2026-06-21T17:09:24-06:00 | codex session | Chunk Thirteen rewrote the selected v1 relay envelope references as local no-network Rev 2 schema validation and unsafe/stale envelope tests. |
 | Record M365 bridge orientation | complete | 2026-06-21T18:11:59-06:00 | codex session | Inter-chunk architecture note records how AG Operations / Microsoft 365 should feed the future cockpit as a governed business substrate, with no live connector activation. |
 | Migrate relay store and worker claim proof | complete | 2026-06-21T18:38:23-06:00 | codex session | Chunk Fourteen rewrote the selected v1 relay store references as local no-network Rev 2 record persistence, status/evidence records, and single trusted-worker claim proof tests. |
-| Handoff next chunk | pending | 2026-06-21T18:38:23-06:00 | codex session | Next bounded task is Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
+| Review Freedom Engine archive relationship | complete | 2026-06-21T18:53:33-06:00 | codex session | Inter-chunk objective review records that Freedom remains Adam's current operating partner OS, Rev 2 remains the clean governed mission/relay/worker spine, and future convergence should happen through translated contracts and bridge records rather than wholesale repo merge. |
+| Handoff next chunk | pending | 2026-06-21T18:53:33-06:00 | codex session | Next bounded task is still Chunk Fifteen: build the local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store. |
 
 ## Current Completion Boundary
 
@@ -116,9 +117,16 @@ and reference-only evidence tests. A read-only inter-chunk Microsoft 365 / AG
 Operations bridge orientation is recorded in the architecture and
 source-of-truth docs; it confirms that M365 should feed future cockpit work
 through approved records, safe summaries, action logs, decisions, and links
-rather than raw content or direct execution authority.
+rather than raw content or direct execution authority. A read-only Freedom
+Engine objective review is recorded in
+`docs/migration/freedom-engine-objective-review.md`; it confirms that Freedom
+should remain Adam's current operating partner OS while Rev 2 remains the clean
+governed mission, relay, policy, connector, evidence, and worker spine. Future
+Freedom convergence should happen through translated contracts, safe summaries,
+and bridge records, not wholesale source/runtime import.
 No portal build, worker bootstrap or persistent worker model, hosted relay,
-live connector activation, client-data workflow, or production release has
+live connector activation, Freedom runtime activation, client-data workflow, or
+production release has
 started. Project completion remains a human decision after the release-decision
 chunk.
 
@@ -1405,6 +1413,7 @@ date -Iseconds
 | 2026-06-21T18:38:23-06:00 | Chunk Fourteen relay store and worker claim proof | pass | Read only the approved v1 `relay_store.py`, `test_relay_store.py`, and `REQ-0056` references, then rewrote local no-network relay record persistence, status/evidence records, and trusted-worker claim proof without hosted relay, worker bootstrap, polling daemon, portal behavior, M365 adapter work, client data, live connectors, live business systems, or production behavior. Focused relay store tests passed: 12 tests. Full unit discovery passed: 61 tests. Syntax compile and package import smoke checks passed. |
 | 2026-06-21T18:41:48-06:00 | final Chunk Fourteen validation bundle | pass | Governance preflight, schema validation, 61 unit tests, syntax compile, package import smoke, Tool Directory JSON parse, `git diff --check`, routing registration check, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, and changed-file strict secret-pattern scan passed. The only Git warning was the known pathway CRLF normalization notice; an initial broad complete-status check surfaced copied v1 reference request records and was rerun with the correct exclusion. |
 | 2026-06-21T18:42:49-06:00 | Graphify incremental update attempt | not run | `graphify update . --no-cluster` could not run because the `graphify` CLI is not available on the Windows shell PATH. No graph files were modified. |
+| 2026-06-21T18:53:33-06:00 | Freedom Engine archive objective review | pass | Used Graphify policy as far as available, inspected `C:\Users\adamg\Downloads\the-freedom-engine-os-main.zip` through a temporary extraction, recorded a summary-only review, and updated routing controls. No Freedom source was copied into active Rev 2, no secret values were recorded, and no Freedom runtime, provider, relay, mobile, gateway, desktop-host, Supabase, email, voice, or production behavior was activated. |
 
 ## Next Handoff
 
@@ -1442,8 +1451,16 @@ trusted-worker claim proof now lives in
 `tests/test_relay_store.py`. The Microsoft 365 / AG Operations bridge
 orientation is recorded in `docs/architecture.md` and
 `docs/source-of-truth-map.md`; it is for later connector/cockpit work only.
+The Freedom Engine archive objective review is recorded in
+`docs/migration/freedom-engine-objective-review.md`,
+`docs/architecture.md`, `docs/source-of-truth-map.md`, and
+`docs/migration/file-migration-decisions.md`; it confirms that Freedom remains
+Adam's current operating partner OS while Rev 2 remains the clean governed
+mission, relay, policy, evidence, connector, and worker spine. Use Freedom as a
+future contract, UX, gateway/desktop-host, and bridge reference only; do not
+bulk-copy Freedom source or activate Freedom runtime/provider behavior in Rev 2.
 The next bounded task is Chunk Fifteen: build the local no-network proof runner
 across the mission spine, connector registry, relay envelope validator, and
 relay store without M365 adapter work, hosted relay, worker bootstrap scripts,
-portal behavior, client data, live connectors, live business systems, or
-production behavior.
+portal behavior, Freedom runtime work, client data, live connectors, live
+business systems, or production behavior.

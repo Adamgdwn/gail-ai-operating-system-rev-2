@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T18:41:48-06:00
+Last Updated: 2026-06-21T18:53:33-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -107,6 +107,31 @@ outside this queue.
 | UAOS action logs, generated files, local runtime artifacts, caches, and temporary output | not inspected | `exclude` | none | Never commit runtime state or generated evidence dumps into Rev 2. |
 | `.env` files, credentials, tenant secrets, tokens, private keys, and local master environment files | not inspected | `exclude` | none | Never inspect, summarize, copy, or commit secret values into Rev 2. |
 | QuickBooks, accounting, invoice, payment, billing, finance, vendor-account, Microsoft 365, client, raw audio, raw log, or unredacted screenshot payloads | not inspected | `exclude` | none | Blocked until later explicit data and connector boundaries exist; real sensitive payloads do not belong in the repo. |
+
+## External Freedom Engine Review Boundary
+
+The downloaded Freedom Engine archive was reviewed on 2026-06-21 as an
+external operating-partner OS reference, not as active Rev 2 source.
+
+Active review record:
+
+- `docs/migration/freedom-engine-objective-review.md`
+
+Decision summary:
+
+| Source or concept | Decision | Earliest chunk | Boundary |
+|---|---|---|---|
+| Freedom monorepo root | `later review` | none | Do not bulk-copy or merge into Rev 2. Freedom remains Adam's current operating partner OS. |
+| Freedom operator-run lifecycle and evidence vocabulary | `rewrite` | after Chunk Fifteen | Translate into Rev 2 mission/run/evidence records after the local proof runner exists. |
+| Freedom consequence review model | `rewrite` | approval/connector chunks | Use as design input for higher-risk approval gates, not active runtime behavior. |
+| Freedom Device Mesh and environment capability contracts | `rewrite` | portal/worker chunks | Translate as planning-only device and capability schemas before worker bootstrap or portal execution. |
+| Freedom Action Fabric request/plan/result/evidence concepts | `rewrite` | action-classification chunks | Use after Rev 2 has proof-runner semantics; do not activate low-risk execution routes yet. |
+| Freedom storage persistence map | `promote` | future data/evidence control chunk | Promote principles into Rev 2 docs; do not adopt Supabase runtime by implication. |
+| Freedom Android/mobile UX | `later review` | portal/mobile chunks | Use as UX reference for pairing, approval, hold/resume, offline import, and degraded-state truth; do not copy generated config or app code. |
+| Freedom gateway and desktop-host runtime | `later review` | worker chunks | Use pairing, heartbeat, bounded body, approved-root, polling, and evidence patterns as references only. No service activation. |
+| Freedom Supabase migrations and runtime tables | `later review` | hosted-runtime/data chunks | Reference schema ideas only. No active hosted store or data import. |
+| Freedom voice, LiveKit, OpenAI, relay, wake, email, Vercel, and provider integrations | `later review` | connector/runtime activation chunks | Planning-only until connector profiles, tests, approvals, rollback, and secret containment exist. |
+| Freedom `.env*`, generated mobile runtime config, `.local-data`, APKs, build outputs, binary assets, logs, provider state, contacts, email data, memories, raw transcripts, and secret-shaped material | `exclude` | none | Do not read values, summarize sensitive payloads, copy, commit, or treat as Rev 2 configuration. |
 
 ## Future Code Migration Rules
 

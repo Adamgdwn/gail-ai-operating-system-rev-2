@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T18:41:48-06:00
+Last Updated: 2026-06-21T18:53:33-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -55,6 +55,7 @@ competing truth stores.
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
+| `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive and selective fold-in/fold-back boundaries. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -128,6 +129,26 @@ Do not read or copy `M365_ENVIRONMENT.local.env`, live Microsoft 365 tenant
 content, OneDrive content, raw logs, client data, secrets, permission payloads,
 or setup-helper credentials into Rev 2.
 
+The downloaded Freedom Engine archive is an external orientation source for
+operating-partner runtime, mobile/gateway/desktop-host, Action Fabric, Device
+Mesh, storage-map, and operator-run design:
+
+`C:\Users\adamg\Downloads\the-freedom-engine-os-main.zip`
+
+Open the active review first:
+
+| Reference | Use before |
+|---|---|
+| `docs/migration/freedom-engine-objective-review.md` | Deciding whether a Freedom concept should be translated into Rev 2, held in Freedom, or bridged later. |
+
+Do not bulk-copy Freedom source into Rev 2. Do not read, copy, summarize, or
+commit Freedom secret values, generated mobile runtime config, `.local-data`,
+build outputs, APKs, provider state, Supabase runtime data, contacts, email
+data, memories, raw transcripts, logs, or release artifacts. Freedom remains
+Adam's current operating partner OS; Rev 2 remains the clean governed mission,
+relay, policy, and worker spine until a later bridge chunk changes that
+boundary explicitly.
+
 ## Device Roles
 
 | Surface | Rev 2 role | Boundary |
@@ -140,6 +161,7 @@ or setup-helper credentials into Rev 2.
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
+| Freedom Engine | Current operating partner OS and future external runtime/UX reference. | Reference and bridge-planning only; no runtime merge, generated config, live provider access, or code import without a bounded later chunk. |
 
 ## Compact Build Chunk Map
 
