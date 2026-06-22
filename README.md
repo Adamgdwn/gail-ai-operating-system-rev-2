@@ -35,9 +35,11 @@ plan, policy-check, save, and load local mission records without connector,
 portal, worker, hosted relay, or production side effects.
 
 The first browser app shell lives under `apps/command-center`. It is a local
-Vite React TypeScript scaffold only; it does not yet activate cockpit features,
-approval actions, service workers, live connectors, Freedom runtime access,
-hosted relay, workers, or production behavior.
+Vite React TypeScript command-center cockpit that renders safe static mission,
+approval-boundary, worker-status, evidence, and connector-posture sample
+records. It does not activate approval actions, service workers, live
+connectors, Freedom runtime access, hosted relay, workers, or production
+behavior.
 
 Do not connect live Microsoft 365, QuickBooks, finance, billing, client,
 or third-party account systems from this workspace until a later approved

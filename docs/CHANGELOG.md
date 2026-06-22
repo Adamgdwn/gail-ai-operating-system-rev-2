@@ -115,3 +115,9 @@
   preserving Freedom as the phone anchor and deferring service workers, auth,
   hosted relay, worker bootstrap, live connectors, M365, Freedom runtime
   access, native Android, and production behavior.
+- Built the Chunk Eighteen read-only operating cockpit shell under
+  `apps/command-center`, showing local sample mission, approval boundary,
+  worker/device, evidence, and connector-posture areas shaped by the local
+  proof runner. Approval mutations, live relay writes, Freedom runtime access,
+  M365/QuickBooks adapters, worker bootstrap, live connectors, client data,
+  and production behavior remain blocked.

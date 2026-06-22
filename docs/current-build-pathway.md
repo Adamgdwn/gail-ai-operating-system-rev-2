@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T20:51:47-06:00
+Last Updated: 2026-06-21T21:56:24-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -105,7 +105,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Build local proof runner | complete | 2026-06-21T20:01:42-06:00 | codex session | Chunk Fifteen added a local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store, with focused tests and a direct smoke run. |
 | Define Freedom phone-interface and business-partner boundary | complete | 2026-06-21T20:51:47-06:00 | codex session | Chunk Sixteen created the active decision record for Freedom as phone anchor and high-level agentic business partner source, Rev 2 as the governed spine, neutral bridge record shapes, and no-import/no-runtime stop triggers. |
 | Choose app shell | complete | 2026-06-21T21:15:59-06:00 | codex session | Chunk Seventeen selected the Vite React TypeScript browser shell, added `docs/decisions/app-shell-command-center.md`, and created the initial buildable `apps/command-center` scaffold without feature UI, service worker, auth, relay calls, Freedom runtime, M365 adapter, worker bootstrap, live connectors, or production behavior. |
-| Handoff next chunk | pending | 2026-06-21T21:15:59-06:00 | codex session | Next bounded task is Chunk Eighteen: build the first operating cockpit shell from safe local sample/proof-runner-shaped data, stopping before approval mutation behavior or live integrations. |
+| Build operating cockpit shell | complete | 2026-06-21T21:56:24-06:00 | codex session | Chunk Eighteen replaced the placeholder browser scaffold with a read-only cockpit shell showing local sample mission, approval-boundary, worker/device, evidence, and connector-posture areas without approval mutation, live relay, Freedom runtime, M365 adapter, worker bootstrap, live connector, client-data, or production behavior. |
+| Handoff next chunk | pending | 2026-06-21T21:56:24-06:00 | codex session | Next bounded task is Chunk Nineteen: harden the multi-viewport cockpit surface for desktop, Android tablet/browser, and phone-browser fallback while preserving Freedom as the phone anchor. |
 
 ## Current Completion Boundary
 
@@ -149,11 +150,15 @@ As of 2026-06-21T21:15:59-06:00, Chunk Seventeen selected the Vite React
 TypeScript browser shell in `docs/decisions/app-shell-command-center.md` and
 created the initial buildable command-center scaffold under
 `apps/command-center`.
-No operating cockpit feature UI, approval mutation, service worker, auth,
-worker bootstrap or persistent worker model, hosted relay, live connector
-activation, Freedom runtime activation, M365 adapter, client-data workflow, or
-production release has started. Project completion remains a human decision
-after the release-decision chunk.
+As of 2026-06-21T21:56:24-06:00, Chunk Eighteen replaced the placeholder app
+screen with the first read-only operating cockpit shell showing local sample
+mission, approval-boundary, worker/device, evidence, and connector-posture
+areas shaped by the local proof runner.
+No approval mutation, service worker, auth, worker bootstrap or persistent
+worker model, hosted relay, live connector activation, Freedom runtime
+activation, M365 adapter, client-data workflow, or production release has
+started. Project completion remains a human decision after the release-decision
+chunk.
 
 ## Compact Future Chunk Map
 
@@ -1064,7 +1069,7 @@ Result:
 
 ## Chunk Eighteen - Build Operating Cockpit Shell
 
-Status: planned
+Status: complete (2026-06-21T21:56:24-06:00)
 
 Completion target: Task complete
 
@@ -1078,6 +1083,23 @@ areas from local sample data. Acceptance: first screen is the usable cockpit,
 not a landing page. Validation: build, lint or equivalent checks, responsive
 smoke test, screenshot review if available, commit, push. Stop: before
 approval mutation behavior.
+
+Result:
+
+- Added typed local sample cockpit data in
+  `apps/command-center/src/cockpitData.ts` shaped by the Chunk Fifteen local
+  proof runner.
+- Replaced the placeholder shell with the first operating cockpit screen:
+  mission spine, approval boundary, workers/devices, evidence ledger, and
+  governed connector posture.
+- Preserved Freedom as phone anchor and showed Microsoft 365, QuickBooks,
+  Graphify, GitHub, Freedom, and local worker surfaces as governed spokes
+  without live adapter behavior.
+- Kept approval mutation behavior, relay reads/writes, local proof-runner
+  browser calls, local shell access, Freedom runtime, M365 adapter, QuickBooks
+  adapter, worker bootstrap, hosted relay, live connectors, native Android
+  work, client data, live business systems, and production behavior out of
+  scope.
 
 ## Chunk Nineteen - Build Multi-Viewport Cockpit Surface
 
@@ -1541,6 +1563,10 @@ date -Iseconds
 | 2026-06-21T21:11:15-06:00 | core regression and schema checks | pass | `python -m unittest discover -s tests` passed 64 tests; `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` passed. |
 | 2026-06-21T21:15:59-06:00 | Graphify direct update | pass | Used the Enhanced Graphify executable directly because Windows PATH is still being handled elsewhere; `graphify update . --no-cluster` rebuilt the repo-local graph with 1033 nodes and 1737 edges. |
 | 2026-06-21T21:15:59-06:00 | final Chunk Seventeen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and Graphify direct update passed. The only Git warning was the known pathway CRLF normalization notice; the first strict secret-pattern scan command had a PowerShell interpolation error and was rerun successfully. |
+| 2026-06-21T21:43:50-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Eighteen cockpit-shell work. |
+| 2026-06-21T21:51:21-06:00 | Chunk Eighteen operating cockpit shell | pass | Replaced the command-center placeholder with a read-only cockpit view backed by typed local sample/proof-runner-shaped data for missions, approval boundary, worker/device status, evidence references, and connector posture. |
+| 2026-06-21T21:51:21-06:00 | app build and responsive smoke | pass | `npm --prefix apps/command-center run build` passed. Playwright using the system Edge channel captured desktop and mobile screenshots at `tmp/screenshots/command-center-chunk18-playwright-edge-desktop.png` and `tmp/screenshots/command-center-chunk18-playwright-edge-mobile.png`; mobile text wrapping was adjusted after the first raw Edge capture exposed overflow. |
+| 2026-06-21T21:56:24-06:00 | final Chunk Eighteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The first `npm ci` attempt failed because the running Vite dev server locked the Rolldown native binding; the command-center Vite process was stopped, `npm ci` was rerun successfully, and the dev server was scheduled to restart after validation. The only Git warning was the known pathway CRLF normalization notice. |
 
 ## Next Handoff
 
@@ -1597,11 +1623,11 @@ Freedom source, read secret values, import generated runtime config, modify
 Freedom code, activate Freedom runtime/provider behavior, or build a competing
 native Android phone surface until a later explicit integration chunk permits
 it.
-The next bounded task is Chunk Eighteen: build the first operating cockpit
-shell on top of `apps/command-center` using safe local
-sample/proof-runner-shaped data. Keep that task to the first cockpit view and
-responsive shell behavior; do not broaden into approval mutation behavior,
-Freedom code import, generated config reads, Freedom modification, Freedom
-runtime/provider activation, M365 adapter work, hosted relay, worker bootstrap
-scripts, client data, live connectors, live business systems, or production
-behavior.
+The next bounded task is Chunk Nineteen: harden the multi-viewport cockpit
+surface on top of `apps/command-center` for desktop, Android tablet/browser,
+and phone-browser fallback while preserving Freedom as the phone anchor. Keep
+that task to viewport behavior and handoff expectations; do not broaden into
+approval mutation behavior, Freedom code import, generated config reads,
+Freedom modification, Freedom runtime/provider activation, M365 adapter work,
+hosted relay, worker bootstrap scripts, client data, live connectors, live
+business systems, or production behavior.

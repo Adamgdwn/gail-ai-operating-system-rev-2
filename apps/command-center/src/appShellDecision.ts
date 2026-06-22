@@ -17,7 +17,7 @@ export const appShellDecision: AppShellDecision = {
   decisionId: "app-shell-command-center",
   productName: "GAIL Command Center",
   selectedShell: "vite-react-typescript-browser-shell",
-  statusLabel: "Shell scaffold ready",
+  statusLabel: "Operating cockpit shell active",
   deviceSurfaces: [
     "windows-browser",
     "linux-browser",

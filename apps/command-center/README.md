@@ -1,10 +1,10 @@
 # GAIL Command Center
 
-Status: initial app-shell scaffold
+Status: first read-only operating cockpit shell
 
 This is the browser-first Rev 2 command center shell. It is intentionally
-limited to a local Vite React TypeScript build until later chunks add cockpit
-views and governed record interactions.
+limited to a local Vite React TypeScript build and safe sample/proof-runner
+shaped records until later chunks add governed record interactions.
 
 ## Commands
 
@@ -16,6 +16,10 @@ npm --prefix apps/command-center run dev
 
 ## Boundary
 
+- Mission, approval, worker, evidence, and connector posture areas are rendered
+  from local static sample data only.
+- No approval, reject, hold, request-more-info, pause, resume, or redirect
+  mutation behavior is active.
 - No service worker, push notification, or offline cache is active.
 - No auth, hosted relay, worker bootstrap, live connector, M365, or Freedom
   runtime integration is active.
@@ -26,6 +30,6 @@ npm --prefix apps/command-center run dev
 
 ## Next Chunk
 
-Chunk Eighteen should build the first local cockpit view from safe sample data
-or local proof-runner summaries. It should stop before approval mutation
-behavior.
+Chunk Nineteen should harden the multi-viewport cockpit surface for desktop,
+Android tablet/browser review, and phone-browser fallback while preserving
+Freedom as the phone anchor.
