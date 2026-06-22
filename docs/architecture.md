@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T18:15:57-06:00
+Last Updated: 2026-06-21T18:41:48-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -36,6 +36,8 @@ Active now:
   `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`;
 - local no-network relay envelope validator at
   `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py`;
+- local no-network relay record store and single-worker claim proof at
+  `packages/uaos-core/src/gail_ai_operating_system/relay_store.py`;
 - inter-chunk Microsoft 365 / AG Operations bridge orientation recorded as
   architecture only;
 - documentation and local validation chunks only.
@@ -45,7 +47,7 @@ Not active yet:
 - browser command center;
 - Android phone or tablet portal;
 - Windows or Linux worker bootstrap;
-- relay record store or worker claim loop;
+- persistent relay worker service or claim loop;
 - hosted relay;
 - live Microsoft 365, QuickBooks, billing, vendor, client-data, or deployment
   connectors;
@@ -82,13 +84,13 @@ current state, policy boundary, and stale-state checks before acting.
 | Browser command center | Not built. | Main shared cockpit for desktop and mobile browser use. | Must read and write governed records through approved local or relay paths, not become a second truth store. |
 | Android phone cockpit | Not built. | Intent capture, approval, pause/resume, status, and safe evidence review. | No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, or direct connector access. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
-| Relay records | Not built in Rev 2. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work or own permanent audit truth alone. |
+| Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
 | Future hosted relay | Not approved. | Possible low-latency queue, notification, session, and heartbeat service after GitHub-backed proof. | Requires explicit owner approval, auth/session design, threat model, retention rule, and disable path. |
 | Rev 2 mission spine | Local no-network mission envelopes, deterministic planning, policy gate, validation, and JSON record store. | Local deterministic runtime for future approved mission records, evidence references, and action logs. | No autonomous mission loop, connector call, worker claim, relay polling, or production action until later controls exist. |
 | Graphify knowledge spoke | Active read-only route status and handoff candidate validation. | Read-only graph context, handoff records, recommendations as mission candidates. | Graphify recommendations are not execution approval and must pass Rev 2 policy before work. |
 | Microsoft 365 / AG Operations business substrate | Local architecture references reviewed for bridge posture only. | Identity, SharePoint records, Lists, Planner tasks, Teams coordination, Exchange signals, Forms intake, and audit surfaces feeding governed mission candidates through approved adapters. | Planning-only in Rev 2; no live tenant reads, content ingestion, Outlook/Teams sends, app consent, permission changes, client data, or setup-helper grant reuse. |
 | Connector registry | Link-only seed records and planning references. | Governed connector profiles with owner, workspace, data class, approval gate, audit, and retention rules. | Profiles are permission structure, not permission or credentials. |
-| Relay envelopes | Local-file-only schema validation for intent, approval, status, evidence, and handoff records. | Future relay records for device/cockpit coordination before worker claims or hosted relay. | Envelopes carry safe summaries and references only; no persistence, polling, hosted relay, client data, raw payloads, or execution authority is active. |
+| Relay envelopes | Local-file-only schema validation for intent, approval, status, evidence, and handoff records. | Future relay records for device/cockpit coordination before worker claims or hosted relay. | Envelopes carry safe summaries and references only; persistence is limited to the local relay store proof with no polling, hosted relay, client data, raw payloads, or execution authority. |
 | Model and prompt controls | Current Codex coding session only for repo collaboration. | Future runtime route only after model and prompt approval records exist. | No production runtime model, BYOK provider, client-data route, or connector-driving prompt is approved. |
 
 ## Source-Of-Truth Flow
@@ -368,10 +370,11 @@ being introduced.
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
 | Connector registry entries are not credentials or permission. | Active | Live connector use needs separate approval, tests, and data boundaries. |
+| Local relay store proof exists before worker bootstrap. | Active | Claim and stale-state semantics now have a deterministic local proof before Windows/Linux worker services or hosted relay are evaluated. |
 
 ## Non-Goals For Current Architecture Chunk
 
-- No code migration.
+- No further code migration beyond local proof modules.
 - No app scaffold.
 - No worker bootstrap.
 - No hosted relay.

@@ -1,7 +1,7 @@
 # Source Inventory
 
 Created: 2026-06-21T12:45:36-06:00
-Last Updated: 2026-06-21T17:09:24-06:00
+Last Updated: 2026-06-21T18:41:48-06:00
 Status: active separation inventory
 Owner: Adam Goodwin
 
@@ -106,6 +106,8 @@ vendor, or third-party integration by itself.
 | `tests/test_graphify_handoff.py` | `L:\Applications\user-ai-operating-system\tests\test_graphify_handoff.py` | 2026-06-21T16:48:17-06:00 | Rewritten tests for route readiness, accepted read-only candidates, policy-gated dry-run mission actions, denied execution/mutation, evidence checks, sensitive-path rejection, live/client-data rejection, and required Graphify stop triggers. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Rewritten for Rev 2 as local-file-only relay envelope schema validation for intent, approval, status, evidence, and handoff records. No hosted relay, worker polling, portal behavior, live connector action, client data, raw payload, or production behavior was copied. |
 | `tests/test_relay_envelope.py` | `L:\Applications\user-ai-operating-system\tests\test_relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Rewritten tests for safe references, dry-run policy gates, malformed JSON shapes, stale state, expired approvals, hosted-relay denial, worker-polling denial, live connector denial, Graphify execution denial, and unsafe payload rejection. |
+| `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_store.py` | 2026-06-21T18:38:23-06:00 | Rewritten for Rev 2 as a local no-network relay record store proof for validated envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. No hosted relay, worker bootstrap, polling daemon, portal behavior, live connector action, client data, raw payload, or production behavior was copied. |
+| `tests/test_relay_store.py` | `L:\Applications\user-ai-operating-system\tests\test_relay_store.py` | 2026-06-21T18:38:23-06:00 | Rewritten tests for local persistence, reload, policy-gated claim validation, stale state rejection, duplicate trusted-worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payload serialization. |
 
 ## Not Copied Yet
 
@@ -115,8 +117,8 @@ vendor, or third-party integration by itself.
   paths are classified in `docs/migration/file-migration-decisions.md`; only
   the mission spine, expanded mission-spine tests, connector registry,
   connector registry tests, Graphify handoff checkpoint, Graphify handoff
-  tests, relay envelope validator, and relay envelope tests have been
-  rewritten into active Rev 2 source.
+  tests, relay envelope validator, relay envelope tests, relay record store,
+  and relay store tests have been rewritten into active Rev 2 source.
 - Any `.env`, credentials, tenant secrets, tokens, private keys, invoices,
   accounting exports, QuickBooks data, Microsoft 365 content, client data, raw
   logs, or raw audio.
@@ -127,7 +129,7 @@ vendor, or third-party integration by itself.
 
 ## Next Migration Chunk
 
-Use `docs/migration/file-migration-decisions.md` to begin Chunk Fourteen. The
-next bounded task is to rewrite the local relay record store and single-worker
-claim proof from the selected v1 relay references. Do not migrate any file that
-is not listed in the decision record.
+Use `docs/migration/file-migration-decisions.md` to begin Chunk Fifteen. The
+next bounded task is to build a local no-network proof runner across the
+mission spine, connector registry, relay envelope validator, and relay store.
+Do not migrate any file that is not listed in the decision record.

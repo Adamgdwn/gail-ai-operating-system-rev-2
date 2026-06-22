@@ -70,3 +70,9 @@
   business substrate feeding the cockpit through approved records, safe
   summaries, action logs, decisions, task/list state, and links, while Rev 2
   retains mission policy, approvals, relay, workers, evidence, and stop rules.
+- Rewrote the selected v1 relay store references as a Rev 2 local no-network
+  relay record store with status transitions, reference-only evidence records,
+  deterministic single trusted-worker claim attempts, stale-state rejection,
+  and focused tests, without activating hosted relay, worker bootstrap,
+  persistent polling, portal behavior, live connectors, client data, or
+  production behavior.

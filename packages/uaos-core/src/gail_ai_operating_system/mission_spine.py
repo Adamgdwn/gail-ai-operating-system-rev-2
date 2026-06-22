@@ -34,6 +34,7 @@ LOCAL_ACTION_TYPES = frozenset(
         "local_repo_update",
         "graphify_handoff_read",
         "relay_envelope_validate",
+        "relay_worker_claim_validate",
         "policy_gate_review",
     }
 )

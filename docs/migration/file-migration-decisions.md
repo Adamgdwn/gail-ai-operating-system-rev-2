@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T17:09:24-06:00
+Last Updated: 2026-06-21T18:41:48-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -52,7 +52,7 @@ The first safe code queue is:
 5. Chunk Thirteen: rewrite the relay envelope validator. Complete as of
    2026-06-21T17:09:24-06:00.
 6. Chunk Fourteen: rewrite the relay record store and single-worker claim
-   proof.
+   proof. Complete as of 2026-06-21T18:38:23-06:00.
 7. Chunk Fifteen: build a local no-network proof runner.
 
 Portal source, Android-specific behavior, Windows/Linux worker bootstrap,
@@ -72,6 +72,8 @@ outside this queue.
 | `tests/test_graphify_handoff.py` | `test_graphify_handoff.py` | 2026-06-21T16:48:17-06:00 | Tests for route readiness, accepted read-only candidates, policy-gated dry-run mission actions, denied executed/mutating recommendations, evidence checks, sensitive-path rejection, live/client-data rejection, unapproved graph references, and required Graphify stop triggers. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | `relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Local-file-only relay envelope schema validation for intent, approval, status, evidence, and handoff records. No hosted relay, worker polling, portal behavior, live connector action, client data, raw payload, or production behavior. |
 | `tests/test_relay_envelope.py` | `test_relay_envelope.py` | 2026-06-21T17:09:24-06:00 | Tests for safe references, malformed JSON shapes, stale or expired approvals, hosted relay denial, worker polling denial, live connector denial, Graphify execution denial, and unsafe payload rejection. |
+| `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` | `relay_store.py` | 2026-06-21T18:38:23-06:00 | Local no-network relay record store proof for validated envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. No hosted relay, worker bootstrap, polling daemon, portal behavior, live connector action, client data, raw payload, or production behavior. |
+| `tests/test_relay_store.py` | `test_relay_store.py` | 2026-06-21T18:38:23-06:00 | Tests for local persistence, reload, policy-gated claim validation, stale state rejection, duplicate trusted-worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payload serialization. |
 
 ## Candidate Decisions
 
@@ -152,10 +154,13 @@ serialization, and dry-run/default-deny request evaluation only. Chunk Twelve
 has rewritten the selected Graphify handoff references as local read-only route
 status and candidate validation only. Chunk Thirteen has rewritten the selected
 relay envelope references as local-file-only schema validation and safety tests
-only.
+only. Chunk Fourteen has rewritten the selected relay store references as local
+record persistence, status/evidence records, and single trusted-worker claim
+proof only.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
-and Git/GitHub closeout only. No live connector, portal, worker, hosted relay,
-Graphify source mutation, graph upload, full semantic rebuild, client-data,
-live business-system, or production behavior is active.
+and Git/GitHub closeout only. No live connector, portal, worker bootstrap,
+persistent worker service, hosted relay, Graphify source mutation, graph
+upload, full semantic rebuild, client-data, live business-system, or production
+behavior is active.
