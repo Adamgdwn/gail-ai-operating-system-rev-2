@@ -88,12 +88,11 @@ Do not trigger a full `/graphify` rebuild to answer a question, at session start
 Preserve existing secret-handling rules: do not index, print, summarize, or commit secrets or environment files.
 
 ## Commands
-<!-- Replace these with the actual commands for this project -->
-- Install: `<fill in>`
-- Dev:     `<fill in>`
-- Lint:    `<fill in>`
-- Build:   `<fill in>`
-- Test:    `<fill in>`
+- Install: `npm --prefix apps/command-center ci`
+- Dev:     `npm --prefix apps/command-center run dev`
+- Lint:    `<not configured yet>`
+- Build:   `npm --prefix apps/command-center run build`
+- Test:    `python -m unittest discover -s tests`
 
 ## Document control
 - Architecture decisions go in `docs/`

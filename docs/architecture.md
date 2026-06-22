@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T20:51:47-06:00
+Last Updated: 2026-06-21T21:15:59-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -46,11 +46,14 @@ Active now:
   capability source;
 - active Freedom phone-interface and business-partner boundary decision record
   at `docs/decisions/freedom-phone-interface-business-partner-boundary.md`;
+- active app-shell decision record at
+  `docs/decisions/app-shell-command-center.md`;
+- initial browser command-center shell scaffold at `apps/command-center`;
 - documentation and local validation chunks only.
 
 Not active yet:
 
-- browser command center;
+- operating cockpit feature UI;
 - Android phone or tablet portal;
 - Windows or Linux worker bootstrap;
 - persistent relay worker service or claim loop;
@@ -90,7 +93,7 @@ current state, policy boundary, and stale-state checks before acting.
 | Active control records | Define source routing, permissions, runtime scope, agents, prompts, models, and architecture. | Gate future code migration, workers, connectors, portal actions, and release readiness. | Controls do not activate live capabilities by themselves. |
 | Windows operator workspace | Current local editing and validation environment. | Trusted worker and operator surface after bootstrap controls exist. | No live business connectors, persistent worker service, or broad local filesystem automation without later approval. |
 | Linux reference or worker surface | Superseded v1 reference host only. | Trusted worker clone that pulls from private GitHub. | Linux is not the Rev 2 source of truth and must not rely on tunnel-dependent operation. |
-| Browser command center | Not built. | Main shared cockpit for desktop and mobile browser use. | Must read and write governed records through approved local or relay paths, not become a second truth store. |
+| Browser command center | Initial Vite React TypeScript shell scaffold exists under `apps/command-center`. | Main shared cockpit for desktop and mobile browser use. | Current shell is build-only structure; future record reads/writes must go through approved local or relay paths and must not become a second truth store. |
 | Android phone cockpit | Not built in Rev 2. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, status, and safe evidence review; Rev 2 may provide a browser fallback or compatibility surface later. | No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, direct connector access, generated Freedom config import, or Freedom runtime activation without a bounded later chunk. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
@@ -140,9 +143,9 @@ participates in work:
 
 The first usable cockpit should keep Rev 2 browser-first for Windows, Linux,
 Android tablet, and ordinary desktop browsers while treating Freedom as the
-preferred phone-interface anchor candidate. The app-shell choice should be made
-after a dedicated Freedom phone-link boundary chunk defines what crosses
-between Freedom and Rev 2.
+preferred phone-interface anchor candidate. Chunk Seventeen selected a Vite
+React TypeScript shell under `apps/command-center` as the browser command
+center boundary.
 
 Expected first portal capabilities:
 
@@ -434,7 +437,7 @@ being introduced.
 |---|---|---|
 | Private GitHub is the durable spine. | Active | It gives Rev 2 a private, auditable, device-independent source of truth. |
 | DirectLink is transport/status only. | Active | It can help with explicit cross-machine work, but Rev 2 should not depend on tunneling for normal operation. |
-| Browser-first Rev 2 cockpit with Freedom as phone anchor. | Active direction | Rev 2 should reach Windows, Linux, Android tablet, and desktop browsers through a browser/app shell, while Freedom carries the first phone-side operator link unless a later chunk decides otherwise. |
+| Browser-first Rev 2 cockpit with Freedom as phone anchor. | Active decision | Rev 2 should reach Windows, Linux, Android tablet, and desktop browsers through the Vite React TypeScript shell in `apps/command-center`, while Freedom carries the first phone-side operator link unless a later chunk decides otherwise. |
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |

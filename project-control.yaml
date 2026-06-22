@@ -50,6 +50,7 @@ controls:
     - docs/prompt-register.md
     - docs/graphify-handoff-checkpoint.md
     - docs/decisions/freedom-phone-interface-business-partner-boundary.md
+    - docs/decisions/app-shell-command-center.md
   machine_enforcement:
     - required-file-check
     - lint

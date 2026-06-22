@@ -108,3 +108,10 @@
   source, Rev 2 as the governed mission/relay/evidence spine, initial neutral
   bridge record shapes, safe summary rules, feed-forward/feed-back boundaries,
   approval gates, and no-import/no-runtime stop triggers.
+- Added the Chunk Seventeen app-shell decision record in
+  `docs/decisions/app-shell-command-center.md` and created the initial
+  buildable Vite React TypeScript browser shell under `apps/command-center`.
+  The shell supports the Windows/Linux/browser/Android-tablet path while
+  preserving Freedom as the phone anchor and deferring service workers, auth,
+  hosted relay, worker bootstrap, live connectors, M365, Freedom runtime
+  access, native Android, and production behavior.

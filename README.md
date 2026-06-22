@@ -24,6 +24,8 @@ deliberately.
 cd "C:\Users\adamg\01. Code Projects\GAIL AI Operating System Rev 2"
 python "L:\agents\New Build Agent\automation\schema_validation.py" --project .
 python -m unittest discover -s tests
+npm --prefix apps/command-center ci
+npm --prefix apps/command-center run build
 git status --short
 ```
 
@@ -31,6 +33,11 @@ The first executable Rev 2 slice is the local no-network mission spine under
 `packages/uaos-core/src/gail_ai_operating_system`. It can create, validate,
 plan, policy-check, save, and load local mission records without connector,
 portal, worker, hosted relay, or production side effects.
+
+The first browser app shell lives under `apps/command-center`. It is a local
+Vite React TypeScript scaffold only; it does not yet activate cockpit features,
+approval actions, service workers, live connectors, Freedom runtime access,
+hosted relay, workers, or production behavior.
 
 Do not connect live Microsoft 365, QuickBooks, finance, billing, client,
 or third-party account systems from this workspace until a later approved

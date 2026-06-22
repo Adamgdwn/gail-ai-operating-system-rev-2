@@ -34,6 +34,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Completion labels, Definition of Shipped, release evidence, or finish reports | `docs/standards/ship-ready-engineering-standard.md` |
 | Architecture decisions or system shape | `docs/architecture.md` and relevant ADRs |
 | Freedom phone interface, business-partner capability preservation, or Freedom bridge boundaries | `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/migration/freedom-engine-objective-review.md`, `docs/architecture.md`, and `docs/migration/file-migration-decisions.md` |
+| App shell, command center, portal stack, browser cockpit, or multi-device review surface | `docs/decisions/app-shell-command-center.md`, `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/architecture.md`, and `apps/command-center/README.md` |
 | File migration, source promotion, rewrite decisions, or exclusion checks | `docs/migration/source-inventory.md`, `docs/migration/file-migration-decisions.md`, and the relevant copied v1 reference records |
 | Graphify routing, graph-aware handoffs, repo-local graph setup, or Graphify stop boundaries | `docs/graphify-handoff-checkpoint.md`, then the Graphify policy named there when broad exploration is in scope |
 | Domain terms or naming | `docs/domain-language.md` |

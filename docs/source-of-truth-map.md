@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T20:51:47-06:00
+Last Updated: 2026-06-21T21:15:59-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -36,6 +36,7 @@ competing truth stores.
 | 6 | `docs/migration/source-inventory.md` | What was copied, what was excluded, and what remains reference-only. |
 | 7 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
 | 8 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
+| 9 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
 
 ## Active Rev 2 Controls
 
@@ -58,6 +59,7 @@ competing truth stores.
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
 | `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom phone-interface anchor posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
+| `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and native Android phone work. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -79,6 +81,7 @@ competing truth stores.
 | `tests/test_relay_store.py` | Local relay store tests for persistence, reload, policy-gated claim validation, stale state rejection, duplicate worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payloads. |
 | `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` | Local no-network proof runner that exercises one mission path from intent through policy, connector registry, relay envelope, relay store, trusted-worker claim, reference-only evidence, and completed relay status. |
 | `tests/test_local_proof_runner.py` | Local proof-runner tests for complete mission-to-evidence proof, reference-only payload safety, and stop-trigger failure before relay records are written. |
+| `apps/command-center` | Initial browser-first Vite React TypeScript command-center shell scaffold. Buildable local app boundary only; no feature cockpit UI, approval mutation, service worker, auth, relay call, Freedom runtime, M365 adapter, worker bootstrap, live connector, or production behavior. |
 
 ## Active Placeholders To Promote
 
@@ -165,7 +168,7 @@ that boundary explicitly.
 | Linux | Superseded v1 reference host and future trusted worker clone. | Not the Rev 2 project home; future Linux work must pull from private GitHub and preserve Rev 2 controls. |
 | Android phone | Freedom-anchored future operator link. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; no local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
-| Browser | Shared cockpit surface across desktop and mobile. | Reads/writes governed records through approved local or relay paths; must not become a second source of truth. |
+| Browser | Shared cockpit surface across desktop and mobile, now anchored by the initial `apps/command-center` Vite React TypeScript shell. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
@@ -201,10 +204,8 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Seventeen: choose the app shell around the Freedom phone anchor and
-Rev 2 local proof runner. Keep the next chunk bounded to shell choice and
-initial structure only. Do not broaden into Freedom code import, generated
-config reads, Freedom modification, Freedom runtime/provider activation, a
-competing native Android phone surface, M365 adapter work, hosted relay, worker
-bootstrap scripts, client data, live connectors, live business systems, or
-production.
+Begin Chunk Eighteen: build the first operating cockpit shell on top of
+`apps/command-center` using safe local sample/proof-runner-shaped data. Stop
+before approval mutation behavior, live relay writes, Freedom runtime access,
+M365 adapter work, hosted relay, worker bootstrap scripts, client data, live
+connectors, live business systems, or production.

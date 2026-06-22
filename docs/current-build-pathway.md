@@ -104,7 +104,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record Freedom agentic business partner anchor | complete | 2026-06-21T19:49:09-06:00 | codex session | Plan updated so Freedom is preserved and elevated as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities; no code, merge, import, generated config, secret read, or runtime activation occurs until a bounded later chunk. |
 | Build local proof runner | complete | 2026-06-21T20:01:42-06:00 | codex session | Chunk Fifteen added a local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store, with focused tests and a direct smoke run. |
 | Define Freedom phone-interface and business-partner boundary | complete | 2026-06-21T20:51:47-06:00 | codex session | Chunk Sixteen created the active decision record for Freedom as phone anchor and high-level agentic business partner source, Rev 2 as the governed spine, neutral bridge record shapes, and no-import/no-runtime stop triggers. |
-| Handoff next chunk | pending | 2026-06-21T20:51:47-06:00 | codex session | Next bounded task is Chunk Seventeen: choose the app shell around the Freedom phone anchor and local proof runner without building feature UI or activating runtime integrations. |
+| Choose app shell | complete | 2026-06-21T21:15:59-06:00 | codex session | Chunk Seventeen selected the Vite React TypeScript browser shell, added `docs/decisions/app-shell-command-center.md`, and created the initial buildable `apps/command-center` scaffold without feature UI, service worker, auth, relay calls, Freedom runtime, M365 adapter, worker bootstrap, live connectors, or production behavior. |
+| Handoff next chunk | pending | 2026-06-21T21:15:59-06:00 | codex session | Next bounded task is Chunk Eighteen: build the first operating cockpit shell from safe local sample/proof-runner-shaped data, stopping before approval mutation behavior or live integrations. |
 
 ## Current Completion Boundary
 
@@ -144,11 +145,15 @@ defines what Freedom may feed into Rev 2, what Rev 2 may feed back to Freedom,
 initial neutral bridge record shapes, and stop triggers for any code import,
 generated-config read, Freedom modification, runtime activation, or competing
 native Android phone work.
-No portal build, worker bootstrap or persistent worker model, hosted relay,
-live connector activation, Freedom runtime activation, client-data workflow, or
-production release has
-started. Project completion remains a human decision after the release-decision
-chunk.
+As of 2026-06-21T21:15:59-06:00, Chunk Seventeen selected the Vite React
+TypeScript browser shell in `docs/decisions/app-shell-command-center.md` and
+created the initial buildable command-center scaffold under
+`apps/command-center`.
+No operating cockpit feature UI, approval mutation, service worker, auth,
+worker bootstrap or persistent worker model, hosted relay, live connector
+activation, Freedom runtime activation, M365 adapter, client-data workflow, or
+production release has started. Project completion remains a human decision
+after the release-decision chunk.
 
 ## Compact Future Chunk Map
 
@@ -1023,7 +1028,7 @@ Result:
 
 ## Chunk Seventeen - Choose App Shell
 
-Status: planned
+Status: complete (2026-06-21T21:15:59-06:00)
 
 Completion target: Task complete
 
@@ -1039,6 +1044,23 @@ Linux, browser workflows, Android tablet/browser review, and the Freedom phone
 link without duplicating Freedom's phone work prematurely.
 Validation: dependency review, minimal build check, diff check, commit, push.
 Stop: before feature UI implementation.
+
+Result:
+
+- Reviewed static HTML, Next.js, Vite React TypeScript, Tauri/Electron, and
+  native Android options.
+- Selected a browser-first Vite React TypeScript shell so Rev 2 can support
+  Windows, Linux, browser workflows, and Android tablet review while Freedom
+  remains the phone anchor.
+- Added the active app-shell decision record at
+  `docs/decisions/app-shell-command-center.md`.
+- Created the initial buildable command-center scaffold under
+  `apps/command-center`.
+- Deferred service worker, PWA install behavior, auth, relay calls,
+  approval mutation behavior, local proof-runner browser calls, local shell
+  access, Freedom runtime, M365 adapter, worker bootstrap, hosted relay, live
+  connectors, native Android work, client data, live business systems, and
+  production behavior.
 
 ## Chunk Eighteen - Build Operating Cockpit Shell
 
@@ -1513,6 +1535,12 @@ date -Iseconds
 | 2026-06-21T20:45:31-06:00 | Chunk Sixteen Freedom boundary record | pass | Created the active Freedom phone-interface and business-partner decision record and routed it through architecture, source-of-truth, context, migration, project-control, pathway, and changelog docs. No source code, Freedom source, generated config, runtime state, portal behavior, worker behavior, live connector, or production behavior was added. |
 | 2026-06-21T20:51:47-06:00 | Graphify direct update | pass | Used the Enhanced Graphify executable directly because Windows PATH is still being handled elsewhere; `graphify update . --no-cluster` rebuilt the repo-local graph with 960 nodes and 1651 edges. |
 | 2026-06-21T20:51:47-06:00 | final Chunk Sixteen validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and routing registration check passed. The only Git warning was the known pathway CRLF normalization notice; an initial routing check was rerun after removing an over-strict self-reference expectation for the new decision file. |
+| 2026-06-21T21:06:13-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Seventeen app-shell work. |
+| 2026-06-21T21:11:15-06:00 | Chunk Seventeen app-shell decision and scaffold | pass | Selected the Vite React TypeScript browser shell, recorded the options and boundary in `docs/decisions/app-shell-command-center.md`, and created the initial buildable `apps/command-center` scaffold. |
+| 2026-06-21T21:11:15-06:00 | dependency review and build check | pass | Reviewed current npm registry versions for Vite, React, React DOM, TypeScript, React plugin, and React type packages; `npm --prefix apps/command-center install` completed with 0 reported vulnerabilities; `npm --prefix apps/command-center run build` passed. |
+| 2026-06-21T21:11:15-06:00 | core regression and schema checks | pass | `python -m unittest discover -s tests` passed 64 tests; `python "L:\agents\New Build Agent\automation\schema_validation.py" --project .` passed. |
+| 2026-06-21T21:15:59-06:00 | Graphify direct update | pass | Used the Enhanced Graphify executable directly because Windows PATH is still being handled elsewhere; `graphify update . --no-cluster` rebuilt the repo-local graph with 1033 nodes and 1737 edges. |
+| 2026-06-21T21:15:59-06:00 | final Chunk Seventeen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and Graphify direct update passed. The only Git warning was the known pathway CRLF normalization notice; the first strict secret-pattern scan command had a PowerShell interpolation error and was rerun successfully. |
 
 ## Next Handoff
 
@@ -1569,9 +1597,11 @@ Freedom source, read secret values, import generated runtime config, modify
 Freedom code, activate Freedom runtime/provider behavior, or build a competing
 native Android phone surface until a later explicit integration chunk permits
 it.
-The next bounded task is Chunk Seventeen: choose the app shell around the
-Freedom phone anchor and local proof runner. Keep that task to shell decision
-and initial structure only; do not broaden into feature UI, Freedom code
-import, generated config reads, Freedom modification, Freedom runtime/provider
-activation, M365 adapter work, hosted relay, worker bootstrap scripts, client
-data, live connectors, live business systems, or production behavior.
+The next bounded task is Chunk Eighteen: build the first operating cockpit
+shell on top of `apps/command-center` using safe local
+sample/proof-runner-shaped data. Keep that task to the first cockpit view and
+responsive shell behavior; do not broaden into approval mutation behavior,
+Freedom code import, generated config reads, Freedom modification, Freedom
+runtime/provider activation, M365 adapter work, hosted relay, worker bootstrap
+scripts, client data, live connectors, live business systems, or production
+behavior.

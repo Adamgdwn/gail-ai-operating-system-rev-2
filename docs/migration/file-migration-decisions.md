@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T20:51:47-06:00
+Last Updated: 2026-06-21T21:15:59-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -58,6 +58,10 @@ The first safe code queue is:
 8. Chunk Sixteen: define the Freedom phone-interface and agentic business
    partner boundary. Complete as of 2026-06-21T20:51:47-06:00 with
    `docs/decisions/freedom-phone-interface-business-partner-boundary.md`.
+9. Chunk Seventeen: select the browser command-center shell and create the
+   initial buildable app structure. Complete as of
+   2026-06-21T21:15:59-06:00 with
+   `docs/decisions/app-shell-command-center.md` and `apps/command-center`.
 
 Portal source, Android-specific behavior, Windows/Linux worker bootstrap,
 hosted relay, notifications, live connectors, and production release remain
@@ -100,11 +104,11 @@ outside this queue.
 | `L:\Applications\user-ai-operating-system\uaos_agent_spine\relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite local record store and single-worker claim proof only; no hosted relay or polling daemon. |
 | `L:\Applications\user-ai-operating-system\tests\test_relay_store.py` | yes | `rewrite` | Chunk Fourteen | Rewrite tests for local persistence, stale-state rejection, and claim conflict behavior. |
 | `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\README.md` | yes | `archive` | already copied | Keep the README as reference for future portal UX and validation. |
-| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\index.html` | yes | `later review` | Chunk Sixteen | Use as UX reference only; do not copy before the portal stack and target app structure are chosen. |
-| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\app.js` | yes | `later review` | Chunk Sixteen | Use as behavior reference only; rewrite in the future portal stack. |
-| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\styles.css` | yes | `later review` | Chunk Sixteen | Use as visual reference only; rewrite to the Rev 2 design system when portal work starts. |
-| `L:\Applications\user-ai-operating-system\scripts\validate-cockpit-proof.py` | yes | `later review` | Chunk Sixteen | May inform future portal checks, but not part of first code migration. |
-| `L:\Applications\user-ai-operating-system\scripts\launch-cockpit.*` | yes | `later review` | Chunk Sixteen | May inform developer ergonomics only after portal app structure exists. |
+| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\index.html` | yes | `later review` | Chunk Eighteen | Use as UX reference only; rewrite inside the selected `apps/command-center` Vite React TypeScript shell. |
+| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\app.js` | yes | `later review` | Chunk Eighteen | Use as behavior reference only; rewrite in the selected browser shell. |
+| `L:\Applications\user-ai-operating-system\apps\cockpit-command-proof\styles.css` | yes | `later review` | Chunk Eighteen | Use as visual reference only; rewrite to the Rev 2 command-center design system. |
+| `L:\Applications\user-ai-operating-system\scripts\validate-cockpit-proof.py` | yes | `later review` | Chunk Eighteen | May inform future portal checks after the first cockpit view exists. |
+| `L:\Applications\user-ai-operating-system\scripts\launch-cockpit.*` | yes | `later review` | Chunk Eighteen | May inform developer ergonomics only after the browser shell view exists. |
 | `L:\Applications\user-ai-operating-system\scripts\governance-check.sh` | yes | `exclude` | none | Rev 2 uses its own governed scaffold scripts. Do not vendor-copy v1 governance scripts. |
 | `L:\Applications\user-ai-operating-system\scripts\governance-preflight.sh` | yes | `exclude` | none | Rev 2 uses its own governed scaffold scripts. Do not replace them with v1 scripts. |
 | DirectLink operational scripts, indicators, runbooks, and skills | not inspected | `later review` | worker chunks | DirectLink remains transport/status only, not Rev 2 project source. |
@@ -196,10 +200,13 @@ connector, relay-envelope, relay-store, trusted-worker-claim, and evidence
 path. Chunk Sixteen has defined the Freedom phone-interface and business
 partner boundary as a decision record, without importing Freedom source,
 generated config, runtime state, or live behavior.
+Chunk Seventeen has selected the Vite React TypeScript browser command-center
+shell under `apps/command-center`.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
-and Git/GitHub closeout only. No live connector, portal, worker bootstrap,
-persistent worker service, hosted relay, Graphify source mutation, graph
-upload, full semantic rebuild, Freedom runtime activation, client-data, live
-business-system, or production behavior is active.
+and Git/GitHub closeout only. No live connector, feature portal behavior,
+approval mutation, worker bootstrap, persistent worker service, hosted relay,
+Graphify source mutation, graph upload, full semantic rebuild, Freedom runtime
+activation, client-data, live business-system, or production behavior is
+active.
