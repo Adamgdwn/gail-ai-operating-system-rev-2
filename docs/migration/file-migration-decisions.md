@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T19:49:09-06:00
+Last Updated: 2026-06-21T20:51:47-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -53,7 +53,11 @@ The first safe code queue is:
    2026-06-21T17:09:24-06:00.
 6. Chunk Fourteen: rewrite the relay record store and single-worker claim
    proof. Complete as of 2026-06-21T18:38:23-06:00.
-7. Chunk Fifteen: build a local no-network proof runner.
+7. Chunk Fifteen: build a local no-network proof runner. Complete as of
+   2026-06-21T20:01:42-06:00.
+8. Chunk Sixteen: define the Freedom phone-interface and agentic business
+   partner boundary. Complete as of 2026-06-21T20:51:47-06:00 with
+   `docs/decisions/freedom-phone-interface-business-partner-boundary.md`.
 
 Portal source, Android-specific behavior, Windows/Linux worker bootstrap,
 hosted relay, notifications, live connectors, and production release remain
@@ -132,7 +136,7 @@ Decision summary:
 | Freedom Device Mesh and environment capability contracts | `rewrite` | portal/worker chunks | Translate as planning-only device and capability schemas before worker bootstrap or portal execution. |
 | Freedom Action Fabric request/plan/result/evidence concepts | `rewrite` | action-classification chunks | Use after Rev 2 has proof-runner semantics; do not activate low-risk execution routes yet. |
 | Freedom storage persistence map | `promote` | future data/evidence control chunk | Promote principles into Rev 2 docs; do not adopt Supabase runtime by implication. |
-| Freedom phone-interface boundary | `plan first` | Chunk Sixteen | Define Freedom as the substantial phone-interface anchor candidate, bridge record shapes, permitted safe summaries, and no-import/no-runtime boundaries before app-shell or Android decisions. |
+| Freedom phone-interface boundary | `complete decision` | Chunk Sixteen | Defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Freedom is the substantial phone-interface anchor candidate and business-partner capability source, with bridge record shapes, permitted safe summaries, and no-import/no-runtime boundaries before app-shell or Android decisions. |
 | Freedom Android/mobile UX | `anchor candidate` | after Chunk Sixteen | Use as the likely phone-side operator link for pairing, approval, hold/resume, offline import, and degraded-state truth; do not copy generated config, import app code, or modify Freedom until a later bounded integration chunk. |
 | Freedom gateway and desktop-host runtime | `later review` | worker chunks | Use pairing, heartbeat, bounded body, approved-root, polling, and evidence patterns as references only. No service activation. |
 | Freedom Supabase migrations and runtime tables | `later review` | hosted-runtime/data chunks | Reference schema ideas only. No active hosted store or data import. |
@@ -187,11 +191,15 @@ status and candidate validation only. Chunk Thirteen has rewritten the selected
 relay envelope references as local-file-only schema validation and safety tests
 only. Chunk Fourteen has rewritten the selected relay store references as local
 record persistence, status/evidence records, and single trusted-worker claim
-proof only.
+proof only. Chunk Fifteen has built the local proof runner across the mission,
+connector, relay-envelope, relay-store, trusted-worker-claim, and evidence
+path. Chunk Sixteen has defined the Freedom phone-interface and business
+partner boundary as a decision record, without importing Freedom source,
+generated config, runtime state, or live behavior.
 
 This record still blocks bulk copying and all files outside the approved queue.
 Rev 2 remains a private governed repository with local no-network validation
 and Git/GitHub closeout only. No live connector, portal, worker bootstrap,
 persistent worker service, hosted relay, Graphify source mutation, graph
-upload, full semantic rebuild, client-data, live business-system, or production
-behavior is active.
+upload, full semantic rebuild, Freedom runtime activation, client-data, live
+business-system, or production behavior is active.

@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T20:04:23-06:00
+Last Updated: 2026-06-21T20:51:47-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -103,7 +103,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record Freedom phone-interface anchor | complete | 2026-06-21T19:29:48-06:00 | codex session | Plan updated so Freedom is a substantial future anchor and likely phone-side interface, while Rev 2 remains the governed spine and no code, merge, import, generated config, or runtime activation occurs until a bounded later chunk. |
 | Record Freedom agentic business partner anchor | complete | 2026-06-21T19:49:09-06:00 | codex session | Plan updated so Freedom is preserved and elevated as a high-level agentic business partner with self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities; no code, merge, import, generated config, secret read, or runtime activation occurs until a bounded later chunk. |
 | Build local proof runner | complete | 2026-06-21T20:01:42-06:00 | codex session | Chunk Fifteen added a local no-network proof runner across the mission spine, connector registry, relay envelope validator, and relay store, with focused tests and a direct smoke run. |
-| Handoff next chunk | pending | 2026-06-21T20:01:42-06:00 | codex session | Next bounded task is Chunk Sixteen: define the Freedom phone-interface and agentic business partner boundary before portal or integration work. |
+| Define Freedom phone-interface and business-partner boundary | complete | 2026-06-21T20:51:47-06:00 | codex session | Chunk Sixteen created the active decision record for Freedom as phone anchor and high-level agentic business partner source, Rev 2 as the governed spine, neutral bridge record shapes, and no-import/no-runtime stop triggers. |
+| Handoff next chunk | pending | 2026-06-21T20:51:47-06:00 | codex session | Next bounded task is Chunk Seventeen: choose the app shell around the Freedom phone anchor and local proof runner without building feature UI or activating runtime integrations. |
 
 ## Current Completion Boundary
 
@@ -136,7 +137,13 @@ preserved and elevated through bounded bridge contracts rather than flattened
 into a simple mobile UI. That changes the portal path: after the local proof
 runner, the next portal planning chunk must define the Freedom phone-link and
 business-partner capability boundary before choosing or building any competing
-Android surface.
+Android surface. As of 2026-06-21T20:51:47-06:00, that Chunk Sixteen boundary
+is recorded at
+`docs/decisions/freedom-phone-interface-business-partner-boundary.md`; it
+defines what Freedom may feed into Rev 2, what Rev 2 may feed back to Freedom,
+initial neutral bridge record shapes, and stop triggers for any code import,
+generated-config read, Freedom modification, runtime activation, or competing
+native Android phone work.
 No portal build, worker bootstrap or persistent worker model, hosted relay,
 live connector activation, Freedom runtime activation, client-data workflow, or
 production release has
@@ -969,7 +976,7 @@ Result:
 
 ## Chunk Sixteen - Define Freedom Phone Interface And Business Partner Boundary
 
-Status: planned
+Status: complete (2026-06-21T20:51:47-06:00)
 
 Completion target: Task complete
 
@@ -993,6 +1000,26 @@ filename scan, strict secret-pattern scan, diff check, commit, push. Stop:
 before copying Freedom source, reading secret values, importing generated
 config, modifying Freedom code, activating Freedom runtime, or building a new
 Android surface that bypasses the Freedom-anchor decision.
+
+Result:
+
+- Created
+  `docs/decisions/freedom-phone-interface-business-partner-boundary.md` as the
+  active decision record for the Freedom phone-link and business-partner
+  boundary.
+- Defined Freedom as the preferred phone-interface anchor candidate and
+  high-level agentic business partner source while preserving Rev 2 as the
+  governed mission, policy, relay, connector, worker-claim, and evidence spine.
+- Defined first neutral bridge record shapes for safe summaries, run signals,
+  evidence references, learning signals, research findings, action-request
+  candidates, and agent/tool-intent candidates.
+- Updated architecture, source-of-truth, context routing, migration decisions,
+  required-doc controls, and changelog records.
+- No Freedom source, generated config, runtime state, local data, app code,
+  gateway, desktop-host, voice, Supabase, provider integration, M365 adapter,
+  portal behavior, hosted relay, worker bootstrap, live connector, client data,
+  live business system, or production behavior was imported, modified, or
+  activated.
 
 ## Chunk Seventeen - Choose App Shell
 
@@ -1482,6 +1509,10 @@ date -Iseconds
 | 2026-06-21T20:01:42-06:00 | Chunk Fifteen local proof runner | pass | Added the local no-network proof runner and focused tests. Focused proof-runner tests passed: 3 tests. Full unit discovery passed: 64 tests. Syntax compile, package import smoke, and direct proof-runner smoke checks passed. |
 | 2026-06-21T20:04:23-06:00 | final Chunk Fifteen validation bundle | pass | Governance preflight, project-control schema validation, 64 unit tests, syntax compile, package import smoke, direct proof-runner smoke, Tool Directory JSON parse, `git diff --check`, routing/export search, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, and changed-file strict secret-pattern scan passed. The only Git warning was the known pathway CRLF normalization notice; an initial broad complete-status check surfaced copied v1 reference records and was rerun with the correct exclusion. |
 | 2026-06-21T20:04:23-06:00 | Graphify incremental update attempt | not run | `graphify update . --no-cluster` could not run because the `graphify` CLI is not available on the Windows shell PATH. No graph files were modified. |
+| 2026-06-21T20:43:39-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Sixteen boundary edits. |
+| 2026-06-21T20:45:31-06:00 | Chunk Sixteen Freedom boundary record | pass | Created the active Freedom phone-interface and business-partner decision record and routed it through architecture, source-of-truth, context, migration, project-control, pathway, and changelog docs. No source code, Freedom source, generated config, runtime state, portal behavior, worker behavior, live connector, or production behavior was added. |
+| 2026-06-21T20:51:47-06:00 | Graphify direct update | pass | Used the Enhanced Graphify executable directly because Windows PATH is still being handled elsewhere; `graphify update . --no-cluster` rebuilt the repo-local graph with 960 nodes and 1651 edges. |
+| 2026-06-21T20:51:47-06:00 | final Chunk Sixteen validation bundle | pass | Governance preflight, project-control schema validation, `git diff --check`, no package/test source changes, complete-status formatting check excluding copied v1 references, changed-file forbidden filename scan, changed-file strict secret-pattern scan, and routing registration check passed. The only Git warning was the known pathway CRLF normalization notice; an initial routing check was rerun after removing an over-strict self-reference expectation for the new decision file. |
 
 ## Next Handoff
 
@@ -1527,17 +1558,20 @@ The Freedom Engine archive objective review is recorded in
 `docs/migration/file-migration-decisions.md`; it confirms that Freedom remains
 Adam's current operating partner OS while Rev 2 remains the clean governed
 mission, relay, policy, evidence, connector, and worker spine. Freedom is now
-also recorded as the substantial future phone-interface anchor candidate. Use
-Freedom as the likely phone-side operator link and as a future contract, UX,
-gateway/desktop-host, and bridge reference; do not bulk-copy Freedom source,
-read secret values, import generated runtime config, modify Freedom code, or
-activate Freedom runtime/provider behavior in Rev 2 until the dedicated Freedom
-phone-link boundary and a later explicit integration chunk permit it.
-The next bounded task is Chunk Sixteen: define the Freedom phone-interface and
-agentic business partner boundary before any portal or integration work. Keep
-Freedom as the preferred phone-side operator link and high-level agentic
-business partner reference, but do not import Freedom code, read generated
-config, modify Freedom, activate Freedom runtime/provider behavior, build a
-competing Android surface, or broaden into M365 adapter work, hosted relay,
-worker bootstrap scripts, portal behavior, client data, live connectors, live
-business systems, or production behavior.
+also recorded as the substantial future phone-interface anchor candidate. The
+active Freedom phone-interface and business-partner boundary decision now lives
+at `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; it
+defines what Freedom may feed into Rev 2, what Rev 2 may feed back to Freedom,
+the first neutral bridge record shapes, and the no-import/no-runtime stop
+rules. Use Freedom as the likely phone-side operator link and as a future
+contract, UX, gateway/desktop-host, and bridge reference; do not bulk-copy
+Freedom source, read secret values, import generated runtime config, modify
+Freedom code, activate Freedom runtime/provider behavior, or build a competing
+native Android phone surface until a later explicit integration chunk permits
+it.
+The next bounded task is Chunk Seventeen: choose the app shell around the
+Freedom phone anchor and local proof runner. Keep that task to shell decision
+and initial structure only; do not broaden into feature UI, Freedom code
+import, generated config reads, Freedom modification, Freedom runtime/provider
+activation, M365 adapter work, hosted relay, worker bootstrap scripts, client
+data, live connectors, live business systems, or production behavior.

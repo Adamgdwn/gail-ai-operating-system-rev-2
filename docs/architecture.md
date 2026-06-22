@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-21T19:49:09-06:00
+Last Updated: 2026-06-21T20:51:47-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -44,6 +44,8 @@ Active now:
   migration routing only, with Freedom now identified as the substantial
   future phone-interface anchor candidate and agentic business partner
   capability source;
+- active Freedom phone-interface and business-partner boundary decision record
+  at `docs/decisions/freedom-phone-interface-business-partner-boundary.md`;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -326,6 +328,13 @@ should not be merged wholesale. Freedom should remain the active operating
 partner runtime; Rev 2 should remain the clean governed mission, relay, policy,
 worker, connector, and evidence spine.
 
+The active Chunk Sixteen boundary decision in
+`docs/decisions/freedom-phone-interface-business-partner-boundary.md` makes
+that relationship operational for the next build phase: Freedom is the first
+phone-interface anchor candidate and the high-level agentic business partner
+capability source; Rev 2 owns the mission, policy, relay, connector, worker,
+and evidence contracts that any future Freedom bridge must satisfy.
+
 The future bridge should translate Freedom concepts into Rev 2 records:
 
 ```text
@@ -430,7 +439,7 @@ being introduced.
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
-| Freedom Engine is operating-partner runtime, agentic business partner, and phone-interface anchor candidate, not the Rev 2 spine. | Active direction | Freedom should carry the first phone-side link and feed mature self-learning, research, agent/tool calling, business-memory, UX, and action-ledger patterns into Rev 2 through safe bridge records; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
+| Freedom Engine is operating-partner runtime, agentic business partner, and phone-interface anchor candidate, not the Rev 2 spine. | Active decision | Freedom should carry the first phone-side link and feed mature self-learning, research, agent/tool calling, business-memory, UX, and action-ledger patterns into Rev 2 through safe bridge records defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
 | Connector registry entries are not credentials or permission. | Active | Live connector use needs separate approval, tests, and data boundaries. |
 | Local relay store proof exists before worker bootstrap. | Active | Claim and stale-state semantics now have a deterministic local proof before Windows/Linux worker services or hosted relay are evaluated. |
 
@@ -494,3 +503,12 @@ self-learning, research, agent/tool calling, business memory, voice/mobile, and
 operator-run capabilities while preserving the no-code, no-merge, no-import,
 no-generated-config, and no-runtime-activation boundary until a dedicated later
 chunk.
+
+On 2026-06-21T20:45:31-06:00, Chunk Sixteen created the active Freedom
+phone-interface and business-partner boundary decision record at
+`docs/decisions/freedom-phone-interface-business-partner-boundary.md`. That
+record defines the first safe bridge envelope and record shapes for summaries,
+runs, evidence, learning, research, action requests, and agent/tool-calling
+intents, while keeping all Freedom code import, generated config, local state,
+runtime activation, live providers, and competing Android phone work blocked
+until a later explicit chunk.

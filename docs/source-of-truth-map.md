@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T20:01:42-06:00
+Last Updated: 2026-06-21T20:51:47-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -35,6 +35,7 @@ competing truth stores.
 | 5 | `project-control.yaml` | Use case, selected risk tier, selected governance level, required docs, and agent autonomy posture. |
 | 6 | `docs/migration/source-inventory.md` | What was copied, what was excluded, and what remains reference-only. |
 | 7 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
+| 8 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
 
 ## Active Rev 2 Controls
 
@@ -56,6 +57,7 @@ competing truth stores.
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
 | `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom phone-interface anchor posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
+| `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -144,6 +146,7 @@ Open the active review first:
 | Reference | Use before |
 |---|---|
 | `docs/migration/freedom-engine-objective-review.md` | Deciding whether a Freedom concept should be translated into Rev 2, held in Freedom, or bridged later. |
+| `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Deciding what may cross between Freedom and Rev 2 before app-shell, Android, bridge, connector, worker, or runtime work. |
 
 Do not bulk-copy Freedom source into Rev 2. Do not read, copy, summarize, or
 commit Freedom secret values, generated mobile runtime config, `.local-data`,
@@ -198,12 +201,10 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Sixteen: define the Freedom phone-interface and agentic business
-partner boundary before portal or integration work. Keep the work planning-only:
-Freedom remains the preferred phone-side operator link and high-level agentic
-business partner reference, while Rev 2 remains the governed mission, relay,
-policy, connector, evidence, and worker spine. Do not broaden into Freedom code
-import, generated config reads, Freedom modification, Freedom runtime/provider
-activation, a competing Android surface, M365 adapter work, hosted relay, worker
-bootstrap scripts, portal behavior, client data, live connectors, live business
-systems, or production.
+Begin Chunk Seventeen: choose the app shell around the Freedom phone anchor and
+Rev 2 local proof runner. Keep the next chunk bounded to shell choice and
+initial structure only. Do not broaden into Freedom code import, generated
+config reads, Freedom modification, Freedom runtime/provider activation, a
+competing native Android phone surface, M365 adapter work, hosted relay, worker
+bootstrap scripts, client data, live connectors, live business systems, or
+production.

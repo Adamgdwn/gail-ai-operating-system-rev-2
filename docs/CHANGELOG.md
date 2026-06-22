@@ -101,3 +101,10 @@
   relay envelope validation, relay store persistence, trusted-worker claim,
   reference-only evidence, and completed relay status with focused tests in
   `tests/test_local_proof_runner.py`.
+- Added the Chunk Sixteen Freedom phone-interface and business-partner boundary
+  decision record in
+  `docs/decisions/freedom-phone-interface-business-partner-boundary.md`,
+  defining Freedom as the phone anchor and high-level agentic business partner
+  source, Rev 2 as the governed mission/relay/evidence spine, initial neutral
+  bridge record shapes, safe summary rules, feed-forward/feed-back boundaries,
+  approval gates, and no-import/no-runtime stop triggers.

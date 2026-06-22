@@ -1,7 +1,7 @@
 # Freedom Engine Objective Review
 
 Created: 2026-06-21T18:53:33-06:00
-Last Updated: 2026-06-21T19:49:09-06:00
+Last Updated: 2026-06-21T20:51:47-06:00
 Status: active review
 Owner: Adam Goodwin
 
@@ -228,6 +228,19 @@ Freedom should not become the only durable truth store for Rev 2 worker claims.
 Rev 2 should not swallow Freedom's live runtime stack before the local proof
 runner, phone-link boundary, portal, worker, connector, and hosted relay chunks
 earn it.
+
+## Active Boundary Decision
+
+The Chunk Sixteen phone-interface and business-partner boundary is now recorded
+in:
+
+`docs/decisions/freedom-phone-interface-business-partner-boundary.md`
+
+Use that decision record before app-shell, Android, Freedom bridge, connector,
+worker, or runtime work. This review remains the objective archive review and
+source-routing note; the decision record is the active contract for what
+Freedom may feed into Rev 2, what Rev 2 may feed back to Freedom, the first
+neutral bridge record shapes, and the no-import/no-runtime stop rules.
 
 ## Sequencing Recommendation
 
