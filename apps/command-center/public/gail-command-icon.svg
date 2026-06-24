@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">GAIL Command Center</title>
+  <desc id="desc">Symbol-only Guided AI Labs signal mark for browser and launcher icons.</desc>
+  <rect width="512" height="512" rx="96" fill="#f8fafc" />
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(256 256) scale(.82) translate(-800 -410)">
+    <path d="M560 555 800 315l240 240" stroke="#0f1720" stroke-width="24" />
+    <path d="M625 555h350" stroke="#0f1720" stroke-width="24" />
+    <path d="M675 525 800 400l125 125" stroke="#0b82a6" stroke-width="20" />
+  </g>
+  <polygon fill="#0b82a6" points="256,137.3 284.7,178.3 256,219.3 227.3,178.3" />
+  <circle cx="59.2" cy="374.9" r="14.8" fill="#0f1720" />
+  <circle cx="452.8" cy="374.9" r="14.8" fill="#0f1720" />
+</svg>

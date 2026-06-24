@@ -18,6 +18,8 @@ npm --prefix apps/command-center run dev
 
 - The operator hub, governed spokes, mission, approval, worker, evidence, and
   connector posture areas are rendered from local static sample data only.
+- The browser icon uses the symbol-only Guided AI Labs signal mark at
+  `public/gail-command-icon.svg`.
 - Desktop and larger tablet browsers show the command center as a talk-first
   hub with observable governed spokes.
 - Phone-browser fallback is hub-first and preserves Freedom as the phone-side
@@ -25,6 +27,8 @@ npm --prefix apps/command-center run dev
 - No approval, reject, hold, request-more-info, pause, resume, or redirect
   mutation behavior is active.
 - No service worker, push notification, or offline cache is active.
+- No desktop wrapper, installer, or operating-system launcher shortcut is
+  active.
 - No auth, hosted relay, worker bootstrap, live connector, M365, or Freedom
   runtime integration is active.
 - Android phone work remains anchored in Freedom unless a later decision
