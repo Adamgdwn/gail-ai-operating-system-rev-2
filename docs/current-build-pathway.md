@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-23T22:29:42-06:00
+Last Updated: 2026-06-24T12:22:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -112,6 +112,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Add local Windows desktop launcher | complete | 2026-06-23T21:54:29-06:00 | codex session | User-approved inter-chunk launcher adds repo-owned PowerShell launch/install scripts, a symbol-only `.ico`, and a Windows Desktop shortcut for the local browser command center. This is not an Electron/Tauri wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior. |
 | Reaffirm Freedom core interface and dated-doc preference | complete | 2026-06-23T22:09:46-06:00 | codex session | Owner reiterated that Freedom is the core operator interface and Rev 2 must never build a competing native phone app. Browser, hosted, desktop, and tablet surfaces may augment Freedom through governed bridges and fallback views. New durable documents and records should be prefaced with a clear date marker unless a schema/template prevents it. |
 | Box up post-Chunk Nineteen closeout | complete | 2026-06-23T22:29:42-06:00 | codex session | START_HERE, this pathway, CARRY_FORWARD, changelog, source/context routing, README, and the external `01 Work Tracking` folder were refreshed for a low-token restart at Chunk Twenty. New durable documents and work-tracking records should use date-stamped filenames going forward unless an established required path must stay stable. |
+| Record build consolidation decision process | complete | 2026-06-24T12:22:39-06:00 | codex session | Owner direction captured: let AG Operations finish its current evolution, then use `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` to decide whether Rev 2, Freedom, and AG Operations remain separate, bridge, fold, or defer. No source merge, runtime coupling, connector activation, or live business-system behavior was added. |
 | Handoff next chunk | pending | 2026-06-23T22:29:42-06:00 | codex session | Next bounded task remains Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
 
 ## Current Completion Boundary
@@ -201,6 +202,15 @@ folder now point to Chunk Twenty as the next bounded task. Adam also clarified
 that new durable documents and work-tracking records should use date-stamped
 filenames going forward, for example `YYYY-MM-DD - <title>.md`, unless an
 established required repo route or schema requires a stable filename.
+As of 2026-06-24T12:22:39-06:00, Adam clarified that AG Operations should finish
+its current evolution before any one-build consolidation decision. The active
+decision process is recorded at
+`docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`; it
+requires an evidence-based review before Rev 2, Freedom, and AG Operations are
+merged, bridged more tightly, folded under one build, folded back, kept in AG
+Operations, retired, or deferred. Until that process is run, the builds remain
+separate with no new runtime coupling, source consolidation, or live connector
+activation.
 
 ## Forward Working Notes
 
@@ -211,6 +221,9 @@ established required repo route or schema requires a stable filename.
   names unless a bounded rename plan updates all references.
 - Hosted, desktop, browser, and tablet command-center decisions should preserve
   Freedom as the core interface instead of creating a parallel operator system.
+- AG Operations should finish and box its current agentic-assistance evolution
+  before any consolidation review. Use the dated build consolidation decision
+  process before adding bridge layers or folding systems together.
 
 ## Compact Future Chunk Map
 
@@ -1654,6 +1667,7 @@ date -Iseconds
 | 2026-06-23T21:54:29-06:00 | local Windows desktop launcher | pass | Added `scripts/launch-command-center.ps1`, `scripts/install-command-center-desktop-shortcut.ps1`, and `apps/command-center/public/gail-command-icon.ico`; installed `C:\Users\adamg\OneDrive\Desktop\GAIL Command Center.lnk` pointing at the launcher with the custom icon. Governance preflight, launcher dry-run, PowerShell parse, idempotent shortcut install, shortcut metadata inspection, real Desktop shortcut launch smoke at `http://127.0.0.1:4173/`, app build, schema validation, `git diff --check`, changed-file forbidden filename scan, and added-diff strict secret-pattern scan passed. No desktop wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior was added. |
 | 2026-06-23T22:09:46-06:00 | Freedom core interface and dated-doc planning capture | pass | Recorded the owner decision that Freedom is the core interface, Rev 2 must not build a competing native phone app, and future browser/hosted/desktop/tablet surfaces should augment Freedom through governed bridge records and fallback views. Also recorded the forward preference for newly authored durable docs and records to start with a clear date marker. Governance preflight passed before the documentation update. |
 | 2026-06-23T22:29:42-06:00 | post-Chunk Nineteen box-up | pass | Refreshed `START_HERE.md`, this pathway, `CARRY_FORWARD.md`, `docs/CHANGELOG.md`, `docs/context-map.md`, `docs/source-of-truth-map.md`, `README.md`, and the AG Operations `01 Work Tracking` folder for a low-token restart at Chunk Twenty. Captured the stronger forward rule that newly authored durable documents and work-tracking records should use date-stamped filenames. Governance preflight, project-control schema validation, `git diff --check`, changed-file forbidden filename scan, and changed-diff strict secret-pattern scan passed. `date -Iseconds` failed under the PowerShell alias and was rerun with Bash; initial Bash `rg` scans were rerun successfully with PowerShell `Select-String`. |
+| 2026-06-24T12:22:39-06:00 | build consolidation decision process | pass | Added `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` and routed it through START_HERE, project-control, architecture, context, source-of-truth, pathway, and changelog docs. Governance preflight, project-control YAML/required-doc validation, `git diff --check`, routing registration search, changed-file forbidden filename scan, changed-diff strict secret-pattern scan, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 
 ## Next Handoff
 
@@ -1741,3 +1755,8 @@ Freedom modification, Freedom runtime/provider activation, M365 adapter work,
 QuickBooks adapter work, hosted relay, worker bootstrap scripts, client data,
 live connectors, live business systems, hosted authorization, or production
 behavior.
+Before future cross-build consolidation, use
+`docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`. Do not
+fold AG Operations, Freedom, or Rev 2 into one build until AG Operations has
+boxed its current evolution and the weak-layer/consolidation review has an
+owner decision.

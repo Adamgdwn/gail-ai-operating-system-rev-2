@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-23T22:29:42-06:00
+Last Updated: 2026-06-24T12:22:39-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -41,6 +41,7 @@ required repo route, schema, or template requires a stable path.
 | 7 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
 | 8 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
 | 9 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
+| 10 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
 
 ## Active Rev 2 Controls
 
@@ -64,6 +65,7 @@ required repo route, schema, or template requires a stable path.
 | `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom core interface posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
 | `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
+| `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -182,6 +184,7 @@ unless Adam explicitly reverses that decision.
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
 | Freedom Engine | Current operating partner OS, high-level agentic business partner, and core operator interface. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
+| Build consolidation review | Future architecture decision process. | Do not fold AG Operations, Freedom, or Rev 2 into one build until `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` is run after AG Operations finishes its current evolution. |
 
 ## Compact Build Chunk Map
 

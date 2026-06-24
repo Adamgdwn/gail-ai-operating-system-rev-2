@@ -51,6 +51,7 @@ controls:
     - docs/graphify-handoff-checkpoint.md
     - docs/decisions/freedom-phone-interface-business-partner-boundary.md
     - docs/decisions/app-shell-command-center.md
+    - docs/decisions/2026-06-24 - Build Consolidation Decision Process.md
   machine_enforcement:
     - required-file-check
     - lint

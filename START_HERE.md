@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-23T22:29:42-06:00
+Last Updated: 2026-06-24T12:22:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -63,6 +63,11 @@ Current priorities:
 - keep Chunk Twenty approval actions local, governed, auditable, stale-state
   protected, and non-executing until later connector and runtime boundaries are
   explicitly approved
+- let AG Operations finish and box its current agentic-assistance evolution
+  before deciding whether Rev 2, Freedom, and AG Operations should remain
+  separate, bridge, fold, or defer; use
+  `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` for
+  that review and do not add weak pass-through layers or runtime coupling first
 
 ## Current Build Pathway
 

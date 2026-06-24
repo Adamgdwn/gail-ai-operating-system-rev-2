@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-06-24
+
+- Added the active build consolidation decision process at
+  `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`.
+  Adam's direction is to let AG Operations finish its current evolution before
+  deciding whether Rev 2, Freedom, and AG Operations should remain separate,
+  bridge, fold under one build, fold back, stay in AG Operations, retire, or
+  defer. The process includes weak-layer rejection rules and does not approve
+  source merges, runtime coupling, live connectors, Freedom runtime access,
+  Microsoft 365 tenant access, or production behavior.
+
 ## 2026-06-23
 
 - Boxed up the post-Chunk Nineteen state for a low-token restart at Chunk

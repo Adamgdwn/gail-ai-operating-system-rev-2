@@ -1,7 +1,7 @@
 # Context Map
 
 Document type: project context routing map
-Last Updated: 2026-06-23T22:29:42-06:00
+Last Updated: 2026-06-24T12:22:39-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -34,6 +34,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Use-case controls, risk tier, governance level, or owner decisions | `docs/standards/engineering-governance-by-use-case.md` |
 | Completion labels, Definition of Shipped, release evidence, or finish reports | `docs/standards/ship-ready-engineering-standard.md` |
 | Architecture decisions or system shape | `docs/architecture.md` and relevant ADRs |
+| Build consolidation, weak-layer review, or deciding whether Rev 2, Freedom, and AG Operations should become one build | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`, `docs/architecture.md`, `docs/source-of-truth-map.md`, and the current AG Operations handoff after its active evolution is boxed |
 | Freedom phone interface, business-partner capability preservation, or Freedom bridge boundaries | `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/migration/freedom-engine-objective-review.md`, `docs/architecture.md`, and `docs/migration/file-migration-decisions.md` |
 | App shell, command center, portal stack, browser cockpit, or multi-device review surface | `docs/decisions/app-shell-command-center.md`, `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/architecture.md`, and `apps/command-center/README.md` |
 | File migration, source promotion, rewrite decisions, or exclusion checks | `docs/migration/source-inventory.md`, `docs/migration/file-migration-decisions.md`, and the relevant copied v1 reference records |
