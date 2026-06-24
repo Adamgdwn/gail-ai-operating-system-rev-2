@@ -2,6 +2,11 @@
 
 ## 2026-06-23
 
+- Added a user-approved local Windows Desktop shortcut for the command center,
+  backed by repo-owned PowerShell launch/install scripts and a symbol-only
+  `.ico`. The launcher starts the existing local browser command center only;
+  desktop wrappers, service installs, service workers, live connectors, Freedom
+  runtime access, hosted relay, and production behavior remain blocked.
 - Built the Chunk Nineteen multi-viewport command-center cockpit under
   `apps/command-center`, adding a talk-first operator hub, local/static
   governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks,

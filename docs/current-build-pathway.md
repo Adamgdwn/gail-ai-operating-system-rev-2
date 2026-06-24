@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-23T21:26:14-06:00
+Last Updated: 2026-06-23T21:54:29-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -109,7 +109,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record hub-and-spoke cockpit vision | complete | 2026-06-21T22:06:30-06:00 | codex session | Plan updated so Chunk Nineteen should shape the command center as an operator-centered hub with a talk-first core and observable governed spokes arced around it for M365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device surfaces. |
 | Box up session handoff | complete | 2026-06-21T22:14:07-06:00 | codex session | START_HERE, this pathway handoff, CARRY_FORWARD, changelog, and external AG Operations work tracking were refreshed for a low-token restart at Chunk Nineteen. |
 | Build multi-viewport cockpit surface | complete | 2026-06-23T21:26:14-06:00 | codex session | Chunk Nineteen hardened the command-center app into a static hub-and-spoke cockpit for desktop, tablet, and phone-browser fallback while preserving Freedom as the phone anchor. |
-| Handoff next chunk | pending | 2026-06-23T21:26:14-06:00 | codex session | Next bounded task is Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
+| Add local Windows desktop launcher | complete | 2026-06-23T21:54:29-06:00 | codex session | User-approved inter-chunk launcher adds repo-owned PowerShell launch/install scripts, a symbol-only `.ico`, and a Windows Desktop shortcut for the local browser command center. This is not an Electron/Tauri wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior. |
+| Handoff next chunk | pending | 2026-06-23T21:54:29-06:00 | codex session | Next bounded task remains Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
 
 ## Current Completion Boundary
 
@@ -177,6 +178,13 @@ worker model, hosted relay, live connector activation, Freedom runtime
 activation, M365 adapter, client-data workflow, or production release has
 started. Project completion remains a human decision after the release-decision
 chunk.
+As of 2026-06-23T21:54:29-06:00, the local Windows Desktop shortcut at
+`C:\Users\adamg\OneDrive\Desktop\GAIL Command Center.lnk` launches the
+existing local browser command center through `scripts/launch-command-center.ps1`.
+The shortcut uses the symbol-only icon at
+`apps/command-center/public/gail-command-icon.ico`. This does not add a desktop
+wrapper, service install, persistent background process, browser-to-shell
+capability, service worker, hosted deployment, or production behavior.
 
 ## Compact Future Chunk Map
 
@@ -1617,6 +1625,7 @@ date -Iseconds
 | 2026-06-23T21:26:14-06:00 | app build and responsive screenshots | pass | `npm --prefix apps/command-center run build` passed. Playwright using the system Edge channel captured desktop, tablet, and phone screenshots at `tmp/screenshots/command-center-chunk19-desktop.png`, `tmp/screenshots/command-center-chunk19-tablet.png`, and `tmp/screenshots/command-center-chunk19-phone.png`; screenshot review found the surface usable with no visible overlap. |
 | 2026-06-23T21:26:14-06:00 | Graphify direct update | pass | Used `C:\Users\adamg\AppData\Local\Programs\Python\Python312\Scripts\graphify.exe update . --no-cluster`; the repo-local graph rebuilt with 1051 nodes and 1758 edges. Generated graph output remained ignored. |
 | 2026-06-23T21:26:14-06:00 | final Chunk Nineteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files; an attempted extra programmatic Playwright overflow check was not counted because local `npm exec` did not expose the Playwright module to Node. |
+| 2026-06-23T21:54:29-06:00 | local Windows desktop launcher | pass | Added `scripts/launch-command-center.ps1`, `scripts/install-command-center-desktop-shortcut.ps1`, and `apps/command-center/public/gail-command-icon.ico`; installed `C:\Users\adamg\OneDrive\Desktop\GAIL Command Center.lnk` pointing at the launcher with the custom icon. Governance preflight, launcher dry-run, PowerShell parse, idempotent shortcut install, shortcut metadata inspection, real Desktop shortcut launch smoke at `http://127.0.0.1:4173/`, app build, schema validation, `git diff --check`, changed-file forbidden filename scan, and added-diff strict secret-pattern scan passed. No desktop wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior was added. |
 
 ## Next Handoff
 
