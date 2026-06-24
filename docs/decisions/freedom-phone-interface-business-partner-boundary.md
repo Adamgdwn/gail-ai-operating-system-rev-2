@@ -1,7 +1,7 @@
 # Freedom Phone Interface And Business Partner Boundary
 
 Created: 2026-06-21T20:45:31-06:00
-Last Updated: 2026-06-21T20:51:47-06:00
+Last Updated: 2026-06-23T22:09:46-06:00
 Status: active decision
 Owner: Adam Goodwin
 
@@ -22,10 +22,10 @@ runtime coupling.
 
 ## Decision
 
-Freedom remains the first phone-interface anchor candidate for Rev 2. Rev 2
-should not build a competing native Android phone surface until a later bounded
-chunk explicitly decides that Freedom cannot carry the phone-side operator
-role.
+Freedom is the core operator interface and the phone-side anchor for Rev 2.
+Rev 2 must not build a competing native phone app. Future phone-side work
+should augment Freedom through governed bridge contracts, summaries, links,
+signals, and fallback views unless Adam explicitly reverses this decision.
 
 Freedom is also preserved and elevated as a high-level agentic business partner
 capability source. Its self-learning, research, programming-request handling,
@@ -147,9 +147,9 @@ Freedom must not become:
   desktop-host, email, or provider integrations.
 
 The future browser/app shell should support Windows, Linux, Android tablet, and
-ordinary browsers while treating Freedom as the phone anchor. Browser work can
-provide review and fallback capability, but it should not duplicate or replace
-Freedom's phone investment without a later decision record.
+ordinary browsers while treating Freedom as the core phone-side interface.
+Browser work can provide review and fallback capability, but it must not
+duplicate or replace Freedom's phone investment.
 
 ## Capability Preservation Track
 
@@ -197,8 +197,7 @@ Stop and require explicit owner approval before:
 - activating Freedom gateway, relay, voice, desktop-host, Supabase, email,
   Vercel, OpenAI, LiveKit, or mobile runtime behavior from Rev 2;
 - treating Freedom's A3 autonomy posture as approved for Rev 2;
-- building a competing native Android phone surface before a later explicit
-  decision changes the Freedom-anchor posture.
+- building a competing native phone app for Rev 2.
 
 ## Current Result
 

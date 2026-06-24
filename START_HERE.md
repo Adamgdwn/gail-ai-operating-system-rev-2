@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-23T21:26:14-06:00
+Last Updated: 2026-06-23T22:09:46-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -48,6 +48,15 @@ Current priorities:
   operator hub with observable governed spokes for Microsoft 365, Freedom,
   Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device
   posture
+- treat Freedom as the core operator interface and high-level agentic business
+  partner surface; browser, hosted, desktop, and tablet command-center surfaces
+  should augment or coordinate with Freedom rather than compete with it
+- never build a competing native phone app for Rev 2; phone-side work should
+  augment Freedom through governed bridge contracts, summaries, links, and
+  fallback views unless Adam explicitly reverses this decision
+- prefix newly authored durable documents and records with a clear date marker
+  such as `Date: YYYY-MM-DD` or `YYYY-MM-DD - <title>` unless an established
+  schema or required template prevents it
 - keep Chunk Twenty approval actions local, governed, auditable, stale-state
   protected, and non-executing until later connector and runtime boundaries are
   explicitly approved

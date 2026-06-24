@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-23T21:26:14-06:00
+Last Updated: 2026-06-23T22:09:46-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -57,9 +57,9 @@ competing truth stores.
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
-| `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom phone-interface anchor posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
+| `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom core interface posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
-| `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and native Android phone work. |
+| `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
@@ -137,7 +137,7 @@ content, OneDrive content, raw logs, client data, secrets, permission payloads,
 or setup-helper credentials into Rev 2.
 
 The downloaded Freedom Engine archive is an external orientation source for
-operating-partner runtime, the preferred future phone-interface anchor,
+operating-partner runtime, the core phone-side operator interface,
 self-learning, research, agent/tool calling, business memory,
 mobile/gateway/desktop-host, Action Fabric, Device Mesh, storage-map, and
 operator-run design:
@@ -156,9 +156,9 @@ commit Freedom secret values, generated mobile runtime config, `.local-data`,
 build outputs, APKs, provider state, Supabase runtime data, contacts, email
 data, memories, raw transcripts, logs, or release artifacts. Freedom remains
 Adam's current operating partner OS, high-level agentic business partner, and
-preferred future phone-side operator link; Rev 2 remains the clean governed
-mission, relay, policy, and worker spine until a later bridge chunk changes
-that boundary explicitly.
+core phone-side operator link; Rev 2 remains the clean governed mission, relay,
+policy, and worker spine. Rev 2 must not build a competing native phone app
+unless Adam explicitly reverses that decision.
 
 ## Device Roles
 
@@ -166,13 +166,13 @@ that boundary explicitly.
 |---|---|---|
 | Windows | Current operator workspace and future trusted worker. | May edit/push Rev 2 repo and run local validation; live business connectors remain blocked until approved. |
 | Linux | Superseded v1 reference host and future trusted worker clone. | Not the Rev 2 project home; future Linux work must pull from private GitHub and preserve Rev 2 controls. |
-| Android phone | Freedom-anchored future operator link. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; no local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
+| Android phone | Freedom-owned operator link. | Freedom is the core phone-side interface for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; Rev 2 must not build a competing native phone app. No local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
-| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's phone-side operator role. |
+| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's core operator role. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
-| Freedom Engine | Current operating partner OS, high-level agentic business partner, and preferred future phone-interface anchor candidate. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
+| Freedom Engine | Current operating partner OS, high-level agentic business partner, and core operator interface. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
 
 ## Compact Build Chunk Map
 

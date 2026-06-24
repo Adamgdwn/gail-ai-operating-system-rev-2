@@ -1,7 +1,7 @@
 # File Migration Decisions
 
 Created: 2026-06-21T15:13:19-06:00
-Last Updated: 2026-06-21T21:15:59-06:00
+Last Updated: 2026-06-23T22:09:46-06:00
 Status: active migration decision record
 Owner: Adam Goodwin
 
@@ -63,9 +63,9 @@ The first safe code queue is:
    2026-06-21T21:15:59-06:00 with
    `docs/decisions/app-shell-command-center.md` and `apps/command-center`.
 
-Portal source, Android-specific behavior, Windows/Linux worker bootstrap,
-hosted relay, notifications, live connectors, and production release remain
-outside this queue.
+Portal source, competing native phone app behavior, Windows/Linux worker
+bootstrap, hosted relay, notifications, live connectors, and production
+release remain outside this queue.
 
 ## Implemented Rewrites
 
@@ -119,8 +119,8 @@ outside this queue.
 ## External Freedom Engine Review Boundary
 
 The downloaded Freedom Engine archive was reviewed on 2026-06-21 as an
-external operating-partner OS reference and later recorded as the preferred
-future phone-interface anchor candidate and high-level agentic business partner
+external operating-partner OS reference and later recorded as the core
+phone-side operator interface and high-level agentic business partner
 capability source, not as active Rev 2 source.
 
 Active review record:
@@ -131,7 +131,7 @@ Decision summary:
 
 | Source or concept | Decision | Earliest chunk | Boundary |
 |---|---|---|---|
-| Freedom monorepo root | `later review` | none | Do not bulk-copy or merge into Rev 2. Freedom remains Adam's current operating partner OS and likely phone-side operator link. |
+| Freedom monorepo root | `later review` | none | Do not bulk-copy or merge into Rev 2. Freedom remains Adam's current operating partner OS and core phone-side operator link. |
 | Freedom operator-run lifecycle and evidence vocabulary | `rewrite` | after Chunk Fifteen | Translate into Rev 2 mission/run/evidence records after the local proof runner exists. |
 | Freedom self-learning, learning reviews, and business-memory loops | `rewrite` | after Chunk Sixteen | Preserve and elevate as governed learning, evidence, and memory-reference records. Do not import raw memories, logs, contacts, email data, provider state, or Supabase runtime data. |
 | Freedom research and programming-request workflows | `rewrite` | after Chunk Sixteen | Translate into Rev 2 mission candidates, research/evidence records, and approval gates. Do not activate live web, provider, or tool-calling behavior without later connector boundaries. |
@@ -140,8 +140,8 @@ Decision summary:
 | Freedom Device Mesh and environment capability contracts | `rewrite` | portal/worker chunks | Translate as planning-only device and capability schemas before worker bootstrap or portal execution. |
 | Freedom Action Fabric request/plan/result/evidence concepts | `rewrite` | action-classification chunks | Use after Rev 2 has proof-runner semantics; do not activate low-risk execution routes yet. |
 | Freedom storage persistence map | `promote` | future data/evidence control chunk | Promote principles into Rev 2 docs; do not adopt Supabase runtime by implication. |
-| Freedom phone-interface boundary | `complete decision` | Chunk Sixteen | Defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Freedom is the substantial phone-interface anchor candidate and business-partner capability source, with bridge record shapes, permitted safe summaries, and no-import/no-runtime boundaries before app-shell or Android decisions. |
-| Freedom Android/mobile UX | `anchor candidate` | after Chunk Sixteen | Use as the likely phone-side operator link for pairing, approval, hold/resume, offline import, and degraded-state truth; do not copy generated config, import app code, or modify Freedom until a later bounded integration chunk. |
+| Freedom phone-interface boundary | `complete decision` | Chunk Sixteen | Defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Freedom is the core phone-side operator interface and business-partner capability source, with bridge record shapes, permitted safe summaries, and no-import/no-runtime boundaries before app-shell or phone-side decisions. |
+| Freedom Android/mobile UX | `augment Freedom` | after Chunk Sixteen | Use Freedom as the phone-side operator link for pairing, approval, hold/resume, offline import, and degraded-state truth; do not copy generated config, import app code, modify Freedom, or build a competing native phone app. |
 | Freedom gateway and desktop-host runtime | `later review` | worker chunks | Use pairing, heartbeat, bounded body, approved-root, polling, and evidence patterns as references only. No service activation. |
 | Freedom Supabase migrations and runtime tables | `later review` | hosted-runtime/data chunks | Reference schema ideas only. No active hosted store or data import. |
 | Freedom voice, LiveKit, OpenAI, relay, wake, email, Vercel, and provider integrations | `later review` | connector/runtime activation chunks | Planning-only until connector profiles, tests, approvals, rollback, and secret containment exist. |

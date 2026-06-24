@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-23T21:54:29-06:00
+Last Updated: 2026-06-23T22:09:46-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -110,7 +110,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Box up session handoff | complete | 2026-06-21T22:14:07-06:00 | codex session | START_HERE, this pathway handoff, CARRY_FORWARD, changelog, and external AG Operations work tracking were refreshed for a low-token restart at Chunk Nineteen. |
 | Build multi-viewport cockpit surface | complete | 2026-06-23T21:26:14-06:00 | codex session | Chunk Nineteen hardened the command-center app into a static hub-and-spoke cockpit for desktop, tablet, and phone-browser fallback while preserving Freedom as the phone anchor. |
 | Add local Windows desktop launcher | complete | 2026-06-23T21:54:29-06:00 | codex session | User-approved inter-chunk launcher adds repo-owned PowerShell launch/install scripts, a symbol-only `.ico`, and a Windows Desktop shortcut for the local browser command center. This is not an Electron/Tauri wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior. |
-| Handoff next chunk | pending | 2026-06-23T21:54:29-06:00 | codex session | Next bounded task remains Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
+| Reaffirm Freedom core interface and dated-doc preference | complete | 2026-06-23T22:09:46-06:00 | codex session | Owner reiterated that Freedom is the core operator interface and Rev 2 must never build a competing native phone app. Browser, hosted, desktop, and tablet surfaces may augment Freedom through governed bridges and fallback views. New durable documents and records should be prefaced with a clear date marker unless a schema/template prevents it. |
+| Handoff next chunk | pending | 2026-06-23T22:09:46-06:00 | codex session | Next bounded task remains Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
 
 ## Current Completion Boundary
 
@@ -142,14 +143,14 @@ voice/mobile, operator-run, gateway, and desktop-host capabilities must be
 preserved and elevated through bounded bridge contracts rather than flattened
 into a simple mobile UI. That changes the portal path: after the local proof
 runner, the next portal planning chunk must define the Freedom phone-link and
-business-partner capability boundary before choosing or building any competing
-Android surface. As of 2026-06-21T20:51:47-06:00, that Chunk Sixteen boundary
+business-partner capability boundary before choosing any phone-side surface.
+As of 2026-06-21T20:51:47-06:00, that Chunk Sixteen boundary
 is recorded at
 `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; it
 defines what Freedom may feed into Rev 2, what Rev 2 may feed back to Freedom,
 initial neutral bridge record shapes, and stop triggers for any code import,
 generated-config read, Freedom modification, runtime activation, or competing
-native Android phone work.
+native phone app work.
 As of 2026-06-21T21:15:59-06:00, Chunk Seventeen selected the Vite React
 TypeScript browser shell in `docs/decisions/app-shell-command-center.md` and
 created the initial buildable command-center scaffold under
@@ -185,6 +186,23 @@ The shortcut uses the symbol-only icon at
 `apps/command-center/public/gail-command-icon.ico`. This does not add a desktop
 wrapper, service install, persistent background process, browser-to-shell
 capability, service worker, hosted deployment, or production behavior.
+As of 2026-06-23T22:09:46-06:00, Adam reiterated that Freedom is the core
+operator interface and high-level agentic business partner surface. Rev 2 may
+add browser, hosted, desktop, tablet, or fallback views, but those surfaces
+must augment, coordinate with, or expose governed records for Freedom rather
+than mimic it as a competing product. Rev 2 must not build a competing native
+phone app; phone-side work should augment Freedom through governed bridge
+contracts, summaries, links, and fallback views unless Adam explicitly reverses
+that decision.
+
+## Forward Working Notes
+
+- New durable documents and records created after 2026-06-23 should be
+  prefaced with a clear date marker, such as `Date: YYYY-MM-DD` or
+  `YYYY-MM-DD - <title>`, unless an established schema or required template
+  prevents it.
+- Hosted, desktop, browser, and tablet command-center decisions should preserve
+  Freedom as the core interface instead of creating a parallel operator system.
 
 ## Compact Future Chunk Map
 
@@ -1034,8 +1052,8 @@ remains prohibited.
 Validation: docs routing check, complete-status formatting check, forbidden
 filename scan, strict secret-pattern scan, diff check, commit, push. Stop:
 before copying Freedom source, reading secret values, importing generated
-config, modifying Freedom code, activating Freedom runtime, or building a new
-Android surface that bypasses the Freedom-anchor decision.
+config, modifying Freedom code, activating Freedom runtime, or building a
+competing native phone app.
 
 Result:
 
@@ -1072,7 +1090,7 @@ local proof runner behavior plus the Freedom phone-interface boundary. Outputs:
 app-shell decision record and initial project structure for the browser command
 center or local portal surface. Acceptance: selected shell supports Windows,
 Linux, browser workflows, Android tablet/browser review, and the Freedom phone
-link without duplicating Freedom's phone work prematurely.
+link without duplicating Freedom's phone work.
 Validation: dependency review, minimal build check, diff check, commit, push.
 Stop: before feature UI implementation.
 
@@ -1090,8 +1108,8 @@ Result:
 - Deferred service worker, PWA install behavior, auth, relay calls,
   approval mutation behavior, local proof-runner browser calls, local shell
   access, Freedom runtime, M365 adapter, worker bootstrap, hosted relay, live
-  connectors, native Android work, client data, live business systems, and
-  production behavior.
+  connectors, competing native phone app work, client data, live business
+  systems, and production behavior.
 
 ## Chunk Eighteen - Build Operating Cockpit Shell
 
@@ -1123,9 +1141,9 @@ Result:
   without live adapter behavior.
 - Kept approval mutation behavior, relay reads/writes, local proof-runner
   browser calls, local shell access, Freedom runtime, M365 adapter, QuickBooks
-  adapter, worker bootstrap, hosted relay, live connectors, native Android
-  work, client data, live business systems, and production behavior out of
-  scope.
+  adapter, worker bootstrap, hosted relay, live connectors, competing native
+  phone app work, client data, live business systems, and production behavior
+  out of scope.
 
 ## Chunk Nineteen - Build Multi-Viewport Cockpit Surface
 
@@ -1626,6 +1644,7 @@ date -Iseconds
 | 2026-06-23T21:26:14-06:00 | Graphify direct update | pass | Used `C:\Users\adamg\AppData\Local\Programs\Python\Python312\Scripts\graphify.exe update . --no-cluster`; the repo-local graph rebuilt with 1051 nodes and 1758 edges. Generated graph output remained ignored. |
 | 2026-06-23T21:26:14-06:00 | final Chunk Nineteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files; an attempted extra programmatic Playwright overflow check was not counted because local `npm exec` did not expose the Playwright module to Node. |
 | 2026-06-23T21:54:29-06:00 | local Windows desktop launcher | pass | Added `scripts/launch-command-center.ps1`, `scripts/install-command-center-desktop-shortcut.ps1`, and `apps/command-center/public/gail-command-icon.ico`; installed `C:\Users\adamg\OneDrive\Desktop\GAIL Command Center.lnk` pointing at the launcher with the custom icon. Governance preflight, launcher dry-run, PowerShell parse, idempotent shortcut install, shortcut metadata inspection, real Desktop shortcut launch smoke at `http://127.0.0.1:4173/`, app build, schema validation, `git diff --check`, changed-file forbidden filename scan, and added-diff strict secret-pattern scan passed. No desktop wrapper, service install, service worker, live connector, Freedom runtime, hosted relay, or production behavior was added. |
+| 2026-06-23T22:09:46-06:00 | Freedom core interface and dated-doc planning capture | pass | Recorded the owner decision that Freedom is the core interface, Rev 2 must not build a competing native phone app, and future browser/hosted/desktop/tablet surfaces should augment Freedom through governed bridge records and fallback views. Also recorded the forward preference for newly authored durable docs and records to start with a clear date marker. Governance preflight passed before the documentation update. |
 
 ## Next Handoff
 
@@ -1689,8 +1708,14 @@ rules. Use Freedom as the likely phone-side operator link and as a future
 contract, UX, gateway/desktop-host, and bridge reference; do not bulk-copy
 Freedom source, read secret values, import generated runtime config, modify
 Freedom code, activate Freedom runtime/provider behavior, or build a competing
-native Android phone surface until a later explicit integration chunk permits
-it.
+native phone app.
+Adam has since reiterated that Freedom is the core interface, not merely a
+possible phone anchor. Rev 2 must not build a competing native phone app; any
+phone-side work should augment Freedom. Future hosted, desktop, browser, and
+tablet surfaces should coordinate with Freedom through governed records,
+summaries, links, and fallback views rather than mimicking Freedom as a parallel
+operator system. New durable documents and records should be prefaced with a
+clear date marker unless a required schema/template prevents it.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,

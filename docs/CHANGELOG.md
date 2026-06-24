@@ -2,6 +2,13 @@
 
 ## 2026-06-23
 
+- Captured the owner decision that Freedom is the core operator interface and
+  high-level agentic business partner surface, not merely a phone anchor. Rev 2
+  must not build a competing native phone app; hosted, desktop, browser, and
+  tablet command-center surfaces should augment Freedom through governed bridge
+  records, summaries, links, and fallback views. Also recorded the preference
+  that newly authored durable documents and records begin with a clear date
+  marker unless a required schema/template prevents it.
 - Added a user-approved local Windows Desktop shortcut for the command center,
   backed by repo-owned PowerShell launch/install scripts and a symbol-only
   `.ico`. The launcher starts the existing local browser command center only;
