@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-06-23
+
+- Built the Chunk Nineteen multi-viewport command-center cockpit under
+  `apps/command-center`, adding a talk-first operator hub, local/static
+  governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks,
+  GitHub/build systems, evidence, and worker/device posture, desktop and
+  larger-tablet arc layout, and hub-first phone-browser fallback. Approval
+  mutations, live relay writes, Freedom runtime access, M365/QuickBooks
+  adapters, worker bootstrap, live connectors, client data, hosted
+  authorization, and production behavior remain blocked.
+
 ## 2026-06-21
 
 - Created the governed `GAIL AI Operating System Rev 2` workspace from the New

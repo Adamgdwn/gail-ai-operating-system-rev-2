@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-21T22:14:07-06:00
+Last Updated: 2026-06-23T21:26:14-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -11,17 +11,15 @@ For the next session:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read this file.
-4. Read only Chunk Nineteen and `## Next Handoff` in
+4. Read only Chunk Twenty and `## Next Handoff` in
    `docs/current-build-pathway.md`.
-5. Open `apps/command-center/README.md`, `apps/command-center/src/App.tsx`,
-   `apps/command-center/src/styles.css`, and
-   `apps/command-center/src/cockpitData.ts` when ready to build.
+5. Open the relay envelope/store, tool permission matrix, and command-center
+   app files when ready to build.
 
-Current next task: Chunk Nineteen - build the multi-viewport hub-and-spoke
-cockpit surface. Keep the work to local/static viewport behavior and handoff
-expectations. Do not add live approval actions, live connectors, Freedom
-runtime access, M365 or QuickBooks adapters, worker bootstrap, client data, or
-production behavior.
+Current next task: Chunk Twenty - add local governed approval actions that
+write auditable local records without executing live tools. Do not add hosted
+authorization, live connector execution, Freedom runtime access, M365 or
+QuickBooks adapters, worker bootstrap, client data, or production behavior.
 
 ## Current Plan
 
@@ -46,9 +44,13 @@ Current priorities:
 - fill in project commands in `AI_BOOTSTRAP.md`
 - keep work in context-window-friendly chunks
 - timestamp material work, decisions, validation, and handoffs
-- preserve the Chunk Nineteen visual direction: a talk-first operator hub with
-  observable governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks,
-  GitHub/build systems, evidence, and worker/device posture
+- preserve the completed Chunk Nineteen cockpit direction: a talk-first
+  operator hub with observable governed spokes for Microsoft 365, Freedom,
+  Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device
+  posture
+- keep Chunk Twenty approval actions local, governed, auditable, stale-state
+  protected, and non-executing until later connector and runtime boundaries are
+  explicitly approved
 
 ## Current Build Pathway
 

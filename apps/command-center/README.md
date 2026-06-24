@@ -1,6 +1,6 @@
 # GAIL Command Center
 
-Status: first read-only operating cockpit shell
+Status: multi-viewport read-only hub-and-spoke cockpit surface
 
 This is the browser-first Rev 2 command center shell. It is intentionally
 limited to a local Vite React TypeScript build and safe sample/proof-runner
@@ -16,8 +16,12 @@ npm --prefix apps/command-center run dev
 
 ## Boundary
 
-- Mission, approval, worker, evidence, and connector posture areas are rendered
-  from local static sample data only.
+- The operator hub, governed spokes, mission, approval, worker, evidence, and
+  connector posture areas are rendered from local static sample data only.
+- Desktop and larger tablet browsers show the command center as a talk-first
+  hub with observable governed spokes.
+- Phone-browser fallback is hub-first and preserves Freedom as the phone-side
+  operator anchor.
 - No approval, reject, hold, request-more-info, pause, resume, or redirect
   mutation behavior is active.
 - No service worker, push notification, or offline cache is active.
@@ -30,6 +34,5 @@ npm --prefix apps/command-center run dev
 
 ## Next Chunk
 
-Chunk Nineteen should harden the multi-viewport cockpit surface for desktop,
-Android tablet/browser review, and phone-browser fallback while preserving
-Freedom as the phone anchor.
+Chunk Twenty should add local governed approval actions only after the cockpit
+surface has been accepted.

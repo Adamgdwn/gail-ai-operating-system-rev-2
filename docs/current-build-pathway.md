@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-21T22:14:07-06:00
+Last Updated: 2026-06-23T21:26:14-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -108,7 +108,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Build operating cockpit shell | complete | 2026-06-21T21:56:24-06:00 | codex session | Chunk Eighteen replaced the placeholder browser scaffold with a read-only cockpit shell showing local sample mission, approval-boundary, worker/device, evidence, and connector-posture areas without approval mutation, live relay, Freedom runtime, M365 adapter, worker bootstrap, live connector, client-data, or production behavior. |
 | Record hub-and-spoke cockpit vision | complete | 2026-06-21T22:06:30-06:00 | codex session | Plan updated so Chunk Nineteen should shape the command center as an operator-centered hub with a talk-first core and observable governed spokes arced around it for M365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device surfaces. |
 | Box up session handoff | complete | 2026-06-21T22:14:07-06:00 | codex session | START_HERE, this pathway handoff, CARRY_FORWARD, changelog, and external AG Operations work tracking were refreshed for a low-token restart at Chunk Nineteen. |
-| Handoff next chunk | pending | 2026-06-21T22:14:07-06:00 | codex session | Next bounded task is Chunk Nineteen: harden the multi-viewport cockpit surface around the hub-and-spoke command-center model for desktop, Android tablet/browser, and phone-browser fallback while preserving Freedom as the phone anchor. |
+| Build multi-viewport cockpit surface | complete | 2026-06-23T21:26:14-06:00 | codex session | Chunk Nineteen hardened the command-center app into a static hub-and-spoke cockpit for desktop, tablet, and phone-browser fallback while preserving Freedom as the phone anchor. |
+| Handoff next chunk | pending | 2026-06-23T21:26:14-06:00 | codex session | Next bounded task is Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
 
 ## Current Completion Boundary
 
@@ -164,6 +165,13 @@ systems, evidence, and worker/device surfaces appear as observable governed
 spokes arced around that hub. This is a viewport and interaction-shape
 direction only; it does not activate live connectors, approval mutations, or
 Freedom runtime behavior.
+As of 2026-06-23T21:26:14-06:00, Chunk Nineteen implemented that
+hub-and-spoke surface in `apps/command-center` from local static sample data.
+The app now has a talk-first operator hub, governed spoke states for Microsoft
+365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and
+worker/device posture, desktop and larger-tablet arc layout, and hub-first
+phone-browser fallback. The command center remains display-only and does not
+replace Freedom's phone-side operator role.
 No approval mutation, service worker, auth, worker bootstrap or persistent
 worker model, hosted relay, live connector activation, Freedom runtime
 activation, M365 adapter, client-data workflow, or production release has
@@ -1113,7 +1121,7 @@ Result:
 
 ## Chunk Nineteen - Build Multi-Viewport Cockpit Surface
 
-Status: planned
+Status: complete (2026-06-23T21:26:14-06:00)
 
 Completion target: Task complete
 
@@ -1139,6 +1147,21 @@ system making it clear what the AI is coordinating and what is merely
 observed. Validation: responsive browser checks, screenshot review, build,
 diff check, commit, push. Stop: before adding real approval actions, live
 connector activation, or Freedom runtime integration.
+
+Result:
+
+- Added typed local/static talk hub and governed spoke records to
+  `apps/command-center/src/cockpitData.ts`.
+- Reworked `apps/command-center/src/App.tsx` around a talk-first operator hub,
+  a shallow governed spoke arc, and the existing operating detail views.
+- Updated `apps/command-center/src/styles.css` for desktop, larger-tablet, and
+  phone-browser fallback layouts with stable wrapping and no live controls.
+- Updated `apps/command-center/README.md` so the shell boundary now describes
+  the multi-viewport hub-and-spoke surface.
+- Kept approval mutation behavior, live relay reads/writes, connector
+  activation, Freedom runtime integration, M365/QuickBooks adapter work,
+  worker bootstrap, client data, live business systems, and production
+  behavior out of scope.
 
 ## Chunk Twenty - Add Approval Actions
 
@@ -1589,6 +1612,11 @@ date -Iseconds
 | 2026-06-21T21:56:24-06:00 | final Chunk Eighteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The first `npm ci` attempt failed because the running Vite dev server locked the Rolldown native binding; the command-center Vite process was stopped, `npm ci` was rerun successfully, and the dev server was scheduled to restart after validation. The only Git warning was the known pathway CRLF normalization notice. |
 | 2026-06-21T22:06:30-06:00 | hub-and-spoke cockpit planning update | pass | Updated the active pathway so Chunk Nineteen treats the command center as a talk-first operator hub with observable governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device surfaces. No code, live connector, approval action, Freedom runtime, M365 adapter, QuickBooks adapter, client-data, or production behavior was added. |
 | 2026-06-21T22:14:07-06:00 | end-of-session box-up | pass | Refreshed `START_HERE.md`, `docs/current-build-pathway.md`, `CARRY_FORWARD.md`, `docs/CHANGELOG.md`, and `C:\Users\adamg\AG Operations\01. Strategy and Planning\01. Work Tracking\GAIL AI Operating System Rev 2 - Work Tracking.md` so the next session can restart from Chunk Nineteen with low token load. |
+| 2026-06-23T21:26:14-06:00 | `bash scripts/governance-preflight.sh` | pass | Governance check passed with 0 warnings before Chunk Nineteen code work and again during final validation. |
+| 2026-06-23T21:26:14-06:00 | Chunk Nineteen multi-viewport cockpit surface | pass | Reworked `apps/command-center` around a typed local/static talk hub, governed spokes, desktop/larger-tablet arc layout, and hub-first phone-browser fallback. No approval mutation, live connector, Freedom runtime, M365/QuickBooks adapter, worker bootstrap, client data, hosted authorization, or production behavior was added. |
+| 2026-06-23T21:26:14-06:00 | app build and responsive screenshots | pass | `npm --prefix apps/command-center run build` passed. Playwright using the system Edge channel captured desktop, tablet, and phone screenshots at `tmp/screenshots/command-center-chunk19-desktop.png`, `tmp/screenshots/command-center-chunk19-tablet.png`, and `tmp/screenshots/command-center-chunk19-phone.png`; screenshot review found the surface usable with no visible overlap. |
+| 2026-06-23T21:26:14-06:00 | Graphify direct update | pass | Used `C:\Users\adamg\AppData\Local\Programs\Python\Python312\Scripts\graphify.exe update . --no-cluster`; the repo-local graph rebuilt with 1051 nodes and 1758 edges. Generated graph output remained ignored. |
+| 2026-06-23T21:26:14-06:00 | final Chunk Nineteen validation bundle | pass | Governance preflight, project-control schema validation, `python -m unittest discover -s tests`, `npm --prefix apps/command-center ci`, `npm --prefix apps/command-center run build`, `npm --prefix apps/command-center audit --audit-level=moderate`, `git diff --check`, complete-status formatting check, routing registration search, changed-file forbidden filename scan, changed-file strict secret-pattern scan, Playwright system-Edge screenshots, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files; an attempted extra programmatic Playwright overflow check was not counted because local `npm exec` did not expose the Playwright module to Node. |
 
 ## Next Handoff
 
@@ -1597,8 +1625,9 @@ Low-token restart:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read `START_HERE.md`.
-4. Read this section plus Chunk Nineteen only.
-5. Open the command-center app files when ready to build.
+4. Read this section plus Chunk Twenty only.
+5. Open the relay envelope/store, tool permission matrix, and command-center
+   app files when ready to build.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
 --short`, read short repo-local instructions, use `docs/context-map.md` when
@@ -1653,14 +1682,18 @@ Freedom source, read secret values, import generated runtime config, modify
 Freedom code, activate Freedom runtime/provider behavior, or build a competing
 native Android phone surface until a later explicit integration chunk permits
 it.
-The next bounded task is Chunk Nineteen: harden the multi-viewport cockpit
-surface on top of `apps/command-center` for desktop, Android tablet/browser,
-and phone-browser fallback while preserving Freedom as the phone anchor. Shape
-the surface as a talk-first, operator-centered hub with a shallow arc of
-observable governed spokes for Microsoft 365, Freedom, Graphify, QuickBooks,
-GitHub/build systems, evidence, and worker/device posture. Keep that task to
-viewport behavior, local/static spoke states, and handoff expectations; do not
-broaden into approval mutation behavior, Freedom code import, generated config
-reads, Freedom modification, Freedom runtime/provider activation, M365 adapter
-work, QuickBooks adapter work, hosted relay, worker bootstrap scripts, client
-data, live connectors, live business systems, or production behavior.
+Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
+read-only hub-and-spoke cockpit from local static data. It has a talk-first
+operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,
+QuickBooks, GitHub/build systems, evidence, and worker/device posture, desktop
+and larger-tablet arc layout, and hub-first phone-browser fallback. Freedom
+remains the phone-side operator anchor; the browser fallback does not replace
+Freedom's role.
+The next bounded task is Chunk Twenty: add local governed approval actions for
+approve, reject, hold, and request-more-info. Keep those actions auditable,
+stale-state protected, and limited to local governed records; do not execute
+live tools or broaden into Freedom code import, generated config reads,
+Freedom modification, Freedom runtime/provider activation, M365 adapter work,
+QuickBooks adapter work, hosted relay, worker bootstrap scripts, client data,
+live connectors, live business systems, hosted authorization, or production
+behavior.

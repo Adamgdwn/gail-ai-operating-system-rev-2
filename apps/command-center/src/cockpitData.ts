@@ -1,4 +1,11 @@
 export type CockpitStatusTone = "ready" | "watch" | "blocked" | "complete";
+export type GovernedSpokeState =
+  | "idle"
+  | "active"
+  | "waiting-for-approval"
+  | "blocked"
+  | "complete"
+  | "gated";
 
 export interface MissionStep {
   readonly name: string;
@@ -19,6 +26,15 @@ export interface MissionSnapshot {
   readonly steps: readonly MissionStep[];
 }
 
+export interface TalkHubSnapshot {
+  readonly operatorIntent: string;
+  readonly coordinatorState: string;
+  readonly approvalBoundary: string;
+  readonly currentMission: string;
+  readonly phoneHandoff: string;
+  readonly nextReview: string;
+}
+
 export interface ApprovalSnapshot {
   readonly envelopeId: string;
   readonly actor: string;
@@ -27,6 +43,18 @@ export interface ApprovalSnapshot {
   readonly requestedCapability: string;
   readonly relayStatus: string;
   readonly stopTriggers: readonly string[];
+}
+
+export interface GovernedSpokeSnapshot {
+  readonly id: string;
+  readonly label: string;
+  readonly system: string;
+  readonly state: GovernedSpokeState;
+  readonly tone: CockpitStatusTone;
+  readonly role: string;
+  readonly coordination: string;
+  readonly boundary: string;
+  readonly observed: string;
 }
 
 export interface WorkerSnapshot {
@@ -54,16 +82,26 @@ export interface ConnectorPosture {
 export interface OperatingCockpitSnapshot {
   readonly generatedAt: string;
   readonly source: string;
+  readonly hub: TalkHubSnapshot;
   readonly mission: MissionSnapshot;
   readonly approval: ApprovalSnapshot;
+  readonly governedSpokes: readonly GovernedSpokeSnapshot[];
   readonly workers: readonly WorkerSnapshot[];
   readonly evidence: readonly EvidenceSnapshot[];
   readonly connectorPostures: readonly ConnectorPosture[];
 }
 
 export const operatingCockpitSnapshot: OperatingCockpitSnapshot = {
-  generatedAt: "2026-06-21T21:43:50-06:00",
-  source: "safe local sample shaped by the Chunk Fifteen proof runner",
+  generatedAt: "2026-06-23T21:26:14-06:00",
+  source: "safe local sample shaped by the Chunk Fifteen proof runner and Chunk Nineteen cockpit plan",
+  hub: {
+    operatorIntent: "Review the governed operating picture before any system is allowed to act.",
+    coordinatorState: "GAIL brain is coordinating local proof records only.",
+    approvalBoundary: "A2 review ceiling, no mutation controls active",
+    currentMission: "Local proof path from intent to validated evidence",
+    phoneHandoff: "Freedom remains the phone-side operator anchor.",
+    nextReview: "Chunk Twenty approval actions after the cockpit surface is accepted.",
+  },
   mission: {
     requestId: "REQ-LOCAL-PROOF-001",
     missionId: "mission-local-proof",
@@ -128,6 +166,85 @@ export const operatingCockpitSnapshot: OperatingCockpitSnapshot = {
       "graphify_action_execution",
     ],
   },
+  governedSpokes: [
+    {
+      id: "microsoft-365",
+      label: "M365",
+      system: "Microsoft 365",
+      state: "idle",
+      tone: "watch",
+      role: "business substrate",
+      coordination: "Future metadata, records, tasks, and collaboration signals.",
+      boundary: "Planning-only. No tenant reads, sends, permission changes, or adapter work.",
+      observed: "bridge orientation recorded",
+    },
+    {
+      id: "freedom-engine",
+      label: "Freedom",
+      system: "Freedom Engine",
+      state: "gated",
+      tone: "watch",
+      role: "phone and partner anchor",
+      coordination: "Intent, approval review, voice/mobile continuity, and business-partner patterns.",
+      boundary: "No source import, generated config read, runtime activation, or phone replacement.",
+      observed: "boundary decision active",
+    },
+    {
+      id: "graphify",
+      label: "Graphify",
+      system: "Graphify",
+      state: "active",
+      tone: "ready",
+      role: "knowledge spoke",
+      coordination: "Graph context can route work and propose handoff candidates.",
+      boundary: "Read-only recommendations. No approval, execution, or secret indexing.",
+      observed: "handoff checkpoint active",
+    },
+    {
+      id: "quickbooks",
+      label: "QB",
+      system: "QuickBooks",
+      state: "blocked",
+      tone: "blocked",
+      role: "finance boundary",
+      coordination: "Accounting and billing signals are visible only as future capability classes.",
+      boundary: "Money, invoices, reconciliation, and payment actions require explicit approval.",
+      observed: "blocked until connector chunk",
+    },
+    {
+      id: "github-build",
+      label: "GitHub",
+      system: "GitHub + builds",
+      state: "active",
+      tone: "ready",
+      role: "durable source spine",
+      coordination: "Commits, validation summaries, and future issue or PR records anchor truth.",
+      boundary: "No production deployment or hosted relay authority in this chunk.",
+      observed: "private remote active",
+    },
+    {
+      id: "evidence",
+      label: "Evidence",
+      system: "Evidence ledger",
+      state: "complete",
+      tone: "complete",
+      role: "reference proof",
+      coordination: "Local proof runner evidence is visible as safe references.",
+      boundary: "Reference paths only. No raw logs, payload dumps, screenshots, or client data.",
+      observed: "local proof complete",
+    },
+    {
+      id: "worker-device",
+      label: "Workers",
+      system: "Worker + device posture",
+      state: "waiting-for-approval",
+      tone: "watch",
+      role: "future execution lane",
+      coordination: "Windows, Linux, browser, Android tablet, and phone roles stay observable.",
+      boundary: "No worker bootstrap, polling loop, shell execution, or hosted relay.",
+      observed: "claims proven locally",
+    },
+  ],
   workers: [
     {
       id: "linux-worker-001",

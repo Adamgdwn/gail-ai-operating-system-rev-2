@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-21T21:56:24-06:00
+Last Updated: 2026-06-23T21:26:14-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -81,7 +81,7 @@ competing truth stores.
 | `tests/test_relay_store.py` | Local relay store tests for persistence, reload, policy-gated claim validation, stale state rejection, duplicate worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payloads. |
 | `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` | Local no-network proof runner that exercises one mission path from intent through policy, connector registry, relay envelope, relay store, trusted-worker claim, reference-only evidence, and completed relay status. |
 | `tests/test_local_proof_runner.py` | Local proof-runner tests for complete mission-to-evidence proof, reference-only payload safety, and stop-trigger failure before relay records are written. |
-| `apps/command-center` | Browser-first Vite React TypeScript command-center cockpit shell with read-only local sample mission, approval-boundary, worker/device, evidence, and connector-posture areas shaped by the local proof runner. No approval mutation, service worker, auth, relay call/write, Freedom runtime, M365 adapter, worker bootstrap, live connector, client data, or production behavior. |
+| `apps/command-center` | Browser-first Vite React TypeScript command-center cockpit shell with a read-only multi-viewport operator hub, local/static governed spokes, mission, approval-boundary, worker/device, evidence, and connector-posture areas shaped by the local proof runner. No approval mutation, service worker, auth, relay call/write, Freedom runtime, M365 adapter, worker bootstrap, live connector, client data, or production behavior. |
 
 ## Active Placeholders To Promote
 
@@ -168,7 +168,7 @@ that boundary explicitly.
 | Linux | Superseded v1 reference host and future trusted worker clone. | Not the Rev 2 project home; future Linux work must pull from private GitHub and preserve Rev 2 controls. |
 | Android phone | Freedom-anchored future operator link. | Freedom is the preferred phone-interface anchor candidate for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; no local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
-| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the first read-only operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth. |
+| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's phone-side operator role. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
@@ -204,9 +204,8 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Nineteen: harden the multi-viewport cockpit surface for desktop,
-Android tablet/browser review, and phone-browser fallback while preserving
-Freedom as the phone anchor. Stop before approval mutation behavior, live relay
-writes, Freedom runtime access, M365 adapter work, hosted relay, worker
-bootstrap scripts, client data, live connectors, live business systems, or
-production.
+Begin Chunk Twenty: add local governed approval actions for approve, reject,
+hold, and request-more-info. Stop before live tool execution, live relay or
+hosted authorization, Freedom runtime access, M365 or QuickBooks adapter work,
+worker bootstrap scripts, client data, live connectors, live business systems,
+or production.

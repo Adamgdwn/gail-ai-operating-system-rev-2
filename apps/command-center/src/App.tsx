@@ -1,6 +1,7 @@
 import { appShellDecision } from "./appShellDecision";
 import {
   type CockpitStatusTone,
+  type GovernedSpokeState,
   operatingCockpitSnapshot,
 } from "./cockpitData";
 
@@ -9,6 +10,15 @@ const toneLabels: Record<CockpitStatusTone, string> = {
   watch: "Watch",
   blocked: "Blocked",
   complete: "Complete",
+};
+
+const spokeStateLabels: Record<GovernedSpokeState, string> = {
+  idle: "Idle",
+  active: "Active",
+  "waiting-for-approval": "Waiting",
+  blocked: "Blocked",
+  complete: "Complete",
+  gated: "Gated",
 };
 
 export function App() {
@@ -38,7 +48,54 @@ export function App() {
         </dl>
       </header>
 
-      <section className="cockpit-grid" aria-label="Operating cockpit">
+      <section className="cockpit-stage" aria-labelledby="hub-heading">
+        <section className="operator-hub" aria-labelledby="hub-heading">
+          <div className="hub-heading">
+            <div>
+              <p className="section-kicker">Operator Hub</p>
+              <h2 id="hub-heading">Talk-first command surface</h2>
+            </div>
+            <StatusPill tone="watch" label="Static" />
+          </div>
+          <div className="intent-panel" aria-label="Current operator intent">
+            <span className="intent-indicator" aria-hidden="true" />
+            <p>{snapshot.hub.operatorIntent}</p>
+          </div>
+          <div className="hub-grid">
+            <Meta label="Coordinator" value={snapshot.hub.coordinatorState} />
+            <Meta label="Mission" value={snapshot.hub.currentMission} />
+            <Meta label="Approval" value={snapshot.hub.approvalBoundary} />
+            <Meta label="Phone" value={snapshot.hub.phoneHandoff} />
+            <Meta label="Next" value={snapshot.hub.nextReview} />
+          </div>
+        </section>
+
+        <ol className="spoke-arc" aria-label="Observable governed spokes">
+          {snapshot.governedSpokes.map((spoke) => (
+            <li className={`spoke-card state-${spoke.state}`} key={spoke.id}>
+              <div className="spoke-topline">
+                <span className="spoke-label">{spoke.label}</span>
+                <StatusPill tone={spoke.tone} label={spokeStateLabels[spoke.state]} />
+              </div>
+              <h3>{spoke.system}</h3>
+              <p className="spoke-role">{spoke.role}</p>
+              <p>{spoke.coordination}</p>
+              <dl className="spoke-boundary">
+                <div>
+                  <dt>Boundary</dt>
+                  <dd>{spoke.boundary}</dd>
+                </div>
+                <div>
+                  <dt>Observed</dt>
+                  <dd>{spoke.observed}</dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="review-grid" aria-label="Operating detail">
         <section className="surface surface-primary" aria-labelledby="mission-heading">
           <div className="surface-heading">
             <div>
