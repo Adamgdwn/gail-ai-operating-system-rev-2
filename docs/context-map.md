@@ -1,6 +1,7 @@
 # Context Map
 
 Document type: project context routing map
+Last Updated: 2026-06-23T22:29:42-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -77,6 +78,14 @@ For meaningful work, define:
 Tiny edits may use an inline version of this packet. Large or strategic work
 should record the packet in the active plan named by `START_HERE.md`, an ADR, or
 a short handoff note.
+
+## Document Naming
+
+New durable documents and work-tracking records created after 2026-06-23 should
+use a date-stamped filename prefix, such as `YYYY-MM-DD - <title>.md`, and may
+also include an internal `Date: YYYY-MM-DD` marker. Existing required repo files
+with stable routing paths may keep their current names unless a bounded rename
+plan updates all references.
 
 ## Maintenance
 

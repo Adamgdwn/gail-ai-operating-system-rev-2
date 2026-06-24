@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-23T22:09:46-06:00
+Last Updated: 2026-06-23T22:29:42-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -23,6 +23,10 @@ The private GitHub repository `Adamgdwn/gail-ai-operating-system-rev-2`, its
 Windows, Linux, Android, browser, Graphify, and future hosted relay surfaces are
 access points, workers, viewers, or approval surfaces. They do not become
 competing truth stores.
+
+New durable documents and work-tracking records should use date-stamped
+filenames going forward, such as `YYYY-MM-DD - <title>.md`, unless an existing
+required repo route, schema, or template requires a stable path.
 
 ## Open First
 
@@ -118,6 +122,11 @@ The AG Operations Microsoft 365 setup repo is a local orientation source for
 future bridge design, not an active Rev 2 source of truth:
 
 `C:\Users\adamg\01. Code Projects\AG Operations Workspace Setup`
+
+The AG Operations work tracking folder also holds a human-facing restart note
+for this Rev 2 build. The current date-stamped tracker is:
+
+`C:\Users\adamg\AG Operations\01. Strategy and Planning\01. Work Tracking\2026-06-23 - GAIL AI Operating System Rev 2 - Work Tracking.md`
 
 Open these files only for approved M365 bridge, connector, cockpit, or
 cross-workspace architecture work:

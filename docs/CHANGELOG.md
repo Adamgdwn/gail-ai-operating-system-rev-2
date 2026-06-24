@@ -2,6 +2,13 @@
 
 ## 2026-06-23
 
+- Boxed up the post-Chunk Nineteen state for a low-token restart at Chunk
+  Twenty, refreshing the repo handoff docs and the external AG Operations
+  `01 Work Tracking` folder. Strengthened the document convention so newly
+  authored durable documents and work-tracking records should use
+  date-stamped filenames such as `YYYY-MM-DD - <title>.md`, with stable
+  required repo paths exempted unless a bounded rename plan updates all
+  references.
 - Captured the owner decision that Freedom is the core operator interface and
   high-level agentic business partner surface, not merely a phone anchor. Rev 2
   must not build a competing native phone app; hosted, desktop, browser, and

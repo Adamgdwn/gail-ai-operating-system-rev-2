@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-23T22:09:46-06:00
+Last Updated: 2026-06-23T22:29:42-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -17,7 +17,8 @@ For the next session:
    app files when ready to build.
 
 Current next task: Chunk Twenty - add local governed approval actions that
-write auditable local records without executing live tools. Do not add hosted
+write auditable local records without executing live tools. The post-Chunk
+Nineteen box-up is complete as of 2026-06-23T22:29:42-06:00. Do not add hosted
 authorization, live connector execution, Freedom runtime access, M365 or
 QuickBooks adapters, worker bootstrap, client data, or production behavior.
 
@@ -54,9 +55,11 @@ Current priorities:
 - never build a competing native phone app for Rev 2; phone-side work should
   augment Freedom through governed bridge contracts, summaries, links, and
   fallback views unless Adam explicitly reverses this decision
-- prefix newly authored durable documents and records with a clear date marker
-  such as `Date: YYYY-MM-DD` or `YYYY-MM-DD - <title>` unless an established
-  schema or required template prevents it
+- prefix newly authored durable documents and work-tracking records with a
+  filename date stamp such as `YYYY-MM-DD - <title>.md`; also include an
+  internal `Date: YYYY-MM-DD` marker where useful. Existing required repo files
+  with stable routes may keep their current names unless a bounded rename plan
+  updates all references.
 - keep Chunk Twenty approval actions local, governed, auditable, stale-state
   protected, and non-executing until later connector and runtime boundaries are
   explicitly approved

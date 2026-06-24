@@ -47,6 +47,11 @@ connector activation chunk exists.
 
 ## Documentation
 
+New durable documents and work-tracking records should use date-stamped
+filenames going forward, such as `YYYY-MM-DD - <title>.md`. Stable required
+repo files may keep their existing names unless a bounded rename plan updates
+all references.
+
 - `docs/architecture.md`
 - `docs/context-map.md`
 - `docs/source-of-truth-map.md`
