@@ -35,6 +35,7 @@ controls:
     - docs/roadmap.md
     - docs/policy/durable-development-engineering-policy.md
     - docs/standards/README.md
+    - docs/standards/2026-06-25 - Document Control Standard.md
     - docs/standards/engineering-governance-by-use-case.md
     - docs/standards/ship-ready-engineering-standard.md
     - docs/deployment-guide.md

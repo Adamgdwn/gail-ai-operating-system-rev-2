@@ -1,7 +1,7 @@
 # Context Map
 
 Document type: project context routing map
-Last Updated: 2026-06-25T07:59:26-06:00
+Last Updated: 2026-06-25T09:18:39-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -29,6 +29,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Current plan, chunking, validation, or handoff | Active plan named by `START_HERE.md`; default `docs/current-build-pathway.md` |
 | Source-of-truth routing, active versus reference docs, device roles, or compact future chunk map | `docs/source-of-truth-map.md` |
 | Engineering standards map | `docs/standards/README.md` |
+| Document naming, dated filenames, document control, work-tracking records, pathway logs, handoffs, ADRs, audits, or runbooks | `docs/standards/2026-06-25 - Document Control Standard.md`, then `docs/source-of-truth-map.md` for stable-route exceptions |
 | Context windows, token budgets, compaction, scoped reads, or handoffs | `docs/standards/context-hygiene-standard.md` |
 | Durable implementation, design quality, testing discipline, or AI coding fundamentals | `docs/policy/durable-development-engineering-policy.md` |
 | Use-case controls, risk tier, governance level, or owner decisions | `docs/standards/engineering-governance-by-use-case.md` |
@@ -82,11 +83,13 @@ a short handoff note.
 
 ## Document Naming
 
-New durable documents and work-tracking records created after 2026-06-23 should
-use a date-stamped filename prefix, such as `YYYY-MM-DD - <title>.md`, and may
-also include an internal `Date: YYYY-MM-DD` marker. Existing required repo files
-with stable routing paths may keep their current names unless a bounded rename
-plan updates all references.
+Use `docs/standards/2026-06-25 - Document Control Standard.md` for document naming. New
+durable documents and work-tracking records saved after 2026-06-25 should use a
+date-stamped filename prefix, such as `YYYY-MM-DD - <title>.md`, based on the
+first durable save or promotion date. Later edits update internal metadata
+rather than renaming the file. Existing required repo files with stable routing
+paths may keep their current names unless a bounded rename plan updates all
+references.
 
 ## Maintenance
 

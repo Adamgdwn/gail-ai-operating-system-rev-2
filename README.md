@@ -59,9 +59,10 @@ business substrate, and Rev 2 remains the governed technical spine.
 ## Documentation
 
 New durable documents and work-tracking records should use date-stamped
-filenames going forward, such as `YYYY-MM-DD - <title>.md`. Stable required
-repo files may keep their existing names unless a bounded rename plan updates
-all references.
+filenames going forward, such as `YYYY-MM-DD - <title>.md`. Use the first
+durable save or promotion date in the filename, then update internal metadata
+on later edits. Stable required repo files may keep their existing names unless
+a bounded rename plan updates all references.
 
 - `docs/architecture.md`
 - `docs/context-map.md`
@@ -71,6 +72,7 @@ all references.
 - `docs/roadmap.md`
 - `docs/policy/durable-development-engineering-policy.md`
 - `docs/standards/README.md`
+- `docs/standards/2026-06-25 - Document Control Standard.md`
 - `docs/standards/engineering-governance-by-use-case.md`
 - `docs/standards/ship-ready-engineering-standard.md`
 - `docs/standards/context-hygiene-standard.md`

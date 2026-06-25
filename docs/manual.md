@@ -37,6 +37,12 @@ For material or risk-triggering work, add the full governance path:
 8. Confirm the current roadmap and runbook still match reality.
 9. Update docs when behavior or operating expectations change.
 
+For new durable documents and work-tracking records, follow
+`docs/standards/2026-06-25 - Document Control Standard.md`: prefix the filename with the
+first durable saved/promoted date, for example
+`YYYY-MM-DD - <clear-title>.md`. Later edits update `Last Updated` metadata
+instead of renaming the file.
+
 ## Expected Outputs
 
 - working code or deliverables
@@ -53,3 +59,7 @@ evolution, keep Freedom as the operator/business-partner interface, and use
 `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` before
 any fold, bridge, shared runtime, connector activation, or source-of-truth
 change across the three builds.
+
+Document-control note: apply dated filenames to new durable records across Rev
+2, Freedom, and AG Operations Workspace unless a target repo's stable route,
+schema, or stronger local rule requires a different name.

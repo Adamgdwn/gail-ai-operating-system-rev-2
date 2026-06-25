@@ -22,7 +22,7 @@ Use this standard alongside:
 - `docs/policy/durable-development-engineering-policy.md`
 - `docs/standards/engineering-governance-by-use-case.md`
 - `docs/standards/ship-ready-engineering-standard.md`
-- `docs/standards/document-control-standard.md` when durable docs or handoffs are being updated
+- `docs/standards/2026-06-25 - Document Control Standard.md` when durable docs or handoffs are being updated
 
 The required engineering standards define what good and ship-ready work means. This standard defines how agents should manage context while doing that work.
 

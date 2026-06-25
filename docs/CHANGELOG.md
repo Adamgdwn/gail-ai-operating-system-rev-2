@@ -2,6 +2,13 @@
 
 ## 2026-06-25
 
+- Added the active document-control standard at
+  `docs/standards/2026-06-25 - Document Control Standard.md`. New durable documents and
+  work-tracking records across GAIL AI Operating System Rev 2, Freedom, and AG
+  Operations Workspace should use date-prefixed filenames based on first
+  durable save or promotion date, with later edits tracked by internal metadata
+  rather than repeated renames. Existing stable-route files are exempt unless a
+  bounded rename plan updates references.
 - Boxed the current change of direction into startup, routing, README, manual,
   roadmap, carry-forward, architecture, source-of-truth, and decision-process
   docs. Next startup should explicitly acknowledge that GAIL AI Operating

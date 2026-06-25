@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-25T07:59:26-06:00
+Last Updated: 2026-06-25T09:18:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -114,7 +114,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Box up post-Chunk Nineteen closeout | complete | 2026-06-23T22:29:42-06:00 | codex session | START_HERE, this pathway, CARRY_FORWARD, changelog, source/context routing, README, and the external `01 Work Tracking` folder were refreshed for a low-token restart at Chunk Twenty. New durable documents and work-tracking records should use date-stamped filenames going forward unless an established required path must stay stable. |
 | Record build consolidation decision process | complete | 2026-06-24T12:22:39-06:00 | codex session | Owner direction captured: let AG Operations finish its current evolution, then use `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` to decide whether Rev 2, Freedom, and AG Operations remain separate, bridge, fold, or defer. No source merge, runtime coupling, connector activation, or live business-system behavior was added. |
 | Box three-repo coordination pivot | complete | 2026-06-25T07:59:26-06:00 | codex session | Startup and routing docs now flag the current change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated as related builds while AG Operations finishes its current evolution. Next startup should acknowledge this before resuming implementation. |
-| Handoff next chunk | pending | 2026-06-25T07:59:26-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot. |
+| Record cross-build document naming rule | complete | 2026-06-25T09:18:39-06:00 | codex session | Added `docs/standards/2026-06-25 - Document Control Standard.md` and routed the owner requirement that new durable docs and work-tracking records across Rev 2, Freedom, and AG Operations Workspace should use date-prefixed filenames based on first durable save/promote date. |
+| Handoff next chunk | pending | 2026-06-25T09:18:39-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot and applying the document-control standard to any new durable docs. |
 
 ## Current Completion Boundary
 
@@ -222,6 +223,12 @@ remains the governed mission, policy, relay, approval-record, evidence, and
 worker spine. This changes the next-session posture from "just continue
 building Chunk Twenty" to "acknowledge the three-repo direction, then resume
 Chunk Twenty only if the user wants Rev 2 implementation."
+As of 2026-06-25T09:18:39-06:00, the cross-build document naming requirement is
+promoted into `docs/standards/2026-06-25 - Document Control Standard.md`. New durable
+documents and work-tracking records across Rev 2, Freedom, and AG Operations
+Workspace should use `YYYY-MM-DD - <clear-title>.md` based on the first durable
+save or promotion date. Later edits update internal metadata rather than
+renaming the file. Stable required routes may keep their existing names.
 
 ## Three-Repo Coordination Startup Flag
 
@@ -245,6 +252,10 @@ back this current direction in concise form:
   `YYYY-MM-DD - <title>.md`. Include an internal `Date: YYYY-MM-DD` marker
   where useful. Existing required repo files with stable paths may keep their
   names unless a bounded rename plan updates all references.
+- Use `docs/standards/2026-06-25 - Document Control Standard.md` as the controlling rule for
+  newly saved durable documents and work-tracking records. The filename date is
+  the first durable save/promote date; later edits use internal `Last Updated`
+  metadata.
 - Hosted, desktop, browser, and tablet command-center decisions should preserve
   Freedom as the core interface instead of creating a parallel operator system.
 - AG Operations should finish and box its current agentic-assistance evolution
@@ -1699,6 +1710,7 @@ date -Iseconds
 | 2026-06-23T22:29:42-06:00 | post-Chunk Nineteen box-up | pass | Refreshed `START_HERE.md`, this pathway, `CARRY_FORWARD.md`, `docs/CHANGELOG.md`, `docs/context-map.md`, `docs/source-of-truth-map.md`, `README.md`, and the AG Operations `01 Work Tracking` folder for a low-token restart at Chunk Twenty. Captured the stronger forward rule that newly authored durable documents and work-tracking records should use date-stamped filenames. Governance preflight, project-control schema validation, `git diff --check`, changed-file forbidden filename scan, and changed-diff strict secret-pattern scan passed. `date -Iseconds` failed under the PowerShell alias and was rerun with Bash; initial Bash `rg` scans were rerun successfully with PowerShell `Select-String`. |
 | 2026-06-24T12:22:39-06:00 | build consolidation decision process | pass | Added `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` and routed it through START_HERE, project-control, architecture, context, source-of-truth, pathway, and changelog docs. Governance preflight, project-control YAML/required-doc validation, `git diff --check`, routing registration search, changed-file forbidden filename scan, changed-diff strict secret-pattern scan, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 | 2026-06-25T07:59:26-06:00 | three-repo coordination box-up | pass | Updated startup, handoff, routing, architecture, source-of-truth, README, manual, roadmap, carry-forward, changelog, and the build consolidation decision process so the next startup must acknowledge the change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated but not consolidated. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
+| 2026-06-25T09:18:39-06:00 | cross-build document naming rule | pass | Added the active document-control standard and routed it through startup, pathway, context, source-of-truth, README, manual, standards index, project-control, carry-forward, and changelog docs. No existing documents were renamed; the rule applies forward to new durable documents and work-tracking records unless a stable-path exception applies. |
 
 ## Next Handoff
 
@@ -1713,7 +1725,9 @@ Low-token restart:
    System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
    related builds, and AG Operations should finish its current evolution before
    any consolidation review.
-6. Open the relay envelope/store, tool permission matrix, and command-center
+6. If creating or updating durable docs or work-tracking records, apply
+   `docs/standards/2026-06-25 - Document Control Standard.md`.
+7. Open the relay envelope/store, tool permission matrix, and command-center
    app files only if resuming Rev 2 implementation.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
@@ -1776,6 +1790,11 @@ summaries, links, and fallback views rather than mimicking Freedom as a parallel
 operator system. New durable documents and work-tracking records should use a
 date-stamped filename prefix, such as `YYYY-MM-DD - <title>.md`, unless a
 required stable repo path, schema, or template prevents it.
+As of 2026-06-25T09:18:39-06:00, that naming preference is now an active
+document-control standard at `docs/standards/2026-06-25 - Document Control Standard.md`.
+Apply it across new Rev 2, Freedom, and AG Operations Workspace durable records:
+date-prefix the filename on first durable save or promotion, then update
+internal `Last Updated` metadata for later edits.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,

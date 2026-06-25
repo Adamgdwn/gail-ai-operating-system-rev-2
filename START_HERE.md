@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-25T07:59:26-06:00
+Last Updated: 2026-06-25T09:18:39-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -16,7 +16,9 @@ For the next session:
 5. Before building, explicitly acknowledge the current change of direction:
    GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
    being coordinated as three related builds, not folded together yet.
-6. Open the relay envelope/store, tool permission matrix, and command-center
+6. If creating or updating durable docs or work-tracking records, apply
+   `docs/standards/2026-06-25 - Document Control Standard.md`.
+7. Open the relay envelope/store, tool permission matrix, and command-center
    app files only when the user is ready to resume Rev 2 implementation.
 
 Current direction: box the coordination pivot first. AG Operations Workspace
@@ -65,6 +67,11 @@ Current priorities:
   internal `Date: YYYY-MM-DD` marker where useful. Existing required repo files
   with stable routes may keep their current names unless a bounded rename plan
   updates all references.
+- apply `docs/standards/2026-06-25 - Document Control Standard.md` for new durable documents
+  across GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace:
+  use the first durable saved/promoted date in the filename, and update
+  internal `Last Updated` metadata for later edits instead of renaming files
+  repeatedly
 - keep Chunk Twenty approval actions local, governed, auditable, stale-state
   protected, and non-executing until later connector and runtime boundaries are
   explicitly approved

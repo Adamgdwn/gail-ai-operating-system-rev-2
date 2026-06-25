@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-25T07:59:26-06:00
+Last Updated: 2026-06-25T09:18:39-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -26,7 +26,10 @@ competing truth stores.
 
 New durable documents and work-tracking records should use date-stamped
 filenames going forward, such as `YYYY-MM-DD - <title>.md`, unless an existing
-required repo route, schema, or template requires a stable path.
+required repo route, schema, or template requires a stable path. The controlling
+rule is `docs/standards/2026-06-25 - Document Control Standard.md`: use the first durable
+save/promote date in the filename, then update internal metadata on later
+edits.
 
 ## Open First
 
@@ -75,6 +78,7 @@ decision.
 | `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
 | `docs/standards/README.md` | Standards index. |
+| `docs/standards/2026-06-25 - Document Control Standard.md` | Active document naming, dated filename, stable-path exception, and cross-build work-tracking rule for Rev 2, Freedom, and AG Operations Workspace. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
 | `docs/standards/engineering-governance-by-use-case.md` | Use-case governance expectations. |
 | `docs/standards/ship-ready-engineering-standard.md` | Completion labels and ship-readiness evidence gate. |
