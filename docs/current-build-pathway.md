@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-25T09:18:39-06:00
+Last Updated: 2026-06-25T10:31:18-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -115,6 +115,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record build consolidation decision process | complete | 2026-06-24T12:22:39-06:00 | codex session | Owner direction captured: let AG Operations finish its current evolution, then use `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` to decide whether Rev 2, Freedom, and AG Operations remain separate, bridge, fold, or defer. No source merge, runtime coupling, connector activation, or live business-system behavior was added. |
 | Box three-repo coordination pivot | complete | 2026-06-25T07:59:26-06:00 | codex session | Startup and routing docs now flag the current change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated as related builds while AG Operations finishes its current evolution. Next startup should acknowledge this before resuming implementation. |
 | Record cross-build document naming rule | complete | 2026-06-25T09:18:39-06:00 | codex session | Added `docs/standards/2026-06-25 - Document Control Standard.md` and routed the owner requirement that new durable docs and work-tracking records across Rev 2, Freedom, and AG Operations Workspace should use date-prefixed filenames based on first durable save/promote date. |
+| Clarify dependency-safe document naming | complete | 2026-06-25T10:31:18-06:00 | codex session | Updated the document-control standard so date-prefixed document names cannot be applied to dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, or tool-owned config files. |
 | Handoff next chunk | pending | 2026-06-25T09:18:39-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot and applying the document-control standard to any new durable docs. |
 
 ## Current Completion Boundary
@@ -229,6 +230,11 @@ documents and work-tracking records across Rev 2, Freedom, and AG Operations
 Workspace should use `YYYY-MM-DD - <clear-title>.md` based on the first durable
 save or promotion date. Later edits update internal metadata rather than
 renaming the file. Stable required routes may keep their existing names.
+As of 2026-06-25T10:31:18-06:00, the document-control standard explicitly
+protects dependency and tooling paths: do not date-prefix package manifests,
+lockfiles, importable source modules, schemas, generated files, CI workflows,
+runtime configuration, or tool-owned config. Use a dated companion note when
+those files need document-history context.
 
 ## Three-Repo Coordination Startup Flag
 
@@ -256,6 +262,9 @@ back this current direction in concise form:
   newly saved durable documents and work-tracking records. The filename date is
   the first durable save/promote date; later edits use internal `Last Updated`
   metadata.
+- The document-control standard must not rename or date-prefix dependency
+  manifests, lockfiles, importable source modules, schemas, generated files, CI
+  workflows, runtime config, or tool-owned config files.
 - Hosted, desktop, browser, and tablet command-center decisions should preserve
   Freedom as the core interface instead of creating a parallel operator system.
 - AG Operations should finish and box its current agentic-assistance evolution
@@ -1711,6 +1720,7 @@ date -Iseconds
 | 2026-06-24T12:22:39-06:00 | build consolidation decision process | pass | Added `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` and routed it through START_HERE, project-control, architecture, context, source-of-truth, pathway, and changelog docs. Governance preflight, project-control YAML/required-doc validation, `git diff --check`, routing registration search, changed-file forbidden filename scan, changed-diff strict secret-pattern scan, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 | 2026-06-25T07:59:26-06:00 | three-repo coordination box-up | pass | Updated startup, handoff, routing, architecture, source-of-truth, README, manual, roadmap, carry-forward, changelog, and the build consolidation decision process so the next startup must acknowledge the change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated but not consolidated. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 | 2026-06-25T09:18:39-06:00 | cross-build document naming rule | pass | Added the active document-control standard and routed it through startup, pathway, context, source-of-truth, README, manual, standards index, project-control, carry-forward, and changelog docs. No existing documents were renamed; the rule applies forward to new durable documents and work-tracking records unless a stable-path exception applies. |
+| 2026-06-25T10:31:18-06:00 | dependency-safe document naming clarification | pass | Clarified that the dated document naming rule must not touch dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, package identities, or tool-owned files. No code, manifests, lockfiles, dependency graph, source imports, build config, or generated output was renamed or modified. |
 
 ## Next Handoff
 
@@ -1726,7 +1736,9 @@ Low-token restart:
    related builds, and AG Operations should finish its current evolution before
    any consolidation review.
 6. If creating or updating durable docs or work-tracking records, apply
-   `docs/standards/2026-06-25 - Document Control Standard.md`.
+   `docs/standards/2026-06-25 - Document Control Standard.md`; do not
+   date-prefix dependency manifests, lockfiles, importable source modules,
+   schemas, generated files, CI workflows, runtime config, or tool-owned config.
 7. Open the relay envelope/store, tool permission matrix, and command-center
    app files only if resuming Rev 2 implementation.
 
@@ -1795,6 +1807,9 @@ document-control standard at `docs/standards/2026-06-25 - Document Control Stand
 Apply it across new Rev 2, Freedom, and AG Operations Workspace durable records:
 date-prefix the filename on first durable save or promotion, then update
 internal `Last Updated` metadata for later edits.
+As of 2026-06-25T10:31:18-06:00, that standard is dependency-safe: it does not
+apply to dependency manifests, lockfiles, imported modules, schemas, generated
+files, CI workflows, runtime config, package identities, or tool-owned config.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,

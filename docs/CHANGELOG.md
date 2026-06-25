@@ -2,6 +2,11 @@
 
 ## 2026-06-25
 
+- Clarified the document-control standard so dated document names cannot
+  interfere with dependencies or tooling. Dependency manifests, lockfiles,
+  importable source modules, schemas, generated files, CI workflows, runtime
+  config, package identities, and tool-owned config files keep their required
+  stable names; use dated companion notes instead.
 - Added the active document-control standard at
   `docs/standards/2026-06-25 - Document Control Standard.md`. New durable documents and
   work-tracking records across GAIL AI Operating System Rev 2, Freedom, and AG

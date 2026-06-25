@@ -71,7 +71,9 @@ Current priorities:
   across GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace:
   use the first durable saved/promoted date in the filename, and update
   internal `Last Updated` metadata for later edits instead of renaming files
-  repeatedly
+  repeatedly; do not date-prefix dependency manifests, lockfiles, importable
+  source modules, schemas, generated files, CI workflows, or tool-owned config
+  files
 - keep Chunk Twenty approval actions local, governed, auditable, stale-state
   protected, and non-executing until later connector and runtime boundaries are
   explicitly approved

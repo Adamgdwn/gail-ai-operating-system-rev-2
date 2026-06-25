@@ -3,6 +3,7 @@
 Document type: standard
 Date: 2026-06-25
 Saved: 2026-06-25T09:18:39-06:00
+Last Updated: 2026-06-25T10:31:18-06:00
 Status: active
 Owner: Adam Goodwin
 Audience: coding agents, human coders, reviewers, and project owners
@@ -75,6 +76,29 @@ Stable-path files may keep their current names, including:
 
 When a stable-path file needs a dated decision trail, create a dated companion
 record instead of renaming the stable route.
+
+## Dependency And Tooling Safety
+
+This standard must not interfere with dependency resolution, imports, build
+tools, generated artifacts, package managers, or external integrations.
+
+Do not date-prefix files whose names are part of a tool contract, dependency
+graph, import path, package identity, schema lookup, CI workflow, runtime
+configuration, or generated-output convention.
+
+Keep stable names for dependency and tooling files such as:
+
+- `package.json`, `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`;
+- `pyproject.toml`, `requirements.txt`, `uv.lock`, `poetry.lock`;
+- `tsconfig.json`, `vite.config.ts`, `eslint.config.js`, `vitest.config.ts`;
+- `.github/workflows/*.yml`;
+- `.env.example` and other safe template files;
+- source files imported by name or module path;
+- schema files, generated files, manifests, and tool-owned config files.
+
+If a dependency, package, schema, generated file, or tool config needs a dated
+history note, create a separate dated companion document. Do not rename the
+tool-facing file.
 
 ## Cross-Build Rule
 
