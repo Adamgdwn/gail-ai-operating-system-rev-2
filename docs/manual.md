@@ -2,7 +2,13 @@
 
 ## What This Project Is
 
-Describe the project in operator-friendly terms.
+GAIL AI Operating System Rev 2 is the governed technical spine for mission,
+policy, relay, approval-record, evidence, worker, and connector-boundary work.
+It is currently being coordinated with Freedom and AG Operations Workspace as
+related builds, but they are not consolidated. Freedom remains the core
+operator interface and high-level agentic business partner surface. AG
+Operations Workspace remains the live Microsoft 365 business substrate and
+current operating workflow environment.
 
 ## How To Work In This Repo
 
@@ -13,6 +19,11 @@ For ordinary scoped work, start lean:
 3. Use `docs/context-map.md` to choose only the docs and source areas needed for the task.
 4. Review `docs/current-build-pathway.md` for the active chunk, completion target, stop condition, and validation expectations.
 5. Run task-relevant validation.
+
+On the next startup, acknowledge the three-repo coordination direction before
+opening implementation files. Resume Chunk Twenty only when the user wants Rev
+2 local implementation; do not treat the coordination pivot as approval for a
+source merge, shared runtime, live connector, or new bridge layer.
 
 For material or risk-triggering work, add the full governance path:
 
@@ -37,4 +48,8 @@ For material or risk-triggering work, add the full governance path:
 
 ## Operator Notes
 
-Capture practical operating tips, common gotchas, and handoff guidance.
+Current handoff: let AG Operations Workspace finish and box its current
+evolution, keep Freedom as the operator/business-partner interface, and use
+`docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` before
+any fold, bridge, shared runtime, connector activation, or source-of-truth
+change across the three builds.

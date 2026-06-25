@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-06-25
+
+- Boxed the current change of direction into startup, routing, README, manual,
+  roadmap, carry-forward, architecture, source-of-truth, and decision-process
+  docs. Next startup should explicitly acknowledge that GAIL AI Operating
+  System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
+  related builds while remaining separately owned. AG Operations should finish
+  its current evolution, Freedom remains the core operator and agentic
+  business-partner interface, and Rev 2 remains the governed technical spine
+  until the build consolidation decision process records a later owner
+  decision.
+
 ## 2026-06-24
 
 - Added the active build consolidation decision process at

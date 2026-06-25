@@ -6,7 +6,9 @@ Clean rev-two workspace for the Guided AI Labs agentic operating system.
 
 This repo is the governed home for the Rev 2 command center, relay/worker core,
 tool directory, connector boundaries, and migration path from the existing UAOS
-proof work. DirectLink remains a transport/status project; the Linux UAOS repo
+proof work. It is now being coordinated with Freedom and AG Operations
+Workspace as one related build ecosystem, but not consolidated into one repo or
+runtime. DirectLink remains a transport/status project; the Linux UAOS repo
 remains the v1/reference source until selected material is copied here
 deliberately.
 
@@ -17,6 +19,10 @@ deliberately.
 - Governance level: 1
 - Risk tier: low for the initial local scaffold and planning track
 - Production status: not deployed
+- Current direction: coordinate GAIL AI Operating System Rev 2, Freedom, and
+  AG Operations Workspace while AG Operations finishes its current evolution;
+  use the build consolidation decision process before any fold, bridge, shared
+  runtime, or source-of-truth change.
 
 ## Quick Start
 
@@ -44,6 +50,11 @@ behavior.
 Do not connect live Microsoft 365, QuickBooks, finance, billing, client,
 or third-party account systems from this workspace until a later approved
 connector activation chunk exists.
+
+Next startup should acknowledge the coordination posture before implementation:
+Freedom remains the core operator interface and high-level agentic business
+partner surface, AG Operations Workspace remains the live Microsoft 365
+business substrate, and Rev 2 remains the governed technical spine.
 
 ## Documentation
 

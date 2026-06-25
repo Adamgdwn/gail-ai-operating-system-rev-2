@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-24T12:22:39-06:00
+Last Updated: 2026-06-25T07:59:26-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -11,16 +11,21 @@ For the next session:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read this file.
-4. Read only Chunk Twenty and `## Next Handoff` in
-   `docs/current-build-pathway.md`.
-5. Open the relay envelope/store, tool permission matrix, and command-center
-   app files when ready to build.
+4. Read `## Three-Repo Coordination Startup Flag`, Chunk Twenty, and
+   `## Next Handoff` in `docs/current-build-pathway.md`.
+5. Before building, explicitly acknowledge the current change of direction:
+   GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
+   being coordinated as three related builds, not folded together yet.
+6. Open the relay envelope/store, tool permission matrix, and command-center
+   app files only when the user is ready to resume Rev 2 implementation.
 
-Current next task: Chunk Twenty - add local governed approval actions that
-write auditable local records without executing live tools. The post-Chunk
-Nineteen box-up is complete as of 2026-06-23T22:29:42-06:00. Do not add hosted
-authorization, live connector execution, Freedom runtime access, M365 or
-QuickBooks adapters, worker bootstrap, client data, or production behavior.
+Current direction: box the coordination pivot first. AG Operations Workspace
+should finish and box its current evolution, Freedom remains the core operator
+interface and high-level agentic business partner surface, and Rev 2 remains
+the governed mission, policy, relay, approval-record, evidence, and worker
+spine. The default Rev 2 build task remains Chunk Twenty - local governed
+approval actions - but do not treat it as permission to merge repositories,
+add bridge layers, or activate live systems.
 
 ## Current Plan
 
@@ -68,6 +73,11 @@ Current priorities:
   separate, bridge, fold, or defer; use
   `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` for
   that review and do not add weak pass-through layers or runtime coupling first
+- treat the current owner direction as a three-repo coordination change:
+  coordinate GAIL AI Operating System Rev 2, Freedom, and AG Operations
+  Workspace deliberately, keep their ownership boundaries visible at startup,
+  and require an explicit decision-process review before any consolidation,
+  shared runtime, or source-of-truth change
 
 ## Current Build Pathway
 

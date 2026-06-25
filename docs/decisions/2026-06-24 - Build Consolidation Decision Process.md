@@ -2,6 +2,7 @@
 
 Date: 2026-06-24
 Recorded: 2026-06-24T12:22:39-06:00
+Last Updated: 2026-06-25T07:59:26-06:00
 Status: active decision process
 Owner: Adam Goodwin
 
@@ -16,6 +17,11 @@ evolution before consolidation decisions are made. Rev 2 should not absorb
 partially moving AG Operations work just to reduce the number of projects. The
 decision must be based on system responsibility, evidence, and weak-layer risk.
 
+Update 2026-06-25: the current change of direction is coordination across
+three repos/builds, not immediate consolidation. Startup should explicitly flag
+that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
+being coordinated while remaining separately owned until this process is run.
+
 ## Current Decision
 
 Do not fold AG Operations, Freedom, or Rev 2 into one build yet.
@@ -28,6 +34,8 @@ For now:
   partner surface.
 - Rev 2 remains the clean governed mission, policy, relay, connector-boundary,
   approval-record, evidence, and worker spine.
+- Next Rev 2 startup should acknowledge this coordination posture before
+  resuming Chunk Twenty or any implementation work.
 
 A future consolidation decision must pass through this process before any repo
 merge, runtime merge, connector activation, shared app shell, or source-of-truth
@@ -154,3 +162,13 @@ The decision process is complete only when a later review records:
 
 Until then, the standing decision is to keep the builds separate with no new
 runtime coupling and no source consolidation.
+
+## Startup Handoff Note
+
+For the next startup, call out the understanding first: GAIL AI Operating
+System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
+three related builds. AG Operations should finish and box its current
+evolution. Freedom remains the core operator/business-partner interface. Rev 2
+remains the governed technical spine. Any fold, bridge, shared runtime,
+connector activation, source merge, or source-of-truth change waits for the
+decision review above.

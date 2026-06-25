@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-24T12:22:39-06:00
+Last Updated: 2026-06-25T07:59:26-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -113,7 +113,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Reaffirm Freedom core interface and dated-doc preference | complete | 2026-06-23T22:09:46-06:00 | codex session | Owner reiterated that Freedom is the core operator interface and Rev 2 must never build a competing native phone app. Browser, hosted, desktop, and tablet surfaces may augment Freedom through governed bridges and fallback views. New durable documents and records should be prefaced with a clear date marker unless a schema/template prevents it. |
 | Box up post-Chunk Nineteen closeout | complete | 2026-06-23T22:29:42-06:00 | codex session | START_HERE, this pathway, CARRY_FORWARD, changelog, source/context routing, README, and the external `01 Work Tracking` folder were refreshed for a low-token restart at Chunk Twenty. New durable documents and work-tracking records should use date-stamped filenames going forward unless an established required path must stay stable. |
 | Record build consolidation decision process | complete | 2026-06-24T12:22:39-06:00 | codex session | Owner direction captured: let AG Operations finish its current evolution, then use `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` to decide whether Rev 2, Freedom, and AG Operations remain separate, bridge, fold, or defer. No source merge, runtime coupling, connector activation, or live business-system behavior was added. |
-| Handoff next chunk | pending | 2026-06-23T22:29:42-06:00 | codex session | Next bounded task remains Chunk Twenty: add local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. |
+| Box three-repo coordination pivot | complete | 2026-06-25T07:59:26-06:00 | codex session | Startup and routing docs now flag the current change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated as related builds while AG Operations finishes its current evolution. Next startup should acknowledge this before resuming implementation. |
+| Handoff next chunk | pending | 2026-06-25T07:59:26-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot. |
 
 ## Current Completion Boundary
 
@@ -211,6 +212,31 @@ merged, bridged more tightly, folded under one build, folded back, kept in AG
 Operations, retired, or deferred. Until that process is run, the builds remain
 separate with no new runtime coupling, source consolidation, or live connector
 activation.
+As of 2026-06-25T07:59:26-06:00, the project is boxed at a coordination pivot
+rather than a consolidation or runtime-build pivot. Next startup must flag
+understanding that GAIL AI Operating System Rev 2, Freedom, and AG Operations
+Workspace are being coordinated as three related builds: AG Operations
+Workspace should finish its current evolution, Freedom remains the core
+operator interface and high-level agentic business partner surface, and Rev 2
+remains the governed mission, policy, relay, approval-record, evidence, and
+worker spine. This changes the next-session posture from "just continue
+building Chunk Twenty" to "acknowledge the three-repo direction, then resume
+Chunk Twenty only if the user wants Rev 2 implementation."
+
+## Three-Repo Coordination Startup Flag
+
+On startup, before opening code for the next build chunk, the agent should say
+back this current direction in concise form:
+
+- GAIL AI Operating System Rev 2 is the governed technical spine.
+- Freedom is the core operator interface and high-level agentic business
+  partner surface.
+- AG Operations Workspace is the live Microsoft 365 business substrate and
+  current operating workflow environment.
+- AG Operations should finish and box its current evolution before any fold,
+  bridge, or one-build decision.
+- The build consolidation decision process must run before any shared runtime,
+  source merge, connector activation, or source-of-truth change.
 
 ## Forward Working Notes
 
@@ -224,6 +250,10 @@ activation.
 - AG Operations should finish and box its current agentic-assistance evolution
   before any consolidation review. Use the dated build consolidation decision
   process before adding bridge layers or folding systems together.
+- Treat the current direction as coordination between GAIL AI Operating System
+  Rev 2, Freedom, and AG Operations Workspace. Do not let future sessions erase
+  those boundaries by starting from an implementation chunk without first
+  acknowledging the coordination pivot.
 
 ## Compact Future Chunk Map
 
@@ -1668,6 +1698,7 @@ date -Iseconds
 | 2026-06-23T22:09:46-06:00 | Freedom core interface and dated-doc planning capture | pass | Recorded the owner decision that Freedom is the core interface, Rev 2 must not build a competing native phone app, and future browser/hosted/desktop/tablet surfaces should augment Freedom through governed bridge records and fallback views. Also recorded the forward preference for newly authored durable docs and records to start with a clear date marker. Governance preflight passed before the documentation update. |
 | 2026-06-23T22:29:42-06:00 | post-Chunk Nineteen box-up | pass | Refreshed `START_HERE.md`, this pathway, `CARRY_FORWARD.md`, `docs/CHANGELOG.md`, `docs/context-map.md`, `docs/source-of-truth-map.md`, `README.md`, and the AG Operations `01 Work Tracking` folder for a low-token restart at Chunk Twenty. Captured the stronger forward rule that newly authored durable documents and work-tracking records should use date-stamped filenames. Governance preflight, project-control schema validation, `git diff --check`, changed-file forbidden filename scan, and changed-diff strict secret-pattern scan passed. `date -Iseconds` failed under the PowerShell alias and was rerun with Bash; initial Bash `rg` scans were rerun successfully with PowerShell `Select-String`. |
 | 2026-06-24T12:22:39-06:00 | build consolidation decision process | pass | Added `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` and routed it through START_HERE, project-control, architecture, context, source-of-truth, pathway, and changelog docs. Governance preflight, project-control YAML/required-doc validation, `git diff --check`, routing registration search, changed-file forbidden filename scan, changed-diff strict secret-pattern scan, and Graphify direct update passed. The only Git warnings were the known CRLF normalization notices on touched Markdown files. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
+| 2026-06-25T07:59:26-06:00 | three-repo coordination box-up | pass | Updated startup, handoff, routing, architecture, source-of-truth, README, manual, roadmap, carry-forward, changelog, and the build consolidation decision process so the next startup must acknowledge the change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated but not consolidated. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 
 ## Next Handoff
 
@@ -1676,9 +1707,14 @@ Low-token restart:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read `START_HERE.md`.
-4. Read this section plus Chunk Twenty only.
-5. Open the relay envelope/store, tool permission matrix, and command-center
-   app files when ready to build.
+4. Read `## Three-Repo Coordination Startup Flag`, this section, and Chunk
+   Twenty only.
+5. Acknowledge the change of direction before building: GAIL AI Operating
+   System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
+   related builds, and AG Operations should finish its current evolution before
+   any consolidation review.
+6. Open the relay envelope/store, tool permission matrix, and command-center
+   app files only if resuming Rev 2 implementation.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
 --short`, read short repo-local instructions, use `docs/context-map.md` when
@@ -1760,3 +1796,8 @@ Before future cross-build consolidation, use
 fold AG Operations, Freedom, or Rev 2 into one build until AG Operations has
 boxed its current evolution and the weak-layer/consolidation review has an
 owner decision.
+As of 2026-06-25T07:59:26-06:00, the boxed handoff is a coordination handoff:
+Rev 2 is paused at the edge of Chunk Twenty unless the user explicitly resumes
+local implementation, Freedom remains the core operator and business-partner
+surface, and AG Operations Workspace should complete its current evolution
+before the three-repo decision process is run.

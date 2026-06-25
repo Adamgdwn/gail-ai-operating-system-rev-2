@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-24T12:22:39-06:00
+Last Updated: 2026-06-25T07:59:26-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -49,6 +49,9 @@ Active now:
   `docs/decisions/app-shell-command-center.md`;
 - active build consolidation decision process at
   `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`;
+- boxed three-repo coordination direction: GAIL AI Operating System Rev 2,
+  Freedom, and AG Operations Workspace are coordinated as related builds while
+  AG Operations finishes its current evolution;
 - read-only browser command-center cockpit shell at `apps/command-center`,
   now shaped as a multi-viewport operator hub with observable governed spokes;
 - documentation and local validation chunks only.
@@ -450,6 +453,7 @@ being introduced.
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
 | Freedom Engine is operating-partner runtime, agentic business partner, and core interface, not the Rev 2 spine. | Active decision | Freedom should carry the phone-side link and feed mature self-learning, research, agent/tool calling, business-memory, UX, and action-ledger patterns into Rev 2 through safe bridge records defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
 | Build consolidation waits for evidence. | Active decision process | AG Operations should finish its current evolution before Rev 2, Freedom, and AG Operations are evaluated for one-build consolidation. The process in `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` must be used to avoid weak pass-through layers, duplicate approval truth, and premature runtime coupling. |
+| Three-repo coordination is the current startup posture. | Active direction | Next startup should acknowledge that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are being coordinated but not consolidated. Rev 2 implementation can resume at Chunk Twenty only after that direction is understood. |
 | Connector registry entries are not credentials or permission. | Active | Live connector use needs separate approval, tests, and data boundaries. |
 | Local relay store proof exists before worker bootstrap. | Active | Claim and stale-state semantics now have a deterministic local proof before Windows/Linux worker services or hosted relay are evaluated. |
 

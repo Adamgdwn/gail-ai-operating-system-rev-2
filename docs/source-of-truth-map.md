@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-24T12:22:39-06:00
+Last Updated: 2026-06-25T07:59:26-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -42,6 +42,14 @@ required repo route, schema, or template requires a stable path.
 | 8 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
 | 9 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
 | 10 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
+
+Startup direction as of 2026-06-25T07:59:26-06:00: the next session should
+flag that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace
+are being coordinated as three related builds. This is not a consolidation
+approval. AG Operations should finish and box its current evolution, Freedom
+remains the core operator/business-partner surface, and Rev 2 remains the
+governed technical spine until the decision process records a later owner
+decision.
 
 ## Active Rev 2 Controls
 
@@ -184,7 +192,7 @@ unless Adam explicitly reverses that decision.
 | Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
 | Freedom Engine | Current operating partner OS, high-level agentic business partner, and core operator interface. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
-| Build consolidation review | Future architecture decision process. | Do not fold AG Operations, Freedom, or Rev 2 into one build until `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` is run after AG Operations finishes its current evolution. |
+| Build consolidation review | Future architecture decision process and current startup flag. | Do not fold AG Operations, Freedom, or Rev 2 into one build until `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` is run after AG Operations finishes its current evolution. Next startup should acknowledge the three-repo coordination direction before resuming implementation. |
 
 ## Compact Build Chunk Map
 
@@ -216,8 +224,11 @@ Stop and require explicit owner approval before:
 
 ## Next Action
 
-Begin Chunk Twenty: add local governed approval actions for approve, reject,
-hold, and request-more-info. Stop before live tool execution, live relay or
-hosted authorization, Freedom runtime access, M365 or QuickBooks adapter work,
-worker bootstrap scripts, client data, live connectors, live business systems,
-or production.
+First acknowledge the three-repo coordination direction: GAIL AI Operating
+System Rev 2, Freedom, and AG Operations Workspace are coordinated but not
+consolidated. If Adam resumes Rev 2 implementation, begin Chunk Twenty: add
+local governed approval actions for approve, reject, hold, and
+request-more-info. Stop before live tool execution, live relay or hosted
+authorization, Freedom runtime access, M365 or QuickBooks adapter work, worker
+bootstrap scripts, client data, live connectors, live business systems, or
+production.
