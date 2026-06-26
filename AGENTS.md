@@ -1,5 +1,44 @@
 # Agent Instructions
 
+## CNS Role (Guided AI Labs Agentic OS — 2026-06-25)
+
+**Layer:** GAIL OS — Deep-brain / Autonomic Management
+**Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate
+**In the CNS loop:** `Signal → GAIL OS classifies → Freedom reasons → OS validates authority → Motor system executes → Evidence returned to OS → Graphify updates → Freedom learns`
+
+GAIL OS is the governed spine — the authority and evidence layer beneath all other systems. No restricted action may execute without passing through the GAIL OS policy gate.
+
+**Current state:** Phase 2 of 5-phase build. Chunks 1–19 complete (Python spine, A1 local no-network boundary). Command-center React TypeScript cockpit under `apps/command-center/`. Core package under `packages/uaos-core/`.
+
+**Implemented spine (Chunks 9–15):**
+- `mission_spine.py` — MissionEnvelope, MissionPlan, PermissionGate, LocalMissionStore
+- `connector_registry.py` — 7 planning-only ConnectorProfiles (GitHub, Graphify, M365, QuickBooks, local device, client gateway, vendor)
+- `relay_envelope.py` — RelayEnvelope, RelayValidationContext, validate_relay_envelope
+- `relay_store.py` — Local JSON-backed proof store for relay records, status transitions, worker claims
+- `graphify_handoff.py` — Read-only Graphify handoff candidate validation
+- `local_proof_runner.py` — Complete no-network mission → policy → relay → evidence proof path
+
+**Phase 1 next (Chunk 20–21):** Local governed approval writes (Chunk 20), then HTTP API exposure so Freedom and Graphify can call the spine remotely (Chunk 21). After Chunk 21, define JSON Schema `@gail/contracts` so TypeScript consumers (Freedom) have typed contracts.
+
+**Integration contracts (upstream — produces for Freedom and Graphify):**
+- `POST /api/missions` — Classify and create mission records
+- `POST /api/actions` — Validate and approve/reject proposed actions
+- `GET /api/authority-envelopes/{id}` — Return authority boundary for an actor
+- `POST /api/evidence` — Persist evidence packets
+- `GET /api/connectors` — Return connector registry status
+
+**Integration contracts (downstream — consumes):**
+- Receives `Signal` events from product apps and Freedom
+- Pushes `EvidencePacket` summaries to Graphify via GraphNode updates (Phase 2+)
+
+**Authority boundary:** This repo is the R0–R5 authority source. R5 is human-only — no agent may bypass this. R4 requires a signed AuthorityEnvelope with explicit charter, stop conditions, rollback path, and review cadence.
+
+**Cross-machine note:** GAIL OS runs on Windows. Freedom runs on Linux. Graphify primary runs on Linux. Cross-machine communication is via GitHub (current) → GAIL OS HTTP API (Phase 1 target). Do not use DirectLink as primary transport.
+
+For cross-repo coordination state, see `agentic-multi-agent-agent-builder/docs/build-control/` (Linux control plane repo).
+
+---
+
 ## Normal Startup
 
 For ordinary scoped work:
