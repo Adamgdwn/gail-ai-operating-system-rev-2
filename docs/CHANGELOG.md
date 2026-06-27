@@ -2,6 +2,16 @@
 
 ## 2026-06-27
 
+- Completed GA-C2 as a local Graphify acceleration preview command. Added
+  `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`,
+  `tests/test_graphify_acceleration_preview.py`, and
+  `scripts/write-graphify-acceleration-preview.ps1` to generate deterministic
+  synthetic JSONL preview facts under the ignored
+  `tmp/graphify-acceleration-preview/` boundary or print them without writing.
+  The command validates every preview record before write and rejects unsafe
+  output paths. No Graphify call, adapter, transport, HTTP API, cloud
+  placement, live connector, live business-system read, client data, retained
+  evidence lane, runtime hook, or execution authority was added.
 - Completed GA-C1 as a draft preview-retention decision for Graphify
   acceleration. Added
   `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` and

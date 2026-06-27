@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T17:15:09-06:00
+Last Updated: 2026-06-27T17:41:51-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -22,6 +22,14 @@ Graphify is expected to become faster and able to reach more corners of the
 interconnected Guided AI Labs system. Rev 2 should prepare for that by making
 its own governed state easier for Graphify to consume, not by changing Graphify
 itself inside this repository.
+
+Owner context added 2026-06-27T17:41:51-06:00: Graphify should be treated as a
+high-importance neuronal pathway layer for fast, reliable relationship
+intelligence across the Guided AI Labs system. AG Operations Workspace Setup is
+the likely first tactile Microsoft 365 environment that will eventually provide
+real operating-system input and output surfaces, but it remains a future
+governed boundary for Rev 2. Current Freedom inputs and outputs remain clear
+and must not be compromised by Graphify acceleration work.
 
 New durable reading documents should use date-prefixed filenames. Dependency
 files, importable source modules, schemas, generated files, runtime configs,
@@ -493,7 +501,7 @@ pass.
 
 ### Phase C - Local Export Preview
 
-Status: active preview planning (2026-06-27T17:15:09-06:00)
+Status: active preview diff planning (2026-06-27T17:41:51-06:00)
 
 Add a local export preview or store only after the contract is validated.
 
@@ -547,7 +555,7 @@ data, or execution authority was added.
 
 #### GA-C2 - Build Local Export Preview Command
 
-Status: planned
+Status: task complete (2026-06-27T17:41:51-06:00)
 
 Completion target: Task complete
 
@@ -564,12 +572,12 @@ records from safe sample data only.
 
 Acceptance:
 
-- preview records validate before write;
-- output ordering is deterministic;
-- output includes fingerprints and schema version;
-- command has a dry-run or print-only mode where practical;
-- output path is ignored or explicitly controlled according to GA-C1;
-- command cannot read live M365, QuickBooks, client, finance, billing, raw
+- [x] preview records validate before write;
+- [x] output ordering is deterministic;
+- [x] output includes fingerprints and schema version;
+- [x] command has a print-only mode;
+- [x] output path is ignored and controlled according to GA-C1;
+- [x] command cannot read live M365, QuickBooks, client, finance, billing, raw
   audio, raw logs, secrets, or Graphify runtime state.
 
 Validation: focused tests for deterministic output, invalid output rejection,
@@ -577,6 +585,18 @@ safe path checks, and no-network behavior.
 
 Stop condition: stop before scheduling, background execution, Graphify ingest,
 or live data sources.
+
+Execution note: GA-C2 added
+`packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`,
+`tests/test_graphify_acceleration_preview.py`, and
+`scripts/write-graphify-acceleration-preview.ps1`. The command writes
+deterministic synthetic JSONL records under
+`tmp/graphify-acceleration-preview/graphify-acceleration-preview.jsonl` by
+default, or prints the same JSONL without writing when `-PrintOnly` is used.
+It validates every `GraphifyAccelerationRecord` before write, rejects output
+paths outside the approved ignored preview directory, and creates no Graphify
+call, adapter, transport, HTTP API, cloud placement, live connector, business
+system read, retained evidence lane, or execution authority.
 
 #### GA-C3 - Add Preview Diff And Cache Checks
 
@@ -936,12 +956,16 @@ Stop before:
   defer transport until after local approval, authority, and evidence
   contracts are stable.
 
-## Closed Decisions
+## Closed Decisions And Completed Gates
 
 - 2026-06-27T17:15:09-06:00: GA-C1 selected ignored local developer artifact
   retention for preview output under `tmp/graphify-acceleration-preview/`.
   Generated preview output must not be committed by default and does not imply
   Graphify ingest.
+- 2026-06-27T17:41:51-06:00: GA-C2 implemented the ignored local preview
+  command using synthetic local records only. The preview command is an
+  operator inspection surface, not a retained evidence, relay, approval,
+  source-of-truth, or Graphify ingest path.
 
 ## Next Safe Slice
 
@@ -949,9 +973,10 @@ The next GAIL-side slice, when selected, should be:
 
 ```text
 Pre-Graphify preview slice:
-Execute GA-C2 local export preview command using only safe local records.
+Execute GA-C3 preview diff and cache checks using only local preview records.
 ```
 
 That slice remains outside live Graphify modification and outside Chunk Twenty
-unless Adam explicitly folds it into the active build path. GA-C2 must stay
-within the ignored preview-retention boundary selected by GA-C1.
+unless Adam explicitly folds it into the active build path. GA-C3 must stay
+within the ignored preview-retention boundary selected by GA-C1 and the local
+synthetic preview command completed in GA-C2.

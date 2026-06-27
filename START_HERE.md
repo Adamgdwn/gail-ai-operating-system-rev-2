@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-27T17:15:09-06:00
+Last Updated: 2026-06-27T17:41:51-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -88,11 +88,16 @@ Current priorities:
   and require an explicit decision-process review before any consolidation,
   shared runtime, or source-of-truth change
 - if Adam continues the promoted Graphify acceleration path before Chunk
-  Twenty, the next slice is GA-C2: build a local export preview command under
-  the ignored preview boundary selected in
+  Twenty, the next slice is GA-C3: add preview diff and cache checks using
+  only local preview records and fingerprints under the ignored preview
+  boundary selected in
   `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`; do not
   retain generated preview output, imply Graphify ingest, add adapters, expose
   HTTP/cloud paths, read live business systems, or grant execution authority
+- treat Graphify acceleration as a high-importance neuronal pathway track for
+  future fast relationship intelligence, while keeping AG Operations Workspace
+  Setup as a later governed Microsoft 365 tactile input/output boundary and
+  preserving the current Freedom input/output boundary
 
 ## Current Build Pathway
 

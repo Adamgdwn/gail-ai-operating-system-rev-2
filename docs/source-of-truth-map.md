@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-27T17:15:09-06:00
+Last Updated: 2026-06-27T17:41:51-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -46,7 +46,7 @@ edits.
 | 9 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
 | 10 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
 | 11 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | GAIL-side plan for future sanitized graph-fact exports that let enhanced Graphify move faster without becoming an authority or execution layer. |
-| 12 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | GA-C1 decision that future local Graphify acceleration preview output is ignored disposable developer artifact output under `tmp/graphify-acceleration-preview/` by default. |
+| 12 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | GA-C1 decision that local Graphify acceleration preview output is ignored disposable developer artifact output under `tmp/graphify-acceleration-preview/` by default. |
 
 Startup direction as of 2026-06-25T07:59:26-06:00: the next session should
 flag that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace
@@ -80,7 +80,7 @@ decision.
 | `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains a separate knowledge spoke and never an execution authority. |
-| `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | Active GA-C1 retention decision: future local preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not committed, retained as evidence, or treated as Graphify ingest. |
+| `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | Active GA-C1 retention decision: local preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not committed, retained as evidence, or treated as Graphify ingest. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/standards/2026-06-25 - Document Control Standard.md` | Active document naming, dated filename, stable-path exception, and cross-build work-tracking rule for Rev 2, Freedom, and AG Operations Workspace. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -97,6 +97,11 @@ decision.
 | `tests/test_connector_registry.py` | Local connector registry tests for planning-only profiles, live-capability rejection, client-controlled gates, dry-run-only decisions, JSON round trips, and duplicate IDs. |
 | `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py` | Local read-only Graphify route status and handoff candidate validation for approved graph references. |
 | `tests/test_graphify_handoff.py` | Local Graphify handoff tests for route readiness, candidate validation, policy-gated dry-run actions, denied execution/mutation, evidence checks, and sensitive-boundary rejection. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py` | Local sanitized `GraphifyAccelerationRecord` contract, safety classifiers, pure Action/AuthorityEnvelope/EvidencePacket graph-fact builders, and deterministic fingerprints for future Graphify acceleration. No persistence, transport, adapter, ingest, or execution authority. |
+| `tests/test_graphify_acceleration.py` | Local contract, sanitizer, emitter, fingerprint, and package-root export tests for Graphify acceleration records. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py` | Local synthetic JSONL preview generator for GA-C2. Writes only under the ignored preview boundary by default, supports print-only mode, validates records before write, and does not call Graphify or live systems. |
+| `tests/test_graphify_acceleration_preview.py` | Local preview tests for deterministic output, path safety, invalid-record rejection before write, print-only mode, and JSONL structure. |
+| `scripts/write-graphify-acceleration-preview.ps1` | Windows wrapper for the local preview command. It sets `PYTHONPATH` to the repo source folder and calls the GA-C2 preview module; it does not install services, schedule jobs, call Graphify, or read live systems. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | Local no-network relay envelope schema validation for intent, approval, status, evidence, and handoff records. |
 | `tests/test_relay_envelope.py` | Local relay envelope tests for safe references, dry-run policy gates, malformed JSON shapes, stale or expired approvals, denied hosted relay or worker polling, and unsafe payload rejection. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` | Local no-network relay record store proof for validated envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. |
@@ -197,8 +202,8 @@ unless Adam explicitly reverses that decision.
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
 | Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's core operator role. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
-| Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. Future acceleration should consume sanitized GAIL-side graph facts only after a local contract and boundary are approved. |
-| Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
+| Graphify | Knowledge spoke and high-importance neuronal pathway layer for relationship intelligence. | Read-only handoff and graph references; recommendations are not execution approval. Current acceleration work emits local sanitized preview facts only. Future ingest still requires an approved connector-like boundary. |
+| Microsoft 365 / AG Operations | Future business substrate, identity/records/signals spoke, and likely first tactile input/output environment. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. No tenant content, live actions, or physical operating outputs are active in this repo. |
 | Freedom Engine | Current operating partner OS, high-level agentic business partner, and core operator interface. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
 | Build consolidation review | Future architecture decision process and current startup flag. | Do not fold AG Operations, Freedom, or Rev 2 into one build until `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` is run after AG Operations finishes its current evolution. Next startup should acknowledge the three-repo coordination direction before resuming implementation. |
 
@@ -235,8 +240,8 @@ Stop and require explicit owner approval before:
 First acknowledge the three-repo coordination direction: GAIL AI Operating
 System Rev 2, Freedom, and AG Operations Workspace are coordinated but not
 consolidated. If Adam continues the promoted Graphify acceleration path, the
-next slice is GA-C2: build a local export preview command using the ignored
-preview boundary recorded in
+next slice is GA-C3: add preview diff and cache checks using local preview
+records and the ignored preview boundary recorded in
 `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`. If Adam
 resumes the default Rev 2 implementation route, begin Chunk Twenty: add local
 governed approval actions for approve, reject, hold, and request-more-info.
