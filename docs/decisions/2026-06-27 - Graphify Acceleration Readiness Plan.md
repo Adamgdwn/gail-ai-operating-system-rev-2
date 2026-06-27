@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T09:29:11-06:00
+Last Updated: 2026-06-27T09:39:31-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -131,7 +131,7 @@ them into `docs/current-build-pathway.md`.
 
 ### Phase A - Plan Only
 
-Status: active planning complete.
+Status: complete (2026-06-27T09:39:31-06:00)
 
 Capture the GAIL-side acceleration plan and route it through the active pathway.
 No code, live connector, Graphify repo change, Graphify upload, HTTP API,
@@ -139,7 +139,7 @@ cloud placement, or production behavior.
 
 #### GA-A1 - Record GAIL-Side Acceleration Boundary
 
-Status: complete
+Status: complete (2026-06-27T09:06:27-06:00)
 
 Completion target: Task complete
 
@@ -174,7 +174,7 @@ transport, or Chunk Twenty approval-action work.
 
 #### GA-A2 - Detail Phase Chunks
 
-Status: complete
+Status: complete (2026-06-27T09:29:11-06:00)
 
 Completion target: Task complete
 
@@ -210,7 +210,7 @@ adapters, or live integrations.
 
 #### GA-A3 - Owner Promotion Checkpoint
 
-Status: planned
+Status: complete (2026-06-27T09:39:31-06:00)
 
 Completion target: Draft complete
 
@@ -224,6 +224,10 @@ hardening results, and owner priority.
 
 Outputs: an owner decision recorded in the active pathway, either deferring
 Graphify acceleration or promoting a specific GA-B chunk.
+
+Execution note: Adam directed execution to start before Chunk Twenty, with the
+boundary that this repository modifies GAIL OS only and does not modify
+Graphify. GA-B1 and GA-B2 were promoted as the first pre-Chunk Twenty slice.
 
 Acceptance:
 
@@ -240,6 +244,8 @@ touch live systems, or if it would require Graphify repo changes.
 
 ### Phase B - Local Contract And Validator
 
+Status: active (2026-06-27T09:39:31-06:00)
+
 After Chunk Twenty is ready or when Adam explicitly chooses this work, add the
 stable local contract and tests in Rev 2 only.
 
@@ -255,7 +261,7 @@ Acceptance:
 
 #### GA-B1 - Contract Work Packet And Fixture Inventory
 
-Status: planned
+Status: draft complete (2026-06-27T09:39:31-06:00)
 
 Completion target: Draft complete
 
@@ -264,7 +270,9 @@ Budget class: Tiny
 Objective: prepare the smallest implementation slice for the
 `GraphifyAccelerationRecord` contract.
 
-Inputs: `packages/uaos-core/src/gail_ai_operating_system/cns_schemas.py`,
+Inputs: `packages/uaos-core/src/gail_ai_operating_system/action.py`,
+`packages/uaos-core/src/gail_ai_operating_system/authority_envelope.py`,
+`packages/uaos-core/src/gail_ai_operating_system/evidence_packet.py`,
 `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`,
 `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py`,
 `packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`,
@@ -281,6 +289,20 @@ Acceptance:
 - no source module is created yet unless this chunk is intentionally combined
   with GA-B2 by owner approval.
 
+Fixture inventory:
+
+- action fixture: synthetic `Action`-shaped records with `action-` IDs,
+  `mission-` IDs, current `MissionStatus` values, R-level authority, risk
+  tier, optional `env-` envelope reference, and relative source refs only;
+- authority fixture: synthetic `AuthorityEnvelope`-shaped records with `env-`
+  IDs, explicit allowed action types, stop conditions, rollback path, review
+  cadence, and non-sensitive charter summaries only;
+- evidence fixture: synthetic `EvidencePacket`-shaped records with
+  `evidence-` IDs, `action-` refs, dry-run execution mode, safe outcome
+  summaries, and relative evidence refs only;
+- connector fixture: current planning-only connector profiles as metadata
+  references only, never live connector state or external-system content.
+
 Validation: targeted file review, governance preflight if the active pathway is
 updated, and `git diff --check` for document edits.
 
@@ -289,7 +311,7 @@ secret access, or Graphify repo changes.
 
 #### GA-B2 - Define GraphifyAccelerationRecord Contract
 
-Status: planned
+Status: draft complete (2026-06-27T09:39:31-06:00)
 
 Completion target: Draft complete
 
@@ -298,8 +320,10 @@ Budget class: Small
 Objective: add the stable Python contract object in Rev 2 with strict field
 validation and no transport behavior.
 
-Inputs: `cns_schemas.py`, current package style, existing validation patterns,
-this plan's required field list, and GA-B1 fixture decisions.
+Inputs: current split CNS schema modules (`action.py`,
+`authority_envelope.py`, `evidence_packet.py`), current package style,
+existing validation patterns, this plan's required field list, and GA-B1
+fixture decisions.
 
 Outputs:
 `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`

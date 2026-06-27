@@ -2,6 +2,18 @@
 
 ## 2026-06-27
 
+- Started executing the Graphify acceleration path before Chunk Twenty by
+  recording the GA-A3 owner promotion decision and completing GA-B1/GA-B2 to
+  draft state. Added the local
+  `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`
+  contract plus focused tests for strict `GraphifyAccelerationRecord`
+  validation, unsafe reference rejection, JSON-safe serialization, required
+  fingerprints, raw-payload blocking, and no package-root export before GA-B6.
+  Also made the existing action schema tests runnable under the standard
+  unittest command without an undeclared pytest dependency.
+  No persistence, preview output, Graphify call, adapter, transport, HTTP API,
+  cloud placement, live connector, client data, or execution authority was
+  added.
 - Expanded the Graphify acceleration readiness plan into plan-local GA-A
   through GA-E chunks covering owner promotion, local contract validation,
   local export preview, contract publication, and future adapter-boundary

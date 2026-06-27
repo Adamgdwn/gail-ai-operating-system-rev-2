@@ -1,11 +1,13 @@
 """Tests for action.py — Action schema and state machine."""
 
+from contextlib import contextmanager
+import re
 import sys
 import os
+import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "packages", "uaos-core", "src"))
 
-import pytest
 from gail_ai_operating_system.action import (
     Action,
     ActionTransitionError,
@@ -16,6 +18,17 @@ from gail_ai_operating_system.action import (
     validate_action,
 )
 from gail_ai_operating_system.mission import MissionStatus
+
+
+@contextmanager
+def raises(expected_exception, match=None):
+    try:
+        yield
+    except expected_exception as error:
+        if match is not None and re.search(match, str(error)) is None:
+            raise AssertionError(f"{match!r} did not match {error!r}") from error
+        return
+    raise AssertionError(f"{expected_exception.__name__} was not raised")
 
 
 def make_action(**kwargs) -> Action:
@@ -57,7 +70,7 @@ def test_create_action_generates_action_prefix():
 
 
 def test_create_action_bad_mission_prefix_raises():
-    with pytest.raises(ValueError, match="mission- prefix"):
+    with raises(ValueError, match="mission- prefix"):
         create_action(
             mission_id="bad-id-123",
             action_type="local_mission_record",
@@ -67,7 +80,7 @@ def test_create_action_bad_mission_prefix_raises():
 
 
 def test_create_action_empty_type_raises():
-    with pytest.raises(ValueError, match="action_type"):
+    with raises(ValueError, match="action_type"):
         create_action(
             mission_id="mission-abc123",
             action_type="",
@@ -77,7 +90,7 @@ def test_create_action_empty_type_raises():
 
 
 def test_create_action_empty_actor_raises():
-    with pytest.raises(ValueError, match="actor"):
+    with raises(ValueError, match="actor"):
         create_action(
             mission_id="mission-abc123",
             action_type="local_mission_record",
@@ -87,17 +100,17 @@ def test_create_action_empty_actor_raises():
 
 
 def test_create_action_invalid_authority_level_raises():
-    with pytest.raises(ValueError, match="authority_level"):
+    with raises(ValueError, match="authority_level"):
         make_action(authority_level="R9")
 
 
 def test_create_action_invalid_risk_tier_raises():
-    with pytest.raises(ValueError, match="risk_tier"):
+    with raises(ValueError, match="risk_tier"):
         make_action(risk_tier=6)
 
 
 def test_create_action_r4_requires_envelope():
-    with pytest.raises(ValueError, match="R4 actions require"):
+    with raises(ValueError, match="R4 actions require"):
         make_action(authority_level="R4")
 
 
@@ -159,7 +172,7 @@ def test_stop_path_reaches_evidenced():
 
 
 def test_invalid_transition_raises():
-    with pytest.raises(ActionTransitionError):
+    with raises(ActionTransitionError):
         transition_action(make_action(), MissionStatus.EXECUTED)
 
 
@@ -176,7 +189,7 @@ def test_transition_blocks_r4_without_envelope():
         arguments={},
         created_at="2026-06-27T00:00:00+00:00",
     )
-    with pytest.raises(ActionTransitionError, match="R4 actions require"):
+    with raises(ActionTransitionError, match="R4 actions require"):
         transition_action(action, MissionStatus.PROPOSED)
 
 
@@ -188,7 +201,7 @@ def test_transition_blocks_r5_agent_approval():
         MissionStatus.APPROVAL_REQUESTED,
     ]:
         action = transition_action(action, stage)
-    with pytest.raises(ActionTransitionError, match="R5 actions are human-only"):
+    with raises(ActionTransitionError, match="R5 actions are human-only"):
         transition_action(action, MissionStatus.APPROVED)
 
 
@@ -201,7 +214,7 @@ def test_terminal_rejected_raises_on_next_transition():
         MissionStatus.REJECTED,
     ]:
         action = transition_action(action, stage)
-    with pytest.raises(ActionTransitionError, match="terminal"):
+    with raises(ActionTransitionError, match="terminal"):
         transition_action(action, MissionStatus.CLAIMED)
 
 
@@ -219,7 +232,7 @@ def test_terminal_learned_raises_on_next_transition():
         MissionStatus.LEARNED,
     ]:
         action = transition_action(action, stage)
-    with pytest.raises(ActionTransitionError, match="terminal"):
+    with raises(ActionTransitionError, match="terminal"):
         transition_action(action, MissionStatus.REVIEWED)
 
 
@@ -386,3 +399,12 @@ def test_validate_action_r5_execution_state_rejected():
     )
     errors = validate_action(action)
     assert any("R5 actions are human-only" in e for e in errors)
+
+
+def load_tests(loader, tests, pattern):
+    suite = unittest.TestSuite()
+    suite.addTests(tests)
+    for name, value in sorted(globals().items()):
+        if name.startswith("test_") and callable(value):
+            suite.addTest(unittest.FunctionTestCase(value))
+    return suite
