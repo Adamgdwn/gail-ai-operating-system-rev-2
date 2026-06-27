@@ -1,7 +1,7 @@
 # Graphify Handoff Checkpoint
 
 Created: 2026-06-21T16:48:17-06:00
-Last Updated: 2026-06-21T16:48:17-06:00
+Last Updated: 2026-06-27T09:06:27-06:00
 Status: active checkpoint
 Owner: Adam Goodwin
 
@@ -14,6 +14,12 @@ Graphify is a read-only knowledge spoke. It may reduce raw source reads and
 help route architecture or migration work, but its recommendations remain
 mission candidates until Rev 2 validation, policy, and owner approval accept
 them.
+
+Related outbound-readiness plan:
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` defines
+how Rev 2 should later emit sanitized, delta-friendly authority, action,
+evidence, connector, and system-state facts so an enhanced Graphify layer can
+move faster without gaining execution authority.
 
 ## Current Route
 

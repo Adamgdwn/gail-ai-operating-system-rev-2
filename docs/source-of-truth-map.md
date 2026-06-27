@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-25T09:18:39-06:00
+Last Updated: 2026-06-27T09:06:27-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -45,6 +45,7 @@ edits.
 | 8 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
 | 9 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
 | 10 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
+| 11 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | GAIL-side plan for future sanitized graph-fact exports that let enhanced Graphify move faster without becoming an authority or execution layer. |
 
 Startup direction as of 2026-06-25T07:59:26-06:00: the next session should
 flag that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace
@@ -77,6 +78,7 @@ decision.
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
 | `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
+| `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains a separate knowledge spoke and never an execution authority. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/standards/2026-06-25 - Document Control Standard.md` | Active document naming, dated filename, stable-path exception, and cross-build work-tracking rule for Rev 2, Freedom, and AG Operations Workspace. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -193,7 +195,7 @@ unless Adam explicitly reverses that decision.
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
 | Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's core operator role. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
-| Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. |
+| Graphify | Knowledge spoke. | Read-only handoff and graph references; recommendations are not execution approval. Future acceleration should consume sanitized GAIL-side graph facts only after a local contract and boundary are approved. |
 | Microsoft 365 / AG Operations | Future business substrate and identity/records/signals spoke. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. |
 | Freedom Engine | Current operating partner OS, high-level agentic business partner, and core operator interface. | Reference and bridge-planning only; self-learning, research, agent/tool calling, business memory, voice/mobile, and operator-run capabilities must be preserved and elevated through later safe contracts; no runtime merge, generated config, live provider access, code import, or Freedom modification without a bounded later chunk. |
 | Build consolidation review | Future architecture decision process and current startup flag. | Do not fold AG Operations, Freedom, or Rev 2 into one build until `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` is run after AG Operations finishes its current evolution. Next startup should acknowledge the three-repo coordination direction before resuming implementation. |
@@ -230,8 +232,11 @@ Stop and require explicit owner approval before:
 
 First acknowledge the three-repo coordination direction: GAIL AI Operating
 System Rev 2, Freedom, and AG Operations Workspace are coordinated but not
-consolidated. If Adam resumes Rev 2 implementation, begin Chunk Twenty: add
-local governed approval actions for approve, reject, hold, and
+consolidated. The GAIL-side Graphify acceleration readiness plan is recorded in
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, but it
+does not change the default implementation route. If Adam resumes Rev 2
+implementation, begin Chunk Twenty: add local governed approval actions for
+approve, reject, hold, and
 request-more-info. Stop before live tool execution, live relay or hosted
 authorization, Freedom runtime access, M365 or QuickBooks adapter work, worker
 bootstrap scripts, client data, live connectors, live business systems, or

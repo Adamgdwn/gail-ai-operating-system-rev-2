@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-25T10:31:18-06:00
+Last Updated: 2026-06-27T09:06:27-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -117,6 +117,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Record cross-build document naming rule | complete | 2026-06-25T09:18:39-06:00 | codex session | Added `docs/standards/2026-06-25 - Document Control Standard.md` and routed the owner requirement that new durable docs and work-tracking records across Rev 2, Freedom, and AG Operations Workspace should use date-prefixed filenames based on first durable save/promote date. |
 | Clarify dependency-safe document naming | complete | 2026-06-25T10:31:18-06:00 | codex session | Updated the document-control standard so date-prefixed document names cannot be applied to dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, or tool-owned config files. |
 | Harden CNS schema contracts | complete | 2026-06-27T08:36:49-06:00 | codex session | Pre-Chunk Twenty hardening tightened Action, AuthorityEnvelope, and EvidencePacket validation around R-levels, R4 envelope references, R5 human-only execution boundaries, non-empty authority charters, dry-run evidence defaults, and package-root exports. `AGENTS.md` now defers HTTP API/cloud placement until after the local approval, authority, and evidence contracts are firm. |
+| Plan Graphify acceleration readiness | complete | 2026-06-27T09:06:27-06:00 | codex session | Added `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` as a GAIL-side plan for future Graphify speedups. Rev 2 should emit sanitized authority/action/evidence/connector graph facts later, while Graphify remains a separate knowledge spoke with no execution approval. |
 | Handoff next chunk | pending | 2026-06-25T09:18:39-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot and applying the document-control standard to any new durable docs. |
 
 ## Current Completion Boundary
@@ -236,6 +237,14 @@ protects dependency and tooling paths: do not date-prefix package manifests,
 lockfiles, importable source modules, schemas, generated files, CI workflows,
 runtime configuration, or tool-owned config. Use a dated companion note when
 those files need document-history context.
+As of 2026-06-27T09:06:27-06:00, a GAIL-side Graphify acceleration readiness
+plan is active at
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`. The plan
+keeps Graphify as a separate knowledge spoke and prepares Rev 2 to emit
+sanitized, delta-friendly authority, action, evidence, connector, and
+system-state facts in a later local contract. It does not modify Graphify,
+activate a live adapter, expose an HTTP API, choose cloud placement, index
+business/client data, or grant Graphify execution approval.
 
 ## Three-Repo Coordination Startup Flag
 
@@ -1285,6 +1294,30 @@ actions, HTTP API exposure, cloud placement, Microsoft 365 adapter work,
 QuickBooks adapter work, Freedom runtime activation, live connectors, client
 data, hosted authorization, or production behavior.
 
+## Pre-Chunk Twenty - Plan Graphify Acceleration Readiness
+
+Status: complete
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: CNS diagram, Graphify handoff checkpoint, active architecture,
+tool-permission matrix, document-control standard, and existing read-only
+Graphify route status. Outputs:
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` plus
+active pathway and routing updates. Acceptance: the plan stays inside GAIL OS,
+uses a date-prefixed reading-document name, preserves stable names for future
+importable modules and schemas, defines a future sanitized graph-fact contract,
+and blocks Graphify repo changes, live adapters, graph upload, source mutation,
+raw payload indexing, API/cloud exposure, connector activation, and execution
+approval. Validation: governance preflight, Graphify orientation attempt,
+document routing review, diff check, commit, push. Stop: before implementing
+the contract, changing Graphify, starting Chunk Twenty, or adding any live
+transport.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -1747,6 +1780,7 @@ date -Iseconds
 | 2026-06-25T09:18:39-06:00 | cross-build document naming rule | pass | Added the active document-control standard and routed it through startup, pathway, context, source-of-truth, README, manual, standards index, project-control, carry-forward, and changelog docs. No existing documents were renamed; the rule applies forward to new durable documents and work-tracking records unless a stable-path exception applies. |
 | 2026-06-25T10:31:18-06:00 | dependency-safe document naming clarification | pass | Clarified that the dated document naming rule must not touch dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, package identities, or tool-owned files. No code, manifests, lockfiles, dependency graph, source imports, build config, or generated output was renamed or modified. |
 | 2026-06-27T08:36:49-06:00 | pre-Chunk Twenty CNS schema hardening | pass | Tightened Action, AuthorityEnvelope, and EvidencePacket validation and package-root exports before approval actions. Focused schema tests passed: 80 tests, 13 subtests. Full Python suite passed: 154 tests, 29 subtests. Governance preflight passed with 0 warnings, command-center build passed, `git diff --check` passed, and Graphify incremental update rebuilt 1266 nodes and 2269 edges. No approval action, HTTP API, cloud placement, M365/QuickBooks adapter, Freedom runtime, live connector, client data, hosted authorization, or production behavior was added. |
+| 2026-06-27T09:06:27-06:00 | pre-Chunk Twenty Graphify acceleration readiness plan | pass | Governance preflight passed with 0 warnings. Read the document-control standard, active Graphify handoff checkpoint, architecture/permission boundaries, and canonical Graphify governance file. Repo-local `graphify query` was available but returned sparse routing only, so the plan records the need for future GAIL-side sanitized graph-fact exports to improve Graphify discovery. Graphify incremental update rebuilt 1287 nodes and 2290 edges. No code, Graphify repo change, graph upload, live adapter, HTTP API, cloud placement, connector activation, client data, or execution approval was added. |
 
 ## Next Handoff
 
@@ -1840,6 +1874,11 @@ As of 2026-06-27T08:36:49-06:00, pre-Chunk Twenty CNS schema hardening is
 complete: Action, AuthorityEnvelope, and EvidencePacket now enforce stronger
 authority, charter, evidence identity, dry-run boundary, and public export
 contracts before local approval writes begin.
+As of 2026-06-27T09:06:27-06:00, the GAIL-side Graphify acceleration readiness
+plan is recorded at
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`. It plans
+future local sanitized graph-fact records emitted by Rev 2 so enhanced Graphify
+can move faster without becoming an execution or authority layer.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,

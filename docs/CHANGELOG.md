@@ -2,6 +2,12 @@
 
 ## 2026-06-27
 
+- Added the dated GAIL-side Graphify acceleration readiness plan at
+  `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`.
+  The plan defines future sanitized, delta-friendly graph facts emitted by Rev
+  2 so an enhanced Graphify layer can move faster without changing Graphify,
+  activating a live adapter, indexing raw payloads, exposing HTTP/cloud paths,
+  or granting execution authority.
 - Hardened the pre-Chunk Twenty CNS schema contracts for the Guided AI Labs
   operating system diagram: `Action` now validates R-levels, requires an
   `env-` AuthorityEnvelope reference for R4 actions, and blocks R5 records from

@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-25T07:59:26-06:00
+Last Updated: 2026-06-27T09:06:27-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -401,6 +401,12 @@ graphs, run full semantic rebuilds outside chunk scope, perform live adapter
 fetches without a later boundary, or replace request, relay, worker, connector,
 or release controls.
 
+As of 2026-06-27, the outbound GAIL-side acceleration plan lives at
+`docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`. Future
+Rev 2 work may add local sanitized graph-fact records for Graphify to consume
+after validation, but those records are evidence and routing context only. They
+do not grant Graphify approval, mutation, connector, or execution authority.
+
 ## Data And Evidence Boundaries
 
 Allowed in the Rev 2 repo now:
@@ -450,6 +456,7 @@ being introduced.
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
+| Graphify acceleration is GAIL-side first. | Active plan | Rev 2 should later emit sanitized authority, action, evidence, connector, and system-state facts so enhanced Graphify can move faster without crawling raw state or becoming an authority layer. |
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
 | Freedom Engine is operating-partner runtime, agentic business partner, and core interface, not the Rev 2 spine. | Active decision | Freedom should carry the phone-side link and feed mature self-learning, research, agent/tool calling, business-memory, UX, and action-ledger patterns into Rev 2 through safe bridge records defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
 | Build consolidation waits for evidence. | Active decision process | AG Operations should finish its current evolution before Rev 2, Freedom, and AG Operations are evaluated for one-build consolidation. The process in `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` must be used to avoid weak pass-through layers, duplicate approval truth, and premature runtime coupling. |
