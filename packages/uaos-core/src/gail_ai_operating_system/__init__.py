@@ -1,5 +1,23 @@
 """Core Rev 2 package for local GAIL AI Operating System behavior."""
 
+from .action import (
+    ENVELOPE_REQUIRED_LEVELS,
+    R5_AGENT_BLOCKED_STATES,
+    TERMINAL_STATES,
+    VALID_TRANSITIONS,
+    Action,
+    ActionTransitionError,
+    create_action,
+    transition_action,
+    validate_action,
+)
+from .authority_envelope import (
+    AuthorityEnvelope,
+    AuthorityLevel,
+    AutonomyLevel,
+    EnvelopeStatus,
+    validate_authority_envelope,
+)
 from .connector_registry import (
     ConnectorOperationRequest,
     ConnectorPermissionDecision,
@@ -31,6 +49,14 @@ from .local_proof_runner import (
     LocalProofStep,
     run_local_proof,
 )
+from .evidence_packet import (
+    EvidencePacket,
+    EvidenceResult,
+    ExecutionMode,
+    create_evidence_packet,
+    validate_evidence_packet,
+)
+from .mission import MissionStatus
 from .mission_spine import (
     DEFAULT_APPROVAL_LEVEL,
     LocalMissionStore,
@@ -71,6 +97,11 @@ from .relay_store import (
 )
 
 __all__ = [
+    "Action",
+    "ActionTransitionError",
+    "AuthorityEnvelope",
+    "AuthorityLevel",
+    "AutonomyLevel",
     "ConnectorOperationRequest",
     "ConnectorPermissionDecision",
     "ConnectorProfile",
@@ -79,6 +110,11 @@ __all__ = [
     "ConnectorValidationIssue",
     "ConnectorValidationReport",
     "DEFAULT_APPROVAL_LEVEL",
+    "ENVELOPE_REQUIRED_LEVELS",
+    "EnvelopeStatus",
+    "EvidencePacket",
+    "EvidenceResult",
+    "ExecutionMode",
     "GRAPHIFY_CONNECTOR_ID",
     "GraphifyHandoffCandidate",
     "GraphifyHandoffRejection",
@@ -92,6 +128,7 @@ __all__ = [
     "MissionAction",
     "MissionEnvelope",
     "MissionPlan",
+    "MissionStatus",
     "MissionValidationError",
     "MissionValidationIssue",
     "MissionValidationResult",
@@ -99,6 +136,7 @@ __all__ = [
     "PolicyDecision",
     "PROJECT_ID",
     "CLAIMABLE_RECORD_STATUSES",
+    "R5_AGENT_BLOCKED_STATES",
     "RELAY_RECORD_STATUSES",
     "RELAY_STORE_SCHEMA_VERSION",
     "REPO_LOCAL_GRAPH_PATH",
@@ -113,17 +151,25 @@ __all__ = [
     "RelayValidationReport",
     "RelayWorkerClaim",
     "SCHEMA_VERSION",
+    "TERMINAL_STATES",
     "TRUSTED_WORKER_ROLES",
+    "VALID_TRANSITIONS",
     "WORKSPACE_GRAPH_PATH",
     "build_local_plan",
     "build_graphify_route_status",
+    "create_action",
+    "create_evidence_packet",
     "create_mission",
     "detect_stop_trigger",
     "initial_connector_profiles",
     "profiles_from_json",
     "profiles_to_json",
+    "transition_action",
+    "validate_action",
+    "validate_authority_envelope",
     "validate_connector_profile",
     "validate_connector_registry",
+    "validate_evidence_packet",
     "validate_graphify_handoff_payload",
     "validate_mission",
     "validate_relay_envelope",

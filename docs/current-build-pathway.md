@@ -116,6 +116,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Box three-repo coordination pivot | complete | 2026-06-25T07:59:26-06:00 | codex session | Startup and routing docs now flag the current change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated as related builds while AG Operations finishes its current evolution. Next startup should acknowledge this before resuming implementation. |
 | Record cross-build document naming rule | complete | 2026-06-25T09:18:39-06:00 | codex session | Added `docs/standards/2026-06-25 - Document Control Standard.md` and routed the owner requirement that new durable docs and work-tracking records across Rev 2, Freedom, and AG Operations Workspace should use date-prefixed filenames based on first durable save/promote date. |
 | Clarify dependency-safe document naming | complete | 2026-06-25T10:31:18-06:00 | codex session | Updated the document-control standard so date-prefixed document names cannot be applied to dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, or tool-owned config files. |
+| Harden CNS schema contracts | complete | 2026-06-27T08:36:49-06:00 | codex session | Pre-Chunk Twenty hardening tightened Action, AuthorityEnvelope, and EvidencePacket validation around R-levels, R4 envelope references, R5 human-only execution boundaries, non-empty authority charters, dry-run evidence defaults, and package-root exports. `AGENTS.md` now defers HTTP API/cloud placement until after the local approval, authority, and evidence contracts are firm. |
 | Handoff next chunk | pending | 2026-06-25T09:18:39-06:00 | codex session | Default Rev 2 implementation remains Chunk Twenty: local governed approval actions that write auditable local records without executing live tools or activating hosted authorization. Start only after acknowledging the three-repo coordination pivot and applying the document-control standard to any new durable docs. |
 
 ## Current Completion Boundary
@@ -1260,6 +1261,30 @@ Result:
   worker bootstrap, client data, live business systems, and production
   behavior out of scope.
 
+## Pre-Chunk Twenty - Harden CNS Schema Contracts
+
+Status: complete
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: CNS diagram, authority ladders, Action schema, AuthorityEnvelope
+schema, EvidencePacket schema, package exports, and focused schema tests.
+Outputs: stricter local validation for R-levels, R4 envelope references, R5
+human-only action boundaries, non-empty authority charters, evidence identity
+and execution mode, and package-root schema exports. Acceptance: invalid
+authority levels, missing R4 envelope references, R5 agent execution states,
+empty authority charters, invalid evidence/action IDs, invalid evidence modes,
+and default live evidence are rejected by tests. Validation: focused schema
+tests, full Python test suite, governance preflight, command-center build,
+diff check, Graphify incremental update, commit, push. Stop: before approval
+actions, HTTP API exposure, cloud placement, Microsoft 365 adapter work,
+QuickBooks adapter work, Freedom runtime activation, live connectors, client
+data, hosted authorization, or production behavior.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -1721,6 +1746,7 @@ date -Iseconds
 | 2026-06-25T07:59:26-06:00 | three-repo coordination box-up | pass | Updated startup, handoff, routing, architecture, source-of-truth, README, manual, roadmap, carry-forward, changelog, and the build consolidation decision process so the next startup must acknowledge the change of direction: GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are coordinated but not consolidated. No code, source merge, runtime coupling, connector activation, Freedom runtime access, Microsoft 365 tenant access, or production behavior was added. |
 | 2026-06-25T09:18:39-06:00 | cross-build document naming rule | pass | Added the active document-control standard and routed it through startup, pathway, context, source-of-truth, README, manual, standards index, project-control, carry-forward, and changelog docs. No existing documents were renamed; the rule applies forward to new durable documents and work-tracking records unless a stable-path exception applies. |
 | 2026-06-25T10:31:18-06:00 | dependency-safe document naming clarification | pass | Clarified that the dated document naming rule must not touch dependency manifests, lockfiles, importable source modules, schemas, generated files, CI workflows, runtime configs, package identities, or tool-owned files. No code, manifests, lockfiles, dependency graph, source imports, build config, or generated output was renamed or modified. |
+| 2026-06-27T08:36:49-06:00 | pre-Chunk Twenty CNS schema hardening | pass | Tightened Action, AuthorityEnvelope, and EvidencePacket validation and package-root exports before approval actions. Focused schema tests passed: 80 tests, 13 subtests. Full Python suite passed: 154 tests, 29 subtests. Governance preflight passed with 0 warnings, command-center build passed, `git diff --check` passed, and Graphify incremental update rebuilt 1266 nodes and 2269 edges. No approval action, HTTP API, cloud placement, M365/QuickBooks adapter, Freedom runtime, live connector, client data, hosted authorization, or production behavior was added. |
 
 ## Next Handoff
 
@@ -1810,6 +1836,10 @@ internal `Last Updated` metadata for later edits.
 As of 2026-06-25T10:31:18-06:00, that standard is dependency-safe: it does not
 apply to dependency manifests, lockfiles, imported modules, schemas, generated
 files, CI workflows, runtime config, package identities, or tool-owned config.
+As of 2026-06-27T08:36:49-06:00, pre-Chunk Twenty CNS schema hardening is
+complete: Action, AuthorityEnvelope, and EvidencePacket now enforce stronger
+authority, charter, evidence identity, dry-run boundary, and public export
+contracts before local approval writes begin.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,

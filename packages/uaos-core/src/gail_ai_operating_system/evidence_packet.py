@@ -99,15 +99,29 @@ def create_evidence_packet(
     envelope_id: str | None = None,
     rollback_note: str | None = None,
     outcome_summary: str = "",
+    allow_live: bool = False,
 ) -> EvidencePacket:
     """Create a new EvidencePacket with a generated evidence_id."""
 
-    errors = _validate_inputs(mission_id, action_id, actor, action_type, authority_basis, result, created_at)
+    evidence_id = f"evidence-{uuid4().hex[:12]}"
+    errors = _validate_inputs(
+        evidence_id,
+        mission_id,
+        action_id,
+        actor,
+        action_type,
+        authority_basis,
+        result,
+        execution_mode,
+        created_at,
+        envelope_id,
+        allow_live=allow_live,
+    )
     if errors:
         raise ValueError("; ".join(errors))
 
     return EvidencePacket(
-        evidence_id=f"evidence-{uuid4().hex[:12]}",
+        evidence_id=evidence_id,
         mission_id=mission_id,
         action_id=action_id,
         actor=actor,
@@ -122,34 +136,45 @@ def create_evidence_packet(
     )
 
 
-def validate_evidence_packet(packet: EvidencePacket) -> list[str]:
+def validate_evidence_packet(packet: EvidencePacket, *, allow_live: bool = False) -> list[str]:
     """Validate an EvidencePacket. Returns list of error messages (empty = valid)."""
 
     return _validate_inputs(
+        packet.evidence_id,
         packet.mission_id,
         packet.action_id,
         packet.actor,
         packet.action_type,
         packet.authority_basis,
         packet.result,
+        packet.execution_mode,
         packet.created_at,
+        packet.envelope_id,
+        allow_live=allow_live,
     )
 
 
 def _validate_inputs(
+    evidence_id: str,
     mission_id: str,
     action_id: str,
     actor: str,
     action_type: str,
     authority_basis: str,
     result: str,
+    execution_mode: str,
     created_at: str,
+    envelope_id: str | None,
+    *,
+    allow_live: bool,
 ) -> list[str]:
     errors: list[str] = []
+    if not evidence_id.startswith("evidence-"):
+        errors.append("evidence_id must use the evidence- prefix.")
     if not mission_id.startswith("mission-"):
         errors.append("mission_id must use the mission- prefix.")
-    if not action_id.strip():
-        errors.append("action_id is required.")
+    if not action_id.startswith("action-"):
+        errors.append("action_id must use the action- prefix.")
     if not actor.strip():
         errors.append("actor is required.")
     if not action_type.strip():
@@ -160,8 +185,17 @@ def _validate_inputs(
         EvidenceResult(result)
     except ValueError:
         errors.append(f"result must be one of {[r.value for r in EvidenceResult]}.")
+    try:
+        mode = ExecutionMode(execution_mode)
+    except ValueError:
+        errors.append(f"execution_mode must be one of {[m.value for m in ExecutionMode]}.")
+        mode = None
+    if mode == ExecutionMode.LIVE and not allow_live:
+        errors.append("live execution evidence is outside the current A1 local no-network boundary.")
     if not created_at.strip():
         errors.append("created_at is required.")
+    if envelope_id is not None and not envelope_id.startswith("env-"):
+        errors.append("envelope_id must use the env- prefix when present.")
     return errors
 
 

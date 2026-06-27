@@ -20,9 +20,14 @@ GAIL OS is the governed spine — the authority and evidence layer beneath all o
 - `graphify_handoff.py` — Read-only Graphify handoff candidate validation
 - `local_proof_runner.py` — Complete no-network mission → policy → relay → evidence proof path
 
-**Phase 1 next (Chunk 20–21):** Local governed approval writes (Chunk 20), then HTTP API exposure so Freedom and Graphify can call the spine remotely (Chunk 21). After Chunk 21, define JSON Schema `@gail/contracts` so TypeScript consumers (Freedom) have typed contracts.
+**Phase 1 next:** Local governed approval writes (Chunk 20), then evidence and
+handoff views (Chunk 21) per the active build pathway. HTTP API exposure and
+cloud placement remain later design decisions after the local approval,
+authority, and evidence contracts are firm. After that decision, define JSON
+Schema `@gail/contracts` so TypeScript consumers (Freedom) have typed
+contracts.
 
-**Integration contracts (upstream — produces for Freedom and Graphify):**
+**Planned integration contracts (upstream — produces for Freedom and Graphify):**
 - `POST /api/missions` — Classify and create mission records
 - `POST /api/actions` — Validate and approve/reject proposed actions
 - `GET /api/authority-envelopes/{id}` — Return authority boundary for an actor

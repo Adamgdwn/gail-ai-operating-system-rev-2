@@ -129,8 +129,18 @@ def validate_authority_envelope(envelope: AuthorityEnvelope) -> list[str]:
         errors.append("granted_by is required.")
     if not envelope.granted_at.strip():
         errors.append("granted_at is required.")
-    if not (0 <= envelope.max_risk_tier <= 5):
+    if not envelope.allowed_action_types:
+        errors.append("allowed_action_types must include at least one action type.")
+    elif any(not action_type.strip() for action_type in envelope.allowed_action_types):
+        errors.append("allowed_action_types cannot include blank values.")
+    if isinstance(envelope.max_risk_tier, bool) or not isinstance(envelope.max_risk_tier, int):
+        errors.append("max_risk_tier must be an integer between 0 and 5.")
+    elif not (0 <= envelope.max_risk_tier <= 5):
         errors.append("max_risk_tier must be between 0 and 5.")
+    if not envelope.stop_conditions:
+        errors.append("stop_conditions must include at least one stop condition.")
+    elif any(not condition.strip() for condition in envelope.stop_conditions):
+        errors.append("stop_conditions cannot include blank values.")
     if not envelope.rollback_path.strip():
         errors.append("rollback_path is required.")
     if not envelope.review_cadence.strip():

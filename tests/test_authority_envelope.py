@@ -126,6 +126,31 @@ class ValidateAuthorityEnvelopeTests(unittest.TestCase):
         errors = validate_authority_envelope(envelope)
         self.assertTrue(any("max_risk_tier" in e for e in errors))
 
+    def test_non_integer_risk_tier_is_rejected(self) -> None:
+        envelope = _valid_envelope(max_risk_tier="2")
+        errors = validate_authority_envelope(envelope)
+        self.assertTrue(any("max_risk_tier" in e for e in errors))
+
+    def test_empty_allowed_action_types_is_rejected(self) -> None:
+        envelope = _valid_envelope(allowed_action_types=())
+        errors = validate_authority_envelope(envelope)
+        self.assertTrue(any("allowed_action_types" in e for e in errors))
+
+    def test_blank_allowed_action_type_is_rejected(self) -> None:
+        envelope = _valid_envelope(allowed_action_types=("local_mission_record", " "))
+        errors = validate_authority_envelope(envelope)
+        self.assertTrue(any("allowed_action_types" in e for e in errors))
+
+    def test_empty_stop_conditions_is_rejected(self) -> None:
+        envelope = _valid_envelope(stop_conditions=())
+        errors = validate_authority_envelope(envelope)
+        self.assertTrue(any("stop_conditions" in e for e in errors))
+
+    def test_blank_stop_condition_is_rejected(self) -> None:
+        envelope = _valid_envelope(stop_conditions=("Scope boundary breach", ""))
+        errors = validate_authority_envelope(envelope)
+        self.assertTrue(any("stop_conditions" in e for e in errors))
+
     def test_empty_rollback_path_is_rejected(self) -> None:
         envelope = _valid_envelope(rollback_path="")
         errors = validate_authority_envelope(envelope)

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from typing import Any, Mapping
 from uuid import uuid4
 
+from .authority_envelope import AuthorityLevel
 from .mission import MissionStatus
 from .mission_spine import (
     MissionAction,
@@ -33,6 +34,18 @@ VALID_TRANSITIONS: dict[MissionStatus, frozenset[MissionStatus]] = {
 TERMINAL_STATES: frozenset[MissionStatus] = frozenset(
     {MissionStatus.REJECTED, MissionStatus.LEARNED}
 )
+ENVELOPE_REQUIRED_LEVELS: frozenset[AuthorityLevel] = frozenset({AuthorityLevel.R4})
+R5_AGENT_BLOCKED_STATES: frozenset[MissionStatus] = frozenset(
+    {
+        MissionStatus.APPROVED,
+        MissionStatus.CLAIMED,
+        MissionStatus.EXECUTED,
+        MissionStatus.STOPPED,
+        MissionStatus.EVIDENCED,
+        MissionStatus.REVIEWED,
+        MissionStatus.LEARNED,
+    }
+)
 
 
 class ActionTransitionError(ValueError):
@@ -59,6 +72,7 @@ class Action:
     created_at: str = ""
     claimed_at: str | None = None
     executed_at: str | None = None
+    envelope_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -74,6 +88,7 @@ class Action:
             "created_at": self.created_at,
             "claimed_at": self.claimed_at,
             "executed_at": self.executed_at,
+            "envelope_id": self.envelope_id,
         }
 
     @classmethod
@@ -91,6 +106,7 @@ class Action:
             created_at=str(payload.get("created_at", "")),
             claimed_at=str(payload["claimed_at"]) if payload.get("claimed_at") else None,
             executed_at=str(payload["executed_at"]) if payload.get("executed_at") else None,
+            envelope_id=str(payload["envelope_id"]) if payload.get("envelope_id") else None,
         )
 
 
@@ -103,6 +119,7 @@ def create_action(
     authority_level: str = "R0",
     risk_tier: int = 1,
     arguments: Mapping[str, Any] | None = None,
+    envelope_id: str | None = None,
 ) -> Action:
     """Create a new Action in the OBSERVED state."""
     if not mission_id.startswith("mission-"):
@@ -113,6 +130,9 @@ def create_action(
         raise ValueError("title is required.")
     if not actor.strip():
         raise ValueError("actor is required.")
+    authority_errors = _validate_authority_fields(authority_level, risk_tier, envelope_id)
+    if authority_errors:
+        raise ValueError("; ".join(authority_errors))
     return Action(
         action_id=f"action-{uuid4().hex[:12]}",
         mission_id=mission_id,
@@ -124,6 +144,7 @@ def create_action(
         risk_tier=risk_tier,
         arguments=dict(arguments) if arguments else {},
         created_at=current_timestamp(),
+        envelope_id=envelope_id,
     )
 
 
@@ -132,6 +153,11 @@ def transition_action(action: Action, to_status: MissionStatus) -> Action:
 
     Raises ActionTransitionError if the transition is not permitted.
     """
+    validation_errors = validate_action(action)
+    if validation_errors:
+        raise ActionTransitionError(f"Action failed validation: {'; '.join(validation_errors)}")
+    if action.authority_level == AuthorityLevel.R5.value and to_status in R5_AGENT_BLOCKED_STATES:
+        raise ActionTransitionError("R5 actions are human-only and cannot enter agent execution states.")
     allowed = VALID_TRANSITIONS.get(action.status, frozenset())
     if to_status not in allowed:
         if action.status in TERMINAL_STATES:
@@ -162,6 +188,7 @@ def transition_action(action: Action, to_status: MissionStatus) -> Action:
         created_at=action.created_at,
         claimed_at=claimed_at,
         executed_at=executed_at,
+        envelope_id=action.envelope_id,
     )
 
 
@@ -180,14 +207,43 @@ def validate_action(action: Action) -> list[str]:
         errors.append("actor is required.")
     if not isinstance(action.status, MissionStatus):
         errors.append(f"status {action.status!r} is not a valid MissionStatus.")
-    if action.risk_tier < 0 or action.risk_tier > 5:
+    errors.extend(_validate_authority_fields(action.authority_level, action.risk_tier, action.envelope_id))
+    if action.authority_level == AuthorityLevel.R5.value and action.status in R5_AGENT_BLOCKED_STATES:
+        errors.append("R5 actions are human-only and cannot enter approved or execution states.")
+    return errors
+
+
+def _validate_authority_fields(
+    authority_level: str,
+    risk_tier: int,
+    envelope_id: str | None,
+) -> list[str]:
+    errors: list[str] = []
+
+    try:
+        authority = AuthorityLevel(authority_level)
+    except ValueError:
+        errors.append(f"authority_level must be one of {[level.value for level in AuthorityLevel]}.")
+        authority = None
+
+    if isinstance(risk_tier, bool) or not isinstance(risk_tier, int):
+        errors.append("risk_tier must be an integer between 0 and 5.")
+    elif risk_tier < 0 or risk_tier > 5:
         errors.append("risk_tier must be between 0 and 5.")
+
+    if envelope_id is not None and not envelope_id.startswith("env-"):
+        errors.append("envelope_id must use the env- prefix when present.")
+    if authority in ENVELOPE_REQUIRED_LEVELS and envelope_id is None:
+        errors.append("R4 actions require an AuthorityEnvelope envelope_id.")
+
     return errors
 
 
 __all__ = [
     "Action",
     "ActionTransitionError",
+    "ENVELOPE_REQUIRED_LEVELS",
+    "R5_AGENT_BLOCKED_STATES",
     "TERMINAL_STATES",
     "VALID_TRANSITIONS",
     "create_action",

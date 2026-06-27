@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-06-27
+
+- Hardened the pre-Chunk Twenty CNS schema contracts for the Guided AI Labs
+  operating system diagram: `Action` now validates R-levels, requires an
+  `env-` AuthorityEnvelope reference for R4 actions, and blocks R5 records from
+  entering agent approval/execution states; `AuthorityEnvelope` now rejects
+  empty allowed-action and stop-condition charters; `EvidencePacket` now
+  validates evidence/action IDs, execution mode, optional envelope IDs, and
+  rejects live evidence by default under the current A1 local no-network
+  boundary. Package-root exports now include the new CNS schema types and
+  validators.
+- Aligned `AGENTS.md` with the active pathway: Chunk Twenty remains local
+  governed approval actions, Chunk Twenty-One remains evidence and handoff
+  views, and HTTP API/cloud placement is deferred until the local approval,
+  authority, and evidence contracts are firm. No approval action, HTTP API,
+  Microsoft 365/QuickBooks adapter, Freedom runtime, live connector, client
+  data, hosted authorization, or production behavior was added.
+
 ## 2026-06-25
 
 - Clarified the document-control standard so dated document names cannot

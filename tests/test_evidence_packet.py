@@ -128,6 +128,18 @@ class CreateEvidencePacketTests(unittest.TestCase):
                 created_at="2026-06-27T10:00:00-06:00",
             )
 
+    def test_create_rejects_bad_action_id_prefix(self) -> None:
+        with self.assertRaises(ValueError):
+            create_evidence_packet(
+                mission_id="mission-abc123",
+                action_id="bad-action",
+                actor="Adam Goodwin",
+                action_type="local_mission_record",
+                authority_basis="A1 local no-network",
+                result="success",
+                created_at="2026-06-27T10:00:00-06:00",
+            )
+
     def test_create_rejects_invalid_result(self) -> None:
         with self.assertRaises(ValueError):
             create_evidence_packet(
@@ -140,16 +152,66 @@ class CreateEvidencePacketTests(unittest.TestCase):
                 created_at="2026-06-27T10:00:00-06:00",
             )
 
+    def test_create_rejects_invalid_execution_mode(self) -> None:
+        with self.assertRaises(ValueError):
+            create_evidence_packet(
+                mission_id="mission-abc123",
+                action_id="action-001",
+                actor="Adam Goodwin",
+                action_type="local_mission_record",
+                authority_basis="A1 local no-network",
+                result="success",
+                execution_mode="simulation",
+                created_at="2026-06-27T10:00:00-06:00",
+            )
+
+    def test_create_rejects_live_execution_by_default(self) -> None:
+        with self.assertRaises(ValueError):
+            create_evidence_packet(
+                mission_id="mission-abc123",
+                action_id="action-001",
+                actor="Adam Goodwin",
+                action_type="local_mission_record",
+                authority_basis="A1 local no-network",
+                result="success",
+                execution_mode="live",
+                created_at="2026-06-27T10:00:00-06:00",
+            )
+
+    def test_create_allows_live_execution_only_when_explicit(self) -> None:
+        packet = create_evidence_packet(
+            mission_id="mission-abc123",
+            action_id="action-001",
+            actor="Adam Goodwin",
+            action_type="local_mission_record",
+            authority_basis="future approved live boundary",
+            result="success",
+            execution_mode="live",
+            created_at="2026-06-27T10:00:00-06:00",
+            allow_live=True,
+        )
+        self.assertEqual(packet.execution_mode, "live")
+
 
 class ValidateEvidencePacketTests(unittest.TestCase):
     def test_valid_packet_returns_no_errors(self) -> None:
         errors = validate_evidence_packet(_valid_packet())
         self.assertEqual(errors, [])
 
+    def test_invalid_evidence_prefix_returns_error(self) -> None:
+        packet = _valid_packet(evidence_id="bad-id")
+        errors = validate_evidence_packet(packet)
+        self.assertTrue(any("evidence-" in e for e in errors))
+
     def test_invalid_mission_prefix_returns_error(self) -> None:
         packet = _valid_packet(mission_id="bad-id")
         errors = validate_evidence_packet(packet)
         self.assertTrue(any("mission-" in e for e in errors))
+
+    def test_invalid_action_prefix_returns_error(self) -> None:
+        packet = _valid_packet(action_id="bad-action")
+        errors = validate_evidence_packet(packet)
+        self.assertTrue(any("action-" in e for e in errors))
 
     def test_empty_actor_returns_error(self) -> None:
         packet = _valid_packet(actor="")
@@ -160,6 +222,26 @@ class ValidateEvidencePacketTests(unittest.TestCase):
         packet = _valid_packet(result="unknown")
         errors = validate_evidence_packet(packet)
         self.assertTrue(any("result" in e for e in errors))
+
+    def test_invalid_execution_mode_returns_error(self) -> None:
+        packet = _valid_packet(execution_mode="simulation")
+        errors = validate_evidence_packet(packet)
+        self.assertTrue(any("execution_mode" in e for e in errors))
+
+    def test_live_execution_mode_returns_error_by_default(self) -> None:
+        packet = _valid_packet(execution_mode="live")
+        errors = validate_evidence_packet(packet)
+        self.assertTrue(any("A1 local no-network" in e for e in errors))
+
+    def test_live_execution_mode_can_be_explicitly_allowed(self) -> None:
+        packet = _valid_packet(execution_mode="live")
+        errors = validate_evidence_packet(packet, allow_live=True)
+        self.assertEqual(errors, [])
+
+    def test_invalid_envelope_prefix_returns_error(self) -> None:
+        packet = _valid_packet(envelope_id="bad-envelope")
+        errors = validate_evidence_packet(packet)
+        self.assertTrue(any("env- prefix" in e for e in errors))
 
 
 if __name__ == "__main__":

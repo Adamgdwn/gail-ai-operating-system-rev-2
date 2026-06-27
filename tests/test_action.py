@@ -86,6 +86,27 @@ def test_create_action_empty_actor_raises():
         )
 
 
+def test_create_action_invalid_authority_level_raises():
+    with pytest.raises(ValueError, match="authority_level"):
+        make_action(authority_level="R9")
+
+
+def test_create_action_invalid_risk_tier_raises():
+    with pytest.raises(ValueError, match="risk_tier"):
+        make_action(risk_tier=6)
+
+
+def test_create_action_r4_requires_envelope():
+    with pytest.raises(ValueError, match="R4 actions require"):
+        make_action(authority_level="R4")
+
+
+def test_create_action_r4_accepts_envelope_reference():
+    action = make_action(authority_level="R4", envelope_id="env-r4-charter-001")
+    assert action.authority_level == "R4"
+    assert action.envelope_id == "env-r4-charter-001"
+
+
 # ── State machine transitions ──────────────────────────────────────────────
 
 def test_observed_to_proposed():
@@ -140,6 +161,35 @@ def test_stop_path_reaches_evidenced():
 def test_invalid_transition_raises():
     with pytest.raises(ActionTransitionError):
         transition_action(make_action(), MissionStatus.EXECUTED)
+
+
+def test_transition_blocks_r4_without_envelope():
+    action = Action(
+        action_id="action-abc123",
+        mission_id="mission-def456",
+        action_type="local_mission_record",
+        title="Test",
+        actor="Adam Goodwin",
+        status=MissionStatus.OBSERVED,
+        authority_level="R4",
+        risk_tier=4,
+        arguments={},
+        created_at="2026-06-27T00:00:00+00:00",
+    )
+    with pytest.raises(ActionTransitionError, match="R4 actions require"):
+        transition_action(action, MissionStatus.PROPOSED)
+
+
+def test_transition_blocks_r5_agent_approval():
+    action = make_action(authority_level="R5", risk_tier=5)
+    for stage in [
+        MissionStatus.PROPOSED,
+        MissionStatus.CLASSIFIED,
+        MissionStatus.APPROVAL_REQUESTED,
+    ]:
+        action = transition_action(action, stage)
+    with pytest.raises(ActionTransitionError, match="R5 actions are human-only"):
+        transition_action(action, MissionStatus.APPROVED)
 
 
 def test_terminal_rejected_raises_on_next_transition():
@@ -267,3 +317,72 @@ def test_validate_action_bad_risk_tier():
     )
     errors = validate_action(action)
     assert any("risk_tier" in e for e in errors)
+
+
+def test_validate_action_bad_authority_level():
+    action = Action(
+        action_id="action-abc123",
+        mission_id="mission-def456",
+        action_type="local_mission_record",
+        title="Test",
+        actor="Adam Goodwin",
+        status=MissionStatus.OBSERVED,
+        authority_level="R9",
+        risk_tier=1,
+        arguments={},
+        created_at="2026-06-27T00:00:00+00:00",
+    )
+    errors = validate_action(action)
+    assert any("authority_level" in e for e in errors)
+
+
+def test_validate_action_r4_requires_envelope():
+    action = Action(
+        action_id="action-abc123",
+        mission_id="mission-def456",
+        action_type="local_mission_record",
+        title="Test",
+        actor="Adam Goodwin",
+        status=MissionStatus.OBSERVED,
+        authority_level="R4",
+        risk_tier=4,
+        arguments={},
+        created_at="2026-06-27T00:00:00+00:00",
+    )
+    errors = validate_action(action)
+    assert any("R4 actions require" in e for e in errors)
+
+
+def test_validate_action_bad_envelope_prefix():
+    action = Action(
+        action_id="action-abc123",
+        mission_id="mission-def456",
+        action_type="local_mission_record",
+        title="Test",
+        actor="Adam Goodwin",
+        status=MissionStatus.OBSERVED,
+        authority_level="R0",
+        risk_tier=1,
+        arguments={},
+        created_at="2026-06-27T00:00:00+00:00",
+        envelope_id="bad-envelope",
+    )
+    errors = validate_action(action)
+    assert any("env- prefix" in e for e in errors)
+
+
+def test_validate_action_r5_execution_state_rejected():
+    action = Action(
+        action_id="action-abc123",
+        mission_id="mission-def456",
+        action_type="local_mission_record",
+        title="Test",
+        actor="Adam Goodwin",
+        status=MissionStatus.APPROVED,
+        authority_level="R5",
+        risk_tier=5,
+        arguments={},
+        created_at="2026-06-27T00:00:00+00:00",
+    )
+    errors = validate_action(action)
+    assert any("R5 actions are human-only" in e for e in errors)
