@@ -2,6 +2,13 @@
 
 ## 2026-06-27
 
+- Completed Graphify acceleration Phase B locally. Added sanitizer
+  classification helpers, stricter safe-summary/reference/relationship guards,
+  pure local graph-fact builders for `Action`, `AuthorityEnvelope`, and
+  `EvidencePacket`, deterministic fingerprints for delta/cache workflows, and
+  package-root exports for the stable local contract. No persistence, preview
+  output, Graphify call, adapter, transport, HTTP API, cloud placement, live
+  connector, client data, runtime hook, or execution authority was added.
 - Started executing the Graphify acceleration path before Chunk Twenty by
   recording the GA-A3 owner promotion decision and completing GA-B1/GA-B2 to
   draft state. Added the local

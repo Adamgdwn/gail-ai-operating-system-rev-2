@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27T09:39:31-06:00
+Last Updated: 2026-06-27T17:03:09-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -121,7 +121,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Detail Graphify acceleration chunks | complete | 2026-06-27T09:29:11-06:00 | codex session | Expanded the Graphify acceleration readiness plan into plan-local GA-A through GA-E chunks with objectives, inputs, outputs, acceptance, validation, and stop boundaries. This remains planning only and does not promote Graphify implementation ahead of Chunk Twenty without an owner decision. |
 | Promote Graphify acceleration contract slice | complete | 2026-06-27T09:39:31-06:00 | codex session | Adam directed execution to start before Chunk Twenty. GA-A3 records that GA-B1 and GA-B2 are promoted as the first local-only GAIL-side slice; this does not modify Graphify, expose transport, activate adapters, or touch live systems. |
 | Define Graphify acceleration contract | draft complete | 2026-06-27T09:39:31-06:00 | codex session | Added the local `GraphifyAccelerationRecord` contract and focused validation tests. No package-root export, persistence, preview output, Graphify call, schema artifact, HTTP API, cloud placement, live connector, or execution authority was added. |
-| Handoff next chunk | pending | 2026-06-27T09:39:31-06:00 | codex session | Next selected Graphify acceleration slice is GA-B3: deepen sanitization and reference guards. Chunk Twenty remains held until Adam returns the build path to approval actions. |
+| Complete Graphify acceleration Phase B | integration complete | 2026-06-27T17:03:09-06:00 | codex session | GA-B3 through GA-B6 added sanitizer classification helpers, stricter ref and edge guards, pure local Action/AuthorityEnvelope/EvidencePacket record builders, deterministic fingerprints, and package-root exports. No persistence, preview output, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, client data, runtime hook, or execution authority was added. |
+| Handoff next chunk | pending | 2026-06-27T17:03:09-06:00 | codex session | Next selected Graphify acceleration slice is GA-C1: preview-retention decision before any local export preview. Chunk Twenty remains held until Adam returns the build path to approval actions. |
 
 ## Current Completion Boundary
 
@@ -1347,13 +1348,13 @@ before creating source modules, schemas, export stores, adapters, live
 transport, HTTP API exposure, cloud placement, connector activation, Graphify
 runtime changes, or execution authority.
 
-## Pre-Chunk Twenty - Start Graphify Acceleration Contract
+## Pre-Chunk Twenty - Execute Graphify Acceleration Phase B
 
-Status: draft complete (2026-06-27T09:39:31-06:00)
+Status: integration complete (2026-06-27T17:03:09-06:00)
 
-Completion target: Draft complete
+Completion target: Integration complete
 
-Budget class: Small
+Budget class: Medium
 
 Plan packet:
 
@@ -1370,12 +1371,18 @@ adds a stable local `GraphifyAccelerationRecord` contract with closed enums,
 strict R-level/risk/data-classification checks, `graphify-fact-` record IDs,
 Rev 2 source-system identity, JSON-safe serialization, related-entity edge
 validation, relative non-sensitive refs, missing-fingerprint rejection, and
-`contains_raw_payload: false`. Validation: focused Graphify acceleration unit
-tests, full Python test suite, governance preflight, diff check, Graphify
-incremental update, commit, push. Stop: before package-root exports,
+`contains_raw_payload: false`; GA-B3 adds classification helpers for safe
+summaries, refs, typed edge labels, raw-payload hints, generated graph output,
+log/audio dumps, client payload markers, live connector markers, and secret
+markers without echoing unsafe contents; GA-B4 adds pure local record builders
+for `Action`, `AuthorityEnvelope`, and `EvidencePacket`; GA-B5 adds
+deterministic fingerprints that exclude only `generated_at` and `fingerprint`;
+GA-B6 exposes the stable local contract through the package root. Validation:
+focused Graphify acceleration unit tests, full Python test suite, governance
+preflight, diff check, Graphify incremental update, commit, push. Stop: before
 persistence, preview files, Graphify calls, HTTP APIs, cloud placement,
-adapter work, TypeScript schema publication, live connectors, live data, or
-execution authority.
+adapter work, TypeScript schema publication, live connectors, live data,
+runtime hooks, or execution authority.
 
 ## Chunk Twenty - Add Approval Actions
 
@@ -1842,6 +1849,7 @@ date -Iseconds
 | 2026-06-27T09:06:27-06:00 | pre-Chunk Twenty Graphify acceleration readiness plan | pass | Governance preflight passed with 0 warnings. Read the document-control standard, active Graphify handoff checkpoint, architecture/permission boundaries, and canonical Graphify governance file. Repo-local `graphify query` was available but returned sparse routing only, so the plan records the need for future GAIL-side sanitized graph-fact exports to improve Graphify discovery. Graphify incremental update rebuilt 1287 nodes and 2290 edges. No code, Graphify repo change, graph upload, live adapter, HTTP API, cloud placement, connector activation, client data, or execution approval was added. |
 | 2026-06-27T09:29:11-06:00 | pre-Chunk Twenty Graphify acceleration chunk detail | pass | Expanded the Graphify acceleration readiness plan into plan-local GA-A through GA-E work packets. Governance preflight passed with 0 warnings, repo-local Graphify query routed to the plan plus architecture decisions and risk register, `git diff --check` passed with only the known pathway CRLF warning, routing scan confirmed GA chunks and stop boundaries, and Graphify incremental update passed. No source module, schema artifact, export store, Graphify adapter, transport, HTTP API, cloud placement, connector activation, live data, or execution authority was added. |
 | 2026-06-27T09:39:31-06:00 | pre-Chunk Twenty Graphify acceleration contract start | pass | GA-A3 promoted GA-B1 and GA-B2 as the first local-only Graphify acceleration slice. Focused Graphify acceleration tests passed: 14 tests. Existing action tests now run under the standard unittest command and passed: 31 tests. Full Python suite passed: 168 tests. Governance preflight passed with 0 warnings, `git diff --check` passed with only the known pathway CRLF warning, and Graphify incremental update rebuilt 1368 nodes and 2485 edges. No package-root export, persistence, preview output, Graphify call, adapter, schema artifact, HTTP API, cloud placement, live connector, client data, or execution authority was added. |
+| 2026-06-27T17:03:09-06:00 | pre-Chunk Twenty Graphify acceleration Phase B | pass | GA-B3 through GA-B6 are integration complete. Added sanitizer classification helpers, stricter reference/edge guards, pure local Action/AuthorityEnvelope/EvidencePacket graph-fact builders, deterministic fingerprints, and package-root exports. Focused Graphify acceleration tests passed: 24 tests. Full Python suite passed: 178 tests. Governance preflight passed with 0 warnings. No persistence, preview output, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, runtime hook, or execution authority was added. |
 
 ## Next Handoff
 
@@ -1943,12 +1951,14 @@ can move faster without becoming an execution or authority layer.
 As of 2026-06-27T09:29:11-06:00, that plan includes detailed plan-local GA-A
 through GA-E chunks for owner promotion, local contract validation, local
 export preview, contract publication, and future adapter-boundary review.
-As of 2026-06-27T09:39:31-06:00, Adam promoted the first local-only Graphify
-acceleration implementation slice ahead of Chunk Twenty. GA-B1 and GA-B2 are
-draft complete: Rev 2 now has a local `GraphifyAccelerationRecord` contract
-and focused tests, but no package-root export, persistence, preview output,
-schema artifact, Graphify adapter, transport, HTTP API, cloud placement, live
-connector, or execution authority has been approved or created.
+As of 2026-06-27T17:03:09-06:00, Adam's promoted local-only Graphify
+acceleration Phase B is integration complete. Rev 2 now has a local
+`GraphifyAccelerationRecord` contract, sanitizer classification helpers,
+pure local Action/AuthorityEnvelope/EvidencePacket graph-fact builders,
+deterministic fingerprints, and package-root exports. No persistence, preview
+output, schema artifact, Graphify adapter, transport, HTTP API, cloud
+placement, live connector, runtime hook, or execution authority has been
+approved or created.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,
@@ -1956,13 +1966,13 @@ QuickBooks, GitHub/build systems, evidence, and worker/device posture, desktop
 and larger-tablet arc layout, and hub-first phone-browser fallback. Freedom
 remains the phone-side operator anchor; the browser fallback does not replace
 Freedom's role.
-The next bounded task on the current promoted path is GA-B3: deepen
-sanitization and reference guards for the Graphify acceleration contract.
-Keep it local-only and do not add package-root exports, persistence, preview
-output, Graphify calls, adapters, HTTP APIs, cloud placement, live connectors,
-live business-system reads, client data, or execution authority. Chunk Twenty
-local governed approval actions remain the default Rev 2 approval path when
-Adam returns to them.
+The next bounded task on the current promoted Graphify acceleration path is
+GA-C1: preview-retention decision before any local export preview. Keep it
+local-only and do not add preview writes, Graphify calls, adapters, HTTP APIs,
+cloud placement, live connectors, live business-system reads, client data, or
+execution authority without an explicit owner decision. Chunk Twenty local
+governed approval actions remain the default Rev 2 approval path when Adam
+returns to them.
 Before future cross-build consolidation, use
 `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`. Do not
 fold AG Operations, Freedom, or Rev 2 into one build until AG Operations has

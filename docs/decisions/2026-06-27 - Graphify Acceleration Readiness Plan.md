@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T09:39:31-06:00
+Last Updated: 2026-06-27T17:03:09-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -244,7 +244,7 @@ touch live systems, or if it would require Graphify repo changes.
 
 ### Phase B - Local Contract And Validator
 
-Status: active (2026-06-27T09:39:31-06:00)
+Status: integration complete (2026-06-27T17:03:09-06:00)
 
 After Chunk Twenty is ready or when Adam explicitly chooses this work, add the
 stable local contract and tests in Rev 2 only.
@@ -258,6 +258,14 @@ Acceptance:
   invalid risk tiers, and `contains_raw_payload: true`;
 - expose package-root exports only when the contract is stable enough for
   local consumers.
+
+Execution note: As of 2026-06-27T17:03:09-06:00, Phase B is integration
+complete. Rev 2 has sanitizer classification helpers, stricter reference and
+relationship guards, pure local Action/AuthorityEnvelope/EvidencePacket record
+builders, deterministic fingerprints, and package-root exports. This does not
+add persistence, preview output, Graphify calls, adapters, transport, HTTP
+APIs, cloud placement, live connectors, client data, runtime hooks, or
+execution authority.
 
 #### GA-B1 - Contract Work Packet And Fixture Inventory
 
@@ -352,7 +360,7 @@ Graphify calls, HTTP APIs, or TypeScript schema publication.
 
 #### GA-B3 - Add Sanitization And Reference Guards
 
-Status: planned
+Status: task complete (2026-06-27T17:03:09-06:00)
 
 Completion target: Task complete
 
@@ -386,7 +394,7 @@ ambiguous.
 
 #### GA-B4 - Add Local Sample Emitters
 
-Status: planned
+Status: task complete (2026-06-27T17:03:09-06:00)
 
 Completion target: Task complete
 
@@ -421,7 +429,7 @@ or connecting the emitters to runtime state transitions.
 
 #### GA-B5 - Add Deterministic Fingerprints And Delta Identity
 
-Status: planned
+Status: task complete (2026-06-27T17:03:09-06:00)
 
 Completion target: Task complete
 
@@ -454,7 +462,7 @@ proven.
 
 #### GA-B6 - Package Export And Local Consumer Gate
 
-Status: planned
+Status: integration complete (2026-06-27T17:03:09-06:00)
 
 Completion target: Integration complete
 
@@ -922,9 +930,8 @@ Stop before:
 The next GAIL-side slice, when selected, should be:
 
 ```text
-Pre-Graphify implementation slice:
-Add local GraphifyAccelerationRecord validation and sample emitters from
-Action, AuthorityEnvelope, and EvidencePacket, with tests only.
+Pre-Graphify preview slice:
+Decide GA-C1 preview retention before any local export preview writes records.
 ```
 
 That slice remains outside live Graphify modification and outside Chunk Twenty
