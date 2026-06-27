@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T09:06:27-06:00
+Last Updated: 2026-06-27T09:29:11-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -125,13 +125,118 @@ will provide:
 
 ## Phased Path
 
+The chunks below are plan-local Graphify acceleration chunks. They do not
+replace the main build pathway chunk numbers unless Adam later promotes one of
+them into `docs/current-build-pathway.md`.
+
 ### Phase A - Plan Only
 
-Status: active with this record.
+Status: active planning complete.
 
 Capture the GAIL-side acceleration plan and route it through the active pathway.
 No code, live connector, Graphify repo change, Graphify upload, HTTP API,
 cloud placement, or production behavior.
+
+#### GA-A1 - Record GAIL-Side Acceleration Boundary
+
+Status: complete
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: define the GAIL-side speed lever for enhanced Graphify without
+changing Graphify, activating an adapter, or granting authority.
+
+Inputs: CNS diagram, owner direction, current Graphify handoff checkpoint,
+architecture map, source-of-truth map, document-control standard, and active
+pathway.
+
+Outputs: this dated architecture plan, pathway routing notes, changelog entry,
+and source/context map references.
+
+Acceptance:
+
+- the plan states that Rev 2 prepares itself for Graphify rather than modifying
+  Graphify;
+- the two lanes are distinct: Graphify-to-GAIL handoff candidates and
+  GAIL-to-Graphify sanitized facts;
+- future source file names remain dependency-safe and are not date-prefixed;
+- stop boundaries block live adapters, graph upload, raw payload indexing,
+  HTTP API exposure, cloud placement, connector activation, and execution
+  authority.
+
+Validation: governance preflight, Graphify orientation attempt, routing review,
+`git diff --check`, Graphify incremental update, commit, and push.
+
+Stop condition: stop before implementation, Graphify runtime changes, live
+transport, or Chunk Twenty approval-action work.
+
+#### GA-A2 - Detail Phase Chunks
+
+Status: complete
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: turn the phase headings into executable work packets so a later
+agent can advance the plan without guessing scope, boundaries, validation, or
+completion state.
+
+Inputs: this plan, active pathway, standards index, durable development
+policy, ship-ready standard, use-case governance standard, project-control
+classification, risk register, architecture key decisions, and Graphify
+governance.
+
+Outputs: detailed GA-A through GA-E chunk map in this plan, active pathway
+status note, and changelog note.
+
+Acceptance:
+
+- each phase has small, named chunks with objective, inputs, outputs,
+  acceptance, validation, and stop boundaries;
+- implementation chunks are sequenced after a local contract and validator;
+- transport, cloud, HTTP API, Graphify adapter, and publication work remain
+  gated behind explicit owner decisions;
+- Chunk Twenty remains the default Rev 2 implementation path unless Adam later
+  promotes a Graphify acceleration slice.
+
+Validation: governance preflight, repo-local Graphify query, document review,
+`git diff --check`, Graphify incremental update, commit, and push.
+
+Stop condition: stop before creating source modules, schemas, export stores,
+adapters, or live integrations.
+
+#### GA-A3 - Owner Promotion Checkpoint
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Tiny
+
+Objective: decide whether Graphify acceleration implementation should wait
+until after Chunk Twenty or become the next pre-Chunk Twenty slice.
+
+Inputs: this plan, current build pathway, Chunk Twenty readiness, CNS schema
+hardening results, and owner priority.
+
+Outputs: an owner decision recorded in the active pathway, either deferring
+Graphify acceleration or promoting a specific GA-B chunk.
+
+Acceptance:
+
+- the next selected slice is named explicitly;
+- the decision says whether Chunk Twenty remains next or a GA-B contract slice
+  is inserted first;
+- no code or transport work starts without the decision.
+
+Validation: owner confirmation, pathway update, changelog note if the active
+route changes, and `git diff --check` for any document edits.
+
+Stop condition: stop if the priority is unclear, if the implementation would
+touch live systems, or if it would require Graphify repo changes.
 
 ### Phase B - Local Contract And Validator
 
@@ -148,6 +253,212 @@ Acceptance:
 - expose package-root exports only when the contract is stable enough for
   local consumers.
 
+#### GA-B1 - Contract Work Packet And Fixture Inventory
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Tiny
+
+Objective: prepare the smallest implementation slice for the
+`GraphifyAccelerationRecord` contract.
+
+Inputs: `packages/uaos-core/src/gail_ai_operating_system/cns_schemas.py`,
+`packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`,
+`packages/uaos-core/src/gail_ai_operating_system/connector_registry.py`,
+`packages/uaos-core/src/gail_ai_operating_system/graphify_handoff.py`,
+existing tests, this plan, and active stop boundaries.
+
+Outputs: pathway work packet that names the exact files, fixtures, non-goals,
+test expectations, and rollback path for GA-B2 through GA-B4.
+
+Acceptance:
+
+- sample source objects are identified without reading secrets, live connector
+  state, M365 content, QuickBooks data, client data, raw logs, or raw audio;
+- contract vocabulary is aligned with existing CNS schema names;
+- no source module is created yet unless this chunk is intentionally combined
+  with GA-B2 by owner approval.
+
+Validation: targeted file review, governance preflight if the active pathway is
+updated, and `git diff --check` for document edits.
+
+Stop condition: stop if fixture selection would require live business data,
+secret access, or Graphify repo changes.
+
+#### GA-B2 - Define GraphifyAccelerationRecord Contract
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Small
+
+Objective: add the stable Python contract object in Rev 2 with strict field
+validation and no transport behavior.
+
+Inputs: `cns_schemas.py`, current package style, existing validation patterns,
+this plan's required field list, and GA-B1 fixture decisions.
+
+Outputs:
+`packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`
+with `GraphifyAccelerationRecord`, allowed enum values, serialization helpers,
+and safe validation errors.
+
+Acceptance:
+
+- schema version must equal the approved v1 value;
+- record IDs must use a stable `graphify-fact-` prefix;
+- source system must identify Rev 2 unless a later bridge contract expands it;
+- operation, entity type, authority level, risk tier, approval state, and data
+  classification are closed sets;
+- `contains_raw_payload` must be false;
+- source and evidence refs must be relative, non-sensitive references;
+- absolute paths, parent traversal, `.env`, raw logs, raw audio, client-data
+  labels, live connector hints, and likely secret markers are rejected;
+- fingerprints are required but generated in a later chunk unless GA-B5 is
+  promoted in the same implementation session.
+
+Validation: focused unit tests for valid records, invalid enum values,
+sensitive references, missing required fields, and JSON-safe serialization.
+
+Stop condition: stop before package-root exports, persistence, preview files,
+Graphify calls, HTTP APIs, or TypeScript schema publication.
+
+#### GA-B3 - Add Sanitization And Reference Guards
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: make the validator hard to misuse before any emitter depends on it.
+
+Inputs: GA-B2 contract module, existing Graphify handoff sensitive-boundary
+tests, file-boundary tests in the mission and relay store areas, and security
+rules from project standards.
+
+Outputs: validator helpers that classify safe summaries, safe refs, safe edge
+labels, blocked raw payload hints, and blocked sensitive source indicators.
+
+Acceptance:
+
+- summary text cannot contain raw payload markers, secret-like markers, or
+  blocked sensitive-data labels;
+- refs cannot point outside the repo, to absolute local paths, to `.env`
+  material, to logs/audio dumps, or to generated graph output;
+- related entity edges must have typed relationship names and stable target
+  IDs;
+- validation errors are explicit enough for tests and future operators without
+  leaking sensitive content.
+
+Validation: focused unit tests for accepted safe refs/summaries and rejected
+unsafe refs/summaries/edges.
+
+Stop condition: stop before adding emitters if sanitization is incomplete or
+ambiguous.
+
+#### GA-B4 - Add Local Sample Emitters
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Objective: prove the contract can be produced from current local governed
+objects without changing those objects' behavior.
+
+Inputs: `Action`, `AuthorityEnvelope`, `EvidencePacket`, safe local fixtures,
+and GA-B2/GA-B3 validation helpers.
+
+Outputs: deterministic local emitter functions for sample action, authority
+envelope, and evidence packet facts.
+
+Acceptance:
+
+- emitters are pure local functions with no network, file writes, Graphify
+  calls, or live connector access;
+- action facts include action ID, approval state, authority level, risk tier,
+  envelope reference when required, stop triggers, and non-goals;
+- authority facts include envelope ID, charter boundaries, stop conditions,
+  risk tier, and human-only limits where applicable;
+- evidence facts include evidence packet ID, execution mode, referenced action
+  ID, safe summary, and evidence refs only;
+- invalid source objects fail clearly instead of producing partial graph facts.
+
+Validation: unit tests that build facts from safe fixtures and reject unsafe or
+incomplete source objects.
+
+Stop condition: stop before persistence, export preview, package-root exports,
+or connecting the emitters to runtime state transitions.
+
+#### GA-B5 - Add Deterministic Fingerprints And Delta Identity
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: give Graphify future cache and delta workflows a stable comparison
+surface without requiring whole-state recrawls.
+
+Inputs: GA-B2 through GA-B4 records, JSON-safe serialization, existing
+deterministic ID patterns, and test fixtures.
+
+Outputs: canonical payload normalization and fingerprint generation for
+acceleration records.
+
+Acceptance:
+
+- fingerprints are deterministic across repeated runs with identical input;
+- volatile fields that should not invalidate graph cache are excluded only when
+  explicitly documented;
+- changes to entity ID, operation, entity type, relationships, authority,
+  approval state, risk, summary, refs, stop triggers, or non-goals change the
+  fingerprint;
+- fingerprint generation does not include raw payloads or local absolute paths.
+
+Validation: unit tests for stable repeat generation, expected changes, and
+blocked unsafe fields.
+
+Stop condition: stop before export preview if deterministic identity cannot be
+proven.
+
+#### GA-B6 - Package Export And Local Consumer Gate
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Small
+
+Objective: expose the contract from the package root only after the validator,
+emitters, and fingerprint behavior are stable enough for local use.
+
+Inputs: package `__init__.py`, GA-B2 through GA-B5 tests, and existing package
+export style.
+
+Outputs: package-root exports for the record, emitter helpers, and validation
+errors.
+
+Acceptance:
+
+- exports are deliberate and documented in tests;
+- local import examples work without circular imports;
+- public names match the domain vocabulary in this plan;
+- no transport, persistence, Graphify adapter, TypeScript publication, or
+  runtime hook is added.
+
+Validation: focused package import tests, full Python test suite, governance
+preflight, `git diff --check`, Graphify incremental update, commit, and push.
+
+Stop condition: stop before moving to Phase C unless all Phase B focused tests
+pass.
+
 ### Phase C - Local Export Preview
 
 Add a local export preview or store only after the contract is validated.
@@ -157,6 +468,128 @@ Acceptance:
 - produce deterministic JSONL or JSON records from local governed sample data;
 - keep output ignored or explicitly controlled until retention is decided;
 - show what Graphify would receive without sending it anywhere.
+
+#### GA-C1 - Preview Retention Decision
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Tiny
+
+Objective: choose whether preview output is ignored developer artifact,
+controlled test fixture, relay-store-adjacent record, or a dedicated local
+export store.
+
+Inputs: GA-B outputs, current `.gitignore`, relay store behavior, evidence
+ledger direction, and retention/security standards.
+
+Outputs: documented preview-retention decision in the active pathway or a
+dated companion decision record if the choice is material.
+
+Acceptance:
+
+- default recommendation remains ignored local preview output unless Adam
+  approves controlled retention;
+- decision names cleanup expectations and what may be committed;
+- no Graphify ingest path is implied by the preview location.
+
+Validation: document review and `git diff --check`.
+
+Stop condition: stop if preview retention could accidentally store sensitive
+business data, secrets, raw logs, raw audio, or client content.
+
+#### GA-C2 - Build Local Export Preview Command
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Objective: generate deterministic preview output from local safe records so
+operators can inspect what Graphify would later receive.
+
+Inputs: GA-B contract and emitters, safe local fixtures, selected preview
+location from GA-C1, and existing project command conventions.
+
+Outputs: a local command or callable function that writes JSONL or JSON preview
+records from safe sample data only.
+
+Acceptance:
+
+- preview records validate before write;
+- output ordering is deterministic;
+- output includes fingerprints and schema version;
+- command has a dry-run or print-only mode where practical;
+- output path is ignored or explicitly controlled according to GA-C1;
+- command cannot read live M365, QuickBooks, client, finance, billing, raw
+  audio, raw logs, secrets, or Graphify runtime state.
+
+Validation: focused tests for deterministic output, invalid output rejection,
+safe path checks, and no-network behavior.
+
+Stop condition: stop before scheduling, background execution, Graphify ingest,
+or live data sources.
+
+#### GA-C3 - Add Preview Diff And Cache Checks
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: make the preview useful for speed by showing changed facts without
+requiring the operator to inspect the entire file manually.
+
+Inputs: GA-C2 output, fingerprints, and local preview fixtures.
+
+Outputs: local comparison helper or test-supported behavior that reports added,
+changed, unchanged, and removed fact IDs.
+
+Acceptance:
+
+- comparison is deterministic;
+- removed facts are reported as preview information only and do not mutate
+  source or Graphify state;
+- diff output is safe to read in logs and excludes raw payloads;
+- comparison handles empty previous output and invalid previous output clearly.
+
+Validation: focused tests for added, changed, unchanged, removed, empty, and
+invalid preview cases.
+
+Stop condition: stop before treating preview diffs as authority, approvals, or
+live graph mutations.
+
+#### GA-C4 - Operator Preview Handoff
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: document how Adam or a future agent can inspect local acceleration
+facts safely.
+
+Inputs: GA-C2/GA-C3 behavior, command output examples, stop boundaries, and
+current runbook conventions.
+
+Outputs: short operator note in the plan, runbook, or dated companion document
+that explains preview generation, safe cleanup, and non-goals.
+
+Acceptance:
+
+- note states that preview output is not sent to Graphify;
+- note states that preview output is not an approval record;
+- cleanup and ignored-output expectations are clear;
+- validation commands are listed.
+
+Validation: document review, command smoke check if command exists, and
+`git diff --check`.
+
+Stop condition: stop before publishing schemas or defining a live adapter.
 
 ### Phase D - Contract Publication
 
@@ -170,6 +603,124 @@ Acceptance:
 - Python and TypeScript examples agree;
 - backward-compatible change policy is documented.
 
+#### GA-D1 - Publication Readiness Gate
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Tiny
+
+Objective: confirm the prerequisites for publishing a cross-language contract
+are actually firm.
+
+Inputs: Chunk Twenty approval-action implementation, evidence and handoff view
+direction, API/cloud placement decision, TypeScript contract package decision,
+and GA-B/GA-C validation evidence.
+
+Outputs: owner-approved go/no-go note for publication.
+
+Acceptance:
+
+- approval, authority, evidence, transport, and consumer boundaries are named;
+- publication is held if HTTP API, cloud placement, or TypeScript package shape
+  is still unsettled;
+- no schema package is created as a placeholder.
+
+Validation: owner decision, pathway update, and `git diff --check`.
+
+Stop condition: stop if publication would freeze unstable local semantics.
+
+#### GA-D2 - Create Versioned Schema Artifact
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Objective: create a versioned contract artifact for acceleration records after
+the local Python contract is stable.
+
+Inputs: GA-D1 approval, GA-B Python contract, GA-C preview examples, and future
+contract package conventions.
+
+Outputs: JSON Schema or equivalent typed schema artifact in the approved
+contract location.
+
+Acceptance:
+
+- schema version matches the Python contract;
+- required fields, enums, reference rules, and raw-payload prohibition are
+  represented;
+- schema is dependency-safe and uses stable tool-facing filenames;
+- examples validate against the schema;
+- backward compatibility expectations are documented.
+
+Validation: schema validation tests, Python example generation, TypeScript
+example validation if tooling exists, and `git diff --check`.
+
+Stop condition: stop before publishing to external consumers or packaging if
+schema and examples disagree.
+
+#### GA-D3 - Add Python And TypeScript Agreement Examples
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Medium
+
+Objective: prove that Python-generated acceleration records and TypeScript
+consumers interpret the same contract.
+
+Inputs: GA-D2 schema artifact, Python fixtures, future TypeScript contract
+package or command-center consumer test harness.
+
+Outputs: paired Python/TypeScript examples or tests using the same sample
+records.
+
+Acceptance:
+
+- Python emits records that TypeScript accepts;
+- TypeScript rejects records Python rejects, especially unsafe refs, invalid
+  R-levels, invalid risk tiers, and raw-payload flags;
+- examples avoid live data and do not imply Graphify transport.
+
+Validation: Python tests, TypeScript tests or build checks, schema validation,
+and command-center build if TypeScript code changes.
+
+Stop condition: stop before adapter design if contract agreement is not proven.
+
+#### GA-D4 - Document Versioning And Compatibility Policy
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Small
+
+Objective: make future contract evolution safe for Graphify, Freedom, and GAIL
+OS consumers.
+
+Inputs: GA-D2/GA-D3 artifacts, existing document-control standard, and contract
+package decision.
+
+Outputs: compatibility note covering additive fields, breaking changes,
+deprecation, schema version bumps, and minimum consumer behavior.
+
+Acceptance:
+
+- additive changes are distinguished from breaking changes;
+- consumers are told how to handle unknown fields;
+- old schema handling, deprecation, and migration notes are explicit;
+- Graphify still does not become an authority or execution layer.
+
+Validation: document review and `git diff --check`.
+
+Stop condition: stop before public or cross-repo publication if compatibility
+rules are not agreed.
+
 ### Phase E - Future Graphify Adapter Boundary
 
 Only after explicit approval, define a read/write boundary for Graphify ingest.
@@ -181,6 +732,138 @@ Acceptance:
 - graph updates cannot mutate Rev 2 source;
 - live adapter calls require connector profile, auth, retention, audit, and
   stop rules.
+
+#### GA-E1 - Adapter Approval And Connector Profile Gate
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Small
+
+Objective: require explicit owner approval and connector profiling before any
+Graphify ingest or write boundary exists.
+
+Inputs: GA-D publication evidence, connector registry policy, tool permission
+matrix, Graphify governance, auth and retention decisions, and owner approval.
+
+Outputs: connector profile or decision record describing Graphify ingest
+permissions, auth, retention, audit, rate limits, stop triggers, and rollback.
+
+Acceptance:
+
+- Graphify ingest is named as a connector-like boundary, not an implicit local
+  file side effect;
+- allowed operations are limited to consuming approved acceleration records;
+- denied operations include approval, execution, source mutation, permissions,
+  deployment, live business-system reads, and secret handling;
+- human approval and rollback expectations are explicit.
+
+Validation: connector profile tests if code changes, document review,
+governance preflight, and `git diff --check`.
+
+Stop condition: stop without explicit owner approval.
+
+#### GA-E2 - Adapter Design Note
+
+Status: planned
+
+Completion target: Draft complete
+
+Budget class: Medium
+
+Objective: design the future adapter before implementation so transport,
+failure modes, and authority boundaries are reviewable.
+
+Inputs: GA-E1 gate, GA-D schema, Graphify current runtime home, transport
+decision, cloud/API placement decision, and security/privacy review.
+
+Outputs: dated adapter design record with data flow, trust boundary, retry
+policy, idempotency, audit records, error handling, retention, and rollback.
+
+Acceptance:
+
+- design states exactly where records originate, where they are sent, and what
+  acknowledgements mean;
+- Graphify failure cannot block GAIL OS authority decisions;
+- duplicate delivery is idempotent by fingerprint and record ID;
+- adapter logs are safe and do not include raw payloads;
+- adapter cannot mutate Rev 2 source or approve actions.
+
+Validation: architecture review, security/privacy review appropriate to the
+risk, and document routing update.
+
+Stop condition: stop if cloud/API/auth/retention choices are unresolved.
+
+#### GA-E3 - Local Dry-Run Adapter Proof
+
+Status: planned
+
+Completion target: Task complete
+
+Budget class: Medium
+
+Objective: prove the adapter boundary locally without sending data to Graphify
+or any cloud system.
+
+Inputs: GA-E2 design, GA-C preview output, connector profile, and safe mock
+transport.
+
+Outputs: dry-run adapter that validates, batches, logs safe summaries, and
+produces an audit record without network calls.
+
+Acceptance:
+
+- dry run reads only approved preview records;
+- every outgoing item is schema-validated immediately before the simulated
+  send;
+- audit output records record IDs, fingerprints, counts, and simulated outcome
+  without raw payloads;
+- failure modes include invalid records, duplicate records, unavailable
+  transport, partial batches, and stop-trigger activation;
+- no Graphify process, API, cloud endpoint, M365, QuickBooks, client data, or
+  live connector is contacted.
+
+Validation: focused adapter tests, no-network test, audit safety tests,
+governance preflight, `git diff --check`, Graphify incremental update, commit,
+and push.
+
+Stop condition: stop before live adapter credentials, scheduled execution, or
+background worker behavior.
+
+#### GA-E4 - Live Adapter Readiness Review
+
+Status: planned
+
+Completion target: Integration complete
+
+Budget class: Strategic
+
+Objective: decide whether a live adapter is safe to enable after the dry-run
+proof, contract publication, and transport decisions are mature.
+
+Inputs: GA-E3 evidence, connector profile, auth model, retention decision,
+cloud/API placement, monitoring and rollback plan, Graphify runtime readiness,
+and owner approval.
+
+Outputs: live-adapter readiness packet with ship/hold recommendation.
+
+Acceptance:
+
+- security, privacy, retention, auth, monitoring, rollback, and audit evidence
+  are attached;
+- live enablement remains a separate human decision;
+- first live scope is constrained to synthetic or non-sensitive internal facts
+  unless Adam explicitly approves more;
+- kill switch and rollback are documented;
+- Graphify still cannot approve, execute, mutate, deploy, change permissions,
+  or read live business systems.
+
+Validation: ship-readiness review, security review, connector tests,
+integration dry-run, and owner approval.
+
+Stop condition: stop if any live-adapter control is missing or if the owner
+has not explicitly approved live enablement.
 
 ## Stop Boundaries
 

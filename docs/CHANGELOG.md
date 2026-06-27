@@ -2,6 +2,12 @@
 
 ## 2026-06-27
 
+- Expanded the Graphify acceleration readiness plan into plan-local GA-A
+  through GA-E chunks covering owner promotion, local contract validation,
+  local export preview, contract publication, and future adapter-boundary
+  review. This remains planning only; it does not create source modules,
+  schemas, export stores, Graphify adapters, transport, HTTP APIs, cloud
+  placement, live connectors, or execution authority.
 - Added the dated GAIL-side Graphify acceleration readiness plan at
   `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`.
   The plan defines future sanitized, delta-friendly graph facts emitted by Rev
