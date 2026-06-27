@@ -1,12 +1,14 @@
 # Agent Instructions
 
-## CNS Role (Guided AI Labs Agentic OS — 2026-06-25)
+## CNS Role (Guided AI Labs Agentic OS — updated 2026-06-26)
 
 **Layer:** GAIL OS — Deep-brain / Autonomic Management
 **Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate
 **In the CNS loop:** `Signal → GAIL OS classifies → Freedom reasons → OS validates authority → Motor system executes → Evidence returned to OS → Graphify updates → Freedom learns`
 
 GAIL OS is the governed spine — the authority and evidence layer beneath all other systems. No restricted action may execute without passing through the GAIL OS policy gate.
+
+**Enabler, not a hand brake:** GAIL OS is what makes autonomy *safe and legible*, not a restraint on Freedom. By classifying actions, issuing authority envelopes, and recording evidence, it is the layer that lets the system operate at higher autonomy (R4 charter-based action) with accountability — it expands what Freedom and the agent workforce may safely do, rather than limiting them. Governance here is the enabler of action, not a brake on it.
 
 **Current state:** Phase 2 of 5-phase build. Chunks 1–19 complete (Python spine, A1 local no-network boundary). Command-center React TypeScript cockpit under `apps/command-center/`. Core package under `packages/uaos-core/`.
 
