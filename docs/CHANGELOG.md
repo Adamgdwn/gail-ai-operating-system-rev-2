@@ -2,6 +2,16 @@
 
 ## 2026-06-27
 
+- Completed GA-C1 as a draft preview-retention decision for Graphify
+  acceleration. Added
+  `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` and
+  selected ignored local developer artifact retention under
+  `tmp/graphify-acceleration-preview/` for future preview output. Generated
+  previews are disposable inspection output, not evidence, approval, relay,
+  source-of-truth, or Graphify ingest records. No preview writer, preview
+  output, persistent export store, Graphify call, adapter, transport, HTTP API,
+  cloud placement, live connector, client data, runtime hook, or execution
+  authority was added.
 - Completed Graphify acceleration Phase B locally. Added sanitizer
   classification helpers, stricter safe-summary/reference/relationship guards,
   pure local graph-fact builders for `Action`, `AuthorityEnvelope`, and

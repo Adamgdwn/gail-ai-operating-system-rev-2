@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27T17:03:09-06:00
+Last Updated: 2026-06-27T17:15:09-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -122,7 +122,8 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Promote Graphify acceleration contract slice | complete | 2026-06-27T09:39:31-06:00 | codex session | Adam directed execution to start before Chunk Twenty. GA-A3 records that GA-B1 and GA-B2 are promoted as the first local-only GAIL-side slice; this does not modify Graphify, expose transport, activate adapters, or touch live systems. |
 | Define Graphify acceleration contract | draft complete | 2026-06-27T09:39:31-06:00 | codex session | Added the local `GraphifyAccelerationRecord` contract and focused validation tests. No package-root export, persistence, preview output, Graphify call, schema artifact, HTTP API, cloud placement, live connector, or execution authority was added. |
 | Complete Graphify acceleration Phase B | integration complete | 2026-06-27T17:03:09-06:00 | codex session | GA-B3 through GA-B6 added sanitizer classification helpers, stricter ref and edge guards, pure local Action/AuthorityEnvelope/EvidencePacket record builders, deterministic fingerprints, and package-root exports. No persistence, preview output, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, client data, runtime hook, or execution authority was added. |
-| Handoff next chunk | pending | 2026-06-27T17:03:09-06:00 | codex session | Next selected Graphify acceleration slice is GA-C1: preview-retention decision before any local export preview. Chunk Twenty remains held until Adam returns the build path to approval actions. |
+| Decide Graphify preview retention | draft complete | 2026-06-27T17:15:09-06:00 | codex session | GA-C1 selected ignored local developer artifact retention under `tmp/graphify-acceleration-preview/`. Generated previews are disposable inspection output, not evidence, approval, relay, source-of-truth, or Graphify ingest records. No preview writer or preview output was added. |
+| Handoff next chunk | pending | 2026-06-27T17:15:09-06:00 | codex session | Next selected Graphify acceleration slice is GA-C2: build a local export preview command inside the GA-C1 ignored-output boundary. Chunk Twenty remains held until Adam returns the build path to approval actions. |
 
 ## Current Completion Boundary
 
@@ -1384,6 +1385,31 @@ persistence, preview files, Graphify calls, HTTP APIs, cloud placement,
 adapter work, TypeScript schema publication, live connectors, live data,
 runtime hooks, or execution authority.
 
+## Pre-Chunk Twenty - Decide Graphify Preview Retention
+
+Status: draft complete (2026-06-27T17:15:09-06:00)
+
+Completion target: Draft complete
+
+Budget class: Tiny
+
+Plan packet:
+
+Inputs: GA-B contract and emitters, current `.gitignore`, relay store behavior,
+evidence packet direction, Graphify acceleration readiness plan, document
+control standard, and retention/security boundaries. Outputs:
+`docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`,
+Graphify acceleration plan update, active pathway update, source/context
+routing update, and changelog note. Acceptance: default recommendation remains
+ignored local preview output unless Adam approves controlled retention; cleanup
+expectations and commit boundaries are named; no Graphify ingest path is
+implied by the preview location; no preview writes are added. Validation:
+governance preflight, targeted document/source review, document review, and
+diff check. Stop: before preview writer creation, preview output, persistent
+export store, relay-store-adjacent retention, Graphify calls, adapters, HTTP
+APIs, cloud placement, live connectors, live business-system reads, client
+data, or execution authority.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -1850,6 +1876,7 @@ date -Iseconds
 | 2026-06-27T09:29:11-06:00 | pre-Chunk Twenty Graphify acceleration chunk detail | pass | Expanded the Graphify acceleration readiness plan into plan-local GA-A through GA-E work packets. Governance preflight passed with 0 warnings, repo-local Graphify query routed to the plan plus architecture decisions and risk register, `git diff --check` passed with only the known pathway CRLF warning, routing scan confirmed GA chunks and stop boundaries, and Graphify incremental update passed. No source module, schema artifact, export store, Graphify adapter, transport, HTTP API, cloud placement, connector activation, live data, or execution authority was added. |
 | 2026-06-27T09:39:31-06:00 | pre-Chunk Twenty Graphify acceleration contract start | pass | GA-A3 promoted GA-B1 and GA-B2 as the first local-only Graphify acceleration slice. Focused Graphify acceleration tests passed: 14 tests. Existing action tests now run under the standard unittest command and passed: 31 tests. Full Python suite passed: 168 tests. Governance preflight passed with 0 warnings, `git diff --check` passed with only the known pathway CRLF warning, and Graphify incremental update rebuilt 1368 nodes and 2485 edges. No package-root export, persistence, preview output, Graphify call, adapter, schema artifact, HTTP API, cloud placement, live connector, client data, or execution authority was added. |
 | 2026-06-27T17:03:09-06:00 | pre-Chunk Twenty Graphify acceleration Phase B | pass | GA-B3 through GA-B6 are integration complete. Added sanitizer classification helpers, stricter reference/edge guards, pure local Action/AuthorityEnvelope/EvidencePacket graph-fact builders, deterministic fingerprints, and package-root exports. Focused Graphify acceleration tests passed: 24 tests. Full Python suite passed: 178 tests. Governance preflight passed with 0 warnings. No persistence, preview output, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, runtime hook, or execution authority was added. |
+| 2026-06-27T17:15:09-06:00 | pre-Chunk Twenty Graphify preview retention decision | pass | GA-C1 is draft complete. Added the dated preview-retention decision record and selected ignored local developer artifact retention under `tmp/graphify-acceleration-preview/`. Governance preflight passed with 0 warnings, `.gitignore` review confirmed `tmp/` and `graphify-out/` are ignored, and relay/evidence/Graphify acceleration boundaries were reviewed. No preview writer, preview output, persistent export store, relay-store-adjacent retention, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, or execution authority was added. |
 
 ## Next Handoff
 
@@ -1959,6 +1986,13 @@ deterministic fingerprints, and package-root exports. No persistence, preview
 output, schema artifact, Graphify adapter, transport, HTTP API, cloud
 placement, live connector, runtime hook, or execution authority has been
 approved or created.
+As of 2026-06-27T17:15:09-06:00, GA-C1 is draft complete at
+`docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`. Future
+local Graphify acceleration previews should default to ignored developer
+artifact output under `tmp/graphify-acceleration-preview/`. Generated preview
+output is disposable inspection data only; it is not evidence, approval,
+relay, source-of-truth, or Graphify ingest material and should not be committed
+by default.
 Chunk Nineteen is complete: `apps/command-center` now renders a multi-viewport
 read-only hub-and-spoke cockpit from local static data. It has a talk-first
 operator hub, governed spoke states for Microsoft 365, Freedom, Graphify,
@@ -1967,12 +2001,13 @@ and larger-tablet arc layout, and hub-first phone-browser fallback. Freedom
 remains the phone-side operator anchor; the browser fallback does not replace
 Freedom's role.
 The next bounded task on the current promoted Graphify acceleration path is
-GA-C1: preview-retention decision before any local export preview. Keep it
-local-only and do not add preview writes, Graphify calls, adapters, HTTP APIs,
-cloud placement, live connectors, live business-system reads, client data, or
-execution authority without an explicit owner decision. Chunk Twenty local
-governed approval actions remain the default Rev 2 approval path when Adam
-returns to them.
+GA-C2: build a local export preview command using only safe local records and
+the GA-C1 ignored-output boundary. Keep it local-only and do not add Graphify
+calls, adapters, HTTP APIs, cloud placement, live connectors, live
+business-system reads, client data, retained preview records, or execution
+authority without an explicit owner decision. Chunk Twenty local governed
+approval actions remain the default Rev 2 approval path when Adam returns to
+them.
 Before future cross-build consolidation, use
 `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`. Do not
 fold AG Operations, Freedom, or Rev 2 into one build until AG Operations has

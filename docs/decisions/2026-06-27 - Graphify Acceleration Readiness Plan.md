@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T17:03:09-06:00
+Last Updated: 2026-06-27T17:15:09-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -493,6 +493,8 @@ pass.
 
 ### Phase C - Local Export Preview
 
+Status: active preview planning (2026-06-27T17:15:09-06:00)
+
 Add a local export preview or store only after the contract is validated.
 
 Acceptance:
@@ -503,7 +505,7 @@ Acceptance:
 
 #### GA-C1 - Preview Retention Decision
 
-Status: planned
+Status: draft complete (2026-06-27T17:15:09-06:00)
 
 Completion target: Draft complete
 
@@ -516,8 +518,13 @@ export store.
 Inputs: GA-B outputs, current `.gitignore`, relay store behavior, evidence
 ledger direction, and retention/security standards.
 
-Outputs: documented preview-retention decision in the active pathway or a
-dated companion decision record if the choice is material.
+Outputs: documented preview-retention decision in the active pathway and
+`docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`.
+
+Decision: preview output defaults to ignored local developer artifact retention
+under `tmp/graphify-acceleration-preview/`. Generated preview output is not
+committed by default and is not a relay record, evidence record, approval
+record, source-of-truth record, or Graphify ingest path.
 
 Acceptance:
 
@@ -530,6 +537,13 @@ Validation: document review and `git diff --check`.
 
 Stop condition: stop if preview retention could accidentally store sensitive
 business data, secrets, raw logs, raw audio, or client content.
+
+Execution note: GA-C1 chose the ignored local preview lane because `.gitignore`
+already excludes `tmp/` and `graphify-out/`, while the relay store remains a
+governed proof lane with approval/evidence semantics. No preview writer,
+preview output, persistent export store, Graphify call, adapter, transport,
+HTTP API, cloud placement, live connector, live business-system read, client
+data, or execution authority was added.
 
 #### GA-C2 - Build Local Export Preview Command
 
@@ -917,13 +931,17 @@ Stop before:
 
 - Whether acceleration records should be event-only, snapshot-only, or both.
   Initial recommendation: event-first deltas with optional compact snapshots.
-- Whether local preview output should live in a relay store, a dedicated local
-  export store, or an ignored developer artifact. Initial recommendation:
-  no persistent export store until the contract validator exists.
 - Whether Graphify should consume acceleration facts from GitHub records, a
   future API, local files, or a cloud event path. Initial recommendation:
   defer transport until after local approval, authority, and evidence
   contracts are stable.
+
+## Closed Decisions
+
+- 2026-06-27T17:15:09-06:00: GA-C1 selected ignored local developer artifact
+  retention for preview output under `tmp/graphify-acceleration-preview/`.
+  Generated preview output must not be committed by default and does not imply
+  Graphify ingest.
 
 ## Next Safe Slice
 
@@ -931,8 +949,9 @@ The next GAIL-side slice, when selected, should be:
 
 ```text
 Pre-Graphify preview slice:
-Decide GA-C1 preview retention before any local export preview writes records.
+Execute GA-C2 local export preview command using only safe local records.
 ```
 
 That slice remains outside live Graphify modification and outside Chunk Twenty
-unless Adam explicitly folds it into the active build path.
+unless Adam explicitly folds it into the active build path. GA-C2 must stay
+within the ignored preview-retention boundary selected by GA-C1.

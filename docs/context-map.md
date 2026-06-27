@@ -1,7 +1,7 @@
 # Context Map
 
 Document type: project context routing map
-Last Updated: 2026-06-27T09:06:27-06:00
+Last Updated: 2026-06-27T17:15:09-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -39,7 +39,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Freedom phone interface, business-partner capability preservation, or Freedom bridge boundaries | `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/migration/freedom-engine-objective-review.md`, `docs/architecture.md`, and `docs/migration/file-migration-decisions.md` |
 | App shell, command center, portal stack, browser cockpit, or multi-device review surface | `docs/decisions/app-shell-command-center.md`, `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/architecture.md`, and `apps/command-center/README.md` |
 | File migration, source promotion, rewrite decisions, or exclusion checks | `docs/migration/source-inventory.md`, `docs/migration/file-migration-decisions.md`, and the relevant copied v1 reference records |
-| Graphify routing, graph-aware handoffs, repo-local graph setup, Graphify acceleration readiness, or Graphify stop boundaries | `docs/graphify-handoff-checkpoint.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, then the Graphify policy named there when broad exploration is in scope |
+| Graphify routing, graph-aware handoffs, repo-local graph setup, Graphify acceleration readiness, preview retention, or Graphify stop boundaries | `docs/graphify-handoff-checkpoint.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`, then the Graphify policy named there when broad exploration is in scope |
 | Domain terms or naming | `docs/domain-language.md` |
 | Deployment, release, rollback, or environment changes | `docs/deployment-guide.md`, `docs/runbook.md`, and release standards |
 | Agent autonomy, runtime behavior, tools, prompts, models, or permissions | `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, `docs/prompt-register.md`, and `docs/tool-permission-matrix.md` |
