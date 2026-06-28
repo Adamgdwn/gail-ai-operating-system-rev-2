@@ -1,5 +1,16 @@
 """Core Rev 2 package for local GAIL AI Operating System behavior."""
 
+from .approval_actions import (
+    ApprovalDecision,
+    ApprovalDecisionType,
+    ApprovalError,
+    ApprovalStore,
+    approve_action,
+    hold_action,
+    reject_action,
+    request_more_info,
+    validate_approval_decision,
+)
 from .action import (
     ENVELOPE_REQUIRED_LEVELS,
     R5_AGENT_BLOCKED_STATES,
@@ -120,6 +131,15 @@ from .relay_store import (
 __all__ = [
     "Action",
     "ActionTransitionError",
+    "ApprovalDecision",
+    "ApprovalDecisionType",
+    "ApprovalError",
+    "ApprovalStore",
+    "approve_action",
+    "hold_action",
+    "reject_action",
+    "request_more_info",
+    "validate_approval_decision",
     "AuthorityEnvelope",
     "AuthorityLevel",
     "AutonomyLevel",
