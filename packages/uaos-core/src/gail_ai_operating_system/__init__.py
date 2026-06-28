@@ -127,6 +127,12 @@ from .relay_store import (
     RelayStatusChange,
     RelayWorkerClaim,
 )
+from .operating_knowledge import (
+    OkpRecordType,
+    OperatingKnowledgePacket,
+    EvidencePacketToOkpConverter,
+    create_operating_knowledge_packet,
+)
 
 __all__ = [
     "Action",
@@ -182,6 +188,10 @@ __all__ = [
     "MissionValidationError",
     "MissionValidationIssue",
     "MissionValidationResult",
+    "OkpRecordType",
+    "OperatingKnowledgePacket",
+    "EvidencePacketToOkpConverter",
+    "create_operating_knowledge_packet",
     "PermissionGate",
     "PolicyDecision",
     "PROJECT_ID",
