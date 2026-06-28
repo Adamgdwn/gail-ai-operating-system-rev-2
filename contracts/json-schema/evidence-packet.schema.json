@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/evidence-packet.schema.json",
+  "title": "EvidencePacket",
+  "description": "Auditable record produced when a governed action completes. An action is not considered done until its EvidencePacket exists. GAIL OS canonical source.",
+  "$defs": {
+    "EvidenceResult": {
+      "type": "string",
+      "description": "Outcome classification for a governed action.",
+      "enum": ["success", "failure", "stopped", "partial"]
+    },
+    "ExecutionMode": {
+      "type": "string",
+      "description": "Execution mode under which the action ran. 'live' requires allow_live=True and is outside the current A1 local no-network boundary.",
+      "enum": ["dry-run", "live"]
+    }
+  },
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "mission_id",
+    "action_id",
+    "actor",
+    "action_type",
+    "authority_basis",
+    "result",
+    "execution_mode",
+    "created_at",
+    "outcome_summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "description": "Unique evidence identifier. Must use the 'evidence-' prefix.",
+      "pattern": "^evidence-"
+    },
+    "mission_id": {
+      "type": "string",
+      "description": "Parent mission identifier. Must use the 'mission-' prefix.",
+      "pattern": "^mission-"
+    },
+    "action_id": {
+      "type": "string",
+      "description": "Action this evidence records. Must use the 'action-' prefix.",
+      "pattern": "^action-"
+    },
+    "actor": {
+      "type": "string",
+      "description": "Human or system that performed the action.",
+      "minLength": 1
+    },
+    "action_type": {
+      "type": "string",
+      "description": "Type of action performed.",
+      "minLength": 1
+    },
+    "authority_basis": {
+      "type": "string",
+      "description": "Authority under which the action was permitted (e.g. 'R0 — local dry-run').",
+      "minLength": 1
+    },
+    "result": {
+      "$ref": "#/$defs/EvidenceResult"
+    },
+    "execution_mode": {
+      "$ref": "#/$defs/ExecutionMode"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the evidence packet was created.",
+      "minLength": 1
+    },
+    "envelope_id": {
+      "type": ["string", "null"],
+      "description": "AuthorityEnvelope reference if one governed this action. Must use the 'env-' prefix when present.",
+      "default": null
+    },
+    "rollback_note": {
+      "type": ["string", "null"],
+      "description": "How to reverse this action if needed.",
+      "default": null
+    },
+    "outcome_summary": {
+      "type": "string",
+      "description": "Human-readable summary of the action outcome.",
+      "default": ""
+    }
+  }
+}

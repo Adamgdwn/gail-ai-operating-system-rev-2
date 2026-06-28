@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/approval-decision.schema.json",
+  "title": "ApprovalDecision",
+  "description": "Governed local record of an approval decision or administrative annotation on an action at APPROVAL_REQUESTED state. Created by GAIL OS approval_actions.py (Chunk 20B). GAIL OS canonical source.",
+  "$defs": {
+    "ApprovalDecisionType": {
+      "type": "string",
+      "description": "Classification of a local approval action.",
+      "enum": ["approved", "rejected", "held", "more_info_requested"]
+    }
+  },
+  "type": "object",
+  "required": [
+    "decision_id",
+    "action_id",
+    "mission_id",
+    "decision_type",
+    "decided_by",
+    "decided_at",
+    "rationale",
+    "authority_basis"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "description": "Unique approval decision identifier. Must use the 'aprv-' prefix.",
+      "pattern": "^aprv-"
+    },
+    "action_id": {
+      "type": "string",
+      "description": "Action this decision applies to. Must use the 'action-' prefix.",
+      "pattern": "^action-"
+    },
+    "mission_id": {
+      "type": "string",
+      "description": "Parent mission identifier. Must use the 'mission-' prefix.",
+      "pattern": "^mission-"
+    },
+    "decision_type": {
+      "$ref": "#/$defs/ApprovalDecisionType"
+    },
+    "decided_by": {
+      "type": "string",
+      "description": "Human or system that made this decision.",
+      "minLength": 1
+    },
+    "decided_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when this decision was made.",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Reason for this decision. Required for audit trail.",
+      "minLength": 1
+    },
+    "authority_basis": {
+      "type": "string",
+      "description": "Authority under which this decision was made (e.g. 'R0 — local dry-run').",
+      "minLength": 1
+    },
+    "envelope_id": {
+      "type": ["string", "null"],
+      "description": "AuthorityEnvelope reference if one governed this decision. Must use the 'env-' prefix when present.",
+      "default": null
+    },
+    "hold_until": {
+      "type": ["string", "null"],
+      "description": "ISO 8601 timestamp until which the action is held (HELD decisions only).",
+      "default": null
+    },
+    "info_requested": {
+      "type": ["string", "null"],
+      "description": "Description of what additional information is needed (MORE_INFO_REQUESTED decisions only).",
+      "default": null
+    },
+    "info_from": {
+      "type": ["string", "null"],
+      "description": "Who must provide the requested information (MORE_INFO_REQUESTED decisions only).",
+      "default": null
+    }
+  },
+  "if": {
+    "properties": { "decision_type": { "const": "more_info_requested" } },
+    "required": ["decision_type"]
+  },
+  "then": {
+    "required": ["info_requested", "info_from"],
+    "properties": {
+      "info_requested": { "type": "string", "minLength": 1 },
+      "info_from": { "type": "string", "minLength": 1 }
+    }
+  }
+}

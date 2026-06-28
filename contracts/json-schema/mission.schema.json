@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/mission.schema.json",
+  "title": "Mission",
+  "description": "Structured local mission record and status lifecycle. GAIL OS canonical source. Transport-neutral.",
+  "$defs": {
+    "MissionStatus": {
+      "type": "string",
+      "description": "Mandatory 12-stage action state machine. All governed actions must travel this sequence; no stage may be skipped.",
+      "enum": [
+        "observed",
+        "proposed",
+        "classified",
+        "approval_requested",
+        "approved",
+        "rejected",
+        "claimed",
+        "executed",
+        "stopped",
+        "evidenced",
+        "reviewed",
+        "learned"
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "mission_id",
+    "request_id",
+    "command",
+    "domain",
+    "created_at",
+    "owner",
+    "approval_level",
+    "dry_run"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "mission_id": {
+      "type": "string",
+      "description": "Unique mission identifier. Must use the 'mission-' prefix.",
+      "pattern": "^mission-"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Originating request identifier. Must use the 'req-' prefix.",
+      "pattern": "^req-"
+    },
+    "command": {
+      "type": "string",
+      "description": "Operator intent string — the raw command or mission goal.",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "description": "Mission domain classification.",
+      "enum": ["build", "governance", "migration", "validation", "operations", "learning"]
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the mission was created.",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "description": "Human or system that owns this mission.",
+      "minLength": 1
+    },
+    "approval_level": {
+      "type": "string",
+      "description": "Approval posture for this mission (e.g. 'A1 local no-network').",
+      "minLength": 1
+    },
+    "dry_run": {
+      "type": "boolean",
+      "description": "If true, no live connectors or external actions are permitted."
+    },
+    "requested_tools": {
+      "type": "array",
+      "description": "Local tool identifiers requested for this mission.",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "data_classification": {
+      "type": "string",
+      "description": "Data classification for this mission's inputs and outputs.",
+      "enum": ["public", "internal", "synthetic"],
+      "default": "internal"
+    },
+    "status": {
+      "type": "string",
+      "description": "Draft lifecycle status of the mission record.",
+      "enum": ["draft", "active", "completed", "rejected"],
+      "default": "draft"
+    },
+    "source_commit": {
+      "type": ["string", "null"],
+      "description": "Git commit SHA or reference at the time of mission creation.",
+      "default": null
+    }
+  },
+  "$comment": "MissionStatus enum is defined in $defs for reference by action.schema.json and other consumers."
+}
