@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-27T18:06:31-06:00
+Last Updated: 2026-06-27T18:29:20-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -98,6 +98,12 @@ Current priorities:
   future fast relationship intelligence, while keeping AG Operations Workspace
   Setup as a later governed Microsoft 365 tactile input/output boundary and
   preserving the current Freedom input/output boundary
+- use `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`
+  as the current coordination summary to send to the agentic multi-agent agent
+  builder with the GA-B/GA-C readiness package; it records the builder schema
+  foundation, the Rev 2 hardening/Graphify preview work, and the wish list for
+  integrating Freedom, Codex and future coding agents, AG Operations Workspace
+  / Microsoft 365, and Graphify without promoting live connectors or authority
 
 ## Current Build Pathway
 

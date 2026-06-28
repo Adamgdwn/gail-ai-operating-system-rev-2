@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T18:06:31-06:00
+Last Updated: 2026-06-27T18:29:20-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -993,6 +993,14 @@ Stop before:
   diff/cache checks plus the operator preview handoff. The safe diff reports
   fact IDs and fingerprints only and remains non-authoritative, non-ingest,
   non-evidence, non-relay, and non-mutating.
+- 2026-06-27T18:29:20-06:00: Created
+  `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`
+  as the builder handoff summary tying the builder CNS schema foundation to
+  Rev 2 schema hardening, GA-B/GA-C readiness, Freedom, Codex/future coding
+  agents, AG Operations Workspace / Microsoft 365, and Graphify integration
+  wishes. This is a coordination record only and does not approve Phase D,
+  Phase E, live Graphify ingest, live connectors, HTTP/cloud placement, or
+  authority changes.
 
 ## Next Safe Slice
 
@@ -1001,13 +1009,16 @@ The next GAIL-side slice, when selected, should be:
 ```text
 Post-Graphify preview slice:
 Report the GA-B/GA-C local readiness package back to the agentic multi-agent
-agent builder for a revised orchestrated plan, or return to Chunk Twenty local
-governed approval actions if Adam resumes the default Rev 2 build path.
+agent builder with the builder integration summary for a revised orchestrated
+plan, or return to Chunk Twenty local governed approval actions if Adam
+resumes the default Rev 2 build path.
 ```
 
 That handoff should treat the GA-C preview and diff tools as local inspection
-surfaces only. Do not proceed into Phase D contract publication, Phase E
-adapter boundary design, live Graphify ingest, HTTP/cloud placement, live
-connectors, live business-system reads, AG Operations Workspace / Microsoft
-365 content access, Freedom runtime changes, or execution authority without an
-explicit owner decision.
+surfaces only and should include
+`docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`.
+Do not proceed into Phase D contract publication, Phase E adapter boundary
+design, live Graphify ingest, HTTP/cloud placement, live connectors, live
+business-system reads, AG Operations Workspace / Microsoft 365 content access,
+Freedom runtime changes, cross-system source-of-truth changes, or execution
+authority without an explicit owner decision.

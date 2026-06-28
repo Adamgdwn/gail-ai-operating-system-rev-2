@@ -2,6 +2,17 @@
 
 ## 2026-06-27
 
+- Added
+  `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`
+  as the current handoff summary for the agentic multi-agent agent builder.
+  The record connects the builder's MissionStatus, Action, AuthorityEnvelope,
+  and EvidencePacket schema foundation to the Rev 2 schema hardening and
+  GA-B/GA-C Graphify acceleration readiness package, then captures the wish
+  list for integrating Freedom, Codex and future coding agents, AG Operations
+  Workspace / Microsoft 365, and Graphify. No live connector, Freedom runtime,
+  Microsoft 365 access, Graphify ingest, HTTP/cloud placement, schema
+  publication, cross-system source-of-truth change, or execution authority was
+  added.
 - Completed GA-C3 and GA-C4 as local Graphify acceleration preview
   diff/cache checks plus the operator handoff. The preview module now loads
   ignored local JSONL caches, validates prior records before comparison,

@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-27T18:06:31-06:00
+Last Updated: 2026-06-27T18:29:20-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -47,6 +47,7 @@ edits.
 | 10 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
 | 11 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | GAIL-side plan for future sanitized graph-fact exports that let enhanced Graphify move faster without becoming an authority or execution layer. |
 | 12 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | GA-C1 decision that local Graphify acceleration preview output is ignored disposable developer artifact output under `tmp/graphify-acceleration-preview/` by default. |
+| 13 | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Current handoff summary for the agentic multi-agent builder, connecting builder CNS schema work, Rev 2 Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
 
 Startup direction as of 2026-06-25T07:59:26-06:00: the next session should
 flag that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace
@@ -81,6 +82,7 @@ decision.
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains a separate knowledge spoke and never an execution authority. |
 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | Active GA-C1 retention decision: local preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not committed, retained as evidence, or treated as Graphify ingest. |
+| `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Active coordination summary for the next builder handoff: describes what the agentic multi-agent builder added, what this Rev 2 pass added, and the desired integration between GAIL OS, Freedom, Codex/future coding agents, AG Operations Workspace / Microsoft 365, and Graphify. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/standards/2026-06-25 - Document Control Standard.md` | Active document naming, dated filename, stable-path exception, and cross-build work-tracking rule for Rev 2, Freedom, and AG Operations Workspace. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -240,11 +242,14 @@ Stop and require explicit owner approval before:
 First acknowledge the three-repo coordination direction: GAIL AI Operating
 System Rev 2, Freedom, and AG Operations Workspace are coordinated but not
 consolidated. The promoted Graphify acceleration GA-B/GA-C local readiness
-package is ready to report back to the agentic multi-agent agent builder for a
-revised orchestrated plan. If Adam resumes the default Rev 2 implementation
-route instead, begin Chunk Twenty: add local governed approval actions for
-approve, reject, hold, and request-more-info. Stop before live tool execution,
-live relay or hosted authorization, Freedom runtime access, M365 or QuickBooks
+package plus
+`docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`
+is ready to report back to the agentic multi-agent agent builder for a revised
+orchestrated plan. If Adam resumes the default Rev 2 implementation route
+instead, begin Chunk Twenty: add local governed approval actions for approve,
+reject, hold, and request-more-info. Stop before live tool execution, live
+relay or hosted authorization, Freedom runtime access, M365 or QuickBooks
 adapter work, worker bootstrap scripts, client data, live connectors, live
 business systems, retained preview records, Graphify ingest, Phase D contract
-publication, Phase E adapter-boundary design, or production.
+publication, Phase E adapter-boundary design, cross-system source-of-truth
+changes, or production.
