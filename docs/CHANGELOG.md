@@ -2,6 +2,19 @@
 
 ## 2026-06-28
 
+- Captured the first post-CMS local CNS connection scout in
+  `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
+  Freedom's GAIL OS and Graphify integration clients passed against the
+  running local endpoints, GAIL OS Graphify/evidence focused tests passed, and
+  Graphify CNS API route tests passed. The report was rebased onto remote
+  `main` after another agent added GAIL OS OKP, Signal Gravity L1, CP-5 GAIL
+  OS proof, R4 doctrine/schema, R4 dry-run simulation, and R4 live-executor
+  code; focused current-main GAIL OS Phase 5/6 validation passed in scoped
+  groups. The report keeps the Linux Entra permission expansion request and
+  R4 live execution separate from the local connection-test lane: no
+  tenant/admin consent, live Microsoft Graph call, Planner write, persistent
+  Graphify CNS store ingest, cloud placement, production behavior, R4 live
+  execution, or authority expansion was executed.
 - Completed CMS-C for current-main stabilization by adding
   `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`
   and updating the active packet, startup handoff, source/context routing,

@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T09:57:53-06:00
-Status: task complete; CMS-A/CMS-B/CMS-C complete and login edge paused (2026-06-28T09:57:53-06:00)
+Last Updated: 2026-06-28T17:55:25-06:00
+Status: task complete; CMS-A/CMS-B/CMS-C complete, local CNS connection scout complete, and login edge paused (2026-06-28T17:55:25-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -58,6 +58,18 @@ The report records the actual CMS-A/CMS-B proof state, the remaining
 no-live-connector boundaries, the roles of Freedom, Graphify, GAIL OS, AG
 Operations Workspace / Microsoft 365, and the next owner decision before
 further feature work.
+
+Local CNS connection scout: as of 2026-06-28T17:55:25-06:00, the first
+post-CMS connection proof across Freedom, GAIL OS, and Graphify is captured in
+`docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`. Freedom can
+reach GAIL OS over DirectLink and Graphify on Linux localhost; GAIL OS Graphify
+fact and evidence contracts are locally green; Graphify CNS API route contracts
+are green. The report was rebased onto `origin/main` at `5478b64`, after
+another agent added GAIL OS OKP, Signal Gravity L1, CP-5 GAIL OS proof,
+R4 doctrine/schema, R4 dry-run simulation, and R4 live-executor code. No
+Microsoft 365 permission expansion, tenant/admin consent, live Graph call,
+persistent Graphify CNS store ingest, cloud placement, production service
+behavior, or R4 live execution was performed by this scout.
 
 ## No-Fallback Boundaries
 
@@ -285,12 +297,15 @@ generated file, CI workflow, runtime config, or tool-owned config.
 Current-main stabilization is task complete as of 2026-06-28T09:57:53-06:00.
 The compact builder handoff lives at
 `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`.
+The local CNS connection scout lives at
+`docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
 Next owner decision: send the CMS-C builder report to the agentic multi-agent
-agent builder, resume Chunk Twenty local governed approval actions, explicitly
-run or continue pausing the CMS-B browser-login edge, or open a formal
-Microsoft 365 connector-promotion design gate. No live Microsoft 365 access,
-OAuth consent, tenant/admin consent, Graph call, Planner write, Graphify
-ingest, cloud placement, broad firewall change, production service behavior,
-schema publication, or authority expansion is approved by this stabilization
-pass.
+agent builder, run a bounded local CNS connection-test lane, resume Chunk
+Twenty local governed approval actions, explicitly run or continue pausing the
+CMS-B browser-login edge, or open a formal Microsoft 365 connector-promotion
+design gate. No live Microsoft 365 access, OAuth consent, tenant/admin consent,
+Graph call, Planner write, persistent Graphify CNS store ingest, cloud
+placement, broad firewall change, production service behavior, schema
+publication, R4 live execution, or authority expansion is approved by this
+stabilization pass.

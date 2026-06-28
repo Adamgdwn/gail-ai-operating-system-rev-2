@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T09:57:53-06:00
+Last Updated: 2026-06-28T17:55:25-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -60,6 +60,19 @@ browser login, OAuth, or consent surface. Do not proceed into live Microsoft
 365 access, cloud placement, Graphify ingest, schema publication, browser
 login, OAuth consent, tenant admin consent, or further authority expansion
 without an explicit owner decision.
+
+Current local CNS connection status: as of 2026-06-28T17:49:02-06:00, the
+first post-CMS connection scout is captured in
+`docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`. Freedom can
+reach GAIL OS over DirectLink and Graphify on Linux localhost; GAIL OS Graphify
+fact/evidence contracts and Graphify CNS API route contracts are green. The
+report was rebased onto `origin/main` at `5478b64`, after another agent added
+GAIL OS OKP, Signal Gravity L1, CP-5 GAIL OS proof, R4 doctrine/schema,
+R4 dry-run simulation, and R4 live-executor code. The next safe lane is a
+bounded local CNS connection-test proof. The Linux request to expand Entra
+permissions remains a separate Microsoft 365 connector-promotion decision and
+is not approved by this connection scout. R4 live-executor code being present
+on `main` is not approval to run R4 live mutations.
 
 ## Current Plan
 
