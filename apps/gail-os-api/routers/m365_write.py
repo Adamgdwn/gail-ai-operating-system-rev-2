@@ -1,6 +1,7 @@
 """M365 Graph R2 internal write endpoints.
 
 - POST /api/v1/m365/write/planner-task — R2 dry-run create a Planner task
+  and persist the EvidencePacket to local_store.
 """
 from __future__ import annotations
 
@@ -8,6 +9,7 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 
 from deps import verify_api_key
+from gail_ai_operating_system.evidence_store import save_evidence_packet
 from gail_ai_operating_system.m365_auth import GraphAuthProvider
 from gail_ai_operating_system.m365_writer import create_planner_task
 
@@ -26,7 +28,7 @@ class PlannerTaskRequest(BaseModel):
 
 @router.post("/m365/write/planner-task")
 def m365_write_planner_task(req: PlannerTaskRequest) -> dict:
-    """Create a Planner task (R2 dry-run). Returns an EvidencePacket. No live Graph call."""
+    """Create a Planner task (R2 dry-run). Stores and returns EvidencePacket. No live Graph call."""
     auth = GraphAuthProvider.from_env()
     packet = create_planner_task(
         auth,
@@ -40,4 +42,5 @@ def m365_write_planner_task(req: PlannerTaskRequest) -> dict:
         dry_run=True,
         allow_live=False,
     )
+    save_evidence_packet(packet)
     return {"ok": True, "evidence": packet.to_dict()}
