@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T08:48:48-06:00
-Status: in progress (2026-06-28T08:48:48-06:00)
+Last Updated: 2026-06-28T08:54:02-06:00
+Status: in progress; CMS-A complete (2026-06-28T08:54:02-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -37,12 +37,12 @@ connector, but two tests still assert the older connector registry shape. The
 failure is not currently known to be a runtime failure or a live Microsoft 365
 failure.
 
-CMS-A local closeout: as of 2026-06-28T08:48:48-06:00, the registry/test
-alignment fix is locally green. The fix keeps `m365-graph-api-bridge` in the
-registry, preserves `live_access_enabled=False`, preserves the profile's
-planning-only/registry-only boundary, adds the `svc-gail-os-graph` identity to
-the bridge notes, and updates the stale expected connector ID set in
-`tests/test_connector_registry.py`.
+CMS-A closeout: as of 2026-06-28T08:54:02-06:00, the registry/test alignment
+fix is locally green and GitHub Actions run `28326055021` passed. The fix keeps
+`m365-graph-api-bridge` in the registry, preserves
+`live_access_enabled=False`, preserves the profile's planning-only/registry-only
+boundary, adds the `svc-gail-os-graph` identity to the bridge notes, and
+updates the stale expected connector ID set in `tests/test_connector_registry.py`.
 
 ## No-Fallback Boundaries
 
@@ -62,7 +62,7 @@ the bridge notes, and updates the stale expected connector ID set in
 
 ## CMS-A - Green Current Main And Align Tests
 
-Status: task complete locally (2026-06-28T08:48:48-06:00)
+Status: task complete (2026-06-28T08:54:02-06:00)
 
 Completion target: Task complete
 
@@ -95,6 +95,7 @@ Validation evidence:
 - `.\.venv\Scripts\python.exe -m pytest tests/test_connector_registry.py tests/test_api_connectors.py tests/test_api_m365_bridge.py tests/test_m365_auth.py tests/test_m365_observe.py tests/test_m365_write.py tests/test_m365_evidence_store.py -q` passed: 78 passed, 1 warning.
 - `.\.venv\Scripts\python.exe -m pytest -q` passed: 419 passed, 3 warnings, 55 subtests passed.
 - `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- GitHub Actions CI run `28326055021` passed after push.
 
 Stop before adding endpoints, broadening M365 scope, changing live access,
 changing secrets handling, or masking a real registry regression.
@@ -172,9 +173,9 @@ Freedom/Graphify source-of-truth boundaries.
 
 ## Recommended Execution Order
 
-CMS-A is locally complete. Do not continue feature work while CI is red; if
-GitHub Actions does not confirm the local green result after push, stop and
-repair current `main` before CMS-B.
+CMS-A is complete. CMS-B is the next stabilization chunk after Adam's go-ahead.
+Do not continue feature work if a later CI run turns red; repair current `main`
+before CMS-B or any new capability work.
 
 CMS-B and CMS-C can be grouped into one execution chunk if CMS-A is small and
 clean. Keep them separate if validation exposes runtime, DirectLink, or M365
@@ -219,7 +220,6 @@ generated file, CI workflow, runtime config, or tool-owned config.
 
 ## Next Handoff
 
-Next action after CMS-A: confirm the pushed fix turns GitHub Actions green. If
-CI remains red, stop and repair current `main`. If CI is green and Adam gives
-the go-ahead, execute CMS-B to reprove runtime and dry-run boundaries while
-preserving the no-live-access boundary.
+Next action after CMS-A: wait for Adam's go-ahead, then execute CMS-B to
+reprove runtime and dry-run boundaries while preserving the no-live-access
+boundary.

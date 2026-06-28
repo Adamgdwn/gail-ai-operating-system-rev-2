@@ -2,14 +2,14 @@
 
 ## 2026-06-28
 
-- Completed CMS-A locally for current-main stabilization. The
+- Completed CMS-A for current-main stabilization. The
   `m365-graph-api-bridge` registry profile now records the
   `svc-gail-os-graph` identity in notes, the stale connector-registry expected
   ID set includes the new planning-only bridge, and the focused connector/M365
-  tests plus full Python suite pass locally. The bridge remains
-  `registry-only`, `live_access_enabled=False`, and no endpoint, Graph scope,
-  Microsoft 365 live access, cloud placement, Graphify ingest, schema
-  publication, secrets handling, or authority expansion was added.
+  tests, full Python suite, and GitHub Actions run `28326055021` pass. The
+  bridge remains `registry-only`, `live_access_enabled=False`, and no endpoint,
+  Graph scope, Microsoft 365 live access, cloud placement, Graphify ingest,
+  schema publication, secrets handling, or authority expansion was added.
 - Split the current-main stabilization overlay into
   `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so
   low-token startups can read the CMS-A/CMS-B/CMS-C plan without opening the

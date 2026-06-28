@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T08:48:48-06:00
+Last Updated: 2026-06-28T08:54:02-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -40,17 +40,18 @@ This remains an A1 local no-network dev proof only: no cloud placement, broad
 firewall rule, live connector, Microsoft 365 access, production deployment, or
 authority expansion is approved.
 
-Current GitHub stabilization status: as of 2026-06-28T08:48:48-06:00, the
+Current GitHub stabilization status: as of 2026-06-28T08:54:02-06:00, the
 feature-merge baseline is `2bcdeb7`, adding agent registry, authority override,
 M365 dry-run observe/write, and local evidence persistence work. CMS-A is
-locally complete: the connector-registry alignment failures are fixed without
-live Microsoft 365 access or connector authority expansion, and the full local
-Python suite passes. The compact active packet is
+complete and GitHub Actions run `28326055021` passed: the connector-registry
+alignment failures are fixed without live Microsoft 365 access or connector
+authority expansion, and the full local Python suite passes. The compact active
+packet is
 `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
-Do not proceed into CMS-B or feature capability until GitHub Actions confirms
-the pushed CMS-A fix is green. Do not proceed into live Microsoft 365 access,
-cloud placement, Graphify ingest, schema publication, or further authority
-expansion without an explicit owner decision.
+The next planned stabilization work is CMS-B after Adam's go-ahead. Do not
+proceed into live Microsoft 365 access, cloud placement, Graphify ingest,
+schema publication, or further authority expansion without an explicit owner
+decision.
 
 ## Current Plan
 
