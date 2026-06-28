@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27T17:41:51-06:00
+Last Updated: 2026-06-27T18:06:31-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -125,7 +125,10 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Decide Graphify preview retention | draft complete | 2026-06-27T17:15:09-06:00 | codex session | GA-C1 selected ignored local developer artifact retention under `tmp/graphify-acceleration-preview/`. Generated previews are disposable inspection output, not evidence, approval, relay, source-of-truth, or Graphify ingest records. No preview writer or preview output was added. |
 | Handoff next chunk | complete | 2026-06-27T17:41:51-06:00 | codex session | Adam resumed the promoted Graphify acceleration path and GA-C2 was executed inside the GA-C1 ignored-output boundary. |
 | Build local Graphify preview command | task complete | 2026-06-27T17:41:51-06:00 | codex session | GA-C2 added a local synthetic JSONL preview module, focused tests, and a Windows wrapper script. Preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not evidence, approval, relay, source-of-truth, or Graphify ingest material. |
-| Handoff next chunk | pending | 2026-06-27T17:41:51-06:00 | codex session | Next selected Graphify acceleration slice is GA-C3: add preview diff and cache checks using local preview records only. Chunk Twenty remains held until Adam returns the build path to approval actions. |
+| Handoff next chunk | complete | 2026-06-27T18:06:31-06:00 | codex session | Adam selected GA-C3 plus the important GA-C4 operator handoff portion after GA-C2. |
+| Add Graphify preview diff/cache checks | task complete | 2026-06-27T18:06:31-06:00 | codex session | GA-C3 added safe local diff/cache helpers, CLI support, wrapper flags, and focused tests for added, changed, unchanged, removed, empty, invalid, and duplicate preview cases. |
+| Add Graphify operator preview handoff | task complete | 2026-06-27T18:06:31-06:00 | codex session | GA-C4 documented preview generation, diff inspection, cleanup expectations, and non-goals. Preview output and diffs remain ignored local inspection surfaces, not Graphify ingest, approval, evidence, relay, source-of-truth, or authority material. |
+| Handoff next coordination step | pending | 2026-06-27T18:06:31-06:00 | codex session | Safe next step is to report the GA-B/GA-C local readiness package to the agentic multi-agent agent builder for a revised orchestrated plan, or return to Chunk Twenty if Adam resumes local governed approval actions. |
 
 ## Current Completion Boundary
 
@@ -1464,6 +1467,59 @@ Completion notes:
   input/output environment. That future M365 boundary is not activated here,
   and current Freedom inputs and outputs remain uncompromised.
 
+## Pre-Chunk Twenty - Add Graphify Preview Diff And Operator Handoff
+
+Status: task complete (2026-06-27T18:06:31-06:00)
+
+Completion target: Task complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: GA-C2 preview command, ignored local preview retention decision,
+preview fingerprints, synthetic local fixtures, existing PowerShell wrapper,
+Graphify/Freedom/AG Operations stop boundaries, and owner direction that the
+preview package should be mature enough to hand to the agentic multi-agent
+agent builder. Outputs:
+`packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`
+diff/cache helpers, expanded `tests/test_graphify_acceleration_preview.py`,
+`scripts/write-graphify-acceleration-preview.ps1` `-Diff` and `-DiffAgainst`
+flags, readiness-plan operator handoff notes, active pathway routing, source
+map/context map/changelog updates, and validation evidence. Acceptance:
+deterministic local diff reports `added`, `changed`, `unchanged`, and
+`removed` fact IDs; removed facts are preview information only; missing or
+empty prior preview output is handled as an empty cache; invalid prior JSONL
+fails clearly; diff output exposes only safe IDs, entity labels, fingerprints,
+counts, and non-authority flags; operator commands and cleanup expectations
+are documented. Validation: governance preflight, focused preview tests, full
+Python test suite, syntax compile, PowerShell parse, print-only smoke, diff
+smoke, write smoke, ignored-output check, structure/diff checks, `git diff
+--check`, secret and filename scans, Graphify incremental update, commit, and
+push. Stop: before Phase D contract publication, Phase E adapter-boundary
+work, Graphify ingest, scheduling, background execution, HTTP/cloud placement,
+live connectors, live business-system reads, AG Operations Workspace /
+Microsoft 365 content access, Freedom runtime changes, approval mutation,
+evidence mutation, relay mutation, or execution authority.
+
+Completion notes:
+
+- Added local cache loading and preview diff helpers that validate every
+  previous record before comparison.
+- Added safe diff entries for fact ID, entity type, entity ID, previous
+  fingerprint, current fingerprint, and status only.
+- Added CLI and PowerShell wrapper support for `--diff` / `-Diff` and
+  `--diff-against` / `-DiffAgainst`.
+- Missing and empty local preview caches report all current synthetic records
+  as added; invalid prior cache content fails with a line-numbered local error.
+- Documented the operator sequence: print preview, write/refresh ignored
+  preview cache, inspect diff, and clean disposable output under
+  `tmp/graphify-acceleration-preview/`.
+- This completes the useful GA-C local preview package for the multi-agent
+  builder handoff. It does not publish schemas, create an adapter, call
+  Graphify, read live systems, touch Freedom runtime, access AG Operations /
+  Microsoft 365 content, or create authority to execute.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -1932,6 +1988,7 @@ date -Iseconds
 | 2026-06-27T17:03:09-06:00 | pre-Chunk Twenty Graphify acceleration Phase B | pass | GA-B3 through GA-B6 are integration complete. Added sanitizer classification helpers, stricter reference/edge guards, pure local Action/AuthorityEnvelope/EvidencePacket graph-fact builders, deterministic fingerprints, and package-root exports. Focused Graphify acceleration tests passed: 24 tests. Full Python suite passed: 178 tests. Governance preflight passed with 0 warnings. No persistence, preview output, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, runtime hook, or execution authority was added. |
 | 2026-06-27T17:15:09-06:00 | pre-Chunk Twenty Graphify preview retention decision | pass | GA-C1 is draft complete. Added the dated preview-retention decision record and selected ignored local developer artifact retention under `tmp/graphify-acceleration-preview/`. Governance preflight passed with 0 warnings, `.gitignore` review confirmed `tmp/` and `graphify-out/` are ignored, and relay/evidence/Graphify acceleration boundaries were reviewed. No preview writer, preview output, persistent export store, relay-store-adjacent retention, Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, or execution authority was added. |
 | 2026-06-27T17:41:51-06:00 | pre-Chunk Twenty Graphify local export preview command | pass | GA-C2 is task complete. Added the local preview module, focused tests, and PowerShell wrapper. Focused preview tests passed: 8 tests. Full Python suite passed: 186 tests. Print-only command smoke printed three deterministic JSONL records without writing; write smoke created three ignored synthetic preview records under `tmp/graphify-acceleration-preview/`; JSONL structure and ignored-output checks passed. Governance preflight passed with 0 warnings. No Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, retained evidence lane, runtime hook, or execution authority was added. |
+| 2026-06-27T18:06:31-06:00 | pre-Chunk Twenty Graphify preview diff and operator handoff | pass | GA-C3 and GA-C4 are task complete. Added local preview cache loading, deterministic safe diff output, CLI and PowerShell `-Diff` / `-DiffAgainst` support, focused tests for added/changed/unchanged/removed/empty/invalid/duplicate cases, and operator handoff notes. Focused preview tests passed: 13 tests. Full Python suite passed: 191 tests. Syntax compile, PowerShell parse, print-only smoke, diff smoke, write smoke, ignored-output check, active-status scan, stale-GA-C3 scan, forbidden filename scan, strict secret scan, `git diff --check`, governance preflight, and Graphify incremental update all passed. No Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, approval mutation, evidence mutation, relay mutation, runtime hook, or execution authority was added. |
 
 ## Next Handoff
 
@@ -2058,6 +2115,15 @@ ignored under `tmp/graphify-acceleration-preview/`; `-PrintOnly` renders the
 same records without writing. This remains an operator inspection surface, not
 Graphify ingest, approval, evidence, relay, source-of-truth, live connector,
 or execution authority.
+As of 2026-06-27T18:06:31-06:00, GA-C3 and GA-C4 are task complete. The same
+preview module can now load the ignored local preview cache, compare current
+synthetic records against prior JSONL, and render a safe diff with `added`,
+`changed`, `unchanged`, and `removed` fact IDs. The PowerShell wrapper supports
+`-Diff` and `-DiffAgainst`. The readiness plan includes the operator preview
+handoff: print-only preview, ignored cache write, safe diff inspection, and
+cleanup expectations. The diff remains local inspection output only; it does
+not mutate source, approvals, evidence, relay records, Graphify state, live
+business systems, Freedom runtime, or AG Operations / Microsoft 365 content.
 Owner context as of 2026-06-27T17:41:51-06:00: Graphify should be treated as a
 high-importance neuronal pathway layer for fast, reliable relationship
 intelligence. AG Operations Workspace Setup is the likely first tactile
@@ -2071,13 +2137,14 @@ QuickBooks, GitHub/build systems, evidence, and worker/device posture, desktop
 and larger-tablet arc layout, and hub-first phone-browser fallback. Freedom
 remains the phone-side operator anchor; the browser fallback does not replace
 Freedom's role.
-The next bounded task on the current promoted Graphify acceleration path is
-GA-C3: add preview diff and cache checks using only local preview records and
-fingerprints. Keep it local-only and do not add Graphify calls, adapters, HTTP
-APIs, cloud placement, live connectors, live business-system reads, client
-data, retained preview records, or execution authority without an explicit
-owner decision. Chunk Twenty local governed approval actions remain the
-default Rev 2 approval path when Adam returns to them.
+The next safe coordination step is to report the GA-B/GA-C local readiness
+package to the agentic multi-agent agent builder for a revised orchestrated
+plan. If Adam resumes default Rev 2 implementation instead, return to Chunk
+Twenty local governed approval actions. Do not proceed into Phase D contract
+publication, Phase E adapter-boundary design, live Graphify ingest, HTTP/cloud
+placement, live connectors, live business-system reads, AG Operations
+Workspace / Microsoft 365 content access, Freedom runtime changes, or
+execution authority without an explicit owner decision.
 Before future cross-build consolidation, use
 `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`. Do not
 fold AG Operations, Freedom, or Rev 2 into one build until AG Operations has

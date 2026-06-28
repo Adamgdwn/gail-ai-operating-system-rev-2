@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-27T17:41:51-06:00
+Last Updated: 2026-06-27T18:06:31-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -87,13 +87,13 @@ Current priorities:
   Workspace deliberately, keep their ownership boundaries visible at startup,
   and require an explicit decision-process review before any consolidation,
   shared runtime, or source-of-truth change
-- if Adam continues the promoted Graphify acceleration path before Chunk
-  Twenty, the next slice is GA-C3: add preview diff and cache checks using
-  only local preview records and fingerprints under the ignored preview
-  boundary selected in
-  `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`; do not
-  retain generated preview output, imply Graphify ingest, add adapters, expose
-  HTTP/cloud paths, read live business systems, or grant execution authority
+- the promoted Graphify acceleration GA-B/GA-C local readiness package is now
+  ready for the agentic multi-agent agent builder to consider in a revised
+  orchestration plan: Rev 2 has the local contract, sanitized emitters,
+  deterministic preview JSONL, safe preview diff/cache checks, and operator
+  preview handoff under the ignored preview boundary; do not retain generated
+  preview output, imply Graphify ingest, add adapters, expose HTTP/cloud
+  paths, read live business systems, or grant execution authority
 - treat Graphify acceleration as a high-importance neuronal pathway track for
   future fast relationship intelligence, while keeping AG Operations Workspace
   Setup as a later governed Microsoft 365 tactile input/output boundary and

@@ -3,7 +3,7 @@
 Document type: architecture plan
 Date: 2026-06-27
 Saved: 2026-06-27T09:06:27-06:00
-Last Updated: 2026-06-27T17:41:51-06:00
+Last Updated: 2026-06-27T18:06:31-06:00
 Status: active planning record
 Owner: Adam Goodwin
 
@@ -501,7 +501,7 @@ pass.
 
 ### Phase C - Local Export Preview
 
-Status: active preview diff planning (2026-06-27T17:41:51-06:00)
+Status: task complete (2026-06-27T18:06:31-06:00)
 
 Add a local export preview or store only after the contract is validated.
 
@@ -600,7 +600,7 @@ system read, retained evidence lane, or execution authority.
 
 #### GA-C3 - Add Preview Diff And Cache Checks
 
-Status: planned
+Status: task complete (2026-06-27T18:06:31-06:00)
 
 Completion target: Task complete
 
@@ -616,11 +616,11 @@ changed, unchanged, and removed fact IDs.
 
 Acceptance:
 
-- comparison is deterministic;
-- removed facts are reported as preview information only and do not mutate
+- [x] comparison is deterministic;
+- [x] removed facts are reported as preview information only and do not mutate
   source or Graphify state;
-- diff output is safe to read in logs and excludes raw payloads;
-- comparison handles empty previous output and invalid previous output clearly.
+- [x] diff output is safe to read in logs and excludes raw payloads;
+- [x] comparison handles empty previous output and invalid previous output clearly.
 
 Validation: focused tests for added, changed, unchanged, removed, empty, and
 invalid preview cases.
@@ -628,9 +628,18 @@ invalid preview cases.
 Stop condition: stop before treating preview diffs as authority, approvals, or
 live graph mutations.
 
+Execution note: GA-C3 extended the local preview module with a validated cache
+loader, deterministic diff entries, safe JSON diff rendering, and wrapper
+support for `-Diff` / `--diff`. The diff compares safe fact IDs and
+fingerprints only, reports `added`, `changed`, `unchanged`, and `removed`
+facts, treats missing or empty prior preview output as an empty cache, and
+raises a clear local error for invalid prior JSONL. The diff never writes,
+calls Graphify, mutates source, changes approvals, edits evidence, updates
+relay records, reads live business systems, or grants execution authority.
+
 #### GA-C4 - Operator Preview Handoff
 
-Status: planned
+Status: task complete (2026-06-27T18:06:31-06:00)
 
 Completion target: Task complete
 
@@ -647,15 +656,29 @@ that explains preview generation, safe cleanup, and non-goals.
 
 Acceptance:
 
-- note states that preview output is not sent to Graphify;
-- note states that preview output is not an approval record;
-- cleanup and ignored-output expectations are clear;
-- validation commands are listed.
+- [x] note states that preview output is not sent to Graphify;
+- [x] note states that preview output is not an approval record;
+- [x] cleanup and ignored-output expectations are clear;
+- [x] validation commands are listed.
 
 Validation: document review, command smoke check if command exists, and
 `git diff --check`.
 
 Stop condition: stop before publishing schemas or defining a live adapter.
+
+Operator note:
+
+- Generate or refresh the ignored local preview cache:
+  `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\write-graphify-acceleration-preview.ps1`
+- Print the deterministic preview JSONL without writing:
+  `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\write-graphify-acceleration-preview.ps1 -PrintOnly`
+- Compare current synthetic preview records against the existing ignored cache:
+  `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\write-graphify-acceleration-preview.ps1 -Diff`
+- Generated preview output remains disposable under
+  `tmp/graphify-acceleration-preview/` and may be deleted during cleanup.
+- Preview JSONL and preview diffs are not sent to Graphify, are not approval
+  records, are not evidence records, are not relay records, are not
+  source-of-truth records, and are not authority to execute.
 
 ### Phase D - Contract Publication
 
@@ -966,17 +989,25 @@ Stop before:
   command using synthetic local records only. The preview command is an
   operator inspection surface, not a retained evidence, relay, approval,
   source-of-truth, or Graphify ingest path.
+- 2026-06-27T18:06:31-06:00: GA-C3 and GA-C4 completed local preview
+  diff/cache checks plus the operator preview handoff. The safe diff reports
+  fact IDs and fingerprints only and remains non-authoritative, non-ingest,
+  non-evidence, non-relay, and non-mutating.
 
 ## Next Safe Slice
 
 The next GAIL-side slice, when selected, should be:
 
 ```text
-Pre-Graphify preview slice:
-Execute GA-C3 preview diff and cache checks using only local preview records.
+Post-Graphify preview slice:
+Report the GA-B/GA-C local readiness package back to the agentic multi-agent
+agent builder for a revised orchestrated plan, or return to Chunk Twenty local
+governed approval actions if Adam resumes the default Rev 2 build path.
 ```
 
-That slice remains outside live Graphify modification and outside Chunk Twenty
-unless Adam explicitly folds it into the active build path. GA-C3 must stay
-within the ignored preview-retention boundary selected by GA-C1 and the local
-synthetic preview command completed in GA-C2.
+That handoff should treat the GA-C preview and diff tools as local inspection
+surfaces only. Do not proceed into Phase D contract publication, Phase E
+adapter boundary design, live Graphify ingest, HTTP/cloud placement, live
+connectors, live business-system reads, AG Operations Workspace / Microsoft
+365 content access, Freedom runtime changes, or execution authority without an
+explicit owner decision.

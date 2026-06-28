@@ -26,7 +26,11 @@ from gail_ai_operating_system.graphify_acceleration_preview import (  # noqa: E4
     DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_FILENAME,
     GraphifyAccelerationPreviewError,
     build_graphify_acceleration_preview_records,
+    build_graphify_acceleration_preview_diff,
+    compare_graphify_acceleration_preview_records,
+    load_graphify_acceleration_preview_records,
     main,
+    render_graphify_acceleration_preview_diff_json,
     render_graphify_acceleration_preview_jsonl,
     resolve_graphify_acceleration_preview_path,
     write_graphify_acceleration_preview,
@@ -175,6 +179,113 @@ class GraphifyAccelerationPreviewTests(unittest.TestCase):
             lines = stdout.getvalue().strip().splitlines()
             self.assertEqual(len(lines), 3)
             self.assertEqual(json.loads(lines[0])["entity_type"], "authority_envelope")
+
+    def test_diff_against_missing_or_empty_cache_reports_all_added(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_root:
+            missing_diff = build_graphify_acceleration_preview_diff(repo_root=temp_root)
+
+            self.assertEqual(missing_diff.cache_status, "missing")
+            self.assertEqual(len(missing_diff.added), 3)
+            self.assertEqual(len(missing_diff.changed), 0)
+            self.assertEqual(len(missing_diff.unchanged), 0)
+            self.assertEqual(len(missing_diff.removed), 0)
+            self.assertFalse(missing_diff.to_dict()["mutates_source"])
+            self.assertFalse(missing_diff.to_dict()["mutates_graphify"])
+
+            empty_path = (
+                Path(temp_root)
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_DIR
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_FILENAME
+            )
+            empty_path.parent.mkdir(parents=True, exist_ok=True)
+            empty_path.write_text("", encoding="utf-8")
+
+            empty_diff = build_graphify_acceleration_preview_diff(repo_root=temp_root)
+
+            self.assertEqual(empty_diff.cache_status, "empty")
+            self.assertEqual(len(empty_diff.added), 3)
+
+    def test_diff_reports_added_changed_unchanged_and_removed_facts(self) -> None:
+        previous = build_graphify_acceleration_preview_records()
+        unchanged = previous[0]
+        changed = replace(previous[1], fingerprint="sha256-changed-action")
+        added = replace(
+            previous[2],
+            record_id="graphify-fact-evidence-graphify-preview-002",
+            entity_id="evidence-graphify-preview-002",
+            fingerprint="sha256-added-evidence",
+        )
+
+        diff = compare_graphify_acceleration_preview_records(
+            previous,
+            (unchanged, changed, added),
+            previous_source="inline-test",
+            cache_status="loaded",
+        )
+        rendered = json.loads(render_graphify_acceleration_preview_diff_json(diff))
+
+        self.assertEqual(rendered["counts"], {
+            "added": 1,
+            "changed": 1,
+            "unchanged": 1,
+            "removed": 1,
+        })
+        self.assertEqual([entry.fact_id for entry in diff.unchanged], [unchanged.record_id])
+        self.assertEqual([entry.fact_id for entry in diff.changed], [changed.record_id])
+        self.assertEqual([entry.fact_id for entry in diff.added], [added.record_id])
+        self.assertEqual([entry.fact_id for entry in diff.removed], [previous[2].record_id])
+        self.assertEqual(diff.removed[0].current_fingerprint, None)
+        self.assertEqual(rendered["authority_effect"], "none")
+
+    def test_load_preview_records_rejects_invalid_previous_output_clearly(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_root:
+            preview_path = (
+                Path(temp_root)
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_DIR
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_FILENAME
+            )
+            preview_path.parent.mkdir(parents=True, exist_ok=True)
+            preview_path.write_text("{bad-json\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(GraphifyAccelerationPreviewError, "line 1"):
+                load_graphify_acceleration_preview_records(repo_root=temp_root)
+
+            invalid_record = build_graphify_acceleration_preview_records()[0].to_dict()
+            invalid_record["fingerprint"] = ""
+            preview_path.write_text(json.dumps(invalid_record) + "\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(GraphifyAccelerationPreviewError, "Invalid previous"):
+                build_graphify_acceleration_preview_diff(repo_root=temp_root)
+
+    def test_diff_rejects_duplicate_fact_ids(self) -> None:
+        records = build_graphify_acceleration_preview_records()
+
+        with self.assertRaisesRegex(GraphifyAccelerationPreviewError, "duplicate fact ID"):
+            compare_graphify_acceleration_preview_records((records[0], records[0]), records)
+
+        with self.assertRaisesRegex(GraphifyAccelerationPreviewError, "duplicate fact ID"):
+            compare_graphify_acceleration_preview_records(records, (records[0], records[0]))
+
+    def test_cli_diff_outputs_safe_summary_without_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_root:
+            stdout = io.StringIO()
+
+            with redirect_stdout(stdout):
+                exit_code = main(["--repo-root", temp_root, "--diff"])
+
+            expected_path = (
+                Path(temp_root)
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_DIR
+                / DEFAULT_GRAPHIFY_ACCELERATION_PREVIEW_FILENAME
+            )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertFalse(expected_path.exists())
+            self.assertEqual(payload["mode"], "local-preview-diff")
+            self.assertEqual(payload["cache_status"], "missing")
+            self.assertEqual(payload["counts"]["added"], 3)
+            self.assertEqual(payload["mutates_graphify"], False)
+            self.assertNotIn("summary", json.dumps(payload))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$Output,
+    [string]$DiffAgainst,
+    [switch]$Diff,
     [switch]$PrintOnly
 )
 
@@ -24,6 +26,14 @@ $arguments = @(
 
 if ($Output) {
     $arguments += @("--output", $Output)
+}
+
+if ($Diff) {
+    $arguments += "--diff"
+}
+
+if ($DiffAgainst) {
+    $arguments += @("--diff-against", $DiffAgainst)
 }
 
 if ($PrintOnly) {

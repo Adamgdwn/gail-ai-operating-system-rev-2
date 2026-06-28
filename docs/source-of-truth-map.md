@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-27T17:41:51-06:00
+Last Updated: 2026-06-27T18:06:31-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -99,9 +99,9 @@ decision.
 | `tests/test_graphify_handoff.py` | Local Graphify handoff tests for route readiness, candidate validation, policy-gated dry-run actions, denied execution/mutation, evidence checks, and sensitive-boundary rejection. |
 | `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py` | Local sanitized `GraphifyAccelerationRecord` contract, safety classifiers, pure Action/AuthorityEnvelope/EvidencePacket graph-fact builders, and deterministic fingerprints for future Graphify acceleration. No persistence, transport, adapter, ingest, or execution authority. |
 | `tests/test_graphify_acceleration.py` | Local contract, sanitizer, emitter, fingerprint, and package-root export tests for Graphify acceleration records. |
-| `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py` | Local synthetic JSONL preview generator for GA-C2. Writes only under the ignored preview boundary by default, supports print-only mode, validates records before write, and does not call Graphify or live systems. |
-| `tests/test_graphify_acceleration_preview.py` | Local preview tests for deterministic output, path safety, invalid-record rejection before write, print-only mode, and JSONL structure. |
-| `scripts/write-graphify-acceleration-preview.ps1` | Windows wrapper for the local preview command. It sets `PYTHONPATH` to the repo source folder and calls the GA-C2 preview module; it does not install services, schedule jobs, call Graphify, or read live systems. |
+| `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py` | Local synthetic JSONL preview generator plus safe preview diff/cache inspector for GA-C2 through GA-C4. Writes only under the ignored preview boundary by default, supports print-only and diff modes, validates records before write or compare, and does not call Graphify or live systems. |
+| `tests/test_graphify_acceleration_preview.py` | Local preview tests for deterministic output, path safety, invalid-record rejection before write, print-only mode, JSONL structure, and safe added/changed/unchanged/removed diff behavior against missing, empty, invalid, or duplicate previous preview caches. |
+| `scripts/write-graphify-acceleration-preview.ps1` | Windows wrapper for the local preview command. It sets `PYTHONPATH` to the repo source folder and supports preview write, print-only, diff, and diff-against modes; it does not install services, schedule jobs, call Graphify, or read live systems. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_envelope.py` | Local no-network relay envelope schema validation for intent, approval, status, evidence, and handoff records. |
 | `tests/test_relay_envelope.py` | Local relay envelope tests for safe references, dry-run policy gates, malformed JSON shapes, stale or expired approvals, denied hosted relay or worker polling, and unsafe payload rejection. |
 | `packages/uaos-core/src/gail_ai_operating_system/relay_store.py` | Local no-network relay record store proof for validated envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. |
@@ -239,13 +239,12 @@ Stop and require explicit owner approval before:
 
 First acknowledge the three-repo coordination direction: GAIL AI Operating
 System Rev 2, Freedom, and AG Operations Workspace are coordinated but not
-consolidated. If Adam continues the promoted Graphify acceleration path, the
-next slice is GA-C3: add preview diff and cache checks using local preview
-records and the ignored preview boundary recorded in
-`docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`. If Adam
-resumes the default Rev 2 implementation route, begin Chunk Twenty: add local
-governed approval actions for approve, reject, hold, and request-more-info.
-Stop before live tool execution, live relay or hosted authorization, Freedom
-runtime access, M365 or QuickBooks adapter work, worker bootstrap scripts,
-client data, live connectors, live business systems, retained preview records,
-Graphify ingest, or production.
+consolidated. The promoted Graphify acceleration GA-B/GA-C local readiness
+package is ready to report back to the agentic multi-agent agent builder for a
+revised orchestrated plan. If Adam resumes the default Rev 2 implementation
+route instead, begin Chunk Twenty: add local governed approval actions for
+approve, reject, hold, and request-more-info. Stop before live tool execution,
+live relay or hosted authorization, Freedom runtime access, M365 or QuickBooks
+adapter work, worker bootstrap scripts, client data, live connectors, live
+business systems, retained preview records, Graphify ingest, Phase D contract
+publication, Phase E adapter-boundary design, or production.

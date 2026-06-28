@@ -3,7 +3,7 @@
 Document type: decision record
 Date: 2026-06-27
 Saved: 2026-06-27T17:15:09-06:00
-Last Updated: 2026-06-27T17:15:09-06:00
+Last Updated: 2026-06-27T18:06:31-06:00
 Status: draft complete (2026-06-27T17:15:09-06:00)
 Owner: Adam Goodwin
 
@@ -137,6 +137,19 @@ callable function that:
   later explicit owner decision changes the retention boundary;
 - treats preview output as disposable inspection data, not audit evidence.
 
+## GA-C3 And GA-C4 Guidance
+
+Preview diff/cache checks may read existing JSONL under
+`tmp/graphify-acceleration-preview/` as disposable local cache input. Diff
+output may be printed for operator inspection, but it must remain a safe
+summary of fact IDs, entity labels, fingerprints, counts, and non-authority
+flags only.
+
+Preview diff output is not evidence, approval, relay, source-of-truth,
+Graphify ingest, or execution-authority material. Removed facts in a preview
+diff are information only; they do not delete source records, mutate Graphify,
+or change any approval/evidence/relay state.
+
 ## Validation Evidence
 
 Validated during GA-C1:
@@ -148,4 +161,3 @@ Validated during GA-C1:
 - no preview writer, preview output, Graphify call, adapter, transport, HTTP
   API, cloud placement, live connector, client data, or execution authority was
   added.
-

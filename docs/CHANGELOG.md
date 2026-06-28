@@ -2,6 +2,17 @@
 
 ## 2026-06-27
 
+- Completed GA-C3 and GA-C4 as local Graphify acceleration preview
+  diff/cache checks plus the operator handoff. The preview module now loads
+  ignored local JSONL caches, validates prior records before comparison,
+  reports safe `added`, `changed`, `unchanged`, and `removed` fact IDs by
+  fingerprint, handles missing/empty/invalid prior output clearly, and exposes
+  `-Diff` / `-DiffAgainst` through the Windows wrapper. The readiness plan now
+  documents preview generation, diff inspection, cleanup expectations, and
+  non-goals. No Graphify call, adapter, transport, HTTP API, cloud placement,
+  live connector, live business-system read, client data, approval mutation,
+  evidence mutation, relay mutation, runtime hook, or execution authority was
+  added.
 - Completed GA-C2 as a local Graphify acceleration preview command. Added
   `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`,
   `tests/test_graphify_acceleration_preview.py`, and
