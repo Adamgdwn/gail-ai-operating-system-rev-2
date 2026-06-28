@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-28T08:54:02-06:00
+Last Updated: 2026-06-28T09:11:34-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -137,6 +137,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Plan current-main stabilization chunks | draft complete | 2026-06-28T08:21:40-06:00 | codex session | Pulled GitHub current to `2bcdeb7`, reviewed the last 24 hours of merged API, agent-registry, authority-override, M365 dry-run, and evidence-store work, and planned a compact stabilization sequence before any new capability execution. GitHub `main` CI is currently failing on two connector-registry alignment tests; execution waits for Adam's go-ahead. |
 | Split current-main stabilization packet | task complete | 2026-06-28T08:33:50-06:00 | codex session | Moved the CMS-A/CMS-B/CMS-C GitHub catch-up plan into `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so startup can read a compact dated packet instead of the large historical pathway. Stable route files remain stable; no code, CI fix, live connector, Microsoft 365 access, Graphify ingest, cloud placement, schema publication, runtime source-of-truth change, or authority expansion was executed. |
 | Complete CMS-A current-main alignment | task complete | 2026-06-28T08:54:02-06:00 | codex session | Aligned the stale connector-registry test expectations with the planning-only `m365-graph-api-bridge` profile and recorded the `svc-gail-os-graph` identity in the bridge notes. Full local Python tests and GitHub Actions run `28326055021` pass. No live Microsoft 365 access, Graph scope expansion, endpoint addition, cloud placement, Graphify ingest, schema publication, secrets-handling change, or authority expansion was executed. |
+| Complete CMS-B local runtime proof | integration complete | 2026-06-28T09:11:34-06:00 | codex session | Reproved the local FastAPI, dry-run M365, evidence lookup, DirectLink, and Freedom CP-1 paths with focused tests, full Python tests, Windows HTTP probes, and Linux Freedom integration. The optional browser-login edge remains paused for Adam's explicit yes/pause decision. No browser login, OAuth consent, tenant/admin consent, live Graph call, Planner write, Graphify ingest, cloud placement, broad firewall change, production service behavior, or authority expansion was executed. |
 
 ## Current Completion Boundary
 

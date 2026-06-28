@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T09:00:50-06:00
+Last Updated: 2026-06-28T09:11:34-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -40,22 +40,20 @@ This remains an A1 local no-network dev proof only: no cloud placement, broad
 firewall rule, live connector, Microsoft 365 access, production deployment, or
 authority expansion is approved.
 
-Current GitHub stabilization status: as of 2026-06-28T08:54:02-06:00, the
+Current GitHub stabilization status: as of 2026-06-28T09:11:34-06:00, the
 feature-merge baseline is `2bcdeb7`, adding agent registry, authority override,
 M365 dry-run observe/write, and local evidence persistence work. CMS-A is
-complete and GitHub Actions run `28326055021` passed: the connector-registry
-alignment failures are fixed without live Microsoft 365 access or connector
-authority expansion, and the full local Python suite passes. The compact active
-packet is
-`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
-The next planned stabilization work is CMS-B with Adam's revised owner-gated
-login edge. CMS-B must first reprove the local runtime and M365 dry-run
-boundaries. If that proof is green, the agent may prepare and explain an
-interactive browser-login probe, then must pause for Adam to say "yes, go
-ahead" or "pause" before opening any login, OAuth, or consent surface. Do not
-proceed into live Microsoft 365 access, cloud placement, Graphify ingest,
-schema publication, browser login, OAuth consent, tenant admin consent, or
-further authority expansion without an explicit owner decision.
+complete and GitHub Actions run `28326055021` passed. CMS-B local proof is also
+complete: focused API/M365 tests, full Python tests, Windows HTTP probes, and
+the Linux Freedom CP-1 script passed against a temporary local server with
+synthetic M365 env values and dry-run evidence only. The compact active packet
+is `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
+The next planned action is the owner-gated CMS-B login edge explanation. The
+agent must pause for Adam to say "yes, go ahead" or "pause" before opening any
+browser login, OAuth, or consent surface. Do not proceed into live Microsoft
+365 access, cloud placement, Graphify ingest, schema publication, browser
+login, OAuth consent, tenant admin consent, or further authority expansion
+without an explicit owner decision.
 
 ## Current Plan
 

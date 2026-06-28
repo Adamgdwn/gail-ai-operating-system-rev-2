@@ -2,6 +2,15 @@
 
 ## 2026-06-28
 
+- Completed the CMS-B local runtime and dry-run proof while leaving the
+  owner-gated login edge paused. Focused API/M365 tests, the full Python suite,
+  Windows HTTP probes on a temporary `10.77.77.1:8124` server, evidence lookup,
+  DirectLink health, and the Linux Freedom CP-1 integration script all passed.
+  The proof used synthetic M365 env values and dry-run evidence only; the
+  temporary server, evidence store, and local venv were removed afterward. No
+  browser login, OAuth consent, tenant/admin consent, live Microsoft Graph
+  read/write, Graphify ingest, cloud placement, broad firewall change,
+  production service behavior, or authority expansion was executed.
 - Revised CMS-B in the active current-main stabilization packet to separate
   the normal local runtime/dry-run proof from an optional owner-gated browser
   login edge probe. The login edge now requires an in-chat explanation and

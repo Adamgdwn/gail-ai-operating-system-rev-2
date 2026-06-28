@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T09:00:50-06:00
-Status: in progress; CMS-A complete; CMS-B owner-gated login edge revised (2026-06-28T09:00:50-06:00)
+Last Updated: 2026-06-28T09:11:34-06:00
+Status: in progress; CMS-A complete; CMS-B local proof complete and login edge paused (2026-06-28T09:11:34-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -43,6 +43,12 @@ fix is locally green and GitHub Actions run `28326055021` passed. The fix keeps
 `live_access_enabled=False`, preserves the profile's planning-only/registry-only
 boundary, adds the `svc-gail-os-graph` identity to the bridge notes, and
 updates the stale expected connector ID set in `tests/test_connector_registry.py`.
+
+CMS-B local proof closeout: as of 2026-06-28T09:11:34-06:00, the local runtime,
+M365 dry-run, evidence, and DirectLink/Freedom CP-1 proof paths are green. The
+optional login edge is not executed yet; it is paused for Adam's explicit
+"yes, go ahead" or "pause" decision after Codex explains the exact browser
+login probe.
 
 ## No-Fallback Boundaries
 
@@ -105,7 +111,7 @@ changing secrets handling, or masking a real registry regression.
 
 ## CMS-B - Reprove Runtime, Dry-Run Boundaries, And Login Edge Gate
 
-Status: planned; revised with owner-gated login edge (2026-06-28T09:00:50-06:00)
+Status: local proof complete; owner-gated login edge paused (2026-06-28T09:11:34-06:00)
 
 Completion target: Integration complete
 
@@ -140,6 +146,18 @@ Validation:
 - evidence store inspection with synthetic data only;
 - only after the local proof passes, an owner-gated browser/login reachability
   probe may be prepared, explained, and paused for Adam's decision.
+
+Validation evidence:
+
+- `.\.venv\Scripts\python.exe -m pytest tests/test_api_health.py tests/test_api_missions.py tests/test_api_actions.py tests/test_api_connectors.py tests/test_api_agents.py tests/test_api_authority.py tests/test_api_evidence.py tests/test_api_m365_bridge.py tests/test_m365_auth.py tests/test_m365_observe.py tests/test_m365_write.py tests/test_m365_evidence_store.py -q` passed: 118 passed, 3 warnings.
+- DirectLink status probe passed at 2026-06-28T09:06:20-06:00: Windows `10.77.77.1`, Linux `10.77.77.2`, SSH, and `L:`/`X:` shared workspace were healthy with no gateway/DNS change.
+- Existing `10.77.77.1:8123` server was already running before CMS-B. Windows and Linux health probes returned `status=ok`, `boundary=A1 local no-network`, `phase=1`; protected endpoints were not reused because the runtime key was unknown.
+- Temporary CMS-B server on `10.77.77.1:8124` used synthetic env values and ignored `tmp/cms-b-local-store/` evidence output. Windows HTTP probes passed for health, mission creation, allowed local action, blocked `m365_live_content_read`, authority override pending record, connector list, agent list, M365 status, M365 observe dry-run, Planner dry-run, and evidence lookup.
+- The Windows probe confirmed `connector_count=8`, connector live-enabled count `0`, `m365-graph-api-bridge.current_state=registry-only`, `agent_count=6`, agent live-enabled count `0`, M365 observe evidence `execution_mode=dry-run` with `R0_OBSERVE`, and Planner evidence `execution_mode=dry-run` with `R2_INTERNAL_WRITE`.
+- The first Windows mission probe intentionally hit a guardrail: `requested_tools` values outside the local no-network allowlist were rejected before mission creation.
+- Linux Freedom CP-1 script passed 4/4 over DirectLink against the temporary server: health, mission proposal, action validation, and planning-only connector registry.
+- `.\.venv\Scripts\python.exe -m pytest -q` passed: 419 passed, 3 warnings, 55 subtests passed.
+- The temporary `8124` server was stopped after the proof; the pre-existing `8123` server was left untouched. The temporary evidence store and local `.venv` were removed before closeout.
 
 Normal CMS-B proof stops before cloud placement, broad firewall changes, real
 Microsoft Graph calls, tenant admin consent, live Planner writes, Graphify
@@ -192,17 +210,18 @@ Freedom/Graphify source-of-truth boundaries.
 
 ## Recommended Execution Order
 
-CMS-A is complete. CMS-B is the next stabilization chunk after Adam's go-ahead.
-Run the local runtime/dry-run proof first. If that proof is green, do not open
+CMS-A is complete. CMS-B local runtime/dry-run proof is complete. Do not open
 an interactive login automatically; explain the edge probe and wait for Adam to
 say "yes, go ahead" or "pause." Do not continue feature work if a later CI run
-turns red; repair current `main` before CMS-B or any new capability work.
+turns red; repair current `main` before CMS-C, login-edge work, or any new
+capability work.
 
 CMS-B and CMS-C can be grouped into one execution chunk if CMS-A is small and
 clean. Keep them separate if validation exposes runtime, DirectLink, or M365
 dry-run drift.
 
-After CMS-C, ask Adam whether to send the builder report, resume Graphify
+After the CMS-B login edge is approved/skipped and CMS-C closes, ask Adam
+whether to send the builder report, resume Graphify
 acceleration Phase D/E design, continue CP-1 contract generation for
 TypeScript consumers, or begin a formal M365 connector promotion design gate.
 
@@ -241,7 +260,9 @@ generated file, CI workflow, runtime config, or tool-owned config.
 
 ## Next Handoff
 
-Next action after CMS-A: execute CMS-B to reprove runtime and dry-run
-boundaries while preserving the no-live-access boundary. If the proof is green,
-prepare the login edge explanation and pause for Adam's explicit decision
-before opening any browser login or consent surface.
+Next action after CMS-B local proof: explain the optional login edge and pause
+for Adam's explicit "yes, go ahead" or "pause" decision before opening any
+browser login or consent surface. No live Microsoft 365 access, OAuth consent,
+tenant/admin consent, Graph call, Planner write, Graphify ingest, cloud
+placement, broad firewall change, production service behavior, or authority
+expansion is approved by the local CMS-B proof.
