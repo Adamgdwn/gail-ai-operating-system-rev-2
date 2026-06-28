@@ -3,3 +3,4 @@ jsonschema
 fastapi
 httpx
 uvicorn
+msal
