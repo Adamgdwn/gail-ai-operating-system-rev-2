@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27T22:23:45-06:00
+Last Updated: 2026-06-28T08:21:40-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -131,6 +131,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Handoff next coordination step | pending | 2026-06-27T18:06:31-06:00 | codex session | Safe next step is to report the GA-B/GA-C local readiness package to the agentic multi-agent agent builder for a revised orchestrated plan, or return to Chunk Twenty if Adam resumes local governed approval actions. |
 | Create builder and Graphify integration summary | task complete | 2026-06-27T18:29:20-06:00 | codex session | Added a dated coordination summary for the builder handoff, tying the builder CNS schema foundation to Rev 2 schema hardening, GA-B/GA-C Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
 | Prove CP-1 Freedom bridge over DirectLink | integration complete | 2026-06-27T22:23:45-06:00 | codex session | Pulled the current builder/Freedom HTTP bridge work, patched the FastAPI wrapper for Freedom runtime compatibility, started the GAIL OS dev server bound to `10.77.77.1:8123`, and verified the Linux Freedom integration proof passed 4/4. No cloud placement, broad firewall rule, live connector, Microsoft 365 access, production deployment, or authority expansion was added. |
+| Plan current-main stabilization chunks | draft complete | 2026-06-28T08:21:40-06:00 | codex session | Pulled GitHub current to `2bcdeb7`, reviewed the last 24 hours of merged API, agent-registry, authority-override, M365 dry-run, and evidence-store work, and planned a compact stabilization sequence before any new capability execution. GitHub `main` CI is currently failing on two connector-registry alignment tests; execution waits for Adam's go-ahead. |
 
 ## Current Completion Boundary
 
@@ -1619,6 +1620,71 @@ Completion notes:
   placement, live business-system connectors, Microsoft 365 access, Graphify
   ingest, broad network exposure, or any authority expansion.
 
+## Current-Main Stabilization - GitHub Catch-Up
+
+Status: planned (2026-06-28T08:21:40-06:00)
+
+Completion target: Task complete
+
+Budget class: Small grouped stabilization pass
+
+Plan packet:
+
+Context: GitHub `main` was fast-forwarded from the CP-1 bridge commit
+`dab1883` to `2bcdeb7`. The merged work adds the agent registry endpoint,
+authority override endpoint, Microsoft Graph auth readiness, M365 dry-run R0
+observe, M365 dry-run R2 Planner write, and local EvidencePacket persistence.
+GitHub Actions is currently red on `main` with two connector-registry test
+alignment failures. This stabilization overlay takes precedence over adding
+new capability. Execution requires Adam's go-ahead.
+
+CMS-A - Green current main and align tests:
+Inputs: `origin/main`, GitHub Actions run `28313436058`, connector registry,
+M365 bridge tests, and existing full pytest suite. Outputs: the smallest
+registry/test alignment fix that makes CI green without changing connector
+authority. Acceptance: local full pytest passes, the connector registry still
+contains `m365-graph-api-bridge`, `live_access_enabled` remains false, and CI
+is expected to pass after push. Validation: focused connector/M365 API tests,
+full Python tests, `git diff --check`, governance preflight if the fix touches
+policy or connector authority. Stop: before adding endpoints, broadening M365
+scope, changing live access, changing secrets handling, or masking a real
+registry regression.
+
+CMS-B - Reprove runtime and dry-run boundaries:
+Inputs: greened current main, ignored local venv, FastAPI app, Freedom CP-1
+client, M365 dry-run endpoints, and local evidence store path. Outputs: a
+fresh local proof that GAIL OS still serves Freedom over DirectLink and that
+the M365 endpoints remain dry-run/no-live-call surfaces. Acceptance: health,
+missions, actions, connectors, agents, authority override, M365 status, M365
+observe dry-run, M365 Planner dry-run, and evidence retrieval behave as
+documented under local runtime constraints. Validation: focused API tests,
+Windows HTTP probes, Linux Freedom CP-1 script where available, and evidence
+store inspection with synthetic data only. Stop: before cloud placement, broad
+firewall changes, real Microsoft Graph calls, tenant admin consent, live
+Planner writes, Graphify ingest, or production service behavior.
+
+CMS-C - Reconcile pathway, handoff, and builder report:
+Inputs: CMS-A/CMS-B validation results, current pathway, START_HERE, changelog,
+and the builder/Graphify/Freedom/AG Operations integration summary. Outputs:
+updated handoff notes describing the actual post-merge state, a concise report
+for the agentic multi-agent agent builder, and a next-decision recommendation.
+Acceptance: the pathway clearly distinguishes dry-run M365 capability from
+approved live connector activation, records that Graphify remains the binding
+knowledge layer rather than an execution authority, and names the next owner
+decision before further feature work. Validation: doc review, timestamped
+status entries, `git diff --check`, and any required handoff note review.
+Stop: before renumbering the whole roadmap, approving live M365 content access,
+publishing schemas as a stable external package, moving to cloud, or altering
+Freedom/Graphify source-of-truth boundaries.
+
+Recommended execution order: run CMS-A first and do not continue feature work
+while CI is red. CMS-B and CMS-C can be grouped into the same execution chunk if
+CMS-A is small and clean; keep them separate if validation exposes runtime,
+DirectLink, or M365 dry-run drift. After CMS-C, ask Adam whether to send the
+builder report, resume Graphify acceleration Phase D/E design, continue CP-1
+contract generation for TypeScript consumers, or begin a formal M365 connector
+promotion design gate.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -2094,21 +2160,29 @@ date -Iseconds
 ## Next Handoff
 
 Current handoff: CP-1 DirectLink bridge proof is integration complete as of
-2026-06-27T22:23:45-06:00. The GAIL OS FastAPI dev server is running from an
-ignored venv and is bound to `http://10.77.77.1:8123`; Linux Freedom reached it
-and passed all 4 CP-1 integration checks. Treat the running process as a local
-dev proof, not a production service. If the server is stopped or Windows
-restarts, recreate the ignored venv if needed, set `GAIL_OS_API_KEY` in the
-local shell, and run `uvicorn main:app --host 10.77.77.1 --port 8123` from
-`apps/gail-os-api`.
+2026-06-27T22:23:45-06:00, and GitHub `main` has since advanced to `2bcdeb7`
+with merged agent registry, authority override, M365 dry-run, and local
+evidence-store work. As of 2026-06-28T08:21:40-06:00, the next planned step is
+the `Current-Main Stabilization - GitHub Catch-Up` overlay above. Do not add
+new capability until Adam approves execution and CMS-A has made current `main`
+green again. GitHub Actions is currently failing on two connector-registry test
+alignment failures, not a known live-runtime failure.
+
+The prior GAIL OS FastAPI dev server proof was bound to
+`http://10.77.77.1:8123`; Linux Freedom reached it and passed all 4 CP-1
+integration checks. Treat any running process as a local dev proof, not a
+production service. If the server is stopped or Windows restarts, recreate the
+ignored venv if needed, set `GAIL_OS_API_KEY` in the local shell, and run
+`uvicorn main:app --host 10.77.77.1 --port 8123` from `apps/gail-os-api` only
+as part of an approved validation chunk.
 
 Low-token restart:
 
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read `START_HERE.md`.
-4. Read `## Three-Repo Coordination Startup Flag`, this section, and Chunk
-   Twenty only.
+4. Read `## Three-Repo Coordination Startup Flag`, this section, and
+   `## Current-Main Stabilization - GitHub Catch-Up` only.
 5. Acknowledge the change of direction before building: GAIL AI Operating
    System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
    related builds, and AG Operations should finish its current evolution before
@@ -2117,8 +2191,8 @@ Low-token restart:
    `docs/standards/2026-06-25 - Document Control Standard.md`; do not
    date-prefix dependency manifests, lockfiles, importable source modules,
    schemas, generated files, CI workflows, runtime config, or tool-owned config.
-7. Open the relay envelope/store, tool permission matrix, and command-center
-   app files only if resuming Rev 2 implementation.
+7. Open connector registry, M365 dry-run, API router, and test files only when
+   Adam gives the go-ahead to execute CMS-A/CMS-B.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
 --short`, read short repo-local instructions, use `docs/context-map.md` when

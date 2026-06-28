@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-27T22:23:45-06:00
+Last Updated: 2026-06-28T08:21:40-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -11,8 +11,9 @@ For the next session:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read this file.
-4. Read `## Three-Repo Coordination Startup Flag`, Chunk Twenty, and
-   `## Next Handoff` in `docs/current-build-pathway.md`.
+4. Read `## Three-Repo Coordination Startup Flag`,
+   `## Current-Main Stabilization - GitHub Catch-Up`, and `## Next Handoff`
+   in `docs/current-build-pathway.md`.
 5. Before building, explicitly acknowledge the current change of direction:
    GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
    being coordinated as three related builds, not folded together yet.
@@ -36,6 +37,15 @@ Freedom `packages/gail-os-client/src/index.integration.ts` proof passed 4/4.
 This remains an A1 local no-network dev proof only: no cloud placement, broad
 firewall rule, live connector, Microsoft 365 access, production deployment, or
 authority expansion is approved.
+
+Current GitHub stabilization status: as of 2026-06-28T08:21:40-06:00,
+`main` has been fast-forwarded to `2bcdeb7`, adding agent registry, authority
+override, M365 dry-run observe/write, and local evidence persistence work.
+GitHub Actions is currently red because of two connector-registry test
+alignment failures. The next planned work is the current-main stabilization
+overlay in the active pathway, not new feature capability. Do not proceed into
+live Microsoft 365 access, cloud placement, Graphify ingest, schema
+publication, or further authority expansion without an explicit owner decision.
 
 ## Current Plan
 

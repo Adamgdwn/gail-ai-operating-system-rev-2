@@ -2,6 +2,13 @@
 
 ## 2026-06-28
 
+- Planned the current-main stabilization overlay after reviewing GitHub's last
+  24 hours of merged API, agent-registry, authority-override, M365 dry-run, and
+  evidence-store work. The active pathway now routes the next approved work to
+  CMS-A/CMS-B/CMS-C: green current `main`, reprove runtime/dry-run boundaries,
+  and reconcile the pathway plus builder handoff. No CI fix, live Microsoft
+  365 access, Graphify ingest, cloud placement, schema publication, or
+  authority expansion was executed by this planning update.
 - Completed the CP-1 DirectLink Freedom bridge proof for the GAIL OS FastAPI
   dev server. Windows now runs the server bound to `10.77.77.1:8123` for the
   private cable link, and the Linux Freedom integration script passed all 4
