@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/connector-status.schema.json",
+  "title": "ConnectorStatus",
+  "description": "Local connector profile record for the GAIL OS connector registry. Not credentials; not a live adapter. Planning-only at current A1 boundary.",
+  "$defs": {
+    "SystemFamily": {
+      "type": "string",
+      "description": "High-level system family this connector belongs to.",
+      "enum": [
+        "GitHub",
+        "Graphify",
+        "Microsoft 365",
+        "QuickBooks",
+        "Local Device",
+        "Client Gateway",
+        "Vendor Or Deployment"
+      ]
+    },
+    "ConnectorCurrentState": {
+      "type": "string",
+      "description": "Current operational state of the connector. All connectors are planning-only at A1.",
+      "enum": ["planning-only", "registry-only", "inventory-only"]
+    }
+  },
+  "type": "object",
+  "required": [
+    "connector_id",
+    "display_name",
+    "system_family",
+    "owner",
+    "tenant_or_workspace",
+    "current_state",
+    "allowed_capabilities",
+    "prohibited_capabilities",
+    "data_classes",
+    "approval_gate",
+    "retention_rule",
+    "audit_requirements",
+    "stop_triggers",
+    "failure_behavior"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "connector_id": {
+      "type": "string",
+      "description": "Unique connector identifier.",
+      "minLength": 1
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable connector name.",
+      "minLength": 1
+    },
+    "system_family": {
+      "$ref": "#/$defs/SystemFamily"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Human or team that owns this connector profile.",
+      "minLength": 1
+    },
+    "tenant_or_workspace": {
+      "type": "string",
+      "description": "Tenant, organization, or workspace this connector targets.",
+      "minLength": 1
+    },
+    "current_state": {
+      "$ref": "#/$defs/ConnectorCurrentState"
+    },
+    "allowed_capabilities": {
+      "type": "array",
+      "description": "Capabilities permitted under current governance.",
+      "items": { "type": "string" }
+    },
+    "prohibited_capabilities": {
+      "type": "array",
+      "description": "Capabilities explicitly blocked under current governance.",
+      "items": { "type": "string" }
+    },
+    "data_classes": {
+      "type": "array",
+      "description": "Data classification levels this connector is permitted to handle.",
+      "items": { "type": "string" }
+    },
+    "approval_gate": {
+      "type": "string",
+      "description": "What approval is required before elevating this connector.",
+      "minLength": 1
+    },
+    "retention_rule": {
+      "type": "string",
+      "description": "Data retention rule for records produced by this connector.",
+      "minLength": 1
+    },
+    "audit_requirements": {
+      "type": "array",
+      "description": "Required audit fields for any operation through this connector.",
+      "items": { "type": "string" }
+    },
+    "stop_triggers": {
+      "type": "array",
+      "description": "Action types that trigger an automatic stop when attempted through this connector.",
+      "items": { "type": "string" }
+    },
+    "failure_behavior": {
+      "type": "string",
+      "description": "What the system does if this connector fails.",
+      "minLength": 1
+    },
+    "live_access_enabled": {
+      "type": "boolean",
+      "description": "Whether live access is enabled. Must be false at A1 boundary.",
+      "default": false
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes about this connector.",
+      "default": ""
+    }
+  }
+}

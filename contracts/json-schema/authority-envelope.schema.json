@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/authority-envelope.schema.json",
+  "title": "AuthorityEnvelope",
+  "description": "Governance charter that authorizes a specific class of actions at a given R-level. Required for all R4 actions. GAIL OS canonical source.",
+  "$defs": {
+    "AuthorityLevel": {
+      "type": "string",
+      "description": "R0–R5 authority ladder.",
+      "enum": ["R0", "R1", "R2", "R3", "R4", "R5"]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "description": "A0–A6 autonomy maturity ladder. Current production boundary: A1 (local, no-network).",
+      "enum": ["A0", "A1", "A2", "A3", "A4", "A5", "A6"]
+    },
+    "EnvelopeStatus": {
+      "type": "string",
+      "description": "Lifecycle status of an AuthorityEnvelope.",
+      "enum": ["active", "revoked", "expired", "pending"]
+    }
+  },
+  "type": "object",
+  "required": [
+    "envelope_id",
+    "mission_id",
+    "authority_level",
+    "autonomy_level",
+    "domain",
+    "granted_by",
+    "granted_at",
+    "allowed_action_types",
+    "max_risk_tier",
+    "stop_conditions",
+    "rollback_path",
+    "review_cadence",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "envelope_id": {
+      "type": "string",
+      "description": "Unique envelope identifier. Must use the 'env-' prefix.",
+      "pattern": "^env-"
+    },
+    "mission_id": {
+      "type": "string",
+      "description": "Parent mission identifier. Must use the 'mission-' prefix.",
+      "pattern": "^mission-"
+    },
+    "authority_level": {
+      "$ref": "#/$defs/AuthorityLevel"
+    },
+    "autonomy_level": {
+      "$ref": "#/$defs/AutonomyLevel"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Domain scope of this authority grant.",
+      "minLength": 1
+    },
+    "granted_by": {
+      "type": "string",
+      "description": "Human or system that granted this authority envelope.",
+      "minLength": 1
+    },
+    "granted_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when authority was granted.",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": ["string", "null"],
+      "description": "ISO 8601 expiry timestamp. Null means no expiry.",
+      "default": null
+    },
+    "allowed_action_types": {
+      "type": "array",
+      "description": "Action types explicitly permitted under this envelope. At least one required.",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "max_risk_tier": {
+      "type": "integer",
+      "description": "Maximum risk tier permitted. 0 = no risk, 5 = highest risk.",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "stop_conditions": {
+      "type": "array",
+      "description": "Conditions that automatically halt execution under this envelope. At least one required.",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "rollback_path": {
+      "type": "string",
+      "description": "How to reverse actions taken under this envelope.",
+      "minLength": 1
+    },
+    "review_cadence": {
+      "type": "string",
+      "description": "How often this envelope is reviewed and renewed.",
+      "minLength": 1
+    },
+    "status": {
+      "$ref": "#/$defs/EnvelopeStatus"
+    }
+  }
+}

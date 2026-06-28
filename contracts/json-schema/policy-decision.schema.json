@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/policy-decision.schema.json",
+  "title": "PolicyDecision",
+  "description": "Permission decision for one proposed mission action issued by the GAIL OS policy gate. Transport-neutral.",
+  "type": "object",
+  "required": [
+    "action_id",
+    "allowed",
+    "mode",
+    "reason"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "type": "string",
+      "description": "Action this decision applies to. Must use the 'action-' prefix.",
+      "pattern": "^action-"
+    },
+    "allowed": {
+      "type": "boolean",
+      "description": "Whether the action is permitted under current policy."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Execution mode permitted or rejected (dry-run or live).",
+      "enum": ["dry-run", "live"]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable reason for the allow/deny decision.",
+      "minLength": 1
+    },
+    "stop_reason": {
+      "type": ["string", "null"],
+      "description": "Stop trigger key if the action was denied. Null if allowed.",
+      "default": null
+    }
+  }
+}

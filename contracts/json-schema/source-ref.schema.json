@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/source-ref.schema.json",
+  "title": "SourceRef",
+  "description": "A reference to the authoritative source of a claim, record, or evidence item in the CNS. Used as a source-of-truth anchor in evidence packets, graph facts, and relay records. GAIL OS canonical source.",
+  "type": "object",
+  "required": [
+    "source_id",
+    "source_system",
+    "entity_id",
+    "ref_type",
+    "created_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "description": "Unique source reference identifier. Must use the 'src-' prefix.",
+      "pattern": "^src-"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "The CNS layer or system where this entity originates.",
+      "enum": ["gail-os", "freedom", "graphify", "m365", "github", "local"]
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "Identifier of the referenced entity in its source system.",
+      "minLength": 1
+    },
+    "ref_type": {
+      "type": "string",
+      "description": "Classification of the referenced object.",
+      "enum": ["file", "commit", "pr", "entity", "record", "envelope", "mission", "action", "evidence"]
+    },
+    "repo_path": {
+      "type": ["string", "null"],
+      "description": "Repository path if this source is a code artifact (e.g. 'packages/uaos-core/src/...'). Null for non-repo sources.",
+      "default": null
+    },
+    "ref_value": {
+      "type": ["string", "null"],
+      "description": "The specific reference value — a commit SHA, branch name, PR number, or record ID.",
+      "default": null
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when this source reference was recorded.",
+      "minLength": 1
+    }
+  }
+}
