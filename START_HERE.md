@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T08:54:02-06:00
+Last Updated: 2026-06-28T09:00:50-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -48,10 +48,14 @@ alignment failures are fixed without live Microsoft 365 access or connector
 authority expansion, and the full local Python suite passes. The compact active
 packet is
 `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
-The next planned stabilization work is CMS-B after Adam's go-ahead. Do not
+The next planned stabilization work is CMS-B with Adam's revised owner-gated
+login edge. CMS-B must first reprove the local runtime and M365 dry-run
+boundaries. If that proof is green, the agent may prepare and explain an
+interactive browser-login probe, then must pause for Adam to say "yes, go
+ahead" or "pause" before opening any login, OAuth, or consent surface. Do not
 proceed into live Microsoft 365 access, cloud placement, Graphify ingest,
-schema publication, or further authority expansion without an explicit owner
-decision.
+schema publication, browser login, OAuth consent, tenant admin consent, or
+further authority expansion without an explicit owner decision.
 
 ## Current Plan
 

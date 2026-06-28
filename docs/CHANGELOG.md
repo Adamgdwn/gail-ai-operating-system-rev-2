@@ -2,6 +2,13 @@
 
 ## 2026-06-28
 
+- Revised CMS-B in the active current-main stabilization packet to separate
+  the normal local runtime/dry-run proof from an optional owner-gated browser
+  login edge probe. The login edge now requires an in-chat explanation and
+  Adam's explicit "yes, go ahead" before any browser login, OAuth, or consent
+  surface is opened, and it still stops before broad scopes, tenant/admin
+  consent approval, live Microsoft Graph reads/writes, Graphify ingest,
+  production service behavior, or retained/printed/committed auth secrets.
 - Completed CMS-A for current-main stabilization. The
   `m365-graph-api-bridge` registry profile now records the
   `svc-gail-os-graph` identity in notes, the stale connector-registry expected

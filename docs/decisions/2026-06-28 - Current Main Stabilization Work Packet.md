@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T08:54:02-06:00
-Status: in progress; CMS-A complete (2026-06-28T08:54:02-06:00)
+Last Updated: 2026-06-28T09:00:50-06:00
+Status: in progress; CMS-A complete; CMS-B owner-gated login edge revised (2026-06-28T09:00:50-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -52,6 +52,9 @@ updates the stale expected connector ID set in `tests/test_connector_registry.py
   weakening planning-only connector boundaries.
 - Do not activate live Microsoft 365 reads, Outlook or Teams sends, Planner
   writes, tenant admin consent, Entra changes, or broad Graph scopes.
+- Do not open an interactive browser login, complete OAuth, approve consent, or
+  retain token-bearing artifacts unless Adam explicitly approves that specific
+  owner-gated edge step after the local CMS-B proof and an in-chat explanation.
 - Do not treat dry-run M365 endpoints as approved live connector activation.
 - Do not treat the CP-1 DirectLink FastAPI proof as production service,
   cloud placement, broad network exposure, or schema publication.
@@ -100,9 +103,9 @@ Validation evidence:
 Stop before adding endpoints, broadening M365 scope, changing live access,
 changing secrets handling, or masking a real registry regression.
 
-## CMS-B - Reprove Runtime And Dry-Run Boundaries
+## CMS-B - Reprove Runtime, Dry-Run Boundaries, And Login Edge Gate
 
-Status: planned (2026-06-28T08:33:50-06:00)
+Status: planned; revised with owner-gated login edge (2026-06-28T09:00:50-06:00)
 
 Completion target: Integration complete
 
@@ -112,7 +115,8 @@ Inputs: greened current main, ignored local venv, FastAPI app, Freedom CP-1
 client, M365 dry-run endpoints, and local evidence store path.
 
 Outputs: a fresh local proof that GAIL OS still serves Freedom over DirectLink
-and that the M365 endpoints remain dry-run/no-live-call surfaces.
+and that the M365 endpoints remain dry-run/no-live-call surfaces, followed by
+a separate owner-gated login edge briefing if the local proof is green.
 
 Acceptance:
 
@@ -121,18 +125,33 @@ Acceptance:
   behave as documented under local runtime constraints;
 - generated evidence remains synthetic/local unless Adam explicitly approves a
   live connector promotion gate;
-- DirectLink proof remains local development evidence only.
+- DirectLink proof remains local development evidence only;
+- the interactive login edge is not started until Codex explains the target
+  account context, requested scopes or login surface, expected evidence,
+  persistence/token handling risk, stop conditions, and rollback/cleanup path;
+- Adam gives an explicit in-the-moment "yes, go ahead" before any browser
+  window, login prompt, OAuth flow, or tenant consent surface is opened.
 
 Validation:
 
 - focused API tests;
 - Windows HTTP probes;
 - Linux Freedom CP-1 script where available;
-- evidence store inspection with synthetic data only.
+- evidence store inspection with synthetic data only;
+- only after the local proof passes, an owner-gated browser/login reachability
+  probe may be prepared, explained, and paused for Adam's decision.
 
-Stop before cloud placement, broad firewall changes, real Microsoft Graph
-calls, tenant admin consent, live Planner writes, Graphify ingest, or
-production service behavior.
+Normal CMS-B proof stops before cloud placement, broad firewall changes, real
+Microsoft Graph calls, tenant admin consent, live Planner writes, Graphify
+ingest, or production service behavior.
+
+Optional CMS-B login edge gate: if the normal proof is green, Codex may explain
+and prepare an interactive browser-login probe. That probe still stops before
+broad scopes, tenant-wide/admin consent approval, live Microsoft Graph content
+reads, Outlook or Teams sends, Planner writes, Graphify ingest, production
+service behavior, or any retained/printed/committed secret, token, or auth
+code. If a consent screen, code, token, or unexpected permission request
+appears, pause and ask Adam before continuing.
 
 ## CMS-C - Reconcile Pathway, Handoff, And Builder Report
 
@@ -174,8 +193,10 @@ Freedom/Graphify source-of-truth boundaries.
 ## Recommended Execution Order
 
 CMS-A is complete. CMS-B is the next stabilization chunk after Adam's go-ahead.
-Do not continue feature work if a later CI run turns red; repair current `main`
-before CMS-B or any new capability work.
+Run the local runtime/dry-run proof first. If that proof is green, do not open
+an interactive login automatically; explain the edge probe and wait for Adam to
+say "yes, go ahead" or "pause." Do not continue feature work if a later CI run
+turns red; repair current `main` before CMS-B or any new capability work.
 
 CMS-B and CMS-C can be grouped into one execution chunk if CMS-A is small and
 clean. Keep them separate if validation exposes runtime, DirectLink, or M365
@@ -220,6 +241,7 @@ generated file, CI workflow, runtime config, or tool-owned config.
 
 ## Next Handoff
 
-Next action after CMS-A: wait for Adam's go-ahead, then execute CMS-B to
-reprove runtime and dry-run boundaries while preserving the no-live-access
-boundary.
+Next action after CMS-A: execute CMS-B to reprove runtime and dry-run
+boundaries while preserving the no-live-access boundary. If the proof is green,
+prepare the login edge explanation and pause for Adam's explicit decision
+before opening any browser login or consent surface.
