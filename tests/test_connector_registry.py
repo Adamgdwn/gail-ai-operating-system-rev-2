@@ -32,6 +32,7 @@ class ConnectorRegistryTests(unittest.TestCase):
                 "github-rev2-private-source",
                 "graphify-enhanced-handoff",
                 "m365-guided-ai-labs-business",
+                "m365-graph-api-bridge",
                 "quickbooks-finance-planning-boundary",
                 "local-device-worker-surfaces",
                 "client-gateway-planning-template",

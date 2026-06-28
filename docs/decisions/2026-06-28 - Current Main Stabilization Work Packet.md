@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T08:33:50-06:00
-Status: planned (2026-06-28T08:33:50-06:00)
+Last Updated: 2026-06-28T08:48:48-06:00
+Status: in progress (2026-06-28T08:48:48-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -26,8 +26,8 @@ Planning baseline: the later docs commit `30b12ad` added the first compact
 CMS-A/CMS-B/CMS-C stabilization plan. This packet moves that plan out of the
 large pathway without changing code or approving execution.
 
-Known red check: GitHub Actions is currently failing on two connector-registry
-alignment tests:
+Known red check at packet creation: GitHub Actions was failing on two
+connector-registry alignment tests:
 
 - `tests/test_api_m365_bridge.py::test_m365_bridge_display_name`
 - `tests/test_connector_registry.py::ConnectorRegistryTests::test_initial_connector_profiles_are_valid_and_not_live_enabled`
@@ -36,6 +36,13 @@ Observed failure shape: `m365-graph-api-bridge` exists as a new planning-only
 connector, but two tests still assert the older connector registry shape. The
 failure is not currently known to be a runtime failure or a live Microsoft 365
 failure.
+
+CMS-A local closeout: as of 2026-06-28T08:48:48-06:00, the registry/test
+alignment fix is locally green. The fix keeps `m365-graph-api-bridge` in the
+registry, preserves `live_access_enabled=False`, preserves the profile's
+planning-only/registry-only boundary, adds the `svc-gail-os-graph` identity to
+the bridge notes, and updates the stale expected connector ID set in
+`tests/test_connector_registry.py`.
 
 ## No-Fallback Boundaries
 
@@ -55,7 +62,7 @@ failure.
 
 ## CMS-A - Green Current Main And Align Tests
 
-Status: planned (2026-06-28T08:33:50-06:00)
+Status: task complete locally (2026-06-28T08:48:48-06:00)
 
 Completion target: Task complete
 
@@ -81,6 +88,13 @@ Validation:
 - full Python test suite;
 - `git diff --check`;
 - governance preflight if the fix touches policy or connector authority.
+
+Validation evidence:
+
+- `.\.venv\Scripts\python.exe -m pytest tests/test_connector_registry.py tests/test_api_m365_bridge.py -q` passed: 21 passed, 1 warning.
+- `.\.venv\Scripts\python.exe -m pytest tests/test_connector_registry.py tests/test_api_connectors.py tests/test_api_m365_bridge.py tests/test_m365_auth.py tests/test_m365_observe.py tests/test_m365_write.py tests/test_m365_evidence_store.py -q` passed: 78 passed, 1 warning.
+- `.\.venv\Scripts\python.exe -m pytest -q` passed: 419 passed, 3 warnings, 55 subtests passed.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
 
 Stop before adding endpoints, broadening M365 scope, changing live access,
 changing secrets handling, or masking a real registry regression.
@@ -158,7 +172,9 @@ Freedom/Graphify source-of-truth boundaries.
 
 ## Recommended Execution Order
 
-Run CMS-A first and do not continue feature work while CI is red.
+CMS-A is locally complete. Do not continue feature work while CI is red; if
+GitHub Actions does not confirm the local green result after push, stop and
+repair current `main` before CMS-B.
 
 CMS-B and CMS-C can be grouped into one execution chunk if CMS-A is small and
 clean. Keep them separate if validation exposes runtime, DirectLink, or M365
@@ -203,7 +219,7 @@ generated file, CI workflow, runtime config, or tool-owned config.
 
 ## Next Handoff
 
-Next action after this documentation split: wait for Adam's go-ahead to execute
-CMS-A. The current known technical task is to align connector-registry tests
-with the new planning-only `m365-graph-api-bridge` connector while preserving
-the no-live-access boundary.
+Next action after CMS-A: confirm the pushed fix turns GitHub Actions green. If
+CI remains red, stop and repair current `main`. If CI is green and Adam gives
+the go-ahead, execute CMS-B to reprove runtime and dry-run boundaries while
+preserving the no-live-access boundary.

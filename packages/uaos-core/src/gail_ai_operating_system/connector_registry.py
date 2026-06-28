@@ -327,7 +327,7 @@ def initial_connector_profiles() -> tuple[ConnectorProfile, ...]:
             ),
             failure_behavior="Stop on auth failure, token exposure, scope creep, write attempt, live read without approved scope, or any deviation from the svc-gail-os-graph identity boundary.",
             live_access_enabled=False,
-            notes="Graph auth provider is registered in gail_ai_operating_system.m365_auth (task 4.2). AZURE_TENANT_ID / AZURE_CLIENT_ID / AZURE_CLIENT_SECRET env vars required at runtime. Live access requires task 4.3 approval and connector state promotion.",
+            notes="Graph auth provider is registered in gail_ai_operating_system.m365_auth (task 4.2) for the svc-gail-os-graph identity. AZURE_TENANT_ID / AZURE_CLIENT_ID / AZURE_CLIENT_SECRET env vars required at runtime. Live access requires task 4.3 approval and connector state promotion.",
         ),
         ConnectorProfile(
             connector_id="quickbooks-finance-planning-boundary",

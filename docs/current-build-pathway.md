@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-28T08:33:50-06:00
+Last Updated: 2026-06-28T08:48:48-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -136,6 +136,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Prove CP-1 Freedom bridge over DirectLink | integration complete | 2026-06-27T22:23:45-06:00 | codex session | Pulled the current builder/Freedom HTTP bridge work, patched the FastAPI wrapper for Freedom runtime compatibility, started the GAIL OS dev server bound to `10.77.77.1:8123`, and verified the Linux Freedom integration proof passed 4/4. No cloud placement, broad firewall rule, live connector, Microsoft 365 access, production deployment, or authority expansion was added. |
 | Plan current-main stabilization chunks | draft complete | 2026-06-28T08:21:40-06:00 | codex session | Pulled GitHub current to `2bcdeb7`, reviewed the last 24 hours of merged API, agent-registry, authority-override, M365 dry-run, and evidence-store work, and planned a compact stabilization sequence before any new capability execution. GitHub `main` CI is currently failing on two connector-registry alignment tests; execution waits for Adam's go-ahead. |
 | Split current-main stabilization packet | task complete | 2026-06-28T08:33:50-06:00 | codex session | Moved the CMS-A/CMS-B/CMS-C GitHub catch-up plan into `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so startup can read a compact dated packet instead of the large historical pathway. Stable route files remain stable; no code, CI fix, live connector, Microsoft 365 access, Graphify ingest, cloud placement, schema publication, runtime source-of-truth change, or authority expansion was executed. |
+| Complete CMS-A current-main alignment locally | task complete locally | 2026-06-28T08:48:48-06:00 | codex session | Aligned the stale connector-registry test expectations with the planning-only `m365-graph-api-bridge` profile and recorded the `svc-gail-os-graph` identity in the bridge notes. Full local Python tests pass. No live Microsoft 365 access, Graph scope expansion, endpoint addition, cloud placement, Graphify ingest, schema publication, secrets-handling change, or authority expansion was executed. |
 
 ## Current Completion Boundary
 
@@ -1626,7 +1627,7 @@ Completion notes:
 
 ## Current-Main Stabilization - GitHub Catch-Up
 
-Status: planned (2026-06-28T08:33:50-06:00)
+Status: in progress; CMS-A task complete locally (2026-06-28T08:48:48-06:00)
 
 Completion target: Task complete
 
@@ -1636,10 +1637,10 @@ Active work packet:
 [`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`](decisions/2026-06-28%20-%20Current%20Main%20Stabilization%20Work%20Packet.md)
 
 This section intentionally stays short. The detailed CMS-A/CMS-B/CMS-C plan,
-no-fallback boundaries, documentation sweep notes, known CI failures, and next
-execution order live in the dated packet above. Do not resume feature work or
-old Chunk Twenty implementation until Adam approves CMS-A execution and current
-`main` is green again.
+no-fallback boundaries, documentation sweep notes, CI confirmation state, and
+next execution order live in the dated packet above. CMS-A is locally complete;
+do not resume feature work or old Chunk Twenty implementation until GitHub
+Actions confirms the pushed CMS-A fix is green.
 
 ## Chunk Twenty - Add Approval Actions
 
@@ -2118,12 +2119,13 @@ date -Iseconds
 Current handoff: CP-1 DirectLink bridge proof is integration complete as of
 2026-06-27T22:23:45-06:00, and GitHub `main` has since advanced to `2bcdeb7`
 with merged agent registry, authority override, M365 dry-run, and local
-evidence-store work. As of 2026-06-28T08:33:50-06:00, the next planned step is
-the dated current-main stabilization packet:
+evidence-store work. As of 2026-06-28T08:48:48-06:00, CMS-A is locally
+complete and the next planned step is GitHub CI confirmation, then CMS-B in the
+dated current-main stabilization packet:
 `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`. Do
-not add new capability until Adam approves CMS-A execution and current `main`
-is green again. GitHub Actions is currently failing on two connector-registry
-test alignment failures, not a known live-runtime failure.
+not add new capability until current `main` is green again. The prior known
+GitHub Actions failures were connector-registry alignment failures, not a
+known live-runtime failure.
 
 The prior GAIL OS FastAPI dev server proof was bound to
 `http://10.77.77.1:8123`; Linux Freedom reached it and passed all 4 CP-1
@@ -2150,7 +2152,7 @@ Low-token restart:
    date-prefix dependency manifests, lockfiles, importable source modules,
    schemas, generated files, CI workflows, runtime config, or tool-owned config.
 7. Open connector registry, M365 dry-run, API router, and test files only when
-   Adam gives the go-ahead to execute CMS-A/CMS-B.
+   Adam gives the go-ahead to execute CMS-B or to repair a post-push CI issue.
 
 Next agent should use lean startup for ordinary scoped work: check `git status
 --short`, read short repo-local instructions, use `docs/context-map.md` when
