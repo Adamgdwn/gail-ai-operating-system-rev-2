@@ -1,7 +1,7 @@
 # Context Map
 
 Document type: project context routing map
-Last Updated: 2026-06-27T18:29:20-06:00
+Last Updated: 2026-06-28T08:33:50-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -26,7 +26,8 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 
 | Task | Load First |
 |---|---|
-| Current plan, chunking, validation, or handoff | Active plan named by `START_HERE.md`; default `docs/current-build-pathway.md` |
+| Current plan, chunking, validation, or handoff | Active execution packet named by `START_HERE.md`; for the current GitHub catch-up, read `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` before opening the large historical pathway |
+| Current-main stabilization, GitHub catch-up, red CI after M365 dry-run merge, CMS-A/CMS-B/CMS-C | `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`, then only the targeted connector registry, M365 API, evidence, or handoff files needed for the selected CMS chunk |
 | Source-of-truth routing, active versus reference docs, device roles, or compact future chunk map | `docs/source-of-truth-map.md` |
 | Engineering standards map | `docs/standards/README.md` |
 | Document naming, dated filenames, document control, work-tracking records, pathway logs, handoffs, ADRs, audits, or runbooks | `docs/standards/2026-06-25 - Document Control Standard.md`, then `docs/source-of-truth-map.md` for stable-route exceptions |
@@ -35,8 +36,8 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Use-case controls, risk tier, governance level, or owner decisions | `docs/standards/engineering-governance-by-use-case.md` |
 | Completion labels, Definition of Shipped, release evidence, or finish reports | `docs/standards/ship-ready-engineering-standard.md` |
 | Architecture decisions or system shape | `docs/architecture.md` and relevant ADRs |
-| Three-repo coordination, startup direction change, build consolidation, weak-layer review, or deciding whether GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace should become one build | `START_HERE.md`, `docs/current-build-pathway.md` section `## Three-Repo Coordination Startup Flag`, `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`, `docs/architecture.md`, `docs/source-of-truth-map.md`, and the current AG Operations handoff after its active evolution is boxed |
-| Agentic multi-agent builder handoff, Graphify acceleration package summary, or integration wish list across Freedom, Codex/future coding agents, AG Operations Workspace / Microsoft 365, and Graphify | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, `docs/current-build-pathway.md`, and `docs/source-of-truth-map.md` |
+| Three-repo coordination, startup direction change, build consolidation, weak-layer review, or deciding whether GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace should become one build | `START_HERE.md`, `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` for the current no-fallback boundary, `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md`, `docs/architecture.md`, `docs/source-of-truth-map.md`, and the current AG Operations handoff after its active evolution is boxed; open the large pathway only for older chunk history |
+| Agentic multi-agent builder handoff, Graphify acceleration package summary, or integration wish list across Freedom, Codex/future coding agents, AG Operations Workspace / Microsoft 365, and Graphify | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` when CMS-C is in scope, and `docs/source-of-truth-map.md` |
 | Freedom phone interface, business-partner capability preservation, or Freedom bridge boundaries | `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/migration/freedom-engine-objective-review.md`, `docs/architecture.md`, and `docs/migration/file-migration-decisions.md` |
 | App shell, command center, portal stack, browser cockpit, or multi-device review surface | `docs/decisions/app-shell-command-center.md`, `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/architecture.md`, and `apps/command-center/README.md` |
 | File migration, source promotion, rewrite decisions, or exclusion checks | `docs/migration/source-inventory.md`, `docs/migration/file-migration-decisions.md`, and the relevant copied v1 reference records |
@@ -79,8 +80,8 @@ For meaningful work, define:
 - handoff location
 
 Tiny edits may use an inline version of this packet. Large or strategic work
-should record the packet in the active plan named by `START_HERE.md`, an ADR, or
-a short handoff note.
+should record the packet in the active execution packet named by
+`START_HERE.md`, an ADR, or a short handoff note.
 
 ## Document Naming
 

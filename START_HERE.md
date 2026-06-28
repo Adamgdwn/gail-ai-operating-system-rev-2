@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T08:21:40-06:00
+Last Updated: 2026-06-28T08:33:50-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -11,9 +11,10 @@ For the next session:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read this file.
-4. Read `## Three-Repo Coordination Startup Flag`,
-   `## Current-Main Stabilization - GitHub Catch-Up`, and `## Next Handoff`
-   in `docs/current-build-pathway.md`.
+4. Read
+   `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
+   Open `docs/current-build-pathway.md` only when older chunk history or a
+   specific historical pathway section is needed.
 5. Before building, explicitly acknowledge the current change of direction:
    GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
    being coordinated as three related builds, not folded together yet.
@@ -26,9 +27,10 @@ Current direction: box the coordination pivot first. AG Operations Workspace
 should finish and box its current evolution, Freedom remains the core operator
 interface and high-level agentic business partner surface, and Rev 2 remains
 the governed mission, policy, relay, approval-record, evidence, and worker
-spine. The default Rev 2 build task remains Chunk Twenty - local governed
-approval actions - but do not treat it as permission to merge repositories,
-add bridge layers, or activate live systems.
+spine. Chunk Twenty - local governed approval actions - remains the historical
+next Rev 2 build task after current-main stabilization closes or Adam
+explicitly redirects. Do not treat it as permission to merge repositories, add
+bridge layers, or activate live systems.
 
 Current CP-1 status: after the 2026-06-28 builder/Freedom handoff, the GAIL OS
 FastAPI dev server proof is integration complete over DirectLink. Windows binds
@@ -38,14 +40,16 @@ This remains an A1 local no-network dev proof only: no cloud placement, broad
 firewall rule, live connector, Microsoft 365 access, production deployment, or
 authority expansion is approved.
 
-Current GitHub stabilization status: as of 2026-06-28T08:21:40-06:00,
-`main` has been fast-forwarded to `2bcdeb7`, adding agent registry, authority
-override, M365 dry-run observe/write, and local evidence persistence work.
+Current GitHub stabilization status: as of 2026-06-28T08:33:50-06:00, the
+feature-merge baseline is `2bcdeb7`, adding agent registry, authority override,
+M365 dry-run observe/write, and local evidence persistence work. The compact
+active packet is
+`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
 GitHub Actions is currently red because of two connector-registry test
-alignment failures. The next planned work is the current-main stabilization
-overlay in the active pathway, not new feature capability. Do not proceed into
-live Microsoft 365 access, cloud placement, Graphify ingest, schema
-publication, or further authority expansion without an explicit owner decision.
+alignment failures. The next planned work is CMS-A in that packet, not new
+feature capability. Do not proceed into live Microsoft 365 access, cloud
+placement, Graphify ingest, schema publication, or further authority expansion
+without an explicit owner decision.
 
 ## Current Plan
 
@@ -125,7 +129,11 @@ Current priorities:
 
 ## Current Build Pathway
 
-Default live build route: [docs/current-build-pathway.md](docs/current-build-pathway.md).
+Current execution packet:
+[docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md](docs/decisions/2026-06-28%20-%20Current%20Main%20Stabilization%20Work%20Packet.md).
+
+Historical master pathway:
+[docs/current-build-pathway.md](docs/current-build-pathway.md).
 
 If this project later promotes a different active plan, name it here and route
 agents there instead of rereading archived pathway history.

@@ -2,6 +2,16 @@
 
 ## 2026-06-28
 
+- Split the current-main stabilization overlay into
+  `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so
+  low-token startups can read the CMS-A/CMS-B/CMS-C plan without opening the
+  full historical pathway. Updated `START_HERE.md`, `docs/context-map.md`,
+  `docs/source-of-truth-map.md`, and `docs/current-build-pathway.md` to route
+  current execution through the dated packet, preserve stable route filenames,
+  and avoid bulk-renaming older pre-standard decision docs. No code, CI fix,
+  live Microsoft 365 access, Graphify ingest, cloud placement, schema
+  publication, runtime source-of-truth change, or authority expansion was
+  executed.
 - Planned the current-main stabilization overlay after reviewing GitHub's last
   24 hours of merged API, agent-registry, authority-override, M365 dry-run, and
   evidence-store work. The active pathway now routes the next approved work to
