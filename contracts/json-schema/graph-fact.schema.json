@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gail-os.local/contracts/json-schema/graph-fact.schema.json",
+  "title": "GraphFact",
+  "description": "A sanitized fact emitted by GAIL OS for ingestion into the Graphify CNS store via the extraction pipeline. GraphFacts flow from GAIL OS to Graphify through the extraction/write lane only — never through the Graphify HTTP API. GAIL OS canonical source.",
+  "$defs": {
+    "GraphFactType": {
+      "type": "string",
+      "description": "Classification of the graph fact being emitted.",
+      "enum": [
+        "entity_observed",
+        "relationship_observed",
+        "mission_completed",
+        "action_executed",
+        "evidence_recorded",
+        "connector_registered",
+        "authority_granted"
+      ]
+    },
+    "GraphFactStatus": {
+      "type": "string",
+      "description": "Lifecycle state of this graph fact in the extraction lane.",
+      "enum": [
+        "emitted",
+        "queued",
+        "ingested",
+        "rejected"
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "fact_id",
+    "fact_type",
+    "subject_entity_id",
+    "subject_entity_type",
+    "emitted_by",
+    "emitted_at",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "fact_id": {
+      "type": "string",
+      "description": "Unique graph fact identifier. Must use the 'gfact-' prefix.",
+      "pattern": "^gfact-"
+    },
+    "fact_type": {
+      "$ref": "#/$defs/GraphFactType"
+    },
+    "subject_entity_id": {
+      "type": "string",
+      "description": "The primary entity this fact describes. Must be a stable entity ID from the GAIL OS or Graphify entity space.",
+      "minLength": 1
+    },
+    "subject_entity_type": {
+      "type": "string",
+      "description": "Type of the subject entity (e.g. 'Action', 'Mission', 'Connector', 'Repository', 'Module').",
+      "minLength": 1
+    },
+    "object_entity_id": {
+      "type": ["string", "null"],
+      "description": "Optional secondary entity for relationship facts (e.g. the target of an action).",
+      "default": null
+    },
+    "relationship_kind": {
+      "type": ["string", "null"],
+      "description": "Relationship type for relationship_observed facts (e.g. 'GOVERNS', 'DEPENDS_ON', 'EVIDENCES').",
+      "default": null
+    },
+    "emitted_by": {
+      "type": "string",
+      "description": "GAIL OS layer or module that emitted this fact.",
+      "enum": [
+        "approval_actions",
+        "evidence_recorder",
+        "mission_lifecycle",
+        "connector_registry",
+        "policy_gate",
+        "authority_engine"
+      ]
+    },
+    "emitted_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when this fact was emitted by GAIL OS.",
+      "minLength": 1
+    },
+    "status": {
+      "$ref": "#/$defs/GraphFactStatus"
+    },
+    "mission_id": {
+      "type": ["string", "null"],
+      "description": "Parent mission that produced this fact. Must use 'mission-' prefix when present.",
+      "default": null
+    },
+    "action_id": {
+      "type": ["string", "null"],
+      "description": "Action that produced this fact. Must use 'action-' prefix when present.",
+      "default": null
+    },
+    "evidence_id": {
+      "type": ["string", "null"],
+      "description": "Evidence packet associated with this fact. Must use 'evidence-' prefix when present.",
+      "default": null
+    },
+    "source_ref_id": {
+      "type": ["string", "null"],
+      "description": "Source reference tracing back to the GAIL OS entity of record. Links to source-ref.schema.json. Must use 'src-' prefix when present.",
+      "default": null
+    },
+    "graph_ref_id": {
+      "type": ["string", "null"],
+      "description": "Optional reference to an existing Graphify entity this fact updates or corroborates. Links to graph-context-ref.schema.json. Must use 'gref-' prefix when present.",
+      "default": null
+    },
+    "sanitized_payload": {
+      "type": ["object", "null"],
+      "description": "Sanitized key-value data from the GAIL OS record. Must not contain secrets, credentials, or raw provider content. Graphify ingests this payload to update entity attributes or relationship weights.",
+      "default": null
+    },
+    "ingestion_notes": {
+      "type": ["string", "null"],
+      "description": "Notes from the Graphify extraction pipeline on ingestion result (populated after ingestion, null when emitted or queued).",
+      "default": null
+    }
+  }
+}
