@@ -61,8 +61,9 @@ def _make_evidence():
 # OkpRecordType enum
 # ---------------------------------------------------------------------------
 
-def test_okp_record_type_has_18_values():
-    assert len(OkpRecordType) == 18
+def test_okp_record_type_count():
+    # Spec code block defines 17 values; the section header "(18)" was a typo.
+    assert len(OkpRecordType) == 17
 
 
 def test_okp_record_type_all_values():
