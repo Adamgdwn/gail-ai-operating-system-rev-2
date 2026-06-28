@@ -29,6 +29,10 @@ from .authority_envelope import (
     EnvelopeStatus,
     validate_authority_envelope,
 )
+from .charter_profile import (
+    CharterProfile,
+    validate_charter_profile,
+)
 from .connector_registry import (
     ConnectorOperationRequest,
     ConnectorPermissionDecision,
@@ -149,6 +153,8 @@ __all__ = [
     "AuthorityEnvelope",
     "AuthorityLevel",
     "AutonomyLevel",
+    "CharterProfile",
+    "validate_charter_profile",
     "ConnectorOperationRequest",
     "ConnectorPermissionDecision",
     "ConnectorProfile",
