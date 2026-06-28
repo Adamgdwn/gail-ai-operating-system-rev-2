@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-27T18:29:20-06:00
+Last Updated: 2026-06-28T00:00:00-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -2216,3 +2216,43 @@ Rev 2 is paused at the edge of Chunk Twenty unless the user explicitly resumes
 local implementation, Freedom remains the core operator and business-partner
 surface, and AG Operations Workspace should complete its current evolution
 before the three-repo decision process is run.
+
+As of 2026-06-28, the Chunk 20 CNS Orchestration Amendment has been issued by
+the agentic-multi-agent-agent-builder. Chunk Twenty "Local Governed Approval
+Actions" is now structured as eight sub-chunks (20A–20H) spanning all four CNS
+repos. The amendment doc lives at
+`agentic-multi-agent-agent-builder/docs/decisions/2026-06-28 - Chunk 20 CNS
+Orchestration Amendment.md`. The master run ledger lives at
+`agentic-multi-agent-agent-builder/docs/build-control/2026-06-28 - Chunk 20
+CNS Orchestration Run Ledger.md`.
+
+Sub-chunk assignments for GAIL OS Rev 2:
+- 20A: Architecture Governor establishment and CP-1 transport-parking
+  documentation (docs only, this repo + control repo).
+- 20B: `approval_actions.py` — transport-independent local approval service
+  functions (approve/reject/hold/request_more_info). No FastAPI import. No HTTP
+  dependency. Full pytest coverage. Blocked on: none.
+- 20C: `contracts/json-schema/` — eight CP-1 JSON Schema files derived from
+  Python dataclasses. `scripts/export-cp1-contracts.py`. Tests.
+  `docs/contracts/2026-06-28 - CP1 Contract Export Notes.md`. Blocked on: 20B
+  package exports stable.
+- 20E: `contracts/json-schema/graph-fact.schema.json` and
+  `docs/contracts/2026-06-28 - Graphify Fact Export Contract.md` — the
+  extraction lane where GAIL OS emits sanitized graph facts to Graphify.
+  Blocked on: 20C (contracts stable) and 20D (Graphify endpoint map exists).
+
+Transport-parking rule locked for all 20B/20C/20E code work: no FastAPI import
+in service functions, no HTTP request/response objects in function signatures,
+no hardcoded localhost URLs in business logic. HTTP wraps the service layer in
+Chunk 21. JSON Schema contracts are the stable cross-language seam.
+
+Architecture Governor role: GAIL OS owns all canonical contracts. Freedom
+consumes but does not author schemas. Graphify is a read-only query surface and
+extraction write target — not an approval or execution layer. M365 writes
+require OS Connector registry, authority envelope, and evidence packet. No
+write path bypasses the GAIL OS connector registry.
+
+Do not proceed into Chunk 21 (FastAPI HTTP layer), Chunk 22 (`@gail/contracts`
+TypeScript generation), live M365 connector activation, cloud placement, schema
+publication, or CP-1 HTTP bridge without explicit owner decision after Chunk 20
+sub-chunks are complete and tested.
