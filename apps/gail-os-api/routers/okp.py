@@ -1,12 +1,12 @@
-"""OKP ingest endpoint — POST /api/v1/okp and GET /api/v1/okp/{okp_id}."""
+"""OKP endpoints — POST, list, get, and proof-chain for /api/v1/okp."""
 from __future__ import annotations
 
 import dataclasses
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel, Field
 
 from deps import verify_api_key
@@ -31,14 +31,24 @@ def _gravity() -> SignalGravityL1Calculator:
     return SignalGravityL1Calculator(store_path=store_path)
 
 
+def _okp_to_dict(okp: OperatingKnowledgePacket) -> dict:
+    d = dataclasses.asdict(okp)
+    for key in ("created_at", "observed_at"):
+        if isinstance(d[key], datetime):
+            d[key] = d[key].isoformat()
+    if hasattr(d["record_type"], "value"):
+        d["record_type"] = d["record_type"].value
+    return d
+
+
 # ---------------------------------------------------------------------------
-# Pydantic request / response models
+# Request / response models
 # ---------------------------------------------------------------------------
 
 class CreateOkpRequest(BaseModel):
     source_system: str
     source_ref: str
-    record_type: str  # OkpRecordType value string, e.g. "evidence.created"
+    record_type: str
     summary: str
     authority_level: str
     autonomy_level: str
@@ -46,7 +56,7 @@ class CreateOkpRequest(BaseModel):
     data_classification: str
     confidence: float = Field(..., ge=0.0, le=1.0)
     status: str = "observed"
-    observed_at: Optional[str] = None  # ISO string; defaults to now
+    observed_at: Optional[str] = None
     related_mission_id: Optional[str] = None
     related_action_id: Optional[str] = None
     related_evidence_id: Optional[str] = None
@@ -61,13 +71,12 @@ class CreateOkpResponse(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Routes
+# Routes — list before by-id; proof-chain before plain by-id to avoid shadowing
 # ---------------------------------------------------------------------------
 
 @router.post("/okp", status_code=status.HTTP_201_CREATED, response_model=CreateOkpResponse)
 def create_okp(req: CreateOkpRequest) -> CreateOkpResponse:
     """Ingest a new OKP, score it at L1, persist it, and return key identifiers."""
-    # Resolve record_type enum
     try:
         record_type = OkpRecordType(req.record_type)
     except ValueError:
@@ -76,7 +85,6 @@ def create_okp(req: CreateOkpRequest) -> CreateOkpResponse:
             detail=f"Unknown record_type: {req.record_type!r}",
         )
 
-    # Resolve observed_at
     observed_at: Optional[datetime] = None
     if req.observed_at:
         try:
@@ -87,7 +95,6 @@ def create_okp(req: CreateOkpRequest) -> CreateOkpResponse:
                 detail=f"Invalid observed_at format: {req.observed_at!r}",
             )
 
-    # Build the OKP
     try:
         okp = create_operating_knowledge_packet(
             source_system=req.source_system,
@@ -113,14 +120,10 @@ def create_okp(req: CreateOkpRequest) -> CreateOkpResponse:
             detail=str(exc),
         )
 
-    # L1 gravity score
     calc = _gravity()
     score = calc.calculate(okp)
-
-    # Attach score (frozen dataclass — use replace)
     okp = dataclasses.replace(okp, gravity_score_l1=score)
 
-    # Persist
     store = _store()
     store.save(okp)
 
@@ -129,6 +132,71 @@ def create_okp(req: CreateOkpRequest) -> CreateOkpResponse:
         gravity_score_l1=score,
         fingerprint=okp.fingerprint,
     )
+
+
+@router.get("/okp")
+def list_okp_by_record_type(
+    record_type: str = Query(..., description="OkpRecordType value string"),
+) -> list[dict]:
+    """List all OKPs with the given record_type. Returns [] if none found."""
+    store = _store()
+    okps = store.list_by_record_type(record_type)
+    return [_okp_to_dict(o) for o in okps]
+
+
+@router.get("/okp/{okp_id}/proof-chain")
+def get_okp_proof_chain(okp_id: str) -> dict:
+    """Return Synaptic Proof Chain stub (GAIL OS L1 layer) for this OKP.
+
+    Full chain: this endpoint (L1) + GET /api/cns/okp/{id}/proof-chain (Graphify L2)
+    + generateOperatingKnowledgeBrief() in Freedom (brief layer). CP-5 closed.
+    """
+    store = _store()
+    okp = store.get(okp_id)
+    if okp is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"OKP not found: {okp_id!r}",
+        )
+    record_type_str = (
+        okp.record_type.value
+        if hasattr(okp.record_type, "value")
+        else str(okp.record_type)
+    )
+    created_at_str = (
+        okp.created_at.isoformat()
+        if hasattr(okp.created_at, "isoformat")
+        else str(okp.created_at)
+    )
+    observed_at_str = (
+        okp.observed_at.isoformat()
+        if hasattr(okp.observed_at, "isoformat")
+        else str(okp.observed_at)
+    )
+    return {
+        "okp_id": okp.okp_id,
+        "source_system": okp.source_system,
+        "source_ref": okp.source_ref,
+        "record_type": record_type_str,
+        "fingerprint": okp.fingerprint,
+        "authority_level": okp.authority_level,
+        "autonomy_level": okp.autonomy_level,
+        "risk_tier": okp.risk_tier,
+        "data_classification": okp.data_classification,
+        "status": okp.status,
+        "confidence": okp.confidence,
+        "gravity_score_l1": okp.gravity_score_l1,
+        "related_evidence_id": okp.related_evidence_id,
+        "related_mission_id": okp.related_mission_id,
+        "related_action_id": okp.related_action_id,
+        "created_at": created_at_str,
+        "observed_at": observed_at_str,
+        "proof_chain_version": "stub-l1",
+        "note": (
+            "Graphify L2 enrichment: GET /api/cns/okp/{okp_id}/proof-chain. "
+            "Freedom brief: generateOperatingKnowledgeBrief(). CP-5 closed."
+        ),
+    }
 
 
 @router.get("/okp/{okp_id}")
@@ -141,11 +209,4 @@ def get_okp(okp_id: str) -> dict:
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"OKP not found: {okp_id!r}",
         )
-    d = dataclasses.asdict(okp)
-    # Normalise datetime and enum to strings for JSON serialisation
-    for key in ("created_at", "observed_at"):
-        if isinstance(d[key], datetime):
-            d[key] = d[key].isoformat()
-    if hasattr(d["record_type"], "value"):
-        d["record_type"] = d["record_type"].value
-    return d
+    return _okp_to_dict(okp)
