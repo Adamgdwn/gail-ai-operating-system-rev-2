@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T09:11:34-06:00
+Last Updated: 2026-06-28T09:57:53-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -40,16 +40,22 @@ This remains an A1 local no-network dev proof only: no cloud placement, broad
 firewall rule, live connector, Microsoft 365 access, production deployment, or
 authority expansion is approved.
 
-Current GitHub stabilization status: as of 2026-06-28T09:11:34-06:00, the
+Current GitHub stabilization status: as of 2026-06-28T09:57:53-06:00, the
 feature-merge baseline is `2bcdeb7`, adding agent registry, authority override,
 M365 dry-run observe/write, and local evidence persistence work. CMS-A is
-complete and GitHub Actions run `28326055021` passed. CMS-B local proof is also
+complete and GitHub Actions run `28326055021` passed. CMS-B local proof is
 complete: focused API/M365 tests, full Python tests, Windows HTTP probes, and
 the Linux Freedom CP-1 script passed against a temporary local server with
-synthetic M365 env values and dry-run evidence only. The compact active packet
-is `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
-The next planned action is the owner-gated CMS-B login edge explanation. The
-agent must pause for Adam to say "yes, go ahead" or "pause" before opening any
+synthetic M365 env values and dry-run evidence only. CMS-C is complete and the
+compact builder-facing handoff is
+`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`.
+The compact stabilization packet remains
+`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` for
+validation detail. The next owner decision is whether to send the CMS-C report
+to the agentic multi-agent builder, resume Chunk Twenty local governed
+approval actions, explicitly run or continue pausing the optional CMS-B
+browser-login edge, or open a formal Microsoft 365 connector-promotion design
+gate. The agent must pause for Adam to say "yes, go ahead" before opening any
 browser login, OAuth, or consent surface. Do not proceed into live Microsoft
 365 access, cloud placement, Graphify ingest, schema publication, browser
 login, OAuth consent, tenant admin consent, or further authority expansion

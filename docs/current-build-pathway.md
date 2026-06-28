@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-28T09:11:34-06:00
+Last Updated: 2026-06-28T09:57:53-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -131,13 +131,14 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Handoff next chunk | complete | 2026-06-27T18:06:31-06:00 | codex session | Adam selected GA-C3 plus the important GA-C4 operator handoff portion after GA-C2. |
 | Add Graphify preview diff/cache checks | task complete | 2026-06-27T18:06:31-06:00 | codex session | GA-C3 added safe local diff/cache helpers, CLI support, wrapper flags, and focused tests for added, changed, unchanged, removed, empty, invalid, and duplicate preview cases. |
 | Add Graphify operator preview handoff | task complete | 2026-06-27T18:06:31-06:00 | codex session | GA-C4 documented preview generation, diff inspection, cleanup expectations, and non-goals. Preview output and diffs remain ignored local inspection surfaces, not Graphify ingest, approval, evidence, relay, source-of-truth, or authority material. |
-| Handoff next coordination step | pending | 2026-06-27T18:06:31-06:00 | codex session | Safe next step is to report the GA-B/GA-C local readiness package to the agentic multi-agent agent builder for a revised orchestrated plan, or return to Chunk Twenty if Adam resumes local governed approval actions. |
+| Handoff next coordination step | task complete | 2026-06-28T09:57:53-06:00 | codex session | Rolled the GA-B/GA-C local readiness package forward into the current-main builder handoff. The new compact report is `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`; Adam still owns whether to send it to the builder, resume Chunk Twenty, run the optional login edge, or open a formal M365 connector-promotion design gate. |
 | Create builder and Graphify integration summary | task complete | 2026-06-27T18:29:20-06:00 | codex session | Added a dated coordination summary for the builder handoff, tying the builder CNS schema foundation to Rev 2 schema hardening, GA-B/GA-C Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
 | Prove CP-1 Freedom bridge over DirectLink | integration complete | 2026-06-27T22:23:45-06:00 | codex session | Pulled the current builder/Freedom HTTP bridge work, patched the FastAPI wrapper for Freedom runtime compatibility, started the GAIL OS dev server bound to `10.77.77.1:8123`, and verified the Linux Freedom integration proof passed 4/4. No cloud placement, broad firewall rule, live connector, Microsoft 365 access, production deployment, or authority expansion was added. |
 | Plan current-main stabilization chunks | draft complete | 2026-06-28T08:21:40-06:00 | codex session | Pulled GitHub current to `2bcdeb7`, reviewed the last 24 hours of merged API, agent-registry, authority-override, M365 dry-run, and evidence-store work, and planned a compact stabilization sequence before any new capability execution. GitHub `main` CI is currently failing on two connector-registry alignment tests; execution waits for Adam's go-ahead. |
 | Split current-main stabilization packet | task complete | 2026-06-28T08:33:50-06:00 | codex session | Moved the CMS-A/CMS-B/CMS-C GitHub catch-up plan into `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so startup can read a compact dated packet instead of the large historical pathway. Stable route files remain stable; no code, CI fix, live connector, Microsoft 365 access, Graphify ingest, cloud placement, schema publication, runtime source-of-truth change, or authority expansion was executed. |
 | Complete CMS-A current-main alignment | task complete | 2026-06-28T08:54:02-06:00 | codex session | Aligned the stale connector-registry test expectations with the planning-only `m365-graph-api-bridge` profile and recorded the `svc-gail-os-graph` identity in the bridge notes. Full local Python tests and GitHub Actions run `28326055021` pass. No live Microsoft 365 access, Graph scope expansion, endpoint addition, cloud placement, Graphify ingest, schema publication, secrets-handling change, or authority expansion was executed. |
 | Complete CMS-B local runtime proof | integration complete | 2026-06-28T09:11:34-06:00 | codex session | Reproved the local FastAPI, dry-run M365, evidence lookup, DirectLink, and Freedom CP-1 paths with focused tests, full Python tests, Windows HTTP probes, and Linux Freedom integration. The optional browser-login edge remains paused for Adam's explicit yes/pause decision. No browser login, OAuth consent, tenant/admin consent, live Graph call, Planner write, Graphify ingest, cloud placement, broad firewall change, production service behavior, or authority expansion was executed. |
+| Complete CMS-C builder handoff | task complete | 2026-06-28T09:57:53-06:00 | codex session | Added `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` and updated startup/routing docs so the builder can receive the actual post-merge state, CMS-A/CMS-B validation, no-live-connector boundaries, and next owner-decision lanes. No browser login, OAuth consent, tenant/admin consent, live Graph call, Planner write, Graphify ingest, cloud placement, broad firewall change, production service behavior, schema publication, source-of-truth migration, or authority expansion was executed. |
 
 ## Current Completion Boundary
 
@@ -1628,7 +1629,7 @@ Completion notes:
 
 ## Current-Main Stabilization - GitHub Catch-Up
 
-Status: in progress; CMS-A task complete (2026-06-28T08:54:02-06:00)
+Status: task complete; CMS-A/CMS-B/CMS-C complete and login edge paused (2026-06-28T09:57:53-06:00)
 
 Completion target: Task complete
 
@@ -1639,9 +1640,11 @@ Active work packet:
 
 This section intentionally stays short. The detailed CMS-A/CMS-B/CMS-C plan,
 no-fallback boundaries, documentation sweep notes, CI confirmation state, and
-next execution order live in the dated packet above. CMS-A is complete; do not
-resume feature work or old Chunk Twenty implementation until Adam redirects or
-CMS-B/CMS-C finish the current-main stabilization pass.
+next execution order live in the dated packet above. The compact builder-facing
+closeout is
+[`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`](decisions/2026-06-28%20-%20Current%20Main%20Stabilization%20Builder%20Report.md).
+CMS-A, CMS-B, and CMS-C are complete. Do not resume feature work or old Chunk
+Twenty implementation until Adam chooses the next lane.
 
 ## Chunk Twenty - Add Approval Actions
 
@@ -2118,15 +2121,16 @@ date -Iseconds
 ## Next Handoff
 
 Current handoff: CP-1 DirectLink bridge proof is integration complete as of
-2026-06-27T22:23:45-06:00, and GitHub `main` has since advanced to `2bcdeb7`
-with merged agent registry, authority override, M365 dry-run, and local
-evidence-store work. As of 2026-06-28T08:54:02-06:00, CMS-A is complete and
-the next planned step is CMS-B in the dated current-main stabilization packet:
-`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`. Do
-not add new capability until Adam redirects or CMS-B/CMS-C finish the
-current-main stabilization pass. The prior known GitHub Actions failures were
-connector-registry alignment failures, not a known live-runtime failure, and CI
-run `28326055021` passed after CMS-A.
+2026-06-27T22:23:45-06:00, and GitHub `main` advanced to `2bcdeb7` with merged
+agent registry, authority override, M365 dry-run, and local evidence-store
+work. As of 2026-06-28T09:57:53-06:00, CMS-A, CMS-B local proof, and CMS-C are
+complete in the dated current-main stabilization packet:
+`docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`. The
+compact builder-facing handoff is
+`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`.
+The prior known GitHub Actions failures were connector-registry alignment
+failures, not a known live-runtime failure, and later CI runs through
+`28326642983` passed.
 
 The prior GAIL OS FastAPI dev server proof was bound to
 `http://10.77.77.1:8123`; Linux Freedom reached it and passed all 4 CP-1
@@ -2144,7 +2148,9 @@ Low-token restart:
 4. Read `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
    Open this large historical pathway only if a specific question needs older
    chunk history.
-5. Acknowledge the change of direction before building: GAIL AI Operating
+5. Read `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`
+   before asking the agentic multi-agent agent builder for a revised plan.
+6. Acknowledge the change of direction before building: GAIL AI Operating
    System Rev 2, Freedom, and AG Operations Workspace are being coordinated as
    related builds, and AG Operations should finish its current evolution before
    any consolidation review.

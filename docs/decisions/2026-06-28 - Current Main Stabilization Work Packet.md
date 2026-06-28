@@ -3,15 +3,16 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T09:11:34-06:00
-Status: in progress; CMS-A complete; CMS-B local proof complete and login edge paused (2026-06-28T09:11:34-06:00)
+Last Updated: 2026-06-28T09:57:53-06:00
+Status: task complete; CMS-A/CMS-B/CMS-C complete and login edge paused (2026-06-28T09:57:53-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
 
 This packet keeps the current GitHub catch-up work small enough for low-token
-startup. It is the active execution packet for current-main stabilization until
-CMS-A through CMS-C are complete, superseded, or redirected by Adam.
+startup. It was the active execution packet for current-main stabilization
+through CMS-A, CMS-B, and CMS-C. It now serves as the validation record and
+handoff detail for that completed stabilization pass.
 
 `docs/current-build-pathway.md` remains the historical master pathway and
 ledger. Do not read the full pathway just to execute this packet unless a
@@ -49,6 +50,14 @@ M365 dry-run, evidence, and DirectLink/Freedom CP-1 proof paths are green. The
 optional login edge is not executed yet; it is paused for Adam's explicit
 "yes, go ahead" or "pause" decision after Codex explains the exact browser
 login probe.
+
+CMS-C closeout: as of 2026-06-28T09:57:53-06:00, the current-main
+stabilization handoff is reconciled in
+`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`.
+The report records the actual CMS-A/CMS-B proof state, the remaining
+no-live-connector boundaries, the roles of Freedom, Graphify, GAIL OS, AG
+Operations Workspace / Microsoft 365, and the next owner decision before
+further feature work.
 
 ## No-Fallback Boundaries
 
@@ -173,7 +182,7 @@ appears, pause and ask Adam before continuing.
 
 ## CMS-C - Reconcile Pathway, Handoff, And Builder Report
 
-Status: planned (2026-06-28T08:33:50-06:00)
+Status: task complete (2026-06-28T09:57:53-06:00)
 
 Completion target: Task complete
 
@@ -204,26 +213,39 @@ Validation:
 - `git diff --check`;
 - any required handoff note review.
 
+Validation evidence:
+
+- Added
+  `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`
+  as the compact builder-facing report.
+- Updated this active packet, `START_HERE.md`, `docs/CHANGELOG.md`,
+  `docs/context-map.md`, `docs/source-of-truth-map.md`,
+  `docs/current-build-pathway.md`, and the 2026-06-27 builder integration
+  summary so future agents route to the compact CMS-C report.
+- Confirmed recent GitHub Actions runs are green after CMS-A/CMS-B:
+  `28326055021`, `28326108489`, `28326324992`, and `28326642983` passed.
+- `git diff --check` passed, with only the existing `START_HERE.md` CRLF
+  normalization warning from Git.
+- The optional browser-login edge remains paused. No browser login, OAuth
+  consent, tenant/admin consent, live Microsoft Graph call, Planner write,
+  Graphify ingest, cloud placement, broad firewall change, production service
+  behavior, schema publication, or authority expansion was executed.
+
 Stop before renumbering the whole roadmap, approving live M365 content access,
 publishing schemas as a stable external package, moving to cloud, or altering
 Freedom/Graphify source-of-truth boundaries.
 
 ## Recommended Execution Order
 
-CMS-A is complete. CMS-B local runtime/dry-run proof is complete. Do not open
-an interactive login automatically; explain the edge probe and wait for Adam to
-say "yes, go ahead" or "pause." Do not continue feature work if a later CI run
-turns red; repair current `main` before CMS-C, login-edge work, or any new
-capability work.
+CMS-A, CMS-B local proof, and CMS-C are complete. Do not open an interactive
+login automatically; explain the edge probe and wait for Adam to say "yes, go
+ahead" or "pause." Do not continue feature work if a later CI run turns red;
+repair current `main` before login-edge work or any new capability work.
 
-CMS-B and CMS-C can be grouped into one execution chunk if CMS-A is small and
-clean. Keep them separate if validation exposes runtime, DirectLink, or M365
-dry-run drift.
-
-After the CMS-B login edge is approved/skipped and CMS-C closes, ask Adam
-whether to send the builder report, resume Graphify
-acceleration Phase D/E design, continue CP-1 contract generation for
-TypeScript consumers, or begin a formal M365 connector promotion design gate.
+Next owner decision: send the CMS-C builder report to the agentic multi-agent
+agent builder, resume Chunk Twenty local governed approval actions, explicitly
+run or continue pausing the CMS-B browser-login edge, or open a formal
+Microsoft 365 connector-promotion design gate.
 
 ## Documentation Sweep Notes
 
@@ -260,9 +282,15 @@ generated file, CI workflow, runtime config, or tool-owned config.
 
 ## Next Handoff
 
-Next action after CMS-B local proof: explain the optional login edge and pause
-for Adam's explicit "yes, go ahead" or "pause" decision before opening any
-browser login or consent surface. No live Microsoft 365 access, OAuth consent,
-tenant/admin consent, Graph call, Planner write, Graphify ingest, cloud
-placement, broad firewall change, production service behavior, or authority
-expansion is approved by the local CMS-B proof.
+Current-main stabilization is task complete as of 2026-06-28T09:57:53-06:00.
+The compact builder handoff lives at
+`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`.
+
+Next owner decision: send the CMS-C builder report to the agentic multi-agent
+agent builder, resume Chunk Twenty local governed approval actions, explicitly
+run or continue pausing the CMS-B browser-login edge, or open a formal
+Microsoft 365 connector-promotion design gate. No live Microsoft 365 access,
+OAuth consent, tenant/admin consent, Graph call, Planner write, Graphify
+ingest, cloud placement, broad firewall change, production service behavior,
+schema publication, or authority expansion is approved by this stabilization
+pass.

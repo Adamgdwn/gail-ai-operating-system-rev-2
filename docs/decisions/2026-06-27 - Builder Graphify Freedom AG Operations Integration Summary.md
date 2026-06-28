@@ -3,8 +3,8 @@
 Document type: coordination summary
 Date: 2026-06-27
 Saved: 2026-06-27T18:29:20-06:00
-Last Updated: 2026-06-27T18:29:20-06:00
-Status: draft complete (2026-06-27T18:29:20-06:00)
+Last Updated: 2026-06-28T09:57:53-06:00
+Status: active handoff updated (2026-06-28T09:57:53-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -18,6 +18,12 @@ Workspace, Microsoft 365, and Graphify should fit together.
 This is a coordination record only. It does not approve live Microsoft 365
 access, Freedom runtime coupling, Graphify ingest, HTTP API exposure, cloud
 placement, schema publication, connector activation, or execution authority.
+
+Current-main addendum: after the 2026-06-28 stabilization pass, use
+`docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` as
+the compact builder-facing update. It records the green CMS-A/CMS-B proof
+state, the dry-run Microsoft 365 boundary, the paused login edge, and the next
+owner decision before further feature work.
 
 ## What The Agentic Multi-Agent Builder Added
 

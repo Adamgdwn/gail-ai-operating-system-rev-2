@@ -2,6 +2,18 @@
 
 ## 2026-06-28
 
+- Completed CMS-C for current-main stabilization by adding
+  `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md`
+  and updating the active packet, startup handoff, source/context routing,
+  historical pathway ledger, changelog, and 2026-06-27 builder integration
+  summary. The report gives the agentic multi-agent agent builder the actual
+  post-merge state, impact on the path forward, and next owner-decision lanes
+  while preserving the dry-run M365 boundary, Graphify-as-binding-layer role,
+  Freedom operator boundary, and future AG Operations Workspace / Microsoft
+  365 tactile-boundary framing. No browser login, OAuth consent, live Graph
+  call, Planner write, Graphify ingest, cloud placement, broad firewall change,
+  production service behavior, schema publication, source-of-truth migration,
+  or authority expansion was executed.
 - Completed the CMS-B local runtime and dry-run proof while leaving the
   owner-gated login edge paused. Focused API/M365 tests, the full Python suite,
   Windows HTTP probes on a temporary `10.77.77.1:8124` server, evidence lookup,
