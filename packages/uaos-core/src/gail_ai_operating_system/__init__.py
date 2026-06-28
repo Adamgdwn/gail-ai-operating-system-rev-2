@@ -143,6 +143,10 @@ from .r4_dry_run_simulator import (
     build_r4_001_charter,
     run_r4_dry_run_simulation,
 )
+from .r4_live_executor import (
+    R4LiveResult,
+    run_r4_live_execution,
+)
 
 __all__ = [
     "Action",
@@ -260,4 +264,6 @@ __all__ = [
     "StaleClaimCandidate",
     "build_r4_001_charter",
     "run_r4_dry_run_simulation",
+    "R4LiveResult",
+    "run_r4_live_execution",
 ]
