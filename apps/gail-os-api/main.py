@@ -17,7 +17,7 @@ _ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(_ROOT / "packages" / "uaos-core" / "src"))
 
 from fastapi import FastAPI  # noqa: E402
-from routers import actions, authority, connectors, evidence, missions  # noqa: E402
+from routers import actions, agents, authority, connectors, evidence, missions  # noqa: E402
 
 app = FastAPI(
     title="GAIL OS API",
@@ -30,6 +30,7 @@ app.include_router(actions.router, prefix="/api/v1")
 app.include_router(evidence.router, prefix="/api/v1")
 app.include_router(connectors.router, prefix="/api/v1")
 app.include_router(authority.router, prefix="/api/v1")
+app.include_router(agents.router, prefix="/api/v1")
 
 
 @app.get("/api/v1/health")
