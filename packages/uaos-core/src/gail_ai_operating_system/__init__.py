@@ -137,6 +137,12 @@ from .operating_knowledge import (
     EvidencePacketToOkpConverter,
     create_operating_knowledge_packet,
 )
+from .r4_dry_run_simulator import (
+    R4DryRunResult,
+    StaleClaimCandidate,
+    build_r4_001_charter,
+    run_r4_dry_run_simulation,
+)
 
 __all__ = [
     "Action",
@@ -250,4 +256,8 @@ __all__ = [
     "validate_relay_envelope",
     "with_graphify_acceleration_fingerprint",
     "run_local_proof",
+    "R4DryRunResult",
+    "StaleClaimCandidate",
+    "build_r4_001_charter",
+    "run_r4_dry_run_simulation",
 ]
