@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-28T00:00:00-06:00
+Last Updated: 2026-06-27T22:23:45-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -130,6 +130,7 @@ Avoid mixing unrelated code, governance, deployment, and product decisions in on
 | Add Graphify operator preview handoff | task complete | 2026-06-27T18:06:31-06:00 | codex session | GA-C4 documented preview generation, diff inspection, cleanup expectations, and non-goals. Preview output and diffs remain ignored local inspection surfaces, not Graphify ingest, approval, evidence, relay, source-of-truth, or authority material. |
 | Handoff next coordination step | pending | 2026-06-27T18:06:31-06:00 | codex session | Safe next step is to report the GA-B/GA-C local readiness package to the agentic multi-agent agent builder for a revised orchestrated plan, or return to Chunk Twenty if Adam resumes local governed approval actions. |
 | Create builder and Graphify integration summary | task complete | 2026-06-27T18:29:20-06:00 | codex session | Added a dated coordination summary for the builder handoff, tying the builder CNS schema foundation to Rev 2 schema hardening, GA-B/GA-C Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
+| Prove CP-1 Freedom bridge over DirectLink | integration complete | 2026-06-27T22:23:45-06:00 | codex session | Pulled the current builder/Freedom HTTP bridge work, patched the FastAPI wrapper for Freedom runtime compatibility, started the GAIL OS dev server bound to `10.77.77.1:8123`, and verified the Linux Freedom integration proof passed 4/4. No cloud placement, broad firewall rule, live connector, Microsoft 365 access, production deployment, or authority expansion was added. |
 
 ## Current Completion Boundary
 
@@ -1570,6 +1571,54 @@ Completion notes:
   Phase E, Graphify ingest, live adapters, Freedom runtime coupling,
   Microsoft 365 content access, HTTP/cloud placement, or authority changes.
 
+## CP-1 DirectLink - Prove Freedom To GAIL OS Bridge
+
+Status: integration complete (2026-06-27T22:23:45-06:00)
+
+Completion target: Integration complete
+
+Budget class: Small
+
+Plan packet:
+
+Inputs: `X:\LINUX_TO_WINDOWS__2026-06-28-cp1-gail-os-server-start.md`,
+the pulled GAIL OS FastAPI layer under `apps/gail-os-api`, and the Freedom
+integration script at
+`/home/adamgoodwin/code/agents/the-freedom-engine-os/packages/gail-os-client/src/index.integration.ts`.
+Outputs: a patched FastAPI wrapper that satisfies Freedom's CP-1 runtime
+schema, an ignored local Python virtual environment under `tmp/`, a running
+dev server bound to the direct-link Windows IP, and an exchange-folder success
+note at `X:\WINDOWS_TO_LINUX__2026-06-28-cp1-gail-os-server-running.md`.
+Acceptance: Freedom can reach GAIL OS over DirectLink, mission proposal returns
+a Freedom-valid mission, action validation returns a Freedom-valid policy
+decision, and connectors remain non-executable. Validation: governance
+preflight, focused API tests, full Python suite, Windows HTTP probes, Linux
+curl probes, and the Linux Freedom CP-1 integration script. Stop: before broad
+firewall changes, cloud or production deployment, live connector activation,
+Microsoft 365 content access, Graphify ingest, schema publication changes, or
+authority expansion.
+
+Completion notes:
+
+- Pulled `main` from `e7ee1c6` to `13da9dc`, bringing in Chunk 20B/20C/20E,
+  Chunk 21 FastAPI, contract export, graph-fact contract, and API tests.
+- Added `uvicorn` to `requirements.txt` because the FastAPI app now has a
+  direct dev-server run path.
+- Updated `POST /api/v1/missions` to return UTC `Z` timestamps for Freedom's
+  runtime Zod schema while leaving the core mission spine unchanged.
+- Updated `POST /api/v1/actions` to canonicalize Freedom bridge metadata at
+  the HTTP boundary: Freedom-owned bridge missions are evaluated under the
+  canonical GAIL owner, and low-risk Freedom `system` actions are mapped to a
+  local `policy_gate_review` action before the strict policy gate runs.
+- Started the dev server from an ignored venv, bound to
+  `http://10.77.77.1:8123` only. No Windows firewall rule was needed.
+- Linux validation passed from the Freedom repo:
+  `npx tsx packages/gail-os-client/src/index.integration.ts` with 4 passed,
+  0 failed.
+- This proof does not make the API production-ready and does not approve cloud
+  placement, live business-system connectors, Microsoft 365 access, Graphify
+  ingest, broad network exposure, or any authority expansion.
+
 ## Chunk Twenty - Add Approval Actions
 
 Status: planned
@@ -2040,8 +2089,18 @@ date -Iseconds
 | 2026-06-27T17:41:51-06:00 | pre-Chunk Twenty Graphify local export preview command | pass | GA-C2 is task complete. Added the local preview module, focused tests, and PowerShell wrapper. Focused preview tests passed: 8 tests. Full Python suite passed: 186 tests. Print-only command smoke printed three deterministic JSONL records without writing; write smoke created three ignored synthetic preview records under `tmp/graphify-acceleration-preview/`; JSONL structure and ignored-output checks passed. Governance preflight passed with 0 warnings. No Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, retained evidence lane, runtime hook, or execution authority was added. |
 | 2026-06-27T18:06:31-06:00 | pre-Chunk Twenty Graphify preview diff and operator handoff | pass | GA-C3 and GA-C4 are task complete. Added local preview cache loading, deterministic safe diff output, CLI and PowerShell `-Diff` / `-DiffAgainst` support, focused tests for added/changed/unchanged/removed/empty/invalid/duplicate cases, and operator handoff notes. Focused preview tests passed: 13 tests. Full Python suite passed: 191 tests. Syntax compile, PowerShell parse, print-only smoke, diff smoke, write smoke, ignored-output check, active-status scan, stale-GA-C3 scan, forbidden filename scan, strict secret scan, `git diff --check`, governance preflight, and Graphify incremental update all passed. No Graphify call, adapter, transport, HTTP API, cloud placement, live connector, live business-system read, client data, approval mutation, evidence mutation, relay mutation, runtime hook, or execution authority was added. |
 | 2026-06-27T18:29:20-06:00 | pre-Chunk Twenty builder and Graphify integration summary | pass | Added the dated builder handoff summary tying the builder CNS schema commits to Rev 2 schema hardening and GA-B/GA-C Graphify readiness, with a wish list for integrating Freedom, Codex and future coding agents, AG Operations Workspace / Microsoft 365, and Graphify. Governance preflight passed with 0 warnings. Graphify orientation query ran before edits and showed sparse cross-build routing, reinforcing the need for this explicit summary. `git diff --check`, routing search, status-format scan, forbidden filename scan, strict secret scan, new-doc ASCII check, document review, and Graphify incremental update passed; Graphify rebuilt 1503 nodes and 2986 edges. No live connector, Freedom runtime, Microsoft 365 access, Graphify ingest, HTTP/cloud placement, schema publication, cross-system source-of-truth change, or execution authority was added. |
+| 2026-06-27T22:23:45-06:00 | CP-1 DirectLink Freedom bridge proof | pass | Pulled current `main`, reviewed the DirectLink handoff, installed dependencies into ignored `tmp/gail-os-api-venv`, patched the FastAPI wrapper for Freedom runtime compatibility, and started the GAIL OS dev server bound to `10.77.77.1:8123`. Governance preflight passed with 0 warnings. Focused API tests passed: 41 tests. Full Python suite passed: 342 tests and 55 subtests. Windows HTTP probes passed for health, missions, connectors, and the Freedom low-risk system action bridge payload. Linux curl probes reached health and connectors over DirectLink. Linux Freedom CP-1 integration passed: 4 tests, 0 failed. `git diff --check` passed with the known START_HERE CRLF warning. Graphify incremental update rebuilt 2401 nodes and 4489 edges. No broad firewall rule, cloud placement, live connector, Microsoft 365 access, Graphify ingest, production deployment, or authority expansion was added. |
 
 ## Next Handoff
+
+Current handoff: CP-1 DirectLink bridge proof is integration complete as of
+2026-06-27T22:23:45-06:00. The GAIL OS FastAPI dev server is running from an
+ignored venv and is bound to `http://10.77.77.1:8123`; Linux Freedom reached it
+and passed all 4 CP-1 integration checks. Treat the running process as a local
+dev proof, not a production service. If the server is stopped or Windows
+restarts, recreate the ignored venv if needed, set `GAIL_OS_API_KEY` in the
+local shell, and run `uvicorn main:app --host 10.77.77.1 --port 8123` from
+`apps/gail-os-api`.
 
 Low-token restart:
 

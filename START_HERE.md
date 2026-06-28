@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-27T18:29:20-06:00
+Last Updated: 2026-06-27T22:23:45-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -28,6 +28,14 @@ the governed mission, policy, relay, approval-record, evidence, and worker
 spine. The default Rev 2 build task remains Chunk Twenty - local governed
 approval actions - but do not treat it as permission to merge repositories,
 add bridge layers, or activate live systems.
+
+Current CP-1 status: after the 2026-06-28 builder/Freedom handoff, the GAIL OS
+FastAPI dev server proof is integration complete over DirectLink. Windows binds
+the dev server to `10.77.77.1:8123`, Freedom on Linux reaches it, and the
+Freedom `packages/gail-os-client/src/index.integration.ts` proof passed 4/4.
+This remains an A1 local no-network dev proof only: no cloud placement, broad
+firewall rule, live connector, Microsoft 365 access, production deployment, or
+authority expansion is approved.
 
 ## Current Plan
 

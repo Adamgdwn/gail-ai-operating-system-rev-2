@@ -1,6 +1,7 @@
 """Mission creation endpoint — POST /api/v1/missions."""
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -20,6 +21,15 @@ class CreateMissionRequest(BaseModel):
     data_classification: str = "internal"
 
 
+def _utc_z_timestamp(value: str) -> str:
+    """Return a UTC `Z` timestamp for TypeScript runtime schema compatibility."""
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return value
+    return parsed.astimezone(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
 @router.post("/missions")
 def create_mission_endpoint(req: CreateMissionRequest) -> dict:
     """Create and validate a mission envelope. Returns the mission_id and full envelope."""
@@ -33,4 +43,6 @@ def create_mission_endpoint(req: CreateMissionRequest) -> dict:
         )
     except (ValueError, MissionValidationError) as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
-    return mission.to_dict()
+    payload = mission.to_dict()
+    payload["created_at"] = _utc_z_timestamp(payload["created_at"])
+    return payload

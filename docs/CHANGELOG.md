@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-06-28
+
+- Completed the CP-1 DirectLink Freedom bridge proof for the GAIL OS FastAPI
+  dev server. Windows now runs the server bound to `10.77.77.1:8123` for the
+  private cable link, and the Linux Freedom integration script passed all 4
+  checks: health, mission proposal, action validation, and planning-only
+  connectors.
+- Patched the FastAPI wrapper so `POST /api/v1/missions` returns UTC `Z`
+  timestamps accepted by Freedom's runtime schemas, and so
+  `POST /api/v1/actions` canonicalizes low-risk Freedom `system` bridge
+  actions into local GAIL OS policy-review actions before the strict policy
+  gate runs. The core mission spine remains strict and unchanged.
+- Added `uvicorn` to `requirements.txt` for the GAIL OS API dev-server run
+  path, and added focused regression tests for the Freedom bridge timestamp
+  and low-risk system action payload. No broad firewall rule, cloud placement,
+  live connector, Microsoft 365 access, Graphify ingest, production
+  deployment, or authority expansion was added.
+
 ## 2026-06-27
 
 - Added

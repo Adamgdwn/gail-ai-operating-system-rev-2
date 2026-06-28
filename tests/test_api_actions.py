@@ -139,3 +139,39 @@ def test_validate_action_default_deny_unlisted_type():
     data = resp.json()
     assert data["allowed"] is False
     assert "Default deny" in (data["stop_reason"] or "")
+
+
+def test_validate_action_accepts_freedom_low_risk_system_bridge_payload():
+    freedom_mission = {
+        "mission_id": "mission-integration-1",
+        "request_id": "req-integration-action-1",
+        "command": "Read local evidence store",
+        "domain": "build",
+        "created_at": "2026-06-28T00:00:00.000Z",
+        "owner": "freedom",
+        "approval_level": "A1 local no-network",
+        "dry_run": True,
+    }
+    freedom_action = {
+        "action_id": "action-integration-1",
+        "mission_id": "mission-integration-1",
+        "action_type": "system",
+        "title": "Read local evidence store",
+        "actor": "freedom",
+        "status": "proposed",
+        "authority_level": "R1",
+        "risk_tier": 1,
+        "arguments": {},
+        "created_at": "2026-06-28T00:00:00.000Z",
+    }
+
+    resp = client.post("/api/v1/actions", json={
+        "mission": freedom_mission,
+        "action": freedom_action,
+    }, headers=HEADERS)
+
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["action_id"] == "action-integration-1"
+    assert data["allowed"] is True
+    assert data["mode"] == "dry-run"

@@ -95,3 +95,13 @@ def test_create_mission_id_uses_mission_prefix():
         "command": "Validate local build artifacts",
     }, headers=HEADERS)
     assert resp.json()["mission_id"].startswith("mission-")
+
+
+def test_create_mission_created_at_is_utc_z_for_freedom_runtime_schema():
+    resp = client.post("/api/v1/missions", json={
+        "command": "Validate Freedom bridge timestamp",
+        "domain": "governance",
+        "request_id": "req-freedom-runtime-schema",
+    }, headers=HEADERS)
+    assert resp.status_code == 200
+    assert resp.json()["created_at"].endswith("Z")
