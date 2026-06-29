@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T17:55:25-06:00
+Last Updated: 2026-06-28T18:19:59-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -73,6 +73,18 @@ bounded local CNS connection-test proof. The Linux request to expand Entra
 permissions remains a separate Microsoft 365 connector-promotion decision and
 is not approved by this connection scout. R4 live-executor code being present
 on `main` is not approval to run R4 live mutations.
+
+Follow-on CTP-2 status: as of 2026-06-28T18:19:59-06:00, the local triangle
+proof is integration complete. Linux proved Freedom to GAIL OS, Freedom to
+Graphify, GAIL OS M365 dry-run status/observe, authority override, and agents
+registry probes. Windows refreshed the GAIL OS dev server and patched two
+small API contract gaps: `GET /api/v1/authority` now returns a read-only R0-R5
+authority registry, and `POST /api/v1/m365/observe` accepts a synthetic
+`{"dry_run": true}` probe body while rejecting `dry_run=false` and still
+forcing dry-run/no-live behavior internally. The live dev API is bound to
+`10.77.77.1:8123` and exposes 14 routes. This does not approve Entra scope
+expansion, live Microsoft Graph calls, persistent Graphify ingest, cloud
+placement, production service behavior, or R4 live execution.
 
 ## Current Plan
 

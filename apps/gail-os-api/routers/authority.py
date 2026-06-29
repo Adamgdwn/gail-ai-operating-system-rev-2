@@ -1,4 +1,4 @@
-"""Authority override request endpoint — POST /api/v1/authority/override."""
+"""Authority registry and override request endpoints."""
 from __future__ import annotations
 
 import uuid
@@ -11,6 +11,61 @@ from pydantic import BaseModel
 from deps import verify_api_key
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
+
+
+AUTHORITY_LEVELS = [
+    {
+        "level": "R0",
+        "name": "Observe",
+        "meaning": "Read-only, no external effect",
+        "agent_boundary": "Allowed for local dry-run observation.",
+    },
+    {
+        "level": "R1",
+        "name": "Propose",
+        "meaning": "Draft, recommend, prepare - no external effect",
+        "agent_boundary": "Allowed for proposal work only.",
+    },
+    {
+        "level": "R2",
+        "name": "Internal approved action",
+        "meaning": "Reversible internal write with named approval",
+        "agent_boundary": "Requires GAIL OS policy validation and evidence.",
+    },
+    {
+        "level": "R3",
+        "name": "Restricted action",
+        "meaning": "External send, production release, irreversible change",
+        "agent_boundary": "Requires explicit approval before execution.",
+    },
+    {
+        "level": "R4",
+        "name": "Delegated autonomous restricted action",
+        "meaning": "Inside a valid pre-approved authority charter",
+        "agent_boundary": "Owner-gated; requires a signed AuthorityEnvelope.",
+    },
+    {
+        "level": "R5",
+        "name": "Blocked / human-only",
+        "meaning": "Agent may analyze only; human decides",
+        "agent_boundary": "Human-only. No agent execution.",
+    },
+]
+
+
+@router.get("/authority")
+def authority_registry() -> dict:
+    """Return the read-only authority ladder used by local integration probes."""
+    return {
+        "registry_valid": True,
+        "source": "docs/governance/authority-ladders.md",
+        "boundary": "A1 local no-network",
+        "autonomy_level": "A1",
+        "live_execution_enabled": False,
+        "r4_requires_authority_envelope": True,
+        "r5_human_only": True,
+        "authority_levels": AUTHORITY_LEVELS,
+    }
 
 
 class OverrideRequest(BaseModel):

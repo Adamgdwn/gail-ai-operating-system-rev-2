@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T17:55:25-06:00
-Status: task complete; CMS-A/CMS-B/CMS-C complete, local CNS connection scout complete, and login edge paused (2026-06-28T17:55:25-06:00)
+Last Updated: 2026-06-28T18:19:59-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, and login edge paused (2026-06-28T18:19:59-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -70,6 +70,17 @@ R4 doctrine/schema, R4 dry-run simulation, and R4 live-executor code. No
 Microsoft 365 permission expansion, tenant/admin consent, live Graph call,
 persistent Graphify CNS store ingest, cloud placement, production service
 behavior, or R4 live execution was performed by this scout.
+
+CTP-2 follow-on: as of 2026-06-28T18:19:59-06:00, Linux completed the local
+triangle proof against the Windows GAIL OS server and Windows patched the two
+small contract gaps exposed by the probe. The live dev server now exposes 14
+routes including a read-only `/api/v1/authority` registry. The
+`/api/v1/m365/observe` endpoint accepts a synthetic dry-run probe body and
+rejects live-style `dry_run=false`; it still calls the service layer with
+`dry_run=True, allow_live=False`. Focused API validation passed: 82 tests. No
+Entra permission expansion, tenant/admin consent, live Microsoft Graph call,
+Planner write, persistent Graphify CNS store ingest, cloud placement,
+production service behavior, or R4 live execution was performed.
 
 ## No-Fallback Boundaries
 
@@ -300,12 +311,12 @@ The compact builder handoff lives at
 The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
-Next owner decision: send the CMS-C builder report to the agentic multi-agent
-agent builder, run a bounded local CNS connection-test lane, resume Chunk
-Twenty local governed approval actions, explicitly run or continue pausing the
-CMS-B browser-login edge, or open a formal Microsoft 365 connector-promotion
-design gate. No live Microsoft 365 access, OAuth consent, tenant/admin consent,
-Graph call, Planner write, persistent Graphify CNS store ingest, cloud
-placement, broad firewall change, production service behavior, schema
-publication, R4 live execution, or authority expansion is approved by this
-stabilization pass.
+Next owner decision: send the updated local CNS/CTP-2 proof back to the
+agentic multi-agent agent builder for revised orchestration, continue into an
+owner-gated Graphify ingest proof, resume Chunk Twenty local governed approval
+actions, explicitly run or continue pausing the CMS-B browser-login edge, or
+open a formal Microsoft 365 connector-promotion design gate. No live Microsoft
+365 access, OAuth consent, tenant/admin consent, Graph call, Planner write,
+persistent Graphify CNS store ingest, cloud placement, broad firewall change,
+production service behavior, schema publication, R4 live execution, or
+authority expansion is approved by this stabilization pass.

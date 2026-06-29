@@ -2,6 +2,18 @@
 
 ## 2026-06-28
 
+- Completed the CTP-2 local CNS triangle proof after the DirectLink Linux
+  handoff continued. Windows refreshed the GAIL OS dev server on
+  `10.77.77.1:8123`, added a read-only `/api/v1/authority` registry endpoint,
+  and made `/api/v1/m365/observe` accept a synthetic `{"dry_run": true}` seam
+  probe while rejecting live-style `dry_run=false` and still forcing
+  dry-run/no-live behavior internally. Focused API validation passed: 82 tests.
+  Linux reported CTP-2 pass for Freedom to GAIL OS, Freedom to Graphify, M365
+  status/observe dry-run, authority override, and agents registry probes. No
+  Entra permission expansion, tenant/admin consent, live Microsoft Graph call,
+  Planner write, persistent Graphify CNS store ingest, cloud placement,
+  production service behavior, R4 live execution, or authority expansion was
+  executed.
 - Captured the first post-CMS local CNS connection scout in
   `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
   Freedom's GAIL OS and Graphify integration clients passed against the

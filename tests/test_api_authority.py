@@ -1,4 +1,4 @@
-"""Tests for POST /api/v1/authority/override."""
+"""Tests for authority registry and POST /api/v1/authority/override."""
 from __future__ import annotations
 
 import sys
@@ -27,6 +27,34 @@ VALID_OVERRIDE_REQUEST = {
     "requested_by": "freedom",
     "request_id": "req-override-001",
 }
+
+
+def test_authority_registry_returns_200():
+    resp = client.get("/api/v1/authority", headers=HEADERS)
+    assert resp.status_code == 200
+
+
+def test_authority_registry_is_read_only_local_boundary():
+    resp = client.get("/api/v1/authority", headers=HEADERS)
+    data = resp.json()
+    assert data["registry_valid"] is True
+    assert data["boundary"] == "A1 local no-network"
+    assert data["live_execution_enabled"] is False
+
+
+def test_authority_registry_includes_r_ladder_guardrails():
+    resp = client.get("/api/v1/authority", headers=HEADERS)
+    data = resp.json()
+    levels = {item["level"]: item for item in data["authority_levels"]}
+    assert set(levels) == {"R0", "R1", "R2", "R3", "R4", "R5"}
+    assert data["r4_requires_authority_envelope"] is True
+    assert data["r5_human_only"] is True
+    assert "Human-only" in levels["R5"]["agent_boundary"]
+
+
+def test_authority_registry_missing_auth_returns_422():
+    resp = client.get("/api/v1/authority")
+    assert resp.status_code == 422
 
 
 def test_override_request_returns_201():

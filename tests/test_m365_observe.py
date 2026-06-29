@@ -155,6 +155,24 @@ def test_api_m365_observe_returns_200_and_evidence(monkeypatch):
     assert "R0_OBSERVE" in ev["authority_basis"]
 
 
+def test_api_m365_observe_accepts_synthetic_probe_body(monkeypatch):
+    monkeypatch.setenv("AZURE_TENANT_ID", "tenant-abc")
+    monkeypatch.setenv("AZURE_CLIENT_ID", "client-xyz")
+    monkeypatch.setenv("AZURE_CLIENT_SECRET", "secret-123")
+    resp = client.post("/api/v1/m365/observe", headers=HEADERS, json={"dry_run": True})
+    assert resp.status_code == 200
+    data = resp.json()
+    ev = data["evidence"]
+    assert ev["mission_id"] == "mission-ctp2-probe"
+    assert ev["action_id"] == "action-ctp2-m365-observe"
+    assert ev["execution_mode"] == "dry-run"
+
+
+def test_api_m365_observe_rejects_live_probe_request():
+    resp = client.post("/api/v1/m365/observe", headers=HEADERS, json={"dry_run": False})
+    assert resp.status_code == 422
+
+
 def test_api_m365_observe_not_configured_returns_stopped(monkeypatch):
     monkeypatch.delenv("AZURE_TENANT_ID", raising=False)
     monkeypatch.delenv("AZURE_CLIENT_ID", raising=False)

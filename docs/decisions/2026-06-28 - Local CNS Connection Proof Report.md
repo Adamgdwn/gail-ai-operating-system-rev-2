@@ -3,8 +3,8 @@
 Document type: connection proof report
 Date: 2026-06-28
 Saved: 2026-06-28T17:49:02-06:00
-Last Updated: 2026-06-28T17:55:25-06:00
-Status: task complete; local connection scout complete and rebased onto current main (2026-06-28T17:55:25-06:00)
+Last Updated: 2026-06-28T18:19:59-06:00
+Status: integration complete; CTP-2 local triangle proof complete, server refreshed, and contract gaps patched (2026-06-28T18:19:59-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -34,6 +34,13 @@ live Graph calls, or mutate the persistent Graphify CNS store.
 | Graphify DirectLink exposure | `http://10.77.77.2:8001` is not reachable because the running Graphify CNS API is bound to Linux loopback only. |
 | Freedom runtime clients | Freedom can reach GAIL OS over DirectLink and Graphify over Linux localhost through existing integration clients. |
 
+Follow-on CTP-2 server refresh: Windows restarted the GAIL OS dev server from
+current code and then patched two small contract gaps that surfaced from the
+Linux probe. The live server is now bound to `10.77.77.1:8123`, owned by a
+fresh uvicorn process, and exposes 14 routes including `/api/v1/authority`,
+`/api/v1/m365/status`, `/api/v1/m365/observe`, `/api/v1/authority/override`,
+`/api/v1/agents`, and `/api/v1/okp`.
+
 ## Validation Evidence
 
 Freedom to GAIL OS:
@@ -48,6 +55,55 @@ npx tsx packages/gail-os-client/src/index.integration.ts
 
 Result: 4 passed. Health, mission proposal, action validation, and
 planning-only connector registry all passed.
+
+Linux CTP-2 proof against the Windows GAIL OS server:
+
+```text
+X:\LINUX_TO_WINDOWS__2026-06-28-ctp2-complete-full-proof.md
+```
+
+Result: pass. Linux confirmed Freedom to GAIL OS CP-1 still passed 4/4,
+`GET /api/v1/m365/status` returned the expected A1/not-configured readiness
+shape, `POST /api/v1/m365/observe` returned an EvidencePacket with
+`execution_mode=dry-run`, `POST /api/v1/authority/override` returned a pending
+override record, and `GET /api/v1/agents` returned the six-agent registry. The
+Linux proof used the 13-route contract already present before the extra
+read-only `/api/v1/authority` registry endpoint was added.
+
+Windows post-patch API contract probes:
+
+```text
+GET http://10.77.77.1:8123/openapi.json
+GET http://10.77.77.1:8123/api/v1/authority
+POST http://10.77.77.1:8123/api/v1/m365/observe {"dry_run": true}
+```
+
+Result: pass. Route count is 14; `/api/v1/authority` returns the read-only
+R0-R5 authority ladder with `live_execution_enabled=false`,
+`r4_requires_authority_envelope=true`, and `r5_human_only=true`;
+`/api/v1/m365/observe` accepts a synthetic dry-run probe body and returns an
+EvidencePacket with `execution_mode=dry-run`. With Azure env vars absent from
+the dev server process, the observe result is correctly `stopped` and no live
+Microsoft Graph call is made.
+
+Focused Windows regression tests for the CTP-2 contract alignment:
+
+```text
+PYTHONPATH=packages/uaos-core/src
+GAIL_OS_API_KEY=test-key-local
+uv run --with-requirements requirements.txt python -m pytest \
+  tests/test_api_authority.py \
+  tests/test_m365_observe.py \
+  tests/test_api_m365_bridge.py \
+  tests/test_api_agents.py \
+  tests/test_api_connectors.py \
+  tests/test_api_evidence.py \
+  tests/test_api_actions.py \
+  tests/test_api_missions.py -q
+```
+
+Result: 82 passed, 3 warnings. The remaining warnings are existing Starlette
+deprecation warnings in FastAPI/TestClient and unrelated older 422 constants.
 
 Freedom to Graphify:
 
@@ -125,6 +181,14 @@ clean up before broad all-in-one API validation claims.
 
 - Freedom can reach GAIL OS over the private DirectLink path.
 - Freedom can reach Graphify CNS API on Linux localhost.
+- The CTP-2 local triangle proof is green for Freedom to GAIL OS, Freedom to
+  Graphify, GAIL OS dry-run M365 readiness/observe, authority override, and
+  agent registry probes.
+- GAIL OS now exposes a read-only `/api/v1/authority` registry for local
+  connection probes without granting execution authority.
+- `/api/v1/m365/observe` now accepts a synthetic dry-run probe body for seam
+  tests while rejecting live-style `dry_run=false` requests and still forcing
+  `dry_run=True, allow_live=False` internally.
 - GAIL OS can still produce sanitized Graphify-ready facts locally.
 - GAIL OS evidence and M365 dry-run contracts remain healthy.
 - Current `main` includes GAIL OS OKP, Signal Gravity L1, a GAIL OS CP-5 proof
@@ -149,17 +213,19 @@ clean up before broad all-in-one API validation claims.
 
 ## Recommended Next Chunk
 
-Run a bounded local CNS connection test before any M365 permission expansion:
+CTP-1 and CTP-2 are now complete for the local connection lane. The next
+bounded choices are:
 
 1. Keep the Entra permission expansion paused.
-2. Treat the current result as CTP-0: local connection scout complete.
+2. Treat CTP-0, CTP-1, and CTP-2 as local proof only, not production service
+   readiness.
 3. Review the new GAIL OS Phase 5/6 commits now on `main` before executing
    any R4 or CP-5 follow-on. In particular, R4 doctrine remains an approval
    gate even though R4 live-executor code exists.
-4. Define CTP-1 as a read-only triangle proof: Freedom queries GAIL OS and
-   Graphify, records both responses in a local proof artifact, and confirms no
-   live connector or persistent graph mutation occurred.
-5. Define CTP-2 as an owner-gated local Graphify evidence ingest proof:
+4. Decide whether to hand this CTP-2 proof back to the agentic multi-agent
+   agent builder for revised orchestration, or continue locally into the next
+   connection proof.
+5. Define any next Graphify ingest proof as owner-gated:
    a synthetic dry-run EvidencePacket is posted to the local Graphify CNS API,
    read back, and recorded with rollback/delete instructions. This is the first
    point that should explicitly say "Graphify ingest" because it mutates the

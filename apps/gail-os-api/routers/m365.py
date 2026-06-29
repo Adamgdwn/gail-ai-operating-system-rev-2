@@ -6,8 +6,10 @@
 from __future__ import annotations
 
 import os
+from datetime import datetime, timezone
+from typing import Optional
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 
 from deps import verify_api_key
@@ -36,16 +38,30 @@ def m365_status() -> dict:
 
 
 class ObserveRequest(BaseModel):
-    mission_id: str = Field(..., min_length=8, max_length=160, pattern=r"^mission-.+")
-    action_id: str = Field(..., min_length=7, max_length=160, pattern=r"^action-.+")
-    actor: str = Field(..., min_length=1, max_length=160)
-    created_at: str = Field(..., min_length=1, max_length=64)
+    mission_id: str = Field("mission-ctp2-probe", min_length=8, max_length=160, pattern=r"^mission-.+")
+    action_id: str = Field("action-ctp2-m365-observe", min_length=7, max_length=160, pattern=r"^action-.+")
+    actor: str = Field("linux-ctp2-probe", min_length=1, max_length=160)
+    created_at: str = Field(
+        default_factory=lambda: datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z"),
+        min_length=1,
+        max_length=64,
+    )
     observe_target: str = Field(default="organization", max_length=64)
+    dry_run: bool = Field(default=True)
 
 
 @router.post("/m365/observe")
-def m365_observe(req: ObserveRequest) -> dict:
+def m365_observe(req: Optional[ObserveRequest] = None) -> dict:
     """Execute an R0 dry-run observe action. Returns an EvidencePacket. No live Graph call."""
+    req = req or ObserveRequest()
+    if req.dry_run is not True:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+            detail="m365/observe is dry-run only in the A1 local boundary.",
+        )
     auth = GraphAuthProvider.from_env()
     packet = observe_graph_metadata(
         auth,
