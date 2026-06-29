@@ -3,8 +3,8 @@
 Document type: builder handoff report
 Date: 2026-06-28
 Saved: 2026-06-28T09:57:53-06:00
-Last Updated: 2026-06-28T09:57:53-06:00
-Status: task complete (2026-06-28T09:57:53-06:00)
+Last Updated: 2026-06-28T18:44:28-06:00
+Status: task complete with CNS communication addendum (2026-06-28T18:44:28-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -19,6 +19,13 @@ consent, tenant/admin consent, live Microsoft Graph reads or writes, Planner
 writes, Graphify ingest, cloud placement, broad firewall changes, production
 service behavior, schema publication, source-of-truth migration, or authority
 expansion.
+
+Communication addendum: after the local CTP-2 triangle proof, use
+`docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` as the
+next builder-facing target for the Freedom/GAIL OS/Graphify/AG Operations
+communication layer. It defines shared trace identity, relationship briefs,
+Graphify fact bundles, app signal/action envelopes, build handoff facts, and
+the owner-gated Graphify ingest boundary.
 
 ## Current Stabilization State
 
@@ -117,8 +124,9 @@ Revise the orchestrated plan using the current facts:
 
 Before more feature work, Adam should choose the next lane:
 
-1. send this report and the 2026-06-27 integration summary to the agentic
-   multi-agent agent builder for a revised plan;
+1. send this report, the CTP-2 proof, the CNS communication contract, and the
+   2026-06-27 integration summary to the agentic multi-agent agent builder for
+   a revised plan;
 2. resume Rev 2 implementation at Chunk Twenty local governed approval
    actions;
 3. explicitly run or continue pausing the optional CMS-B browser-login edge;

@@ -2,6 +2,17 @@
 
 ## 2026-06-28
 
+- Added
+  `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md`
+  as the builder-facing contract for enhancing communication among Freedom,
+  GAIL OS, Graphify, Codex/future coding agents, and AG Operations Workspace /
+  Microsoft 365. The contract defines `cns_trace_id`, signal packets, Freedom
+  relationship briefs, Graphify fact bundles, application signal/action
+  envelopes, build handoff facts, and a safe CE-1 through CE-6 builder chunk
+  sequence. No live Microsoft 365 access, OAuth/tenant consent, live Graph
+  call, Planner write, persistent Graphify CNS store ingest, cloud placement,
+  runtime consolidation, source-of-truth migration, R4 live execution, or
+  authority expansion was approved or executed.
 - Completed the CTP-2 local CNS triangle proof after the DirectLink Linux
   handoff continued. Windows refreshed the GAIL OS dev server on
   `10.77.77.1:8123`, added a read-only `/api/v1/authority` registry endpoint,

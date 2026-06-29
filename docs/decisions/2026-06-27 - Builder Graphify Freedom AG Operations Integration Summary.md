@@ -3,8 +3,8 @@
 Document type: coordination summary
 Date: 2026-06-27
 Saved: 2026-06-27T18:29:20-06:00
-Last Updated: 2026-06-28T09:57:53-06:00
-Status: active handoff updated (2026-06-28T09:57:53-06:00)
+Last Updated: 2026-06-28T18:44:28-06:00
+Status: active handoff updated with CNS communication contract (2026-06-28T18:44:28-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -24,6 +24,16 @@ Current-main addendum: after the 2026-06-28 stabilization pass, use
 the compact builder-facing update. It records the green CMS-A/CMS-B proof
 state, the dry-run Microsoft 365 boundary, the paused login edge, and the next
 owner decision before further feature work.
+
+CNS communication addendum: use
+`docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` as the
+current builder-facing target for the communication layer. It turns the wish
+list in this summary into named trace and message shapes: `cns_trace_id`,
+`SignalPacket`, `FreedomRelationshipBrief`, `GraphifyFactBundle`,
+`AppSignalEnvelope`, `AppActionEnvelope`, and `BuildHandoffFact`. It does not
+approve live Microsoft 365 access, Graphify ingest, cloud placement, runtime
+consolidation, source-of-truth migration, R4 live execution, or authority
+expansion.
 
 ## What The Agentic Multi-Agent Builder Added
 
@@ -198,20 +208,27 @@ revise the orchestrated plan using these facts:
   compromised or replaced by a parallel phone interface;
 - Graphify should be designed as the fast binding/information-transfer layer,
   not as authority, execution, source mutation, or raw-content ingestion.
+- the CNS communication contract now gives the builder named envelope targets
+  for that integration; the revised plan should sequence trace identity, local
+  communication replay, Freedom relationship briefs, Graphify fact-bundle
+  preview alignment, AG Operations dry-run signal mapping, and only then an
+  owner-gated Graphify ingest proof.
 
 ## Immediate Safe Next Step
 
-Send this record plus the Graphify acceleration readiness plan to the builder
-as the revised orchestration input. The builder should return a plan that
-orders:
+Send this record, the Graphify acceleration readiness plan, the CTP-2 proof,
+and the CNS communication contract to the builder as the revised orchestration
+input. The builder should return a plan that orders:
 
-1. Chunk Twenty approval actions;
-2. local event/evidence durability needed for Graphify facts;
-3. Freedom bridge contract needs;
-4. AG Operations / Microsoft 365 boundary prerequisites;
-5. Graphify contract publication gate;
-6. future dry-run adapter proof;
-7. live adapter readiness review.
+1. Chunk Twenty approval actions or CE-1 trace-envelope work if Adam chooses
+   the communication contract lane first;
+2. local event/evidence durability and replay needed for Graphify facts;
+3. Freedom relationship brief contract needs;
+4. AG Operations / Microsoft 365 dry-run signal-envelope prerequisites;
+5. Graphify fact-bundle preview and contract publication gate;
+6. owner-gated Graphify ingest proof;
+7. future dry-run adapter proof;
+8. live adapter readiness review.
 
 Do not proceed into live Microsoft 365 access, Freedom runtime work, Graphify
 ingest, HTTP/cloud placement, or connector activation from this summary alone.

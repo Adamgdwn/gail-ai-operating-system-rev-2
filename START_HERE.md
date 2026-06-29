@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T18:19:59-06:00
+Last Updated: 2026-06-28T18:44:28-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -86,6 +86,17 @@ forcing dry-run/no-live behavior internally. The live dev API is bound to
 expansion, live Microsoft Graph calls, persistent Graphify ingest, cloud
 placement, production service behavior, or R4 live execution.
 
+Current CNS communication contract status: as of 2026-06-28T18:44:28-06:00,
+`docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` is
+draft complete for the agentic multi-agent agent builder. It defines the
+builder-facing `cns_trace_id`, `SignalPacket`, `FreedomRelationshipBrief`,
+`GraphifyFactBundle`, `AppSignalEnvelope`, `AppActionEnvelope`, and
+`BuildHandoffFact` direction so enhanced Graphify can accelerate context
+without becoming authority or execution. This is a coordination contract only;
+it does not approve live Microsoft 365 access, Graphify ingest, cloud
+placement, source-of-truth migration, runtime consolidation, R4 live execution,
+or authority expansion.
+
 ## Current Plan
 
 For ordinary scoped work, agents should start with the lean startup checklist below. Read this file and follow the active plan named here for material work, unclear scope, handoffs, or changes that affect the active plan. Keep it short, current, and pointed at the active build path.
@@ -161,6 +172,11 @@ Current priorities:
   foundation, the Rev 2 hardening/Graphify preview work, and the wish list for
   integrating Freedom, Codex and future coding agents, AG Operations Workspace
   / Microsoft 365, and Graphify without promoting live connectors or authority
+- use `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md`
+  as the current builder-facing communication target for enhancing the
+  Freedom/GAIL OS/Graphify/AG Operations loop with shared trace identity,
+  relationship briefs, application signal envelopes, build handoff facts, and
+  owner-gated Graphify ingest boundaries
 
 ## Current Build Pathway
 

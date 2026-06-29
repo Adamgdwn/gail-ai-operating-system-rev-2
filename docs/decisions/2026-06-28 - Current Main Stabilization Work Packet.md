@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T18:19:59-06:00
-Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, and login edge paused (2026-06-28T18:19:59-06:00)
+Last Updated: 2026-06-28T18:44:28-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, and login edge paused (2026-06-28T18:44:28-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -81,6 +81,16 @@ rejects live-style `dry_run=false`; it still calls the service layer with
 Entra permission expansion, tenant/admin consent, live Microsoft Graph call,
 Planner write, persistent Graphify CNS store ingest, cloud placement,
 production service behavior, or R4 live execution was performed.
+
+CNS communication contract follow-on: as of 2026-06-28T18:44:28-06:00,
+`docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` is
+draft complete for builder orchestration. It defines the next communication
+target around `cns_trace_id`, signal packets, Freedom relationship briefs,
+Graphify fact bundles, application signal/action envelopes, build handoff
+facts, and owner-gated Graphify ingest. This remains documentation only and
+does not approve live Microsoft 365 access, Graphify ingest, cloud placement,
+runtime consolidation, source-of-truth migration, R4 live execution, or
+authority expansion.
 
 ## No-Fallback Boundaries
 
@@ -265,10 +275,11 @@ login automatically; explain the edge probe and wait for Adam to say "yes, go
 ahead" or "pause." Do not continue feature work if a later CI run turns red;
 repair current `main` before login-edge work or any new capability work.
 
-Next owner decision: send the CMS-C builder report to the agentic multi-agent
-agent builder, resume Chunk Twenty local governed approval actions, explicitly
-run or continue pausing the CMS-B browser-login edge, or open a formal
-Microsoft 365 connector-promotion design gate.
+Next owner decision: send the CMS-C builder report, CTP-2 proof, and CNS
+communication contract to the agentic multi-agent agent builder, resume Chunk
+Twenty local governed approval actions, explicitly run or continue pausing the
+CMS-B browser-login edge, or open a formal Microsoft 365 connector-promotion
+design gate.
 
 ## Documentation Sweep Notes
 
@@ -311,11 +322,12 @@ The compact builder handoff lives at
 The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
-Next owner decision: send the updated local CNS/CTP-2 proof back to the
-agentic multi-agent agent builder for revised orchestration, continue into an
-owner-gated Graphify ingest proof, resume Chunk Twenty local governed approval
-actions, explicitly run or continue pausing the CMS-B browser-login edge, or
-open a formal Microsoft 365 connector-promotion design gate. No live Microsoft
+Next owner decision: send the updated local CNS/CTP-2 proof and the CNS
+communication contract back to the agentic multi-agent agent builder for
+revised orchestration, continue into an owner-gated Graphify ingest proof,
+resume Chunk Twenty local governed approval actions, explicitly run or
+continue pausing the CMS-B browser-login edge, or open a formal Microsoft 365
+connector-promotion design gate. No live Microsoft
 365 access, OAuth consent, tenant/admin consent, Graph call, Planner write,
 persistent Graphify CNS store ingest, cloud placement, broad firewall change,
 production service behavior, schema publication, R4 live execution, or
