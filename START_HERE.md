@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T22:50:00-06:00
+Last Updated: 2026-06-28T23:00:22-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -10,18 +10,26 @@ For the next session:
 
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
-3. Read this file.
-4. Read
+3. Read
+   `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
+4. Read this file only if the top-level route or current boundaries need
+   confirmation.
+5. Read
    `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
    Open `docs/current-build-pathway.md` only when older chunk history or a
    specific historical pathway section is needed.
-5. Before building, explicitly acknowledge the current change of direction:
+6. Before building, explicitly acknowledge the current change of direction:
    GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
    being coordinated as three related builds, not folded together yet.
-6. If creating or updating durable docs or work-tracking records, apply
+7. If creating or updating durable docs or work-tracking records, apply
    `docs/standards/2026-06-25 - Document Control Standard.md`.
-7. Open the relay envelope/store, tool permission matrix, and command-center
+8. Open the relay envelope/store, tool permission matrix, and command-center
    app files only when the user is ready to resume Rev 2 implementation.
+
+Current night closeout: as of 2026-06-28T23:00:22-06:00, the token-friendly
+turnover is
+`docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
+Use it as the first resume document after `AGENTS.md`.
 
 Current direction: box the coordination pivot first. AG Operations Workspace
 should finish and box its current evolution, Freedom remains the core operator

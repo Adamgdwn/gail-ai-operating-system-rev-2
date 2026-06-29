@@ -1,6 +1,6 @@
 # Carry-Forward Flags
 
-Last Updated: 2026-06-25T10:31:18-06:00
+Last Updated: 2026-06-28T23:00:22-06:00
 Status: empty
 
 Use this file to record anything that must survive a context reset:
@@ -18,6 +18,9 @@ is now routed through `docs/standards/2026-06-25 - Document Control Standard.md`
 The standard now explicitly excludes dependency manifests, lockfiles, imported
 source modules, schemas, generated files, CI workflows, runtime configs, and
 tool-owned config files from date-prefix naming.
+
+Night closeout on 2026-06-28 did not add a carry-forward blocker. Resume from
+`docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
 
 | Flag | Added | Owner | Status | Notes |
 |---|---|---|---|---|

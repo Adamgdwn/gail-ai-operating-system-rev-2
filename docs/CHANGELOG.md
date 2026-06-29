@@ -2,6 +2,13 @@
 
 ## 2026-06-28
 
+- Added
+  `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`
+  as the compact closeout handoff for the next session, routed `START_HERE.md`
+  to it, updated the active stabilization packet, and updated the shared
+  `L:\01 Work Tracking` ledger for Rev 2, Freedom, the builder, and the ledger
+  itself. DirectLink now shows Linux ACKed H5-apply and the next lane is back
+  with Windows/Adam.
 - Applied the H5 Freedom Supabase RLS migration to hosted project
   `basbwglynuyfxcqxfyur` after Adam approved the live apply gate. The applied
   migration enables RLS on all 21 audited legacy public tables and adds no
