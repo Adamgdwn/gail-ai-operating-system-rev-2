@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T23:00:22-06:00
+Last Updated: 2026-06-28T23:12:30-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -26,10 +26,12 @@ For the next session:
 8. Open the relay envelope/store, tool permission matrix, and command-center
    app files only when the user is ready to resume Rev 2 implementation.
 
-Current night closeout: as of 2026-06-28T23:00:22-06:00, the token-friendly
+Current night closeout: as of 2026-06-28T23:12:30-06:00, the token-friendly
 turnover is
 `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
-Use it as the first resume document after `AGENTS.md`.
+Use it as the first resume document after `AGENTS.md`. This is a Rev 2 startup
+route only; do not chase Freedom, the builder, Graphify, or AG Operations
+Workspace unless Adam explicitly routes the session there.
 
 Current direction: box the coordination pivot first. AG Operations Workspace
 should finish and box its current evolution, Freedom remains the core operator

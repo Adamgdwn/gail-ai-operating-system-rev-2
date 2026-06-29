@@ -2,6 +2,10 @@
 
 ## 2026-06-28
 
+- Clarified the compact night turnover so the next startup closes and resumes
+  the Rev 2 workspace only. Freedom, the builder, Graphify, and AG Operations
+  Workspace should not be chased from Rev 2 startup unless Adam explicitly
+  routes the session there.
 - Added
   `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`
   as the compact closeout handoff for the next session, routed `START_HERE.md`

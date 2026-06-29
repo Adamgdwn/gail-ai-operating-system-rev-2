@@ -3,8 +3,8 @@
 Document type: turnover handoff
 Date: 2026-06-28
 Saved: 2026-06-28T23:00:22-06:00
-Last Updated: 2026-06-28T23:00:22-06:00
-Status: active closeout handoff
+Last Updated: 2026-06-28T23:12:30-06:00
+Status: active closeout handoff; Rev 2 boxed for next startup
 Owner: Adam Goodwin
 
 ## Purpose
@@ -12,6 +12,11 @@ Owner: Adam Goodwin
 This is the token-friendly startup document for the next session. It boxes the
 June 28 work without requiring a reread of the full current-main packet or the
 historical build pathway.
+
+This handoff closes out the Rev 2 workspace only. Freedom, the builder,
+Graphify, and AG Operations Workspace may have their own handoff records and
+work-tracking entries, but a Rev 2 startup should not chase or close those
+repos unless Adam explicitly asks.
 
 ## Fast Startup
 
@@ -23,22 +28,24 @@ historical build pathway.
 5. Read
    `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`
    only for detailed validation evidence.
-6. If coordinating with Linux, read `X:\DIRECTLINK_CURRENT.md`; use it as the
-   live handoff surface only, not as the source of truth for repo state.
+6. If coordinating with Linux, read `X:\DIRECTLINK_CURRENT.md` only for the
+   current live coordination note; use repo docs and GitHub state as the source
+   of truth for actual repo status.
 
 ## Boxed State
 
 - Rev 2 repo: `Adamgdwn/gail-ai-operating-system-rev-2`, branch `main`.
   Operational baseline before night boxing: `e93b358`
   (`Record hosted H5 Supabase RLS apply`). This turnover record is carried in
-  the final night-boxing commit on `main`.
-- Rev 2 CI: GitHub Actions run `28349475948` passed.
-- Freedom repo: `Adamgdwn/the-freedom-engine-os`, branch `main`, latest pushed
-  commit `3543b29` (`Record hosted Supabase RLS apply`).
-- Freedom CI: GitHub Actions run `28349476586` passed.
-- DirectLink: Linux ACKed H5 hosted apply and updated Phase 7 state.
-- Work tracking: update the shared `L:\01 Work Tracking` ledger as part of
-  night closeout.
+  the night-boxing docs on `main`.
+- Rev 2 CI: GitHub Actions run `28349824879` passed for the night-boxing
+  closeout commit `55ad525`.
+- Cross-repo context: H5 hosted Supabase RLS apply was completed in Freedom and
+  Linux ACKed it through DirectLink. Treat details in Freedom, builder, and
+  work-tracking records as context only unless the next task explicitly opens
+  that repo.
+- Work tracking: the shared `L:\01 Work Tracking` ledger has a Rev 2 night
+  closeout entry and should be checked before starting a new cross-build lane.
 
 ## What Was Completed
 
@@ -76,13 +83,11 @@ historical build pathway.
 
 ## Local Notes
 
-- Rev 2 ended clean and synced to `origin/main`.
-- Freedom ended synced to `origin/main`, but has unrelated local generated APK
-  artifacts modified:
-  `apps/mobile/android/app/build/outputs/apk/release/app-release.apk` and
-  `apps/mobile/android/app/build/outputs/apk/release/output-metadata.json`.
-  Do not commit or revert them casually; inspect first if mobile release work
-  resumes.
+- Rev 2 ended clean and synced to `origin/main` before this final housekeeping
+  clarification.
+- Do not inspect or repair Freedom, the builder, Graphify, or AG Operations
+  Workspace during Rev 2 startup unless Adam explicitly routes the session
+  there.
 - Secret values, database passwords, tokens, `.env` values, and row data were
   not printed, committed, or copied into handoff docs.
 

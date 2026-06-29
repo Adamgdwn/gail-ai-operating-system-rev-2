@@ -1,6 +1,6 @@
 # Carry-Forward Flags
 
-Last Updated: 2026-06-28T23:00:22-06:00
+Last Updated: 2026-06-28T23:12:30-06:00
 Status: empty
 
 Use this file to record anything that must survive a context reset:
@@ -20,7 +20,8 @@ source modules, schemas, generated files, CI workflows, runtime configs, and
 tool-owned config files from date-prefix naming.
 
 Night closeout on 2026-06-28 did not add a carry-forward blocker. Resume from
-`docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
+`docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`
+for Rev 2 work only unless Adam explicitly routes the next session elsewhere.
 
 | Flag | Added | Owner | Status | Notes |
 |---|---|---|---|---|

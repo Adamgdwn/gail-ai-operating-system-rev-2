@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T23:00:22-06:00
-Status: boxed for night; current-main stabilization, CTP-2, CNS contract, H2/H3 ACA pilot, H4 Freedom-Azure connection, H5 Supabase RLS hosted apply, and M365 permission expansion are recorded; remaining live-action proofs stay gated (2026-06-28T23:00:22-06:00)
+Last Updated: 2026-06-28T23:12:30-06:00
+Status: boxed for night; Rev 2-only startup clarified; current-main stabilization, CTP-2, CNS contract, H2/H3 ACA pilot, H4 Freedom-Azure connection, H5 Supabase RLS hosted apply, and M365 permission expansion are recorded; remaining live-action proofs stay gated (2026-06-28T23:12:30-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -154,13 +154,15 @@ query endpoint. Post-apply metadata confirmed 21/21 target tables present,
 HEAD probes passing without row-data reads. No secret values, tokens, database
 passwords, or `.env` values were printed, copied, or committed.
 
-Night closeout follow-on: as of 2026-06-28T23:00:22-06:00, the compact resume
+Night closeout follow-on: as of 2026-06-28T23:12:30-06:00, the compact resume
 record is
 `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
 It is the preferred first read after `AGENTS.md` for the next session. Rev 2 is
-clean and synced to `origin/main`; Freedom is synced to `origin/main` with only
-unrelated generated APK artifacts modified locally; DirectLink shows Linux
-ACKed H5-apply and the ball is back with Windows/Adam for the next lane.
+clean and synced to `origin/main`. The resume path is intentionally Rev 2-only:
+do not inspect, repair, or close out Freedom, the builder, Graphify, or AG
+Operations Workspace from this packet unless Adam explicitly routes the next
+session there. DirectLink shows Linux ACKed H5-apply and the ball is back with
+Windows/Adam for the next lane.
 
 ## No-Fallback Boundaries
 
@@ -409,7 +411,7 @@ generated file, CI workflow, runtime config, or tool-owned config.
 ## Next Handoff
 
 Current-main stabilization is task complete as of 2026-06-28T09:57:53-06:00
-and boxed for night as of 2026-06-28T23:00:22-06:00. The compact startup
+and boxed for night as of 2026-06-28T23:12:30-06:00. The compact startup
 handoff is
 `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
 The compact builder handoff lives at
