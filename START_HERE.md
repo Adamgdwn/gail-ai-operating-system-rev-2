@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T18:44:28-06:00
+Last Updated: 2026-06-28T20:22:25-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -97,6 +97,18 @@ it does not approve live Microsoft 365 access, Graphify ingest, cloud
 placement, source-of-truth migration, runtime consolidation, R4 live execution,
 or authority expansion.
 
+Current Azure Container Apps pilot status: as of 2026-06-28T20:22:25-06:00,
+Adam approved cloud placement for the narrow H2/H3 pilot deployment. GAIL OS
+API and Graphify CNS API are deployed in Azure Container Apps under the
+personal credit-bearing Azure subscription, with public health endpoints green
+and fresh pilot API keys stored in Key Vault. The durable deployment report is
+`docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`.
+Graphify CNS API is on the documented ephemeral SQLite fallback because the
+installed `az containerapp create` surface did not expose the requested volume
+mount flags. This does not approve Microsoft 365 live access, tenant consent,
+persistent Graphify ingest, source-of-truth migration, runtime consolidation,
+R4 live execution, or production service readiness.
+
 ## Current Plan
 
 For ordinary scoped work, agents should start with the lean startup checklist below. Read this file and follow the active plan named here for material work, unclear scope, handoffs, or changes that affect the active plan. Keep it short, current, and pointed at the active build path.
@@ -177,6 +189,10 @@ Current priorities:
   Freedom/GAIL OS/Graphify/AG Operations loop with shared trace identity,
   relationship briefs, application signal envelopes, build handoff facts, and
   owner-gated Graphify ingest boundaries
+- use `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`
+  as the current non-secret record of the owner-approved H2/H3 Azure Container
+  Apps pilot endpoints, health checks, Key Vault secret handling, and the
+  remaining Graphify persistent-storage fallback
 
 ## Current Build Pathway
 

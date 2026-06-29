@@ -3,6 +3,16 @@
 ## 2026-06-28
 
 - Added
+  `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`
+  after Adam approved the narrow H2/H3 Azure Container Apps pilot deployment.
+  GAIL OS API and Graphify CNS API were deployed to ACA, public health
+  endpoints passed, and fresh pilot API keys were stored only in Key Vault.
+  Graphify CNS API is using the documented ephemeral SQLite fallback until a
+  YAML/update path attaches Azure Files storage. This pilot does not approve
+  Microsoft 365 live access, tenant consent, persistent Graphify ingest,
+  source-of-truth migration, runtime consolidation, R4 live execution, or
+  production service readiness.
+- Added
   `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md`
   as the builder-facing contract for enhancing communication among Freedom,
   GAIL OS, Graphify, Codex/future coding agents, and AG Operations Workspace /

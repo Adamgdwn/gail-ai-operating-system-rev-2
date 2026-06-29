@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T18:44:28-06:00
-Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, and login edge paused (2026-06-28T18:44:28-06:00)
+Last Updated: 2026-06-28T20:22:25-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed, and login edge paused (2026-06-28T20:22:25-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -92,6 +92,21 @@ does not approve live Microsoft 365 access, Graphify ingest, cloud placement,
 runtime consolidation, source-of-truth migration, R4 live execution, or
 authority expansion.
 
+Azure Container Apps pilot follow-on: as of 2026-06-28T20:22:25-06:00, Adam
+approved the narrow H2/H3 cloud placement step requested by the Linux builder.
+Windows deployed `aca-gail-os-api` and `aca-graphify-cns-api`, verified both
+public health endpoints, generated fresh pilot API keys into Key Vault, and
+wrote the Linux handoff
+`X:\WINDOWS_TO_LINUX__2026-06-28-aca-apps-deployed.md`. The durable non-secret
+record is
+`docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`.
+Graphify CNS API is currently using the documented ephemeral SQLite fallback
+because the installed `az containerapp create` surface did not expose the
+requested volume mount flags. This pilot deployment does not approve Microsoft
+365 live access, tenant/admin consent, live Graph calls, persistent Graphify
+ingest, R4 live execution, source-of-truth migration, runtime consolidation,
+or production service readiness.
+
 ## No-Fallback Boundaries
 
 - Do not resume feature work or old Chunk Twenty implementation while current
@@ -106,6 +121,10 @@ authority expansion.
 - Do not treat dry-run M365 endpoints as approved live connector activation.
 - Do not treat the CP-1 DirectLink FastAPI proof as production service,
   cloud placement, broad network exposure, or schema publication.
+- Do not treat the H2/H3 ACA pilot deployment as production service readiness,
+  live connector activation, Microsoft 365 access approval, persistent
+  Graphify ingest approval, source-of-truth migration, runtime consolidation,
+  or R4 live execution approval.
 - Do not treat Graphify preview/diff output as Graphify ingest, evidence,
   approval, relay, source-of-truth, or execution authority.
 - Do not rename stable-route files or pre-standard documents without a bounded
@@ -275,11 +294,13 @@ login automatically; explain the edge probe and wait for Adam to say "yes, go
 ahead" or "pause." Do not continue feature work if a later CI run turns red;
 repair current `main` before login-edge work or any new capability work.
 
-Next owner decision: send the CMS-C builder report, CTP-2 proof, and CNS
-communication contract to the agentic multi-agent agent builder, resume Chunk
-Twenty local governed approval actions, explicitly run or continue pausing the
-CMS-B browser-login edge, or open a formal Microsoft 365 connector-promotion
-design gate.
+Next owner decision: attach persistent Graphify storage to the ACA pilot with
+a YAML/update path, run owner-gated authenticated endpoint probes without
+exposing pilot API keys through Exchange, send the CMS-C builder report,
+CTP-2 proof, CNS communication contract, and ACA pilot report to the agentic
+multi-agent agent builder, resume Chunk Twenty local governed approval
+actions, explicitly run or continue pausing the CMS-B browser-login edge, or
+open a formal Microsoft 365 connector-promotion design gate.
 
 ## Documentation Sweep Notes
 
@@ -322,13 +343,14 @@ The compact builder handoff lives at
 The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
-Next owner decision: send the updated local CNS/CTP-2 proof and the CNS
-communication contract back to the agentic multi-agent agent builder for
-revised orchestration, continue into an owner-gated Graphify ingest proof,
-resume Chunk Twenty local governed approval actions, explicitly run or
-continue pausing the CMS-B browser-login edge, or open a formal Microsoft 365
-connector-promotion design gate. No live Microsoft
+Next owner decision: send the updated local CNS/CTP-2 proof, CNS
+communication contract, and ACA pilot deployment report back to the agentic
+multi-agent agent builder for revised orchestration, attach persistent
+Graphify storage to the ACA pilot with a YAML/update path, continue into an
+owner-gated Graphify ingest proof, resume Chunk Twenty local governed approval
+actions, explicitly run or continue pausing the CMS-B browser-login edge, or
+open a formal Microsoft 365 connector-promotion design gate. No live Microsoft
 365 access, OAuth consent, tenant/admin consent, Graph call, Planner write,
-persistent Graphify CNS store ingest, cloud placement, broad firewall change,
-production service behavior, schema publication, R4 live execution, or
-authority expansion is approved by this stabilization pass.
+persistent Graphify CNS store ingest, broad firewall change, production
+service behavior, schema publication, R4 live execution, or authority
+expansion is approved by this stabilization pass.
