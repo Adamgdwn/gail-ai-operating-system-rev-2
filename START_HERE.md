@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T20:22:25-06:00
+Last Updated: 2026-06-28T20:55:36-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -103,11 +103,24 @@ API and Graphify CNS API are deployed in Azure Container Apps under the
 personal credit-bearing Azure subscription, with public health endpoints green
 and fresh pilot API keys stored in Key Vault. The durable deployment report is
 `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`.
-Graphify CNS API is on the documented ephemeral SQLite fallback because the
-installed `az containerapp create` surface did not expose the requested volume
-mount flags. This does not approve Microsoft 365 live access, tenant consent,
-persistent Graphify ingest, source-of-truth migration, runtime consolidation,
-R4 live execution, or production service readiness.
+Graphify CNS API initially used the documented ephemeral SQLite fallback, then
+the pre-registered Azure Files share was mounted by YAML update and verified
+healthy. This does not approve Microsoft 365 live access, tenant consent,
+persistent Graphify production ingest, source-of-truth migration, runtime
+consolidation, R4 live execution, or production service readiness.
+
+Current Microsoft 365 permission-expansion status: as of
+2026-06-28T20:55:36-06:00, Adam approved the Entra delegated permission
+expansion for `Guided AI Labs - CLI for Microsoft 365 Local Agent`, including
+the previously paused Microsoft 365 read/write scopes plus mail, calendar, and
+Exchange Online delegated management scopes. Admin consent for A.G. Operations
+Ltd is complete, with no client secret or certificate created. The durable
+non-secret report is
+`docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`. This
+does not approve live business-system writes, Outlook sends, Teams sends,
+Planner writes, SharePoint mutations, Power Automate changes, Exchange
+configuration changes, Graphify production ingest, R4 live execution, or
+production readiness without a separate owner-gated proof/action boundary.
 
 ## Current Plan
 
@@ -192,7 +205,10 @@ Current priorities:
 - use `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`
   as the current non-secret record of the owner-approved H2/H3 Azure Container
   Apps pilot endpoints, health checks, Key Vault secret handling, and the
-  remaining Graphify persistent-storage fallback
+  Graphify Azure Files volume mount follow-on
+- use `docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`
+  as the current non-secret record of the owner-approved A.G. Operations tenant
+  delegated permission expansion and admin-consent boundary
 
 ## Current Build Pathway
 

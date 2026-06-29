@@ -3,8 +3,8 @@
 Document type: deployment report
 Date: 2026-06-28
 Saved: 2026-06-28T20:22:25-06:00
-Last Updated: 2026-06-28T20:22:25-06:00
-Status: integration complete for pilot health endpoints (2026-06-28T20:22:25-06:00)
+Last Updated: 2026-06-28T20:55:36-06:00
+Status: integration complete for pilot health endpoints and Graphify persistent volume mount (2026-06-28T20:55:36-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -13,7 +13,7 @@ Record the owner-approved Azure Container Apps pilot deployment for the GAIL AI
 Operating System API and Graphify CNS API without storing or exposing secrets.
 
 This report documents cloud placement evidence only. It does not promote live
-Microsoft 365 access, Graphify persistent ingest, R4 live execution,
+Microsoft 365 access, Graphify production ingest, R4 live execution,
 source-of-truth migration, or production service readiness.
 
 ## Owner Approval
@@ -110,12 +110,22 @@ The ACA environment storage registration succeeded:
 - Access mode: `ReadWrite`
 
 The installed `az containerapp create` surface did not expose the requested
-`--volume` / `--volume-mount` flags. Windows used the documented fallback path
-from the Linux handoff for this first pilot:
+`--volume` / `--volume-mount` flags during initial deployment, so Windows first
+used the documented fallback path from the Linux handoff:
 
 - `CNS_STORE_PATH=/tmp/cns.db`
-- Graphify CNS API uses ephemeral SQLite until a YAML-based or update-command
-  mount path is supplied and approved.
+
+Persistent storage was then attached by the YAML-based update path requested by
+Linux and recorded in
+`X:\WINDOWS_TO_LINUX__2026-06-28-graphify-volume-mounted.md`:
+
+- `CNS_STORE_PATH=/app/data/cns.db`
+- Volume name: `graphifyvol`
+- ACA environment storage: `graphify-files`
+- Azure Files share: `graphify-cns-data`
+- Mount path: `/app/data`
+- Health check after update: HTTP 200,
+  `{"status":"ok","store":"connected","node_count":0}`
 
 ## Boundaries Preserved
 
@@ -147,8 +157,6 @@ Linux confirmed visibility over DirectLink.
 
 Recommended next bounded decisions:
 
-- whether Linux should attach persistent Graphify storage with a YAML/update
-  deployment path;
 - whether to run authenticated endpoint probes using pilot API keys without
   exposing those keys through Exchange;
 - whether to add workflow dispatch triggers to the image build workflows;

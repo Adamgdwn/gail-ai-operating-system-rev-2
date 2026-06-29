@@ -3,13 +3,23 @@
 ## 2026-06-28
 
 - Added
+  `docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`
+  after Adam approved the Microsoft 365 / Entra delegated permission
+  expansion for the `Guided AI Labs - CLI for Microsoft 365 Local Agent` app.
+  Admin consent is complete for the approved Graph, Flow, mail/calendar, and
+  Exchange Online delegated scopes; no client secret or certificate was
+  created. This permission availability does not approve live Microsoft 365
+  business actions, Graphify production ingest, R4 live execution, or
+  production readiness without a separate owner-gated proof/action boundary.
+- Added
   `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`
   after Adam approved the narrow H2/H3 Azure Container Apps pilot deployment.
   GAIL OS API and Graphify CNS API were deployed to ACA, public health
   endpoints passed, and fresh pilot API keys were stored only in Key Vault.
-  Graphify CNS API is using the documented ephemeral SQLite fallback until a
-  YAML/update path attaches Azure Files storage. This pilot does not approve
-  Microsoft 365 live access, tenant consent, persistent Graphify ingest,
+  Graphify CNS API initially used the documented ephemeral SQLite fallback;
+  the YAML/update path later attached the Azure Files storage mount and health
+  stayed green. This pilot does not approve Microsoft 365 live access, tenant
+  consent, persistent Graphify production ingest,
   source-of-truth migration, runtime consolidation, R4 live execution, or
   production service readiness.
 - Added

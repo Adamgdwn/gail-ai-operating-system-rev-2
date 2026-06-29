@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T20:22:25-06:00
-Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed, and login edge paused (2026-06-28T20:22:25-06:00)
+Last Updated: 2026-06-28T20:55:36-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed with Graphify volume mounted, M365 delegated permission expansion complete, and live-action proofs still gated (2026-06-28T20:55:36-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -100,12 +100,31 @@ wrote the Linux handoff
 `X:\WINDOWS_TO_LINUX__2026-06-28-aca-apps-deployed.md`. The durable non-secret
 record is
 `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`.
-Graphify CNS API is currently using the documented ephemeral SQLite fallback
+Graphify CNS API initially used the documented ephemeral SQLite fallback
 because the installed `az containerapp create` surface did not expose the
-requested volume mount flags. This pilot deployment does not approve Microsoft
-365 live access, tenant/admin consent, live Graph calls, persistent Graphify
-ingest, R4 live execution, source-of-truth migration, runtime consolidation,
-or production service readiness.
+requested volume mount flags. The pre-registered Azure Files share was then
+mounted by YAML update and verified healthy in
+`X:\WINDOWS_TO_LINUX__2026-06-28-graphify-volume-mounted.md`. This pilot
+deployment does not approve Microsoft 365 live access, tenant/admin consent,
+live Graph calls, persistent Graphify production ingest, R4 live execution,
+source-of-truth migration, runtime consolidation, or production service
+readiness.
+
+M365 permission expansion follow-on: as of 2026-06-28T20:55:36-06:00, Adam
+approved the previously paused Entra delegated permission expansion for
+`Guided AI Labs - CLI for Microsoft 365 Local Agent`, including Microsoft 365
+read/write scopes plus mail, calendar, and Exchange Online delegated
+management scopes. Windows added the delegated scopes, granted admin consent
+for A.G. Operations Ltd, verified tenant-wide delegated grants, verified that
+no client secret or certificate exists, and wrote the Linux handoff
+`X:\WINDOWS_TO_LINUX__2026-06-28-entra-permissions-expanded.md`. The durable
+non-secret record is
+`docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`. This
+permission change does not itself approve live SharePoint mutations, Teams
+sends, Outlook sends, Planner writes, Power Automate changes, Exchange
+configuration changes, business-system actions, Graphify production ingest,
+R4 live execution, source-of-truth migration, runtime consolidation, or
+production service readiness.
 
 ## No-Fallback Boundaries
 
@@ -114,10 +133,18 @@ or production service readiness.
 - Do not mask the failing tests by deleting the M365 bridge connector or
   weakening planning-only connector boundaries.
 - Do not activate live Microsoft 365 reads, Outlook or Teams sends, Planner
-  writes, tenant admin consent, Entra changes, or broad Graph scopes.
-- Do not open an interactive browser login, complete OAuth, approve consent, or
-  retain token-bearing artifacts unless Adam explicitly approves that specific
-  owner-gated edge step after the local CMS-B proof and an in-chat explanation.
+  writes, SharePoint mutations, Power Automate changes, Exchange configuration
+  changes, or business-system actions merely because the delegated permissions
+  now exist.
+- Do not open another interactive browser login, complete another OAuth flow,
+  approve further consent, retain token-bearing artifacts, or broaden Entra
+  scopes unless Adam explicitly approves that specific owner-gated edge step
+  after an in-chat explanation.
+- The 2026-06-28 owner-approved Entra delegated permission expansion is now
+  complete. Do not treat that permission availability as approval for live
+  content reads, writes, sends, flow changes, Exchange configuration changes,
+  production operation, or R4 execution without a separate owner-gated
+  proof/action boundary.
 - Do not treat dry-run M365 endpoints as approved live connector activation.
 - Do not treat the CP-1 DirectLink FastAPI proof as production service,
   cloud placement, broad network exposure, or schema publication.
@@ -294,13 +321,13 @@ login automatically; explain the edge probe and wait for Adam to say "yes, go
 ahead" or "pause." Do not continue feature work if a later CI run turns red;
 repair current `main` before login-edge work or any new capability work.
 
-Next owner decision: attach persistent Graphify storage to the ACA pilot with
-a YAML/update path, run owner-gated authenticated endpoint probes without
-exposing pilot API keys through Exchange, send the CMS-C builder report,
-CTP-2 proof, CNS communication contract, and ACA pilot report to the agentic
-multi-agent agent builder, resume Chunk Twenty local governed approval
-actions, explicitly run or continue pausing the CMS-B browser-login edge, or
-open a formal Microsoft 365 connector-promotion design gate.
+Next owner decision: run a bounded Microsoft 365 re-authenticated test proof
+against an owner-approved test surface, run owner-gated authenticated ACA
+endpoint probes without exposing pilot API keys through Exchange, send the
+CMS-C builder report, CTP-2 proof, CNS communication contract, ACA pilot
+report, and M365 permission report to the agentic multi-agent agent builder,
+resume Chunk Twenty local governed approval actions, or open a formal
+Microsoft 365 connector-promotion design gate.
 
 ## Documentation Sweep Notes
 
@@ -344,13 +371,13 @@ The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
 Next owner decision: send the updated local CNS/CTP-2 proof, CNS
-communication contract, and ACA pilot deployment report back to the agentic
-multi-agent agent builder for revised orchestration, attach persistent
-Graphify storage to the ACA pilot with a YAML/update path, continue into an
-owner-gated Graphify ingest proof, resume Chunk Twenty local governed approval
-actions, explicitly run or continue pausing the CMS-B browser-login edge, or
-open a formal Microsoft 365 connector-promotion design gate. No live Microsoft
-365 access, OAuth consent, tenant/admin consent, Graph call, Planner write,
-persistent Graphify CNS store ingest, broad firewall change, production
-service behavior, schema publication, R4 live execution, or authority
-expansion is approved by this stabilization pass.
+communication contract, ACA pilot deployment report, and M365 permission
+report back to the agentic multi-agent agent builder for revised
+orchestration, continue into a bounded Microsoft 365 re-authenticated test
+proof, continue into an owner-gated Graphify ingest proof, resume Chunk Twenty
+local governed approval actions, or open a formal Microsoft 365
+connector-promotion design gate. The delegated permission expansion is
+complete, but no live Microsoft 365 business action, Graphify CNS store ingest,
+broad firewall change, production service behavior, schema publication,
+R4 live execution, or source-of-truth migration is approved by this
+stabilization pass.
