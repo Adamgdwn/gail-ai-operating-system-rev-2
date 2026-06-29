@@ -2,6 +2,17 @@
 
 ## 2026-06-28
 
+- Completed H4 Freedom to Azure connection after Adam approved the bounded
+  key-placement step. Windows retrieved the GAIL OS and Graphify pilot API
+  keys from `kv-gail-cns-pilot` and applied them directly to Freedom's
+  git-ignored local `.env.local` on Linux without printing, committing, or
+  writing secret values into DirectLink/docs/logs/chat. Linux smoke-tested
+  Freedom to Azure successfully across Freedom health, GAIL OS ACA direct
+  health, Graphify ACA direct health, bearer-key auth, Freedom to GAIL OS
+  proxy, Freedom to Graphify proxy, and local env presence. Windows also ran
+  the existing Freedom GAIL OS client integration against Azure, passing 4/4,
+  and verified Graphify health HTTP 200 with `status=ok`, `store=connected`,
+  and `node_count=0`. H5 Supabase RLS audit remains a separate owner gate.
 - Added
   `docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`
   after Adam approved the Microsoft 365 / Entra delegated permission

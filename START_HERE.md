@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T20:55:36-06:00
+Last Updated: 2026-06-28T22:00:30-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -108,6 +108,19 @@ the pre-registered Azure Files share was mounted by YAML update and verified
 healthy. This does not approve Microsoft 365 live access, tenant consent,
 persistent Graphify production ingest, source-of-truth migration, runtime
 consolidation, R4 live execution, or production service readiness.
+
+Current Freedom to Azure H4 status: as of 2026-06-28T22:00:30-06:00, Adam
+approved completing the bounded H4 connection. Windows retrieved the two pilot
+API keys from `kv-gail-cns-pilot` and applied them directly to Freedom's
+git-ignored local `.env.local` on Linux without printing, committing, or
+writing secret values into DirectLink/docs/logs/chat. Linux smoke-tested
+Freedom to Azure successfully: Freedom health, GAIL OS ACA direct health,
+Graphify ACA direct health, bearer-key auth, Freedom to GAIL OS proxy, Freedom
+to Graphify proxy, and all five local env vars passed. Windows also ran the
+existing Freedom GAIL OS client integration against Azure, passing 4/4, and a
+Graphify health probe returned HTTP 200 with `status=ok`, `store=connected`,
+and `node_count=0`. H4 is complete. H5 Supabase RLS audit is a new gate and
+does not start without Adam's explicit approval.
 
 Current Microsoft 365 permission-expansion status: as of
 2026-06-28T20:55:36-06:00, Adam approved the Entra delegated permission

@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T20:55:36-06:00
-Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed with Graphify volume mounted, M365 delegated permission expansion complete, and live-action proofs still gated (2026-06-28T20:55:36-06:00)
+Last Updated: 2026-06-28T22:00:30-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed with Graphify volume mounted, H4 Freedom to Azure connected and smoke-tested, M365 delegated permission expansion complete, and live-action proofs still gated (2026-06-28T22:00:30-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -126,6 +126,19 @@ configuration changes, business-system actions, Graphify production ingest,
 R4 live execution, source-of-truth migration, runtime consolidation, or
 production service readiness.
 
+H4 Freedom to Azure connection follow-on: as of 2026-06-28T22:00:30-06:00,
+Adam approved completing the bounded H4 connection step. Windows retrieved the
+GAIL OS and Graphify pilot API keys from `kv-gail-cns-pilot` and applied them
+directly to Freedom's git-ignored local `.env.local` on Linux without
+printing, committing, or writing secret values into DirectLink/docs/logs/chat.
+Linux smoke-tested Freedom to Azure successfully: Freedom health, GAIL OS ACA
+direct health, Graphify ACA direct health, bearer-key auth, Freedom to GAIL OS
+proxy, Freedom to Graphify proxy, and all five local env vars passed. Windows
+also ran the existing Freedom GAIL OS client integration against Azure, passing
+4/4, and verified Graphify health HTTP 200 with `status=ok`,
+`store=connected`, and `node_count=0`. H4 is complete. H5 Supabase RLS audit
+is a new owner gate and does not start without Adam's explicit approval.
+
 ## No-Fallback Boundaries
 
 - Do not resume feature work or old Chunk Twenty implementation while current
@@ -152,6 +165,10 @@ production service readiness.
   live connector activation, Microsoft 365 access approval, persistent
   Graphify ingest approval, source-of-truth migration, runtime consolidation,
   or R4 live execution approval.
+- Do not treat the H4 Freedom to Azure smoke pass as production service
+  readiness, Vercel environment promotion, live Microsoft 365 business-action
+  approval, persistent Graphify production ingest approval, source-of-truth
+  migration, runtime consolidation, or R4 live execution approval.
 - Do not treat Graphify preview/diff output as Graphify ingest, evidence,
   approval, relay, source-of-truth, or execution authority.
 - Do not rename stable-route files or pre-standard documents without a bounded
@@ -321,13 +338,12 @@ login automatically; explain the edge probe and wait for Adam to say "yes, go
 ahead" or "pause." Do not continue feature work if a later CI run turns red;
 repair current `main` before login-edge work or any new capability work.
 
-Next owner decision: run a bounded Microsoft 365 re-authenticated test proof
-against an owner-approved test surface, run owner-gated authenticated ACA
-endpoint probes without exposing pilot API keys through Exchange, send the
-CMS-C builder report, CTP-2 proof, CNS communication contract, ACA pilot
-report, and M365 permission report to the agentic multi-agent agent builder,
-resume Chunk Twenty local governed approval actions, or open a formal
-Microsoft 365 connector-promotion design gate.
+Next owner decision: approve or pause H5 Supabase RLS audit, run a bounded
+Microsoft 365 re-authenticated test proof against an owner-approved test
+surface, send the CMS-C builder report, CTP-2 proof, CNS communication
+contract, ACA pilot report, M365 permission report, and H4 smoke result to the
+agentic multi-agent agent builder, resume Chunk Twenty local governed approval
+actions, or open a formal Microsoft 365 connector-promotion design gate.
 
 ## Documentation Sweep Notes
 
@@ -370,14 +386,14 @@ The compact builder handoff lives at
 The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
-Next owner decision: send the updated local CNS/CTP-2 proof, CNS
-communication contract, ACA pilot deployment report, and M365 permission
-report back to the agentic multi-agent agent builder for revised
-orchestration, continue into a bounded Microsoft 365 re-authenticated test
-proof, continue into an owner-gated Graphify ingest proof, resume Chunk Twenty
-local governed approval actions, or open a formal Microsoft 365
-connector-promotion design gate. The delegated permission expansion is
-complete, but no live Microsoft 365 business action, Graphify CNS store ingest,
-broad firewall change, production service behavior, schema publication,
-R4 live execution, or source-of-truth migration is approved by this
-stabilization pass.
+Next owner decision: approve or pause H5 Supabase RLS audit, send the updated
+local CNS/CTP-2 proof, CNS communication contract, ACA pilot deployment
+report, M365 permission report, and H4 smoke result back to the agentic
+multi-agent agent builder for revised orchestration, continue into a bounded
+Microsoft 365 re-authenticated test proof, continue into an owner-gated
+Graphify ingest proof, resume Chunk Twenty local governed approval actions, or
+open a formal Microsoft 365 connector-promotion design gate. The delegated
+permission expansion and H4 smoke pass are complete, but no live Microsoft 365
+business action, Graphify CNS store ingest, broad firewall change, production
+service behavior, schema publication, R4 live execution, or source-of-truth
+migration is approved by this stabilization pass.
