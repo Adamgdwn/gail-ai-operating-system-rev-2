@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T22:14:09-06:00
+Last Updated: 2026-06-28T22:50:00-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -121,16 +121,16 @@ existing Freedom GAIL OS client integration against Azure, passing 4/4, and a
 Graphify health probe returned HTTP 200 with `status=ok`, `store=connected`,
 and `node_count=0`. H4 is complete.
 
-Current Freedom Supabase H5 status: as of 2026-06-28T22:14:09-06:00, Adam
-approved the H5 audit/remediation package. Freedom now has a dated security
-plan, forward RLS migration, explicit rollback SQL, and changelog entry for the
-legacy public Supabase tables. Source migrations plus a read-only service-role
-REST existence probe found 21 legacy public tables present, not the 20 named in
-the builder handoff, so H5 covers all 21. The package enables RLS without
-adding anon/authenticated policies, preserving the server-side-only
-service-role posture. No hosted Supabase migration was applied, no row data or
-secret values were printed, and applying the migration remains a separate Adam
-approval gate.
+Current Freedom Supabase H5 status: as of 2026-06-28T22:50:00-06:00, Adam
+approved hosted application of the H5 RLS migration after the audit/remediation
+package was drafted. Freedom's hosted Supabase project `basbwglynuyfxcqxfyur`
+now has RLS enabled on all 21 audited legacy public tables, with zero
+anon/authenticated policies added. Validation confirmed 21/21 target tables
+present, 21/21 with `relrowsecurity=true`, zero target policies, and 21/21
+service-role HEAD probes passing without row-data reads. No secret values,
+tokens, database passwords, or `.env` values were printed, copied, or
+committed. Rollback remains a separate owner-gated action unless immediate
+recovery is required.
 
 Current Microsoft 365 permission-expansion status: as of
 2026-06-28T20:55:36-06:00, Adam approved the Entra delegated permission

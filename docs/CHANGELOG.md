@@ -2,6 +2,13 @@
 
 ## 2026-06-28
 
+- Applied the H5 Freedom Supabase RLS migration to hosted project
+  `basbwglynuyfxcqxfyur` after Adam approved the live apply gate. The applied
+  migration enables RLS on all 21 audited legacy public tables and adds no
+  anon/authenticated policies. Validation confirmed 21/21 target tables present,
+  21/21 with `relrowsecurity=true`, 0 target policies, and 21/21 service-role
+  HEAD probes passing without row-data reads. No secret values, tokens,
+  database passwords, or `.env` values were printed, copied, or committed.
 - Recorded the H5 Freedom Supabase RLS audit/remediation package after Adam
   approved the audit. The actual artifacts live in Freedom:
   `docs/security/2026-06-28 - Supabase RLS Remediation Plan.md`,
