@@ -3,8 +3,8 @@
 Document type: work packet
 Date: 2026-06-28
 Saved: 2026-06-28T08:33:50-06:00
-Last Updated: 2026-06-28T22:00:30-06:00
-Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed with Graphify volume mounted, H4 Freedom to Azure connected and smoke-tested, M365 delegated permission expansion complete, and live-action proofs still gated (2026-06-28T22:00:30-06:00)
+Last Updated: 2026-06-28T22:14:09-06:00
+Status: integration complete; CMS-A/CMS-B/CMS-C complete, CTP-2 local triangle proof complete, CNS communication contract drafted, H2/H3 ACA pilot deployed with Graphify volume mounted, H4 Freedom to Azure connected and smoke-tested, H5 Supabase RLS audit/remediation package drafted, M365 delegated permission expansion complete, and live-action proofs still gated (2026-06-28T22:14:09-06:00)
 Owner: Adam Goodwin
 
 ## Purpose
@@ -136,8 +136,20 @@ direct health, Graphify ACA direct health, bearer-key auth, Freedom to GAIL OS
 proxy, Freedom to Graphify proxy, and all five local env vars passed. Windows
 also ran the existing Freedom GAIL OS client integration against Azure, passing
 4/4, and verified Graphify health HTTP 200 with `status=ok`,
-`store=connected`, and `node_count=0`. H4 is complete. H5 Supabase RLS audit
-is a new owner gate and does not start without Adam's explicit approval.
+`store=connected`, and `node_count=0`. H4 is complete.
+
+H5 Supabase RLS audit follow-on: as of 2026-06-28T22:14:09-06:00, Adam
+approved the H5 audit/remediation package. The work belongs in Freedom, not
+Rev 2. Freedom now has
+`docs/security/2026-06-28 - Supabase RLS Remediation Plan.md`,
+`supabase/migrations/202606280001_enable_rls_for_legacy_public_tables.sql`,
+`supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql`,
+and a changelog entry. The package reconciles the builder's 20-table note with
+source migration and read-only REST evidence showing 21 legacy public tables
+present, covers all 21, and keeps them server-side-only by enabling RLS without
+adding anon/authenticated policies. No hosted Supabase migration was applied,
+no row data was read, no secret values were printed or committed, and live H5
+apply remains a separate Adam approval gate.
 
 ## No-Fallback Boundaries
 
@@ -169,6 +181,10 @@ is a new owner gate and does not start without Adam's explicit approval.
   readiness, Vercel environment promotion, live Microsoft 365 business-action
   approval, persistent Graphify production ingest approval, source-of-truth
   migration, runtime consolidation, or R4 live execution approval.
+- Do not treat the H5 Supabase RLS audit/remediation package as approval to
+  apply the migration to hosted Supabase. Applying or rolling back the
+  migration requires a separate Adam approval gate and fresh backup/rollback
+  posture confirmation.
 - Do not treat Graphify preview/diff output as Graphify ingest, evidence,
   approval, relay, source-of-truth, or execution authority.
 - Do not rename stable-route files or pre-standard documents without a bounded
@@ -338,12 +354,13 @@ login automatically; explain the edge probe and wait for Adam to say "yes, go
 ahead" or "pause." Do not continue feature work if a later CI run turns red;
 repair current `main` before login-edge work or any new capability work.
 
-Next owner decision: approve or pause H5 Supabase RLS audit, run a bounded
-Microsoft 365 re-authenticated test proof against an owner-approved test
-surface, send the CMS-C builder report, CTP-2 proof, CNS communication
-contract, ACA pilot report, M365 permission report, and H4 smoke result to the
-agentic multi-agent agent builder, resume Chunk Twenty local governed approval
-actions, or open a formal Microsoft 365 connector-promotion design gate.
+Next owner decision: approve or pause hosted application of the H5 Supabase RLS
+migration, run a bounded Microsoft 365 re-authenticated test proof against an
+owner-approved test surface, send the CMS-C builder report, CTP-2 proof, CNS
+communication contract, ACA pilot report, M365 permission report, H4 smoke
+result, and H5 audit/remediation package to the agentic multi-agent agent
+builder, resume Chunk Twenty local governed approval actions, or open a formal
+Microsoft 365 connector-promotion design gate.
 
 ## Documentation Sweep Notes
 
@@ -386,14 +403,15 @@ The compact builder handoff lives at
 The local CNS connection scout lives at
 `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md`.
 
-Next owner decision: approve or pause H5 Supabase RLS audit, send the updated
-local CNS/CTP-2 proof, CNS communication contract, ACA pilot deployment
-report, M365 permission report, and H4 smoke result back to the agentic
-multi-agent agent builder for revised orchestration, continue into a bounded
-Microsoft 365 re-authenticated test proof, continue into an owner-gated
-Graphify ingest proof, resume Chunk Twenty local governed approval actions, or
-open a formal Microsoft 365 connector-promotion design gate. The delegated
-permission expansion and H4 smoke pass are complete, but no live Microsoft 365
-business action, Graphify CNS store ingest, broad firewall change, production
-service behavior, schema publication, R4 live execution, or source-of-truth
-migration is approved by this stabilization pass.
+Next owner decision: approve or pause hosted application of the H5 Supabase RLS
+migration, send the updated local CNS/CTP-2 proof, CNS communication contract,
+ACA pilot deployment report, M365 permission report, H4 smoke result, and H5
+audit/remediation package back to the agentic multi-agent agent builder for
+revised orchestration, continue into a bounded Microsoft 365 re-authenticated
+test proof, continue into an owner-gated Graphify ingest proof, resume Chunk
+Twenty local governed approval actions, or open a formal Microsoft 365
+connector-promotion design gate. The delegated permission expansion, H4 smoke
+pass, and H5 audit package are complete, but no live Microsoft 365 business
+action, hosted Supabase migration application, Graphify CNS store ingest, broad
+firewall change, production service behavior, schema publication, R4 live
+execution, or source-of-truth migration is approved by this stabilization pass.

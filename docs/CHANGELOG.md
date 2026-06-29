@@ -2,6 +2,15 @@
 
 ## 2026-06-28
 
+- Recorded the H5 Freedom Supabase RLS audit/remediation package after Adam
+  approved the audit. The actual artifacts live in Freedom:
+  `docs/security/2026-06-28 - Supabase RLS Remediation Plan.md`,
+  `supabase/migrations/202606280001_enable_rls_for_legacy_public_tables.sql`,
+  and `supabase/rollbacks/202606280001_disable_rls_for_legacy_public_tables.sql`.
+  Source migration plus read-only REST evidence found 21 legacy public tables
+  present rather than the builder's stale 20-table count, so the package covers
+  all 21. No hosted Supabase migration was applied and live apply remains a
+  separate owner gate.
 - Completed H4 Freedom to Azure connection after Adam approved the bounded
   key-placement step. Windows retrieved the GAIL OS and Graphify pilot API
   keys from `kv-gail-cns-pilot` and applied them directly to Freedom's

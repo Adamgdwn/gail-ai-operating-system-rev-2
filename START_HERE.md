@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T22:00:30-06:00
+Last Updated: 2026-06-28T22:14:09-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -119,8 +119,18 @@ Graphify ACA direct health, bearer-key auth, Freedom to GAIL OS proxy, Freedom
 to Graphify proxy, and all five local env vars passed. Windows also ran the
 existing Freedom GAIL OS client integration against Azure, passing 4/4, and a
 Graphify health probe returned HTTP 200 with `status=ok`, `store=connected`,
-and `node_count=0`. H4 is complete. H5 Supabase RLS audit is a new gate and
-does not start without Adam's explicit approval.
+and `node_count=0`. H4 is complete.
+
+Current Freedom Supabase H5 status: as of 2026-06-28T22:14:09-06:00, Adam
+approved the H5 audit/remediation package. Freedom now has a dated security
+plan, forward RLS migration, explicit rollback SQL, and changelog entry for the
+legacy public Supabase tables. Source migrations plus a read-only service-role
+REST existence probe found 21 legacy public tables present, not the 20 named in
+the builder handoff, so H5 covers all 21. The package enables RLS without
+adding anon/authenticated policies, preserving the server-side-only
+service-role posture. No hosted Supabase migration was applied, no row data or
+secret values were printed, and applying the migration remains a separate Adam
+approval gate.
 
 Current Microsoft 365 permission-expansion status: as of
 2026-06-28T20:55:36-06:00, Adam approved the Entra delegated permission
