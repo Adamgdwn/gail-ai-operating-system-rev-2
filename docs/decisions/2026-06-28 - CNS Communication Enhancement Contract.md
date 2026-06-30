@@ -3,7 +3,7 @@
 Document type: coordination contract
 Date: 2026-06-28
 Saved: 2026-06-28T18:44:28-06:00
-Last Updated: 2026-06-28T18:44:28-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: draft complete for builder orchestration (2026-06-28T18:44:28-06:00)
 Owner: Adam Goodwin
 
@@ -24,6 +24,18 @@ Microsoft 365 access, tenant/admin consent, browser login, live Microsoft Graph
 calls, Planner writes, Graphify ingest, cloud placement, production service
 behavior, source-of-truth migration, runtime consolidation, R4 live execution,
 or authority expansion.
+
+## 2026-06-29 Boundary Addendum
+
+Use
+`docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+as the active GAIL OS route for the Graphify boundary transfer.
+
+This contract's "read-only relationship context" language means no Graphify
+approval, execution, R-level escalation, source-system mutation, or canonical
+evidence ownership. It does not forbid explicitly approved, bounded,
+idempotent relationship-memory writes into Graphify. Any such write remains a
+separate owner-gated learning lane.
 
 ## Current System Roles
 

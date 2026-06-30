@@ -18,11 +18,12 @@ deliberately.
 - Technical lead: codex session
 - Governance level: 1
 - Risk tier: low for the initial local scaffold and planning track
-- Production status: not deployed
-- Current direction: coordinate GAIL AI Operating System Rev 2, Freedom, and
-  AG Operations Workspace while AG Operations finishes its current evolution;
-  use the build consolidation decision process before any fold, bridge, shared
-  runtime, or source-of-truth change.
+- Production status: not production; narrow Azure Container Apps pilot is
+  documented, with live connector and production-readiness gates still closed
+- Current direction: park Freedom implementation work unless Adam explicitly
+  routes there, and use
+  `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+  for the active GAIL OS Graphify-boundary informing lane
 
 ## Quick Start
 
@@ -54,7 +55,8 @@ connector activation chunk exists.
 Next startup should acknowledge the coordination posture before implementation:
 Freedom remains the core operator interface and high-level agentic business
 partner surface, AG Operations Workspace remains the live Microsoft 365
-business substrate, and Rev 2 remains the governed technical spine.
+business substrate, Graphify remains relationship intelligence and graph
+memory, and Rev 2 remains the governed authority/evidence spine.
 
 ## Documentation
 
@@ -80,6 +82,7 @@ a bounded rename plan updates all references.
 - `docs/runbook.md`
 - `docs/CHANGELOG.md`
 - `docs/risks/risk-register.md`
+- `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
 
 ## Support Model
 

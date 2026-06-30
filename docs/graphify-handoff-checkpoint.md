@@ -1,7 +1,7 @@
 # Graphify Handoff Checkpoint
 
 Created: 2026-06-21T16:48:17-06:00
-Last Updated: 2026-06-27T09:06:27-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: active checkpoint
 Owner: Adam Goodwin
 
@@ -10,16 +10,29 @@ Owner: Adam Goodwin
 This checkpoint defines how GAIL AI Operating System Rev 2 may use Graphify
 during the current file migration and build-out phase.
 
-Graphify is a read-only knowledge spoke. It may reduce raw source reads and
-help route architecture or migration work, but its recommendations remain
+Graphify is a relationship-intelligence spoke. It may reduce raw source reads
+and help route architecture or migration work, but its recommendations remain
 mission candidates until Rev 2 validation, policy, and owner approval accept
 them.
+
+2026-06-29 boundary clarification: "read-only Graphify" means read-only with
+respect to GAIL OS authority, approval, execution, source-system mutation, and
+evidence truth. It does not mean Graphify can never receive approved learning
+facts. Bounded, sanitized, idempotent graph-memory writes may exist only through
+explicit owner-gated lanes. Graphify may remember relationships; it may not
+approve, deny, execute, escalate authority, or become the canonical evidence
+ledger.
 
 Related outbound-readiness plan:
 `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` defines
 how Rev 2 should later emit sanitized, delta-friendly authority, action,
 evidence, connector, and system-state facts so an enhanced Graphify layer can
 move faster without gaining execution authority.
+
+Current boundary transfer packet:
+`docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+is the active route for applying the refined Graphify boundary inside this
+repo.
 
 ## Current Route
 
@@ -51,6 +64,8 @@ Agents may:
   `gail_ai_operating_system.validate_graphify_handoff_payload`;
 - build local route status records with
   `gail_ai_operating_system.build_graphify_route_status`.
+- prepare sanitized GraphifyAccelerationRecord/GraphFact candidates for
+  preview, reconciliation, or owner-gated learning-lane design.
 
 Current allowed command shapes, when the CLI is available in the active shell:
 
@@ -98,6 +113,9 @@ Stop before:
 
 - graph upload;
 - source mutation through Graphify;
+- treating a Graphify fact preview as evidence or ingest;
+- treating a Graphify learning write as approval, denial, execution, or
+  authority escalation;
 - a full `/graphify` semantic rebuild outside an explicit chunk;
 - treating a Graphify recommendation as execution approval;
 - indexing, printing, summarizing, or committing secrets, environment files,

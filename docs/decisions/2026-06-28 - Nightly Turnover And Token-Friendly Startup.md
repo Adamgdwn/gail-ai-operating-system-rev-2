@@ -3,8 +3,8 @@
 Document type: turnover handoff
 Date: 2026-06-28
 Saved: 2026-06-28T23:00:22-06:00
-Last Updated: 2026-06-28T23:12:30-06:00
-Status: active closeout handoff; Rev 2 boxed for next startup
+Last Updated: 2026-06-29T19:31:31-06:00
+Status: historical closeout handoff; superseded as first-read route by the 2026-06-29 GAIL OS informing packet
 Owner: Adam Goodwin
 
 ## Purpose
@@ -12,6 +12,11 @@ Owner: Adam Goodwin
 This is the token-friendly startup document for the next session. It boxes the
 June 28 work without requiring a reread of the full current-main packet or the
 historical build pathway.
+
+2026-06-29 supersession note: for the current active lane, read
+`docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+after `AGENTS.md`. Keep this file as the prior-night closeout record and read
+it only when June 28 validation or handoff detail is needed.
 
 This handoff closes out the Rev 2 workspace only. Freedom, the builder,
 Graphify, and AG Operations Workspace may have their own handoff records and
