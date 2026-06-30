@@ -1,6 +1,6 @@
 # Current Build Pathway
 
-Last Updated: 2026-06-28T09:57:53-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -2347,10 +2347,10 @@ no hardcoded localhost URLs in business logic. HTTP wraps the service layer in
 Chunk 21. JSON Schema contracts are the stable cross-language seam.
 
 Architecture Governor role: GAIL OS owns all canonical contracts. Freedom
-consumes but does not author schemas. Graphify is a read-only query surface and
-extraction write target — not an approval or execution layer. M365 writes
-require OS Connector registry, authority envelope, and evidence packet. No
-write path bypasses the GAIL OS connector registry.
+consumes but does not author schemas. Graphify is a relationship-intelligence
+surface and potential owner-gated learning target - not an approval or
+execution layer. M365 writes require OS Connector registry, authority envelope,
+and evidence packet. No write path bypasses the GAIL OS connector registry.
 
 Do not proceed into Chunk 21 (FastAPI HTTP layer), Chunk 22 (`@gail/contracts`
 TypeScript generation), live M365 connector activation, cloud placement, schema

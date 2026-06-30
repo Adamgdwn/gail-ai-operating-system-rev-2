@@ -1,7 +1,7 @@
 # Context Map
 
 Document type: project context routing map
-Last Updated: 2026-06-28T18:44:28-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: draft
 Owner: Technical Lead
 Audience: coding agents, human coders, reviewers, and project owners
@@ -26,7 +26,8 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 
 | Task | Load First |
 |---|---|
-| Current plan, chunking, validation, or handoff | Active execution packet named by `START_HERE.md`; for the current GitHub catch-up, read `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` before opening the large historical pathway |
+| Current plan, chunking, validation, or handoff | Active execution packet named by `START_HERE.md`; for the current GAIL OS informing lane, read `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md` before opening older packets or the large historical pathway |
+| Graphify boundary transfer, GAIL OS informing, relationship-memory write boundary, Graphify read-model degradation, or parked Freedom lane | `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`, then `docs/graphify-handoff-checkpoint.md`, `docs/contracts/2026-06-28 - Graphify Fact Export Contract.md`, and `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` |
 | Current-main stabilization, GitHub catch-up, red CI after M365 dry-run merge, CMS-A/CMS-B/CMS-C | `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`, then only the targeted connector registry, M365 API, evidence, or handoff files needed for the selected CMS chunk |
 | Source-of-truth routing, active versus reference docs, device roles, or compact future chunk map | `docs/source-of-truth-map.md` |
 | Engineering standards map | `docs/standards/README.md` |
@@ -42,7 +43,7 @@ Keep these files compact. They should route to durable docs, not duplicate them.
 | Freedom phone interface, business-partner capability preservation, or Freedom bridge boundaries | `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/migration/freedom-engine-objective-review.md`, `docs/architecture.md`, and `docs/migration/file-migration-decisions.md` |
 | App shell, command center, portal stack, browser cockpit, or multi-device review surface | `docs/decisions/app-shell-command-center.md`, `docs/decisions/freedom-phone-interface-business-partner-boundary.md`, `docs/architecture.md`, and `apps/command-center/README.md` |
 | File migration, source promotion, rewrite decisions, or exclusion checks | `docs/migration/source-inventory.md`, `docs/migration/file-migration-decisions.md`, and the relevant copied v1 reference records |
-| Graphify routing, graph-aware handoffs, repo-local graph setup, Graphify acceleration readiness, preview retention, preview command behavior, preview diff/cache behavior, or Graphify stop boundaries | `docs/graphify-handoff-checkpoint.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`, `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`, `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`, then the Graphify policy named there when broad exploration is in scope |
+| Graphify routing, graph-aware handoffs, repo-local graph setup, Graphify acceleration readiness, preview retention, preview command behavior, preview diff/cache behavior, or Graphify stop boundaries | `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`, `docs/graphify-handoff-checkpoint.md`, `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md`, `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md`, `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`, `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration_preview.py`, then the Graphify policy named there when broad exploration is in scope |
 | Domain terms or naming | `docs/domain-language.md` |
 | Deployment, release, rollback, or environment changes | `docs/deployment-guide.md`, `docs/runbook.md`, and release standards |
 | Agent autonomy, runtime behavior, tools, prompts, models, or permissions | `docs/agent-runtime-instructions.md`, `docs/agent-inventory.md`, `docs/model-registry.md`, `docs/prompt-register.md`, and `docs/tool-permission-matrix.md` |

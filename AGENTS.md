@@ -1,46 +1,85 @@
 # Agent Instructions
 
-## CNS Role (Guided AI Labs Agentic OS — updated 2026-06-26)
+## CNS Role (Guided AI Labs Agentic OS - updated 2026-06-29)
 
-**Layer:** GAIL OS — Deep-brain / Autonomic Management
+**Layer:** GAIL OS - Deep-brain / Autonomic Management
 **Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate
 **In the CNS loop:** `Signal → GAIL OS classifies → Freedom reasons → OS validates authority → Motor system executes → Evidence returned to OS → Graphify updates → Freedom learns`
 
-GAIL OS is the governed spine — the authority and evidence layer beneath all other systems. No restricted action may execute without passing through the GAIL OS policy gate.
+GAIL OS is the governed spine - the authority and evidence layer beneath all
+other systems. No restricted action may execute without passing through the
+GAIL OS policy gate.
 
-**Enabler, not a hand brake:** GAIL OS is what makes autonomy *safe and legible*, not a restraint on Freedom. By classifying actions, issuing authority envelopes, and recording evidence, it is the layer that lets the system operate at higher autonomy (R4 charter-based action) with accountability — it expands what Freedom and the agent workforce may safely do, rather than limiting them. Governance here is the enabler of action, not a brake on it.
+**Enabler, not a hand brake:** GAIL OS is what makes autonomy *safe and
+legible*. By classifying actions, issuing authority envelopes, and recording
+evidence, it is the layer that lets the system operate at higher autonomy
+(R4 charter-based action) with accountability. Governance here is the enabler
+of action, not a brake on it.
 
-**Current state:** Phase 2 of 5-phase build. Chunks 1–19 complete (Python spine, A1 local no-network boundary). Command-center React TypeScript cockpit under `apps/command-center/`. Core package under `packages/uaos-core/`.
+**Current state:** Rev 2 has moved past the older Chunk 1-19 framing. Current
+`main` includes the Python spine, FastAPI HTTP surface, connector and agent
+registries, authority override, dry-run M365 observe/write surfaces, evidence
+store, OKP and Signal Gravity work, R4 charter/dry-run/live-executor code, and
+Azure Container Apps pilot deployment records. The current 2026-06-29 active
+informing lane is
+`docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`.
 
-**Implemented spine (Chunks 9–15):**
+**Implemented core surfaces:**
 - `mission_spine.py` — MissionEnvelope, MissionPlan, PermissionGate, LocalMissionStore
-- `connector_registry.py` — 7 planning-only ConnectorProfiles (GitHub, Graphify, M365, QuickBooks, local device, client gateway, vendor)
+- `connector_registry.py` — planning-only connector profiles, including the M365 graph bridge
 - `relay_envelope.py` — RelayEnvelope, RelayValidationContext, validate_relay_envelope
 - `relay_store.py` — Local JSON-backed proof store for relay records, status transitions, worker claims
-- `graphify_handoff.py` — Read-only Graphify handoff candidate validation
+- `graphify_handoff.py` — Graphify handoff candidate validation with no authority transfer
 - `local_proof_runner.py` — Complete no-network mission → policy → relay → evidence proof path
+- `graphify_acceleration.py` — local sanitized relationship-fact contract for later Graphify learning
+- `operating_knowledge.py` and `signal_gravity.py` — OKP records and local signal ranking
+- `charter_profile.py`, `r4_dry_run_simulator.py`, `r4_live_executor.py` — R4 charter surfaces, still owner-gated by doctrine
 
-**Phase 1 next:** Local governed approval writes (Chunk 20), then evidence and
-handoff views (Chunk 21) per the active build pathway. HTTP API exposure and
-cloud placement remain later design decisions after the local approval,
-authority, and evidence contracts are firm. After that decision, define JSON
-Schema `@gail/contracts` so TypeScript consumers (Freedom) have typed
-contracts.
+**Current planning route:** Stay away from Freedom implementation work unless
+Adam explicitly routes the session there. For GAIL OS work, import the
+Graphify boundary revelation into authority, evidence, GraphFact, and
+communication plans. Graphify is the high-speed relationship-transfer layer,
+not authority and not execution.
 
-**Planned integration contracts (upstream — produces for Freedom and Graphify):**
-- `POST /api/missions` — Classify and create mission records
-- `POST /api/actions` — Validate and approve/reject proposed actions
-- `GET /api/authority-envelopes/{id}` — Return authority boundary for an actor
-- `POST /api/evidence` — Persist evidence packets
-- `GET /api/connectors` — Return connector registry status
+**Current API surface (upstream - produces governed records):**
+- `GET /api/v1/health` — Liveness and boundary check
+- `POST /api/v1/missions` — Classify and create mission records
+- `POST /api/v1/actions` — Validate proposed actions against policy
+- `GET /api/v1/authority` — Return read-only R0-R5 authority registry
+- `POST /api/v1/authority/override` — Record override requests
+- `GET /api/v1/evidence/{mission_id}` — Retrieve mission evidence summaries
+- `GET /api/v1/connectors` — Return connector registry status
+- `GET /api/v1/agents` — Return agent registry status
+- `GET /api/v1/m365/status` — Dry-run M365 bridge readiness
+- `POST /api/v1/m365/observe` — Synthetic dry-run observe proof
+- `POST /api/v1/m365/write/planner-task` — Dry-run Planner-task proof
+- `POST /api/v1/okp`, `GET /api/v1/okp`, `GET /api/v1/okp/{okp_id}`,
+  `GET /api/v1/okp/{okp_id}/proof-chain` — Operating knowledge packet routes
 
-**Integration contracts (downstream — consumes):**
-- Receives `Signal` events from product apps and Freedom
-- Pushes `EvidencePacket` summaries to Graphify via GraphNode updates (Phase 2+)
+**Integration contracts (downstream - consumes):**
+- Receives safe `SignalPacket`/mission/action candidates from approved surfaces.
+- May request bounded relationship context from Graphify when relationships
+  matter.
+- May emit sanitized `GraphifyAccelerationRecord` or `GraphFact` candidates
+  into an owner-gated Graphify learning lane.
 
-**Authority boundary:** This repo is the R0–R5 authority source. R5 is human-only — no agent may bypass this. R4 requires a signed AuthorityEnvelope with explicit charter, stop conditions, rollback path, and review cadence.
+**Graphify boundary:** "Read-only Graphify" means read-only with respect to
+GAIL OS authority, approval, execution, and source-system mutation. It does not
+forbid approved graph-memory writes. GAIL OS may prepare or emit sanitized,
+idempotent, source-referenced relationship facts through an explicit
+owner-gated lane. Graphify may inform and remember relationships; it may not
+approve, deny, execute, escalate authority, mutate business systems, or become
+the canonical evidence ledger.
 
-**Cross-machine note:** GAIL OS runs on Windows. Freedom runs on Linux. Graphify primary runs on Linux. Cross-machine communication is via GitHub (current) → GAIL OS HTTP API (Phase 1 target). Do not use DirectLink as primary transport.
+**Authority boundary:** This repo is the R0-R5 authority source. R5 is
+human-only - no agent may bypass this. R4 requires a signed AuthorityEnvelope
+with explicit charter, stop conditions, rollback path, and review cadence.
+
+**Cross-machine note:** GAIL OS runs on Windows and has also been deployed to
+the narrow Azure Container Apps pilot. Freedom and Graphify work may be on
+Linux or hosted surfaces. DirectLink is approved for local proof transport, but
+it is not a production service boundary or a reason to broaden live connector
+authority.
 
 For cross-repo coordination state, see `agentic-multi-agent-agent-builder/docs/build-control/` (Linux control plane repo).
 

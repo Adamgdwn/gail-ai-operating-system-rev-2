@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-28T23:12:30-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -11,27 +11,40 @@ For the next session:
 1. Run `git status --short`.
 2. Read `AGENTS.md`.
 3. Read
-   `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
-4. Read this file only if the top-level route or current boundaries need
+   `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`.
+4. Read
+   `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`
+   only when prior-night closeout detail is needed.
+5. Read this file only if the top-level route or current boundaries need
    confirmation.
-5. Read
+6. Read
    `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md`.
    Open `docs/current-build-pathway.md` only when older chunk history or a
    specific historical pathway section is needed.
-6. Before building, explicitly acknowledge the current change of direction:
+7. Before building, explicitly acknowledge the current change of direction:
    GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are
    being coordinated as three related builds, not folded together yet.
-7. If creating or updating durable docs or work-tracking records, apply
+8. If creating or updating durable docs or work-tracking records, apply
    `docs/standards/2026-06-25 - Document Control Standard.md`.
-8. Open the relay envelope/store, tool permission matrix, and command-center
+9. Open the relay envelope/store, tool permission matrix, and command-center
    app files only when the user is ready to resume Rev 2 implementation.
 
 Current night closeout: as of 2026-06-28T23:12:30-06:00, the token-friendly
 turnover is
 `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`.
-Use it as the first resume document after `AGENTS.md`. This is a Rev 2 startup
-route only; do not chase Freedom, the builder, Graphify, or AG Operations
-Workspace unless Adam explicitly routes the session there.
+Use it for prior-night closeout detail after the 2026-06-29 informing packet
+when needed. This is a Rev 2 startup route only; do not chase Freedom, the
+builder, Graphify, or AG Operations Workspace unless Adam explicitly routes the
+session there.
+
+Current GAIL OS informing lane: as of 2026-06-29T19:31:31-06:00, Adam routed
+the next work away from Freedom and into this repo. Use
+`docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+as the active packet for Graphify boundary transfer, GAIL OS context alignment,
+and future Graphify learning/read-model planning. This packet clarifies that
+Graphify cannot approve or execute, but approved bounded graph-memory writes
+may exist. Do not touch Freedom implementation from this route unless Adam
+explicitly redirects.
 
 Current direction: box the coordination pivot first. AG Operations Workspace
 should finish and box its current evolution, Freedom remains the core operator
@@ -178,6 +191,8 @@ Current priorities:
 - fill in project commands in `AI_BOOTSTRAP.md`
 - keep work in context-window-friendly chunks
 - timestamp material work, decisions, validation, and handoffs
+- use `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+  as the current GAIL OS informing packet while Freedom work is parked
 - preserve the completed Chunk Nineteen cockpit direction: a talk-first
   operator hub with observable governed spokes for Microsoft 365, Freedom,
   Graphify, QuickBooks, GitHub/build systems, evidence, and worker/device
@@ -235,6 +250,10 @@ Current priorities:
   Freedom/GAIL OS/Graphify/AG Operations loop with shared trace identity,
   relationship briefs, application signal envelopes, build handoff facts, and
   owner-gated Graphify ingest boundaries
+- interpret "read-only Graphify" as no authority, approval, execution,
+  R-level escalation, source mutation, or evidence-truth transfer into
+  Graphify; it does not prohibit explicit owner-gated relationship-memory
+  writes from GAIL OS to Graphify
 - use `docs/decisions/2026-06-28 - Azure Container Apps Pilot Deployment Report.md`
   as the current non-secret record of the owner-approved H2/H3 Azure Container
   Apps pilot endpoints, health checks, Key Vault secret handling, and the
@@ -246,6 +265,9 @@ Current priorities:
 ## Current Build Pathway
 
 Current execution packet:
+[docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md](docs/decisions/2026-06-29%20-%20Graphify%20Boundary%20Transfer%20And%20GAIL%20OS%20Informing%20Plan.md).
+
+Prior stabilization packet:
 [docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md](docs/decisions/2026-06-28%20-%20Current%20Main%20Stabilization%20Work%20Packet.md).
 
 Historical master pathway:

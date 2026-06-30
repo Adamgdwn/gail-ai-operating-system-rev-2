@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-28T18:44:28-06:00
+Last Updated: 2026-06-29T19:31:31-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -37,29 +37,29 @@ edits.
 |---|---|---|
 | 1 | `AGENTS.md` | Repo-local agent rules, material-work triggers, Graphify policy, and chunk close-out. |
 | 2 | `START_HERE.md` | Current priorities, active pathway pointer, and stop triggers. |
-| 3 | `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` | Current compact CMS-A/CMS-B/CMS-C GitHub catch-up packet, no-fallback boundaries, and next execution order. |
-| 4 | `docs/current-build-pathway.md` | Historical master pathway, validation ledger, compact future chunk map, and older handoff history. |
-| 5 | `docs/context-map.md` | Task-specific context routing and files to avoid. |
-| 6 | `project-control.yaml` | Use case, selected risk tier, selected governance level, required docs, and agent autonomy posture. |
-| 7 | `docs/migration/source-inventory.md` | What was copied, what was excluded, and what remains reference-only. |
-| 8 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
-| 9 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
-| 10 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
-| 11 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
-| 12 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | GAIL-side plan for future sanitized graph-fact exports that let enhanced Graphify move faster without becoming an authority or execution layer. |
-| 13 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | GA-C1 decision that local Graphify acceleration preview output is ignored disposable developer artifact output under `tmp/graphify-acceleration-preview/` by default. |
-| 14 | `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` | Current compact builder-facing report after CMS-A/CMS-B/CMS-C, with current-main proof state, boundaries, path-forward impact, and next owner decision. |
-| 15 | `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md` | First post-CMS local connection scout across Freedom, GAIL OS, and Graphify, including validation evidence and the next no-M365 connection-test lane. |
-| 16 | `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` | Current builder-facing communication target for `cns_trace_id`, signal packets, Freedom relationship briefs, Graphify fact bundles, application envelopes, and build handoff facts. |
-| 17 | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Handoff summary for the agentic multi-agent builder, connecting builder CNS schema work, Rev 2 Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
+| 3 | `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md` | Current GAIL OS informing packet while Freedom work is parked; Graphify boundary transfer, learning-lane rules, and next GI chunks. |
+| 4 | `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` | Prior compact CMS-A/CMS-B/CMS-C GitHub catch-up packet, no-fallback boundaries, and validation record. |
+| 5 | `docs/current-build-pathway.md` | Historical master pathway, validation ledger, compact future chunk map, and older handoff history. |
+| 6 | `docs/context-map.md` | Task-specific context routing and files to avoid. |
+| 7 | `project-control.yaml` | Use case, selected risk tier, selected governance level, required docs, and agent autonomy posture. |
+| 8 | `docs/migration/source-inventory.md` | What was copied, what was excluded, and what remains reference-only. |
+| 9 | `docs/migration/file-migration-decisions.md` | Which v1 files may be promoted, rewritten, archived, excluded, or held for later review. |
+| 10 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Freedom phone-link, business-partner capability, neutral bridge record, and no-import boundary. |
+| 11 | `docs/decisions/app-shell-command-center.md` | Browser-first command-center shell choice, options reviewed, dependency boundary, and multi-device posture. |
+| 12 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Deciding whether Rev 2, Freedom, and AG Operations should remain separate, bridge, fold, or defer after AG Operations completes its current evolution. |
+| 13 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | GAIL-side plan for future sanitized graph-fact exports that let enhanced Graphify move faster without becoming an authority or execution layer. |
+| 14 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | GA-C1 decision that local Graphify acceleration preview output is ignored disposable developer artifact output under `tmp/graphify-acceleration-preview/` by default. |
+| 15 | `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` | Current compact builder-facing report after CMS-A/CMS-B/CMS-C, with current-main proof state, boundaries, path-forward impact, and next owner decision. |
+| 16 | `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md` | First post-CMS local connection scout across Freedom, GAIL OS, and Graphify, including validation evidence and the next no-M365 connection-test lane. |
+| 17 | `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` | Current builder-facing communication target for `cns_trace_id`, signal packets, Freedom relationship briefs, Graphify fact bundles, application envelopes, and build handoff facts. |
+| 18 | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Handoff summary for the agentic multi-agent builder, connecting builder CNS schema work, Rev 2 Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
 
-Startup direction as of 2026-06-25T07:59:26-06:00: the next session should
-flag that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace
-are being coordinated as three related builds. This is not a consolidation
-approval. AG Operations should finish and box its current evolution, Freedom
-remains the core operator/business-partner surface, and Rev 2 remains the
-governed technical spine until the decision process records a later owner
-decision.
+Startup direction as of 2026-06-29T19:31:31-06:00: the current active lane is
+GAIL OS informing and Graphify boundary transfer. Freedom implementation work
+is parked unless Adam explicitly routes the session there. This is not a
+consolidation approval. Rev 2 remains the governed technical spine, Graphify is
+relationship intelligence and graph memory, and GAIL OS authority/evidence do
+not move into Graphify.
 
 ## Active Rev 2 Controls
 
@@ -68,6 +68,7 @@ decision.
 | `project-control.yaml` | Selected project classification, risk tier, governance level, required controls, and A1 agent posture. |
 | `AGENTS.md` | Working rules for agents in this repo. |
 | `START_HERE.md` | Top-level active plan route and current stop triggers. |
+| `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md` | Active GAIL OS informing route for the refined Graphify boundary: no Graphify authority/execution transfer, but explicit owner-gated relationship-memory writes may exist. |
 | `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` | Compact GitHub catch-up work packet and validation record for completed CMS-A/CMS-B/CMS-C stabilization. Read this before the large pathway when stabilization detail is needed. |
 | `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` | Compact builder-facing closeout for CMS-C. Read this before asking the builder to revise orchestration after the current-main stabilization pass. |
 | `docs/current-build-pathway.md` | Historical master pathway, active routing index, validation log, and older handoff history. |
@@ -78,7 +79,7 @@ decision.
 | `docs/agent-inventory.md` | Active agent-like roles, current statuses, autonomy posture, and non-approved future workers/surfaces. |
 | `docs/model-registry.md` | Active model route posture and future model approval requirements. |
 | `docs/prompt-register.md` | Active prompt and instruction register plus future runtime prompt approval requirements. |
-| `docs/graphify-handoff-checkpoint.md` | Active read-only Graphify route, current graph/tool status, handoff payload contract, and stop boundaries. |
+| `docs/graphify-handoff-checkpoint.md` | Active Graphify route, current graph/tool status, handoff payload contract, and stop boundaries. Read-only means no authority, approval, execution, source mutation, or evidence-truth transfer. |
 | `docs/architecture.md` | Active Rev 2 architecture for source spine, portal surfaces, workers, relay records, Graphify, connector boundaries, and verification ladder. |
 | `docs/migration/source-inventory.md` | Migration source boundary and reference inventory. |
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
@@ -86,7 +87,7 @@ decision.
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
 | `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
-| `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains a separate knowledge spoke and never an execution authority. |
+| `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains relationship intelligence and never an execution authority. |
 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | Active GA-C1 retention decision: local preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not committed, retained as evidence, or treated as Graphify ingest. |
 | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Active coordination summary for the next builder handoff: describes what the agentic multi-agent builder added, what this Rev 2 pass added, and the desired integration between GAIL OS, Freedom, Codex/future coding agents, AG Operations Workspace / Microsoft 365, and Graphify. |
 | `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` | Current-main addendum for the builder handoff: records green CMS-A/CMS-B proof state, CMS-C closeout, dry-run M365 boundary, paused login edge, and next owner decision lanes. |

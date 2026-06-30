@@ -1,10 +1,11 @@
 # Graphify Fact Export Contract
 
 **Date:** 2026-06-28
+**Last Updated:** 2026-06-29T19:31:31-06:00
 **Chunk:** 20E — GAIL OS + Graphify Safe Graph-Fact Extraction Lane
-**Status:** Contract complete — extraction lane defined, not yet active (Phase 3)
+**Status:** Contract complete — extraction lane defined, not active as GAIL OS ingest approval
 **Schema:** `contracts/json-schema/graph-fact.schema.json`
-**Transport:** Extraction pipeline write only — never the Graphify HTTP API
+**Transport:** GAIL OS learning transport remains owner-gated; this contract does not approve any live Graphify write call
 
 ---
 
@@ -14,7 +15,28 @@ This contract defines the lane through which GAIL OS emits sanitized graph facts
 
 ---
 
-## Extraction-Write / API-Read Rule (Reinforced)
+## 2026-06-29 Boundary Reconciliation
+
+This contract predates the 2026-06-29 Graphify boundary transfer. Its local
+GAIL OS safety intent still stands: GAIL OS has not been approved to mutate the
+persistent Graphify CNS store from this repo.
+
+The older wording below should no longer be read as a universal Graphify
+platform invariant. Graphify may own guarded relationship-memory write lanes in
+its own repo. For GAIL OS, any persistent Graphify learning write remains a
+connector-like promotion gate that must define source refs, idempotency,
+payload limits, rejection behavior, failure handling, and owner approval before
+runtime use.
+
+Active rule:
+
+- Graphify may remember approved relationships.
+- Graphify may not approve, deny, execute, escalate R-levels, mutate business
+  systems, or become the canonical GAIL OS evidence ledger.
+- This contract defines fact shape and safety posture, not active ingest
+  authorization.
+
+## Original Extraction-Write / API-Read Preference
 
 ```
 GAIL OS (approval_actions, evidence_recorder, mission_lifecycle)
@@ -32,7 +54,10 @@ CNS store (entities + relationships)
 Graphify HTTP API (port 8001) ← queried by Freedom and GAIL OS
 ```
 
-**The HTTP API is never a write path.** This is the fundamental Graphify design rule. The extraction pipeline is the only writer. This contract adds GAIL OS as an extraction source — it does not add an API write path.
+For this GAIL OS contract, the HTTP API is not approved as a write path. The
+original preference was an extraction pipeline writer. This contract adds GAIL
+OS as a future extraction or learning source; it does not add an active API
+write path from this repo.
 
 ---
 
@@ -114,7 +139,9 @@ The extraction lane defined here is an architecture contract, not a live impleme
 3. An extraction pipeline trigger in GAIL OS that emits `GraphFact` records post-evidence
 4. Graphify extraction pipeline accepts `GraphFact` as an input format (Graphify Phase 3)
 
-**Current status:** Contract and schema defined. No emission code active. No Graphify ingestion code active.
+**Current status:** Contract and schema defined. Local acceleration/preview
+helpers exist elsewhere in this repo, but no persistent GAIL OS Graphify ingest
+lane is active from this contract.
 
 ---
 
@@ -123,10 +150,11 @@ The extraction lane defined here is an architecture contract, not a live impleme
 Per 20E stop condition:
 - No live M365 data ingested
 - No secrets in sanitized_payload
-- No Graphify HTTP API write path added
+- No Graphify HTTP/API write path added from GAIL OS
 - No Phase 3 emission code (future implementation)
 - No EvidencePacket content stored in Graphify (sanitized attributes only)
 
 ---
 
-*Contract status: Task complete. Extraction lane defined. Extraction-write / API-read rule preserved. No live emission active.*
+*Contract status: Task complete. Fact shape and safety posture defined. No live
+GAIL OS Graphify ingest or write transport active.*

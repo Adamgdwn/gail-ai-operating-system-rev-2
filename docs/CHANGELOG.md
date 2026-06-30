@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-06-29
+
+- Added
+  `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
+  as the active GAIL OS informing packet for Adam's direction to park Freedom
+  work and transfer the refined Graphify boundary into Rev 2. The packet
+  clarifies that Graphify cannot approve, execute, escalate authority, mutate
+  source systems, or become the evidence ledger, while explicitly approved
+  bounded relationship-memory writes may exist as owner-gated learning lanes.
+- Refreshed `AGENTS.md`, `START_HERE.md`, `docs/context-map.md`,
+  `docs/graphify-handoff-checkpoint.md`,
+  `docs/contracts/2026-06-28 - Graphify Fact Export Contract.md`, and
+  `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` so
+  GAIL OS startup and Graphify-related contracts route to the current boundary
+  transfer instead of the older blunt "Graphify is read-only" framing. No
+  runtime behavior, Freedom implementation, live M365 action, Graphify ingest,
+  cloud setting, secret handling, or R4 live execution changed.
+
 ## 2026-06-28
 
 - Clarified the compact night turnover so the next startup closes and resumes
