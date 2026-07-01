@@ -41,7 +41,7 @@ _UNCONFIGURED_AUTH = GraphAuthProvider(
 VALID_BODY = {
     "mission_id": "mission-observe-001",
     "action_id": "action-observe-org",
-    "actor": "svc-gail-os-graph",
+    "actor": "gail-os-m365-dry-run-actor",
     "created_at": NOW,
     "observe_target": "organization",
 }
@@ -54,7 +54,7 @@ def test_observe_dry_run_returns_success_when_configured():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-001",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )
@@ -66,7 +66,7 @@ def test_observe_dry_run_stopped_when_not_configured():
         _UNCONFIGURED_AUTH,
         mission_id="mission-observe-002",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )
@@ -79,7 +79,7 @@ def test_observe_invalid_target_returns_stopped():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-003",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         observe_target="calendar",
         dry_run=True,
@@ -93,7 +93,7 @@ def test_observe_evidence_has_r0_authority_basis():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-004",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )
@@ -105,7 +105,7 @@ def test_observe_evidence_id_has_correct_prefix():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-005",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )
@@ -117,7 +117,7 @@ def test_observe_evidence_is_valid():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-006",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )
@@ -130,7 +130,7 @@ def test_observe_dry_run_execution_mode():
         _CONFIGURED_AUTH,
         mission_id="mission-observe-007",
         action_id="action-observe-org",
-        actor="svc-gail-os-graph",
+        actor="gail-os-m365-dry-run-actor",
         created_at=NOW,
         dry_run=True,
     )

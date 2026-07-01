@@ -1,15 +1,15 @@
-"""M365 Graph R0 observe action — read-only structured metadata, no raw content.
+"""M365 Graph R0 observe action - read-only structured metadata, no raw content.
 
 Implements the first M365 read action (Phase 4, task 4.3). In dry-run mode
-(default and A1 boundary), no live Graph call is made — auth config is
+(default and A1 boundary), no live Graph call is made - auth config is
 checked and a planned EvidencePacket is produced. Live mode (allow_live=True)
-calls GET /v1.0/organization for minimal org metadata and produces a live
-EvidencePacket.
+is a dormant future app-only path. Current API routes force dry-run.
 
-Live calls require:
-  - AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET env vars
-  - m365-graph-api-bridge connector promoted from registry-only (task 4.3 approval gate)
-  - allow_live=True passed by the caller
+Current tenant state:
+  - Delegated permission expansion exists for the local CLI app.
+  - No client secret, certificate, or app-only grant exists.
+  - Future app-only live calls require a separate owner-approved credential
+    boundary before AZURE_* app-only env vars are real.
 """
 from __future__ import annotations
 
@@ -43,11 +43,11 @@ def observe_graph_metadata(
     """Execute an R0 observe action against Microsoft Graph.
 
     Dry-run (default): validates auth config, produces a planned EvidencePacket
-    without any live call — safe under the A1 local no-network boundary.
+    without any live call - safe under the A1 local no-network boundary.
 
-    Live mode (dry_run=False, allow_live=True): acquires a token via MSAL and
-    calls Graph API for minimal structured metadata. No raw content, no email,
-    no file data. Returns a live EvidencePacket.
+    Future live mode (dry_run=False, allow_live=True): may acquire an app-only
+    token and call Graph API only after a later owner-approved app-only
+    credential boundary. No current API route passes those flags.
     """
     if observe_target not in ALLOWED_OBSERVE_TARGETS:
         return create_evidence_packet(
@@ -79,8 +79,9 @@ def observe_graph_metadata(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No action taken; Graph auth credentials not configured.",
             outcome_summary=(
-                "Graph auth provider is not configured. "
-                "Set AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET."
+                "Future app-only Graph auth provider is not configured. "
+                "Current approved Microsoft 365 state is delegated-only; "
+                "no client secret, certificate, or app-only grant exists."
             ),
             allow_live=False,
         )
@@ -106,7 +107,7 @@ def observe_graph_metadata(
             allow_live=False,
         )
 
-    # Live path — EvidencePacket validation will reject execution_mode=LIVE if allow_live is False.
+    # Future live path. EvidencePacket validation rejects LIVE when allow_live is False.
     try:
         token = auth.get_token()
     except GraphAuthError as exc:

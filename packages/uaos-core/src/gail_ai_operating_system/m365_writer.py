@@ -1,20 +1,19 @@
-"""M365 Graph R2 internal write actions — governed writes with EvidencePacket.
+"""M365 Graph R2 internal write actions - governed writes with EvidencePacket.
 
 Implements the first M365 internal write (Phase 4, task 4.4). In dry-run
-mode (default and A1 boundary), no live Graph call is made — inputs and
+mode (default and A1 boundary), no live Graph call is made - inputs and
 auth config are validated and a planned EvidencePacket is produced.
 
-Live mode (allow_live=True) calls the Graph API write endpoints and
-produces a live EvidencePacket with rollback instructions.
+Live mode is a dormant future app-only path. Current API routes force dry-run.
 
 Current supported write targets:
   - planner-task: POST /v1.0/planner/tasks (Planner task in a known plan)
 
-Live calls require:
-  - AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET env vars
-  - m365-graph-api-bridge connector promoted from registry-only
-  - allow_live=True passed by the caller
-  - Explicit approval gate at task 4.3 / connector promotion
+Current tenant state:
+  - Delegated permission expansion exists for the local CLI app.
+  - No client secret, certificate, or app-only grant exists.
+  - Future app-only live calls require a separate owner-approved credential
+    boundary, connector promotion, and allow_live=True from a governed caller.
 """
 from __future__ import annotations
 
@@ -49,11 +48,11 @@ def create_planner_task(
     """Execute an R2 internal write — create a Planner task under a known plan.
 
     Dry-run (default): validates inputs and auth config, produces a planned
-    EvidencePacket without any live call — safe under A1 no-network boundary.
+    EvidencePacket without any live call - safe under A1 no-network boundary.
 
-    Live mode (dry_run=False, allow_live=True): acquires a token and calls
-    POST /v1.0/planner/tasks. The created task_id is included in the
-    outcome_summary. No raw task content stored in the packet.
+    Future live mode (dry_run=False, allow_live=True): may acquire an app-only
+    token and call POST /v1.0/planner/tasks only after a later owner-approved
+    app-only credential boundary. No current API route passes those flags.
     """
     if not plan_id.strip():
         return create_evidence_packet(
@@ -115,8 +114,9 @@ def create_planner_task(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No action taken; Graph auth credentials not configured.",
             outcome_summary=(
-                "Graph auth provider is not configured. "
-                "Set AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET."
+                "Future app-only Graph auth provider is not configured. "
+                "Current approved Microsoft 365 state is delegated-only; "
+                "no client secret, certificate, or app-only grant exists."
             ),
             allow_live=False,
         )
@@ -143,7 +143,7 @@ def create_planner_task(
             allow_live=False,
         )
 
-    # Live path — EvidencePacket validation rejects LIVE mode if allow_live is False.
+    # Future live path. EvidencePacket validation rejects LIVE mode if allow_live is False.
     try:
         token = auth.get_token()
     except GraphAuthError as exc:

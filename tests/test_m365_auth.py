@@ -15,7 +15,12 @@ os.environ.setdefault("GAIL_OS_API_KEY", "test-key-local")
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
 
-from gail_ai_operating_system.m365_auth import GraphAuthError, GraphAuthProvider  # noqa: E402
+from gail_ai_operating_system.m365_auth import (  # noqa: E402
+    APP_ONLY_AUTH_PROFILE_STATE,
+    CURRENT_M365_IDENTITY_BOUNDARY,
+    GraphAuthError,
+    GraphAuthProvider,
+)
 from main import app  # noqa: E402
 
 client = TestClient(app)
@@ -135,6 +140,10 @@ def test_m365_status_returns_scope_and_boundary(monkeypatch):
     data = resp.json()
     assert data["scope"] == "https://graph.microsoft.com/.default"
     assert "A1" in data["boundary"]
+    assert data["identity_boundary"] == CURRENT_M365_IDENTITY_BOUNDARY
+    assert data["app_only_profile_state"] == APP_ONLY_AUTH_PROFILE_STATE
+    assert "delegated-only" in data["note"]
+    assert "No client secret" in data["note"]
 
 
 def test_m365_status_missing_auth_returns_422():

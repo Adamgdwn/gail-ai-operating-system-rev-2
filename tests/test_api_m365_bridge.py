@@ -71,12 +71,15 @@ def test_m365_bridge_unit_validation_passes():
     assert report.valid, f"Validation failed: {report.reasons}"
 
 
-def test_m365_bridge_display_name():
+def test_m365_bridge_future_app_only_boundary_language():
     registry = ConnectorRegistry()
     bridge = registry.get_profile(BRIDGE_ID)
     assert bridge is not None
     assert "Graph" in bridge.display_name
-    assert "svc-gail-os-graph" in bridge.notes
+    assert "future app-only" in bridge.display_name
+    assert "delegated-only" in bridge.notes
+    assert "no AZURE_CLIENT_SECRET-backed credential" in bridge.notes
+    assert "certificate" in bridge.notes
 
 
 def test_m365_status_missing_auth_returns_422():

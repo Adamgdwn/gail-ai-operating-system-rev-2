@@ -91,11 +91,11 @@ reach GAIL OS over DirectLink and Graphify on Linux localhost; GAIL OS Graphify
 fact/evidence contracts and Graphify CNS API route contracts are green. The
 report was rebased onto `origin/main` at `5478b64`, after another agent added
 GAIL OS OKP, Signal Gravity L1, CP-5 GAIL OS proof, R4 doctrine/schema,
-R4 dry-run simulation, and R4 live-executor code. The next safe lane is a
-bounded local CNS connection-test proof. The Linux request to expand Entra
-permissions remains a separate Microsoft 365 connector-promotion decision and
-is not approved by this connection scout. R4 live-executor code being present
-on `main` is not approval to run R4 live mutations.
+R4 dry-run simulation, and R4 synthetic execution-record code. The next safe
+lane is a bounded local CNS connection-test proof. The Linux request to expand
+Entra permissions remains a separate Microsoft 365 connector-promotion decision
+and is not approved by this connection scout. R4 synthetic execution-record
+code being present on `main` is not approval to run R4 live mutations.
 
 Follow-on CTP-2 status: as of 2026-06-28T18:19:59-06:00, the local triangle
 proof is integration complete. Linux proved Freedom to GAIL OS, Freedom to

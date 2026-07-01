@@ -26,7 +26,7 @@ NOW = "2026-06-28T12:00:00Z"
 VALID_BODY = {
     "mission_id": "mission-persist-001",
     "action_id": "action-store-task",
-    "actor": "svc-gail-os-graph",
+    "actor": "gail-os-m365-dry-run-actor",
     "created_at": NOW,
     "plan_id": "plan-gail-ops-001",
     "bucket_id": "bucket-missions-001",

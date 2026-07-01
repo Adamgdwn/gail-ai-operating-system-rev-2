@@ -1,6 +1,6 @@
 # Agent Instructions
 
-## CNS Role (Guided AI Labs Agentic OS - updated 2026-06-29)
+## CNS Role (Guided AI Labs Agentic OS - updated 2026-07-01)
 
 **Layer:** GAIL OS - Deep-brain / Autonomic Management
 **Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate
@@ -19,8 +19,9 @@ of action, not a brake on it.
 **Current state:** Rev 2 has moved past the older Chunk 1-19 framing. Current
 `main` includes the Python spine, FastAPI HTTP surface, connector and agent
 registries, authority override, dry-run M365 observe/write surfaces, evidence
-store, OKP and Signal Gravity work, R4 charter/dry-run/live-executor code, and
-Azure Container Apps pilot deployment records. The current 2026-06-29 active
+store, OKP and Signal Gravity work, R4 charter/dry-run/synthetic
+execution-record code, and Azure Container Apps pilot deployment records. The
+current 2026-06-29 active
 informing lane is
 `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`.
 
@@ -33,7 +34,7 @@ informing lane is
 - `local_proof_runner.py` — Complete no-network mission → policy → relay → evidence proof path
 - `graphify_acceleration.py` — local sanitized relationship-fact contract for later Graphify learning
 - `operating_knowledge.py` and `signal_gravity.py` — OKP records and local signal ranking
-- `charter_profile.py`, `r4_dry_run_simulator.py`, `r4_live_executor.py` — R4 charter surfaces, still owner-gated by doctrine
+- `charter_profile.py`, `r4_dry_run_simulator.py`, `r4_synthetic_execution_record.py` — R4 charter and synthetic proof-record surfaces; no live external adapter is exported
 
 **Current planning route:** Stay away from Freedom implementation work unless
 Adam explicitly routes the session there. For GAIL OS work, import the

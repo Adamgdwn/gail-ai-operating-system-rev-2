@@ -301,10 +301,13 @@ def initial_connector_profiles() -> tuple[ConnectorProfile, ...]:
         ),
         ConnectorProfile(
             connector_id="m365-graph-api-bridge",
-            display_name="Microsoft Graph API bridge (svc-gail-os-graph)",
+            display_name="Microsoft Graph API bridge (future app-only placeholder)",
             system_family="Microsoft 365",
             owner="Adam Goodwin",
-            tenant_or_workspace="guidedailabs.com Entra ID tenant — Graph API, client-credentials, least privilege",
+            tenant_or_workspace=(
+                "A.G. Operations tenant has delegated CLI app permission "
+                "expansion; app-only client credentials are not provisioned"
+            ),
             current_state="registry-only",
             allowed_capabilities=("planning-only", "inventory-only", "readiness-check"),
             prohibited_capabilities=(
@@ -316,7 +319,11 @@ def initial_connector_profiles() -> tuple[ConnectorProfile, ...]:
                 "billing changes",
             ),
             data_classes=("internal",),
-            approval_gate="Connector must be promoted to inventory-only with an explicit Graph scope list and Adam approval before any live Graph API call. Task 4.3 (R0 observe) is the next approval gate.",
+            approval_gate=(
+                "Connector must receive explicit Adam approval, a credential "
+                "boundary decision, an app-only scope list, and connector "
+                "promotion before any live app-only Graph API call."
+            ),
             retention_rule="No raw Graph API payloads, email content, file content, user data, or tenant secrets. Structured metadata summaries only, after explicit scope approval.",
             audit_requirements=("mission_id", "connector_id", "capability", "result", "stop_reason"),
             stop_triggers=(
@@ -325,9 +332,20 @@ def initial_connector_profiles() -> tuple[ConnectorProfile, ...]:
                 "m365_tenant_or_permission_change",
                 "connector_profile_required",
             ),
-            failure_behavior="Stop on auth failure, token exposure, scope creep, write attempt, live read without approved scope, or any deviation from the svc-gail-os-graph identity boundary.",
+            failure_behavior=(
+                "Stop on auth failure, token exposure, scope creep, write "
+                "attempt, live read without approved scope, or any ambiguity "
+                "between delegated current state and future app-only promotion."
+            ),
             live_access_enabled=False,
-            notes="Graph auth provider is registered in gail_ai_operating_system.m365_auth (task 4.2) for the svc-gail-os-graph identity. AZURE_TENANT_ID / AZURE_CLIENT_ID / AZURE_CLIENT_SECRET env vars required at runtime. Live access requires task 4.3 approval and connector state promotion.",
+            notes=(
+                "Graph auth provider is registered in "
+                "gail_ai_operating_system.m365_auth for synthetic tests and "
+                "future app-only promotion planning only. Current approved "
+                "tenant state is delegated-only via the local Microsoft 365 "
+                "CLI app; no AZURE_CLIENT_SECRET-backed credential, client "
+                "secret, certificate, or app-only grant exists."
+            ),
         ),
         ConnectorProfile(
             connector_id="quickbooks-finance-planning-boundary",

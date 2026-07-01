@@ -1,13 +1,15 @@
-"""Microsoft Graph authentication provider for GAIL OS.
+"""Future app-only Microsoft Graph authentication provider for GAIL OS.
 
-Provides machine-to-machine (client credentials) auth for Microsoft Graph API.
-Credentials are read exclusively from environment variables — never hardcoded,
-never committed.
+Current approved Microsoft 365 tenant state is delegated-only: the local CLI
+app has delegated permissions and admin consent, but no client secret,
+certificate, or app-only grant exists. This provider is a dormant
+client-credentials path for isolated tests and a later owner-gated app-only
+promotion.
 
-Required env vars:
-  AZURE_TENANT_ID      — Entra ID tenant identifier
-  AZURE_CLIENT_ID      — App registration client ID (svc-gail-os-graph)
-  AZURE_CLIENT_SECRET  — App registration client secret (rotate on schedule)
+Future app-only env vars, if owner-approved later:
+  AZURE_TENANT_ID      - Entra ID tenant identifier
+  AZURE_CLIENT_ID      - Future app-only app registration client ID
+  AZURE_CLIENT_SECRET  - Future app-only client secret
 
 A1 local no-network boundary: get_token() makes a live MSAL call. Do not call
 it inside tests without mocking. Use is_configured() to check readiness first.
@@ -21,6 +23,10 @@ import msal
 
 GRAPH_SCOPE = "https://graph.microsoft.com/.default"
 _AUTHORITY_BASE = "https://login.microsoftonline.com/"
+CURRENT_M365_IDENTITY_BOUNDARY = (
+    "delegated-permissions-approved; app-only-secret-certificate-not-created"
+)
+APP_ONLY_AUTH_PROFILE_STATE = "future-only-unprovisioned"
 
 
 class GraphAuthError(RuntimeError):
@@ -28,11 +34,11 @@ class GraphAuthError(RuntimeError):
 
 
 class GraphAuthProvider:
-    """Client-credentials Graph auth provider backed by MSAL.
+    """Future app-only client-credentials Graph auth provider backed by MSAL.
 
-    Follows Stage 2 naming standard: the app registration is svc-gail-os-graph,
-    least-privilege, scoped explicitly in the Azure app manifest — never
-    admin-consented broadly.
+    This does not represent the current approved Microsoft 365 identity
+    boundary. It is available only for synthetic tests and a later explicit
+    app-only promotion gate.
     """
 
     def __init__(self, tenant_id: str, client_id: str, client_secret: str) -> None:
@@ -61,8 +67,10 @@ class GraphAuthProvider:
         """
         if not self.is_configured():
             raise GraphAuthError(
-                "Graph auth is not configured. "
-                "Set AZURE_TENANT_ID, AZURE_CLIENT_ID, and AZURE_CLIENT_SECRET."
+                "Future app-only Graph auth is not configured. "
+                "Current approved Microsoft 365 state is delegated-only. "
+                "Set AZURE_TENANT_ID, AZURE_CLIENT_ID, and AZURE_CLIENT_SECRET "
+                "only after an owner-approved app-only credential boundary exists."
             )
         authority = f"{_AUTHORITY_BASE}{self._tenant_id}"
         app = msal.ConfidentialClientApplication(

@@ -1,12 +1,12 @@
-"""
-R4 live executor for GAIL AI Operating System Rev 2.
+"""R4 synthetic execution-record builder for GAIL AI Operating System Rev 2.
 
-Wraps graphify-workspace-cockpit charter execution results in a formal
-EvidencePacket and OKP. This is the GAIL OS authority layer for live
-R4 execution — it does not perform graph mutations directly.
+Wraps a synthetic Graphify stale-claim review result in a formal
+EvidencePacket and OKP. This records the shape of a future R4 proof path, but
+it does not execute external adapters, mutate Graphify, approve R4 live
+execution, or create a signed AuthorityEnvelope.
 
-execution_mode = "live", allow_live = True.
-No datetime.now() — inject execution_timestamp.
+execution_mode = "dry-run", allow_live = False.
+No datetime.now() - inject execution_timestamp.
 """
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from .r4_dry_run_simulator import build_r4_001_charter, validate_charter_authori
 
 
 @dataclass(frozen=True)
-class R4LiveResult:
-    """Output of a complete R4 live execution. no_live_mutations is always False."""
+class R4SyntheticExecutionRecord:
+    """Output of an R4 synthetic execution-record proof."""
 
     charter_id: str
     charter_valid: bool
@@ -34,85 +34,79 @@ class R4LiveResult:
     okp: dict                      # OKP record
     rollback_data: list[dict]
     execution_timestamp: str
-    no_live_mutations: bool        # always False for live execution
+    no_live_mutations: bool
 
 
-def build_live_evidence_packet(
+def build_synthetic_execution_evidence_packet(
     charter: CharterProfile,
     action_count: int,
     execution_timestamp: str,
     graphify_execution_result: dict,
 ) -> EvidencePacket:
-    """
-    Build a live EvidencePacket for a completed R4 stale-claim review.
-
-    Uses allow_live=True — this is the key gate that differentiates live
-    evidence from dry-run evidence.
-    """
+    """Build a dry-run EvidencePacket for the R4 synthetic record proof."""
     rollback_data = graphify_execution_result.get("rollback_data", [])
     return create_evidence_packet(
         mission_id="mission-r4-001-graphify-stale-claim",
         action_id="action-r4-001-stale-claim-review",
-        actor="gail-os-r4-executor",
+        actor="gail-os-r4-synthetic-recorder",
         action_type="graphify_stale_claim_review",
         authority_basis=(
-            f"charter-r4-001-graphify-stale-claim [R4/A3] — {action_count} candidates reviewed"
+            "charter-r4-001-graphify-stale-claim [R4/A3] synthetic proof "
+            f"record - {action_count} candidates reviewed; no external "
+            "mutation approved"
         ),
         result=EvidenceResult.SUCCESS.value,
-        execution_mode=ExecutionMode.LIVE.value,
+        execution_mode=ExecutionMode.DRY_RUN.value,
         created_at=execution_timestamp,
         envelope_id=None,
         rollback_note=(
-            f"rollback_data: {len(rollback_data)} entities — restore prior_status to revert"
+            "Synthetic record only; no external mutation occurred. "
+            f"rollback_data describes {len(rollback_data)} entities hypothetically."
         ),
         outcome_summary=(
-            f"R4-001 executed live: {action_count} stale claims marked review_required"
+            f"R4-001 synthetic record: {action_count} stale claims would be "
+            "marked review_required if a later signed authority path approved execution."
         ),
-        allow_live=True,
+        allow_live=False,
     )
 
 
-def build_live_okp(
+def build_synthetic_execution_okp(
     charter: CharterProfile,
     evidence_packet: EvidencePacket,
     graphify_execution_result: dict,
     execution_timestamp: str,
 ) -> dict:
-    """
-    Build an OKP record for a completed live R4 execution.
-
-    record_type = "charter.executed", execution_mode = "live", status = "observed".
-    """
+    """Build an OKP record for the R4 synthetic execution-record proof."""
     action_count = graphify_execution_result.get("action_count", 0)
     date_compact = execution_timestamp[:10].replace("-", "")
     return {
-        "okp_id": f"okp-r4-001-live-{date_compact}",
-        "record_type": "charter.executed",
-        "source_system": "gail-os-r4-executor",
+        "okp_id": f"okp-r4-001-synthetic-record-{date_compact}",
+        "record_type": "charter.synthetic_execution_recorded",
+        "source_system": "gail-os-r4-synthetic-recorder",
         "source_ref": charter.charter_id,
         "summary": (
-            f"R4-001 live execution: {action_count} candidates marked review_required."
+            f"R4-001 synthetic record: {action_count} candidates would be "
+            "marked review_required only after later signed authority approval."
         ),
         "authority_level": "R4",
         "status": "observed",
-        "execution_mode": "live",
+        "execution_mode": "dry-run",
         "created_at": execution_timestamp,
         "evidence_id": evidence_packet.evidence_id,
     }
 
 
-def run_r4_live_execution(
+def run_r4_synthetic_execution_record(
     graphify_execution_result: dict,
     execution_timestamp: str | None = None,
-) -> R4LiveResult:
-    """
-    Run the R4 live execution authority layer end-to-end.
+) -> R4SyntheticExecutionRecord:
+    """Run the R4 synthetic execution-record proof end-to-end.
 
-    Accepts a graphify_execution_result dict produced by
-    graphify-workspace-cockpit's execute_r4_stale_claim_review, wraps it in
-    a validated EvidencePacket and OKP, and returns an R4LiveResult.
+    Accepts a synthetic graphify_execution_result dict, wraps it in a dry-run
+    EvidencePacket and OKP, and returns an R4SyntheticExecutionRecord.
 
-    No datetime.now() — defaults to "2026-06-28T00:00:00Z" if not supplied.
+    No datetime.now() - defaults to "2026-06-28T00:00:00Z" if not supplied.
     """
     ts = execution_timestamp if execution_timestamp is not None else "2026-06-28T00:00:00Z"
 
@@ -125,20 +119,20 @@ def run_r4_live_execution(
     candidates_reviewed = graphify_execution_result.get("candidates_reviewed", [])
     rollback_data = graphify_execution_result.get("rollback_data", [])
 
-    evidence_packet = build_live_evidence_packet(
+    evidence_packet = build_synthetic_execution_evidence_packet(
         charter=charter,
         action_count=action_count,
         execution_timestamp=ts,
         graphify_execution_result=graphify_execution_result,
     )
-    okp = build_live_okp(
+    okp = build_synthetic_execution_okp(
         charter=charter,
         evidence_packet=evidence_packet,
         graphify_execution_result=graphify_execution_result,
         execution_timestamp=ts,
     )
 
-    return R4LiveResult(
+    return R4SyntheticExecutionRecord(
         charter_id=charter.charter_id,
         charter_valid=charter_valid,
         action_count=action_count,
@@ -147,13 +141,13 @@ def run_r4_live_execution(
         okp=okp,
         rollback_data=rollback_data,
         execution_timestamp=ts,
-        no_live_mutations=False,
+        no_live_mutations=True,
     )
 
 
 __all__ = [
-    "R4LiveResult",
-    "build_live_evidence_packet",
-    "build_live_okp",
-    "run_r4_live_execution",
+    "R4SyntheticExecutionRecord",
+    "build_synthetic_execution_evidence_packet",
+    "build_synthetic_execution_okp",
+    "run_r4_synthetic_execution_record",
 ]

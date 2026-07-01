@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-01
+
+- Corrected PH-2 truth-in-naming boundaries: replaced the exported R4
+  live-executor surface with `r4_synthetic_execution_record.py`, which records
+  dry-run synthetic evidence and OKP records without advertising external
+  execution. M365 auth, status, registry, and dry-run wrappers now state that
+  the current tenant approval is delegated-only and that no client secret,
+  certificate, or app-only grant exists. No live Microsoft 365 action,
+  credential, OAuth/consent flow, Graphify ingest, external adapter, or R4 live
+  execution was added.
+
 ## 2026-06-29
 
 - Added
@@ -144,12 +155,13 @@
   production service behavior, or retained/printed/committed auth secrets.
 - Completed CMS-A for current-main stabilization. The
   `m365-graph-api-bridge` registry profile now records the
-  `svc-gail-os-graph` identity in notes, the stale connector-registry expected
-  ID set includes the new planning-only bridge, and the focused connector/M365
-  tests, full Python suite, and GitHub Actions run `28326055021` pass. The
-  bridge remains `registry-only`, `live_access_enabled=False`, and no endpoint,
-  Graph scope, Microsoft 365 live access, cloud placement, Graphify ingest,
-  schema publication, secrets handling, or authority expansion was added.
+  then-current app-only placeholder identity in notes, the stale
+  connector-registry expected ID set includes the new planning-only bridge, and
+  the focused connector/M365 tests, full Python suite, and GitHub Actions run
+  `28326055021` pass. The bridge remains `registry-only`,
+  `live_access_enabled=False`, and no endpoint, Graph scope, Microsoft 365 live
+  access, cloud placement, Graphify ingest, schema publication, secrets
+  handling, or authority expansion was added.
 - Split the current-main stabilization overlay into
   `docs/decisions/2026-06-28 - Current Main Stabilization Work Packet.md` so
   low-token startups can read the CMS-A/CMS-B/CMS-C plan without opening the

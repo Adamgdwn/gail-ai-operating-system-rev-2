@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T10:44:03-06:00
-Status: active remediation plan; PH-1 task complete; PH-2 awaiting owner approval
+Last Updated: 2026-07-01T10:57:46-06:00
+Status: active remediation plan; PH-2 task complete; EX-1 awaiting owner approval
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -93,7 +93,7 @@ the system should claim fully functional agentic operation.
 | Freedom linkage | FastAPI routes already provide the shape Freedom needs: health, missions, actions, authority, evidence, connectors, agents, and M365 dry-run probes. Local and Azure proof records exist. | The next layer needs a consistent `cns_trace_id`, `FreedomRelationshipBrief`, idempotency key, event ledger, and read model that lets Freedom reason across user intent, GAIL authority, Graphify context, and tactile-tool evidence. | Freedom can reach GAIL OS, but it needs a richer memory and trace contract to become the primary agentic business partner surface. | P1 |
 | Graphify linkage | Sanitized fact export, fingerprints, preview/diff posture, and no-authority doctrine are strong. Graphify is treated as intelligence and context, not execution authority. | Persistent ingest remains owner-gated and not yet a normal replay path. The system needs a local replay/event-ledger proof and a synthetic fact-bundle proof before promotion. | Graphify can accelerate context, but the operator needs confidence that knowledge updates are traceable, reversible, and not authority-bearing. | P1 |
 | Tactile tools and Microsoft 365 | Dry-run observe/write endpoints are guarded and evidence-producing. Delegated tenant permissions were approved separately, with no secret or certificate created. | Code currently includes client-credential expectations while the latest M365 approval is delegated-only. The target should explicitly support two connector profiles: delegated operator auth and app-only service auth, each with separate scopes, authority envelopes, and proof gates. | This is the most important integration mismatch before live tactile-tool work. Without reconciliation, agents may assume the wrong identity and authority model. | P0 |
-| R4 execution semantics | R0-R5 doctrine is clear and the R4 simulator/test surface gives the repo a concrete autonomy vocabulary. | `r4_live_executor.py` is publicly exported and creates live-labeled evidence even though it does not call external systems. The naming can be misunderstood by future agents. | For a fully agentic system, naming and feature gates must make real execution authority unambiguous. | P0 |
+| R4 execution semantics | R0-R5 doctrine is clear and the R4 simulator/test surface gives the repo a concrete autonomy vocabulary. | PH-2 corrected the old live-labeled proof wrapper by replacing it with `r4_synthetic_execution_record.py`, but full R4 AuthorityEnvelope execution remains future work. | For a fully agentic system, naming and feature gates must make real execution authority unambiguous. | P0 |
 | Evidence and persistence | EvidencePacket and local evidence storage exist, and M365 dry-run writes produce retrievable evidence. | Persistence is not uniform across missions, approvals, overrides, Graphify handoff previews, and action lifecycle events. `local_store/` should be explicitly ignored or redirected if it is local runtime state. | Users need a dependable audit trail from request to result, especially when using phone/tablet/Freedom surfaces asynchronously. | P1 |
 | Quality controls | Full pytest, schema export, frontend build, npm audit, and governance preflight are green when run with the right tooling. | Python dependencies are unpinned, there is no durable Python lock/pyproject path, governance-check does not yet enforce all controls named in `project-control.yaml`, and deprecation warnings remain. | The repo is testable, but repeatability needs to improve before release-ready claims. | P1 |
 | Operations and release docs | Authority boundaries and current stabilization status are well documented. | Risk register, deployment guide, and runbook still contain placeholder sections. | A future operator or support agent lacks enough recovery, rollback, and escalation guidance. | P2 |
@@ -228,8 +228,8 @@ Recommended work:
 - Define two Microsoft 365 connector profiles:
   - Delegated operator profile: uses user/operator delegated auth and is suited
     to owner-present or owner-approved action paths.
-  - App-only service profile: uses service identity such as `svc-gail-os-graph`
-    only after separate credential, scope, and authority-envelope approval.
+  - App-only service profile: uses a named service identity only after separate
+    credential, scope, and authority-envelope approval.
 - Reconcile `m365_auth.py`, reader, writer, docs, tests, and connector registry
   records with the two-profile model.
 - Promote in stages: dry-run, read-only proof against owner-approved test
@@ -370,7 +370,7 @@ observed owner environment.
 |---|---|---|---|---|---|
 | RMP-0 | owner approved; draft complete | none | Draft complete | 2026-07-01T10:43:19-06:00 | RMP-0 Handoff |
 | PH-1 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:44:03-06:00 | PH-1 Handoff |
-| PH-2 | planned | RMP-0 owner approval | Task complete | 2026-07-01T10:11:09-06:00 | pending |
+| PH-2 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:57:46-06:00 | PH-2 Handoff |
 | EX-1 | planned | RMP-0 owner approval | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
 | EX-2 | planned | EX-1 | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
 | EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
@@ -565,9 +565,9 @@ Context manifest:
 
 - Known files:
   - `AGENTS.md`
-  - `packages/uaos-core/src/gail_ai_operating_system/r4_live_executor.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/r4_synthetic_execution_record.py`
   - `packages/uaos-core/src/gail_ai_operating_system/__init__.py`
-  - `tests/test_r4_live_executor.py`
+  - `tests/test_r4_synthetic_execution_record.py`
   - `packages/uaos-core/src/gail_ai_operating_system/m365_auth.py`
   - `packages/uaos-core/src/gail_ai_operating_system/m365_reader.py`
   - `packages/uaos-core/src/gail_ai_operating_system/m365_writer.py`
@@ -577,16 +577,16 @@ Context manifest:
   - `tests/test_m365_write.py`
   - `docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`
 - Discovery scope:
-  - find imports/exports and tests for `r4_live_executor`;
+  - find imports/exports and tests for the old R4 live-labeled proof wrapper;
   - find code/docs implying app-only M365 credentials, client secrets, or
-    `svc-gail-os-graph` runtime availability.
+    runtime service-identity availability.
 - Do not read: command center internals, EX read-model code, Graphify internals,
   or unrelated M365 tenant/provider docs.
 
 Scope:
 
-- Rename, quarantine, or feature-gate the R4 live executor so synthetic proof
-  code cannot be mistaken for a real external-system adapter.
+- Replace the old R4 live-labeled proof wrapper so synthetic proof code cannot
+  be mistaken for a real external-system adapter.
 - Preserve tests by updating names/imports/expected language only as needed.
 - Reconcile M365 identity language so current approved tenant state is clear:
   delegated permission expansion exists; app-only secret/certificate does not.
@@ -988,7 +988,48 @@ Open risks / next-chunk notes:
 
 #### PH-2 Handoff
 
-Status: not started.
+Status: task complete (2026-07-01T10:57:46-06:00).
+
+Completed:
+
+- Replaced the exported R4 live-labeled module with
+  `packages/uaos-core/src/gail_ai_operating_system/r4_synthetic_execution_record.py`.
+- Removed the old top-level R4 live-named result/function exports; exported
+  `R4SyntheticExecutionRecord` and
+  `run_r4_synthetic_execution_record` instead.
+- Updated R4 focused tests to assert dry-run evidence, synthetic OKP record
+  language, and `no_live_mutations=True`.
+- Reconciled M365 auth, reader, writer, status API, connector registry, and
+  focused tests so the current state is delegated-only and app-only credentials
+  are explicitly future-only/unprovisioned.
+- Updated `AGENTS.md`, `START_HERE.md`, and `docs/CHANGELOG.md` so active
+  startup and history do not advertise a live executor or current app-only
+  credential.
+
+Validation:
+
+- Baseline before edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  563 passed, 4 warnings, 55 subtests.
+- Focused after edits:
+  `uv run --with-requirements requirements.txt python -m pytest tests/test_r4_synthetic_execution_record.py tests/test_m365_auth.py tests/test_api_m365_bridge.py tests/test_m365_observe.py tests/test_m365_write.py tests/test_m365_evidence_store.py -q`
+  passed: 79 passed, 1 warning.
+- Full after edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  564 passed, 4 warnings, 55 subtests.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- `git diff --check` passed after the final handoff edit.
+- Targeted scan passed with no hits in active code/tests/startup/remediation
+  docs for the old R4 live module/symbol names or service-placeholder identity.
+
+Open risks / next-chunk notes:
+
+- Historical June reports still mention the old R4 live-executor name as
+  history. Active startup/docs now route to the synthetic record surface.
+- The dormant future app-only code path still exists for tests and later
+  promotion planning, but no credential, secret, certificate, OAuth/consent, or
+  live Microsoft 365 behavior was added.
+- Next planned implementation chunk remains EX-1, pending owner approval.
 
 #### EX-1 Handoff
 

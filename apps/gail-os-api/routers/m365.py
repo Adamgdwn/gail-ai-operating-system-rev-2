@@ -13,7 +13,12 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 
 from deps import verify_api_key
-from gail_ai_operating_system.m365_auth import GRAPH_SCOPE, GraphAuthProvider
+from gail_ai_operating_system.m365_auth import (
+    APP_ONLY_AUTH_PROFILE_STATE,
+    CURRENT_M365_IDENTITY_BOUNDARY,
+    GRAPH_SCOPE,
+    GraphAuthProvider,
+)
 from gail_ai_operating_system.m365_reader import observe_graph_metadata
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
@@ -33,7 +38,13 @@ def m365_status() -> dict:
         "client_secret_present": client_secret_present,
         "scope": GRAPH_SCOPE,
         "boundary": "A1 local no-network",
-        "note": "Live token acquisition requires Azure app registration and env vars set at runtime.",
+        "identity_boundary": CURRENT_M365_IDENTITY_BOUNDARY,
+        "app_only_profile_state": APP_ONLY_AUTH_PROFILE_STATE,
+        "note": (
+            "Current approved Microsoft 365 tenant state is delegated-only. "
+            "No client secret, certificate, or app-only grant exists; AZURE_* "
+            "presence only describes a future app-only test/promotion path."
+        ),
     }
 
 
