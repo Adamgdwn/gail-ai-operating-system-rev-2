@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T12:43:18-06:00
-Status: active remediation plan; GLW-1 integration complete; next chunk owner-gated
+Last Updated: 2026-07-01T17:39:23-06:00
+Status: active remediation plan; functional promotion plan detailed; next chunk owner-gated
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -45,6 +45,12 @@ Adam clarified the following direction on 2026-07-01:
   projection, sample state, wrappers, or docs without the corresponding
   governed connection must be labeled as groundwork, not a complete
   operational user capability.
+- Adam confirmed on 2026-07-01 that the local computer has full tenant access
+  and agentic-control capability. This is operational capacity, not automatic
+  approval to execute live reads, writes, sends, permission changes, tenant
+  configuration changes, Graphify ingest, or R4 live actions. Each promotion
+  step still needs an explicit chunk, owner approval, tested integration path,
+  evidence, and rollback or recovery posture.
 
 This direction does not approve live Microsoft 365 business actions, Graphify
 production ingest, R4 live execution, production readiness, or source-of-truth
@@ -459,6 +465,13 @@ observed owner environment.
 | RMP-1 | task complete | owner direction | Task complete | 2026-07-01T11:58:04-06:00 | RMP-1 Handoff |
 | EX-3 | integration complete | EX-1 | Integration complete | 2026-07-01T12:19:58-06:00 | EX-3 Handoff |
 | GLW-1 | integration complete | EX-1, EX-3, owner approval | Integration complete | 2026-07-01T12:43:18-06:00 | GLW-1 Handoff |
+| RMP-2 | task complete | GLW-1, owner direction | Task complete | 2026-07-01T17:39:23-06:00 | RMP-2 Handoff |
+| OCS-1 | planned; owner-gated | GLW-1, RMP-2 | Integration complete | not started | Pending |
+| M365-OAUTH-1 | planned; owner-gated | RMP-2, explicit auth/login approval | Integration complete | not started | Pending |
+| M365-RO-1 | planned; owner-gated | M365-OAUTH-1 | Integration complete | not started | Pending |
+| M365-W1 | planned; owner-gated | M365-RO-1, GLW-1, explicit live-write approval | Integration complete | not started | Pending |
+| CSX-1 | planned; owner-gated | OCS-1, cross-surface auth/hosting decision | Draft complete or Integration complete | not started | Pending |
+| GFR-1 | planned; owner-gated | GLW-1, EX-3 | Integration complete | not started | Pending |
 
 ### Dependency Map
 
@@ -470,11 +483,20 @@ RMP-0  Plan adoption and chunk detail
         ├─ EX-2  Command center live read-only
         └─ EX-3  Freedom relationship brief
               └─ GLW-1  Governed local write action loop
+                    ├─ OCS-1  Operator caller surface for GLW-1
+                    │    ├─ CSX-1  Cross-surface access path
+                    │    └─ M365-OAUTH-1  Delegated OAuth and /me proof
+                    │         └─ M365-RO-1  First read-only M365 canary
+                    │              └─ M365-W1  First governed M365 write canary
+                    └─ GFR-1  Graphify fact-bundle replay from governed records
 ```
 
 PH-1 and PH-2 may run before EX-1. EX-2 and EX-3 must wait for EX-1's
-handoff. No chunk may begin until Adam approves it after reviewing this
-execution packet.
+handoff. Post-GLW chunks may be planned here, but no implementation chunk may
+begin until Adam approves it after reviewing this execution packet. Live
+Microsoft 365 login, content reads, writes, sends, tenant configuration, and
+Graphify ingest remain separately owner-gated even if the local machine already
+has tenant access.
 
 ### RMP-0 - Adopt Experience-First Execution Plan
 
@@ -1092,13 +1114,589 @@ Rollback:
 - Revert the GLW-1 commit; local runtime records under `local_store/` are
   ignored local state and can be archived or deleted by the operator if needed.
 
+### Post-GLW Functional Promotion Gates
+
+Intent: turn the completed local CNS write loop into a usable, governed
+operator system without confusing local capability, tenant access, and live
+execution authority.
+
+Promotion rule:
+
+- A surface is not "functional" unless Adam can use it through an approved UI,
+  API, or Freedom-facing path to accomplish the scoped outcome, see truthful
+  state, recover from failure, and inspect evidence.
+- A connector is not "live" unless it has authenticated identity, least
+  privilege, policy gating, idempotency or duplicate protection where relevant,
+  evidence capture, safe errors, and a rollback or recovery posture.
+- Tenant access on this computer is a prerequisite. It does not by itself
+  approve live Microsoft 365 reads, writes, sends, admin consent, permission
+  changes, tenant configuration, app-only credentials, or R4 execution.
+- Each chunk follows plan, do, check, act. If a chunk cannot be tested through
+  its real approved path, it must be labeled as groundwork or blocked.
+
+Functional claim ladder:
+
+| Gate | Claim Allowed After Gate Passes | Hard Limit |
+|---|---|---|
+| OCS-1 | Adam can operate the local governed action loop from a real surface. | Local CNS state only; no external tool execution. |
+| M365-OAUTH-1 | GAIL OS can authenticate delegated Microsoft Graph access for the signed-in operator and prove `/me`. | No business content read/write beyond the approved proof. |
+| M365-RO-1 | GAIL OS can perform one approved read-only M365 canary and preserve evidence. | No writes, sends, deletes, or configuration changes. |
+| M365-W1 | GAIL OS can perform one approved reversible M365 write canary after authority and approval gates. | No broad production data changes, sends, tenant config, or unattended R4. |
+| CSX-1 | Adam can reach the governed surface from approved devices through an approved auth/transport path. | No raw API keys in browser/mobile clients. |
+| GFR-1 | GAIL OS can replay governed local records into Graphify-ready fact bundles. | Graphify does not approve, execute, or become evidence source of truth. |
+
+### OCS-1 - Operator Caller Surface For GLW-1
+
+Intent: make the completed GLW-1 loop dogfoodable by giving Adam an approved
+operator surface to create a local mission/action request, approve or hold it,
+and inspect the resulting evidence and trace state.
+
+Depends on: GLW-1, RMP-2, owner approval.
+
+Recommended next: yes. This is the safest first functional promotion because
+it exercises the real local CNS loop before live connector authority is added.
+
+Target completion: Integration complete.
+
+Size: Medium.
+
+User/operator outcome:
+
+- From the command center, Adam can create or select a local mission, request a
+  governed local action, record an approval/rejection/hold/more-info decision,
+  and see the result reflected in trace and Freedom-brief state.
+
+Deepest approved integration path:
+
+```text
+Command center -> Vite API-key proxy -> GAIL OS API
+  -> mission store / local action loop / approval store / evidence store
+  -> trace read model -> Freedom relationship brief
+```
+
+Preconditions:
+
+- No live connector, OAuth, Graphify ingest, hosted worker, or R4 live
+  execution approval is implied.
+- `GLW-1` endpoints exist and tests are green.
+- Local API remains protected by the existing `X-Api-Key` dependency through
+  the dev/preview proxy. Browser code must not receive the API key value.
+
+Context manifest:
+
+- Known files:
+  - `apps/command-center/src/readModelClient.ts`
+  - `apps/command-center/src/App.tsx`
+  - `apps/command-center/src/cockpitData.ts`
+  - `apps/command-center/vite.config.ts`
+  - `apps/gail-os-api/routers/actions.py`
+  - `apps/gail-os-api/routers/missions.py`
+  - `tests/test_api_actions.py`
+  - command-center README and relevant docs
+- Discovery scope:
+  - inspect only frontend/API files needed to call existing mission, local
+    action, decision, trace, and Freedom brief contracts.
+- Do not read or modify:
+  - live M365 auth;
+  - Graphify runtime services;
+  - hosted deployment settings;
+  - Freedom repo implementation;
+  - R4 live adapters.
+
+Plan:
+
+- Add typed command-center client calls for:
+  - `POST /api/v1/missions` if a new mission needs to be created from the UI;
+  - `POST /api/v1/actions/local`;
+  - `POST /api/v1/actions/local/{action_id}/decisions`;
+  - trace/Freedom brief refresh after writes.
+- Design the UI as an operator work surface, not a demo form:
+  - intent/mission entry;
+  - proposed local action details;
+  - explicit authority and no-external-execution language;
+  - decision controls for approve, reject, hold, and more-info;
+  - evidence and trace references after completion;
+  - stale-state, duplicate-submit, unauthorized, offline, loading, empty, and
+    protocol-error states.
+- Preserve responsive use on laptop, tablet, and phone-sized browser surfaces.
+
+Do:
+
+- Implement the smallest complete command-center vertical slice over the real
+  local endpoints.
+- Keep API-key handling server/proxy-side only.
+- Disable decision controls while a request is pending.
+- Refresh the read model and trace/brief views after each write.
+
+Check:
+
+```bash
+npm --prefix apps/command-center run build
+npm --prefix apps/command-center audit --audit-level=moderate
+uv run --with-requirements requirements.txt python -m pytest tests/test_api_actions.py tests/test_api_read_model.py tests/test_public_api.py -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+- Run a local smoke against a temporary GAIL OS API and Vite/preview server:
+  create mission -> create local action -> decide -> verify trace/Freedom brief
+  update.
+- Capture viewport evidence for desktop, tablet, and phone widths.
+
+Act:
+
+- If the existing API contract is insufficient, stop and record the exact API
+  gap instead of faking frontend state.
+- If UI state cannot be verified through the local API, mark the chunk
+  `Blocked` or `Draft complete with known gaps`.
+
+Acceptance:
+
+- Adam can perform the local governed action loop from the command center
+  without using curl or manually editing JSON files.
+- The UI reports truthful no-external-execution status.
+- Duplicate or stale decisions are visible and recoverable.
+- Evidence, trace, and Freedom brief references are visible after a decision.
+- Browser/mobile clients never receive raw API keys.
+
+Rollback:
+
+- Revert the OCS-1 commit. Existing local action/evidence records are local
+  runtime state and can remain for audit or be archived/deleted by the
+  operator.
+
+### M365-OAUTH-1 - Delegated OAuth Foundation And `/me` Proof
+
+Intent: turn tenant access on this computer into a controlled delegated
+Microsoft Graph identity path for GAIL OS, with a minimal signed-in operator
+proof before any business content is read or written.
+
+Depends on: RMP-2, explicit owner approval for browser/device login and live
+Microsoft Graph `/me` proof.
+
+Target completion: Integration complete.
+
+Size: Medium.
+
+User/operator outcome:
+
+- Adam can sign in with the approved A.G. Operations tenant identity and see a
+  governed GAIL OS evidence record proving delegated Graph access to the signed
+  in operator profile.
+
+Deepest approved integration path:
+
+```text
+GAIL OS API -> delegated MSAL auth profile -> Microsoft identity platform
+  -> Microsoft Graph /me -> redacted evidence packet -> trace/Freedom brief
+```
+
+Preconditions:
+
+- Owner explicitly approves opening the OAuth/device-code/browser login surface
+  for this chunk.
+- A designated Entra application registration is selected. Prefer the existing
+  delegated local-agent registration if its non-secret `tenant_id` and
+  `client_id` match the intended boundary.
+- Required environment variables are provided locally with non-secret values:
+  - `M365_TENANT_ID`;
+  - `M365_CLIENT_ID`;
+  - `GAIL_OS_API_KEY`;
+  - `GAIL_OS_STORE_PATH` when a non-default store is desired.
+- No client secret, certificate, app-only credential, tenant-wide mutation, or
+  admin-consent change is introduced by this chunk.
+
+Context manifest:
+
+- Known files:
+  - existing M365 auth/status/read/write modules;
+  - M365 API routers and tests;
+  - evidence, trace, action, and read-model modules;
+  - `.env.example` if safe non-secret placeholders need documentation.
+- Discovery scope:
+  - inspect current M365 delegated/app-only boundary code;
+  - verify current official Microsoft Graph/MSAL guidance before
+    implementation because auth guidance changes over time.
+- Do not read or modify:
+  - tenant secrets;
+  - app-only credential creation;
+  - live write routes;
+  - Graphify ingest;
+  - hosted deployment secrets.
+
+Plan:
+
+- Add a delegated-auth profile that is separate from future app-only service
+  identity.
+- Use MSAL or the repo-approved auth library rather than hand-rolled OAuth.
+- Store token cache only in an ignored, local, operator-controlled location.
+- Never log, print, commit, screenshot, or return access/refresh tokens.
+- Add a minimal proof endpoint or command that calls only Microsoft Graph
+  `/me`, redacts returned data, records evidence, and updates trace state.
+- Make status and errors legible:
+  not configured, login required, consent required, token expired, tenant
+  mismatch, Graph unavailable, permission denied, and proof succeeded.
+
+Do:
+
+- Implement delegated auth status and `/me` proof as a narrow vertical slice.
+- Add runtime validation for environment variables and tenant/client identity.
+- Add tests with mocked MSAL/Graph responses for success and failure states.
+- Add one manual live proof only after owner approval opens the login surface.
+
+Check:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest tests/test_m365_auth.py tests/test_api_m365_bridge.py tests/test_m365_observe.py tests/test_m365_evidence_store.py tests/test_api_read_model.py -q
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+- Manual live check, only when approved:
+  sign in -> call `/me` proof -> verify redacted evidence and trace/Freedom
+  brief visibility.
+
+Act:
+
+- If login, tenant, scope, or consent behavior differs from plan, stop and
+  record the exact identity boundary issue.
+- If token cache cannot be kept local and ignored, do not continue to content
+  access.
+
+Acceptance:
+
+- Delegated identity and app-only identity are visibly separate in code,
+  config, docs, status, and tests.
+- `/me` proof succeeds with delegated auth and records redacted evidence.
+- Tokens and secrets are never printed, committed, returned to browser code, or
+  stored outside the approved local cache path.
+- The feature does not read mail, calendar, files, Planner, SharePoint, Teams,
+  Exchange config, or any business content.
+
+Rollback:
+
+- Revert the M365-OAUTH-1 commit.
+- Clear the local token cache through the documented logout/cache-clear path.
+- No tenant permissions or app registrations should need rollback because this
+  chunk must not change tenant configuration.
+
+### M365-RO-1 - First Read-Only Microsoft 365 Canary
+
+Intent: prove one real, least-privilege, read-only Microsoft 365 business-data
+path through GAIL OS authority, trace, and evidence without permitting writes,
+sends, deletes, or configuration changes.
+
+Depends on: M365-OAUTH-1, owner approval for the chosen read-only canary target.
+
+Target completion: Integration complete.
+
+Size: Medium.
+
+User/operator outcome:
+
+- Adam can request one approved read-only M365 canary from GAIL OS and inspect
+  the sanitized result, evidence, and trace state.
+
+Canary target selection:
+
+- Pick exactly one first target at chunk start:
+  - signed-in user's calendar metadata;
+  - a sandbox Planner plan/task list;
+  - a sandbox SharePoint/OneDrive folder metadata read;
+  - a mailbox metadata read that does not expose message body by default.
+- Prefer a sandbox/canary resource with no client data and no production
+  operational consequence.
+
+Deepest approved integration path:
+
+```text
+Operator surface or API -> GAIL OS policy gate -> delegated M365 profile
+  -> Microsoft Graph read-only endpoint -> sanitized evidence
+  -> trace/read model/Freedom brief
+```
+
+Preconditions:
+
+- Delegated `/me` proof is passing.
+- The required scope is already consented or Adam explicitly approves a
+  permission/consent change as a separate record.
+- The target resource is named, sandboxed where practical, and documented.
+- No live writes are in scope.
+
+Plan:
+
+- Add one read-only action type with explicit schema, validation, and
+  authority classification.
+- Require idempotency/correlation IDs for retry-safe evidence recording.
+- Redact or summarize returned data so evidence proves access without leaking
+  unnecessary private content.
+- Show read proof state in the read model and Freedom brief.
+
+Do:
+
+- Implement one read-only connector path over the delegated auth profile.
+- Add mocked Graph tests for success, permission denied, unavailable, tenant
+  mismatch, stale token, and empty result.
+- Add one owner-approved live canary proof.
+
+Check:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest tests/test_m365_auth.py tests/test_m365_observe.py tests/test_m365_evidence_store.py tests/test_api_read_model.py tests/test_public_api.py -q
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+- Manual live canary, only when approved:
+  request read -> verify sanitized evidence -> verify trace and Freedom brief.
+
+Act:
+
+- If the target requires broader permissions than expected, stop and record a
+  permission decision instead of broadening silently.
+- If returned data cannot be safely minimized, choose a narrower target.
+
+Acceptance:
+
+- Exactly one read-only canary works end to end.
+- Evidence is useful but minimized.
+- Failures are visible and safe.
+- No write, send, delete, or configuration call is possible through this path.
+
+Rollback:
+
+- Revert the M365-RO-1 commit.
+- Disable the route or feature flag if added.
+- Clear local cached proof records only if Adam chooses to remove local audit
+  evidence.
+
+### M365-W1 - First Governed Microsoft 365 Write Canary
+
+Intent: prove one low-risk, reversible Microsoft 365 write through GAIL OS
+policy, approval, connector identity, idempotency, evidence, and recovery
+controls.
+
+Depends on: M365-RO-1, GLW-1, explicit owner approval for live M365 write.
+
+Target completion: Integration complete.
+
+Size: Medium to Large.
+
+User/operator outcome:
+
+- Adam can approve one clearly labeled canary write and see the created object,
+  evidence, trace, and rollback/recovery note.
+
+Recommended first write:
+
+- Create a Planner task in a sandbox plan, or create a similarly low-risk
+  sandbox artifact. Do not choose mail send, Teams send, permission change,
+  Exchange configuration, deletion, broad SharePoint mutation, or production
+  business workflow as the first write.
+
+Deepest approved integration path:
+
+```text
+Operator action request -> GAIL OS policy gate -> GLW approval decision
+  -> delegated M365 connector -> Microsoft Graph write canary
+  -> evidence packet -> trace/read model/Freedom brief -> recovery note
+```
+
+Preconditions:
+
+- Read-only canary and delegated auth proof are passing.
+- Target sandbox resource is named.
+- Rollback/recovery path is documented before implementation.
+- Required delegated write scope is known and already consented, or any consent
+  change is separately approved and recorded.
+
+Plan:
+
+- Promote one existing dry-run concept or add one new live-canary action type.
+- Require:
+  - approved local action or authority envelope reference;
+  - idempotency key;
+  - target allowlist;
+  - explicit dry-run/live mode;
+  - evidence packet before and after attempted write;
+  - safe handling of partial success and retry.
+- Keep live execution below R4. This is owner-approved canary action, not
+  unattended autonomous execution.
+
+Do:
+
+- Implement one write path with hard target validation and no broad mutation.
+- Add tests with mocked Graph success, duplicate request, permission denied,
+  validation failure, partial failure, and rollback-note behavior.
+- Run one owner-approved live canary after tests pass.
+
+Check:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest tests/test_m365_write.py tests/test_m365_auth.py tests/test_api_actions.py tests/test_m365_evidence_store.py tests/test_api_read_model.py -q
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+- Manual live canary, only when approved:
+  approve action -> execute canary -> verify evidence -> inspect created
+  object -> verify rollback/recovery note.
+
+Act:
+
+- If a write cannot be made reversible or low-risk, stop and choose a safer
+  canary.
+- If Graph returns partial success, preserve evidence and do not retry without
+  idempotency confirmation.
+
+Acceptance:
+
+- One live canary write succeeds or fails safely with evidence.
+- The write cannot run without prior authority/approval reference.
+- Duplicate submissions do not create duplicate external objects.
+- Operator can understand what happened and how to recover.
+
+Rollback:
+
+- Disable or revert the live write route.
+- Use the documented recovery path for the sandbox object if needed.
+- Preserve evidence unless Adam explicitly chooses to purge local runtime
+  records.
+
+### CSX-1 - Cross-Surface Operator Access Path
+
+Intent: let Adam reach the governed operator surface from laptop, tablet, and
+phone-appropriate surfaces without exposing raw API keys or bypassing GAIL OS
+authority.
+
+Depends on: OCS-1 and an owner decision on local-only, private-network, or
+hosted access path.
+
+Target completion: Draft complete for access decision, or Integration complete
+if Adam approves a specific implementation path.
+
+Size: Medium to Large depending on selected path.
+
+User/operator outcome:
+
+- Adam can use an approved surface from the intended device class and see the
+  same governed state and action controls without weakening auth.
+
+Decision options:
+
+- Local-only command center on the Windows computer.
+- Private network or DirectLink-style development access for trusted devices.
+- Hosted Azure Container Apps or other approved reverse-proxy path with real
+  auth and secret management.
+- Freedom-mediated phone/tablet interaction using summaries, links, and
+  governed bridge contracts rather than a competing native Rev 2 phone app.
+
+Preconditions:
+
+- OCS-1 proves the local operator loop.
+- Threat boundary is selected before implementation.
+- Raw `GAIL_OS_API_KEY` is never exposed to browsers, mobile clients, or
+  screenshots.
+
+Plan:
+
+- Decide the access pattern first.
+- Define auth, session, key handling, allowed origins, logging, rate limiting,
+  and failure semantics for the selected path.
+- Add runbook notes for startup, shutdown, key rotation, and blocked access.
+
+Check:
+
+- Use the validation appropriate to the selected implementation:
+  frontend build/audit, API tests, Playwright viewport checks, security review,
+  and manual device smoke.
+
+Acceptance:
+
+- Adam can reach the surface from the approved device class.
+- API keys and tokens remain server-side or in approved local secure storage.
+- Unauthorized and offline states are safe and understandable.
+
+Rollback:
+
+- Disable the selected route/proxy/hosted path and revert the code/config
+  commit.
+
+### GFR-1 - Graphify Fact-Bundle Replay From Governed Records
+
+Intent: turn GLW-1 action, approval, evidence, and trace records into
+Graphify-ready fact bundles so relationship memory can learn from governed
+evidence without becoming authority or execution.
+
+Depends on: GLW-1, EX-3, owner approval.
+
+Target completion: Integration complete.
+
+Size: Medium.
+
+User/operator outcome:
+
+- Adam can preview what governed facts would be sent to Graphify and verify
+  source trace/evidence references before any persistent Graphify ingest is
+  approved.
+
+Deepest approved integration path:
+
+```text
+GAIL OS local records -> fact-bundle projector -> preview/diff/cache
+  -> trace/Freedom brief refs -> later owner-gated Graphify ingest
+```
+
+Preconditions:
+
+- No persistent Graphify ingest is approved by this chunk.
+- Fact bundles must be sanitized, source-referenced, idempotent, and
+  reversible at the preview/cache layer.
+
+Plan:
+
+- Project GLW-1 records into deterministic fact bundles with trace, action,
+  approval, evidence, and source references.
+- Add preview and diff commands or endpoints under ignored local output.
+- Add tests for sanitization, idempotency, duplicate handling, and no-authority
+  language.
+
+Check:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest tests/test_graphify_acceleration.py tests/test_read_model.py tests/test_api_read_model.py -q
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Acceptance:
+
+- Fact bundles can be generated from governed local records.
+- Preview output is deterministic and sanitized.
+- No Graphify authority, approval, execution, or evidence-source-of-truth
+  claim is introduced.
+
+Rollback:
+
+- Revert the GFR-1 commit.
+- Delete ignored preview/cache output if Adam wants a clean local workspace.
+
 ### Deferred Owner-Gated Work
 
 Do not start these without a separate owner greenlight:
 
-- Graphify synthetic fact-bundle replay, then persistent ingest;
-- Microsoft 365 dual-profile promotion and any live read/write/send/config
-  proof;
+- OCS-1 operator caller surface implementation;
+- M365-OAUTH-1 delegated OAuth/login and `/me` live proof;
+- M365-RO-1 read-only Microsoft 365 canary;
+- M365-W1 live Microsoft 365 write canary;
+- CSX-1 cross-surface access path;
+- GFR-1 Graphify fact-bundle replay, then later persistent ingest;
+- Microsoft 365 app-only/service identity promotion and any broader
+  read/write/send/config proof;
 - full R4 authority-envelope, stop conditions, and adapter allowlist;
 - dependency pinning, placeholder ops-doc replacement, lint, and secret-scan
   gates before any release-ready claim.
@@ -1615,10 +2213,66 @@ Open risks / next-chunk notes:
   login, live Microsoft 365 read/write/send/config, Graphify persistent ingest,
   hosted worker/relay polling, R4 live execution, cloud placement change, or
   source-of-truth migration was added.
-- The next likely functional promotion is either a command-center/Freedom
-  caller surface for GLW-1, Graphify synthetic fact-bundle replay from these
-  records, or a Microsoft 365 delegated OAuth/read-only proof. Each remains
-  owner-gated.
+- The functional promotion path is now detailed in RMP-2: OCS-1 first for a
+  dogfoodable local operator surface, then owner-gated M365 delegated auth,
+  read-only canary, write canary, cross-surface access, and Graphify replay
+  tracks.
+
+#### RMP-2 Handoff
+
+Status: task complete.
+
+Completed: 2026-07-01T17:39:23-06:00
+
+Owner direction:
+
+- Adam asked to fold the functional promotion path into this plan so the work
+  can become real, not merely documented.
+- Adam also stated that this computer has full tenant access and agentic
+  control capability. The plan now treats that as operational capacity, not as
+  blanket approval for live reads, writes, sends, permission changes, tenant
+  configuration, Graphify ingest, or R4 live execution.
+
+What changed:
+
+- Updated this document's metadata and owner-direction section.
+- Added RMP-2 and the next functional promotion chunks to Execution Status:
+  OCS-1, M365-OAUTH-1, M365-RO-1, M365-W1, CSX-1, and GFR-1.
+- Updated the dependency map so completed GLW-1 now feeds the planned
+  operator surface, M365 delegated-auth/read/write promotion path,
+  cross-surface access path, and Graphify fact-bundle replay path.
+- Added Post-GLW Functional Promotion Gates with allowed functional claims and
+  hard limits for each gate.
+- Added detailed plan/do/check/act chunk packets for:
+  - OCS-1 command-center operator caller surface for GLW-1;
+  - M365-OAUTH-1 delegated OAuth foundation and `/me` proof;
+  - M365-RO-1 first read-only M365 canary;
+  - M365-W1 first governed M365 write canary;
+  - CSX-1 cross-surface operator access path;
+  - GFR-1 Graphify fact-bundle replay from governed records.
+- Updated Deferred Owner-Gated Work so these chunks are planned but not
+  silently approved for implementation.
+
+Endpoint/schema/UI shape introduced:
+
+- None. RMP-2 is a planning/document-control chunk only.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh` passed with 0 warnings before edits.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings after edits.
+- `git diff --check` passed.
+
+Open risks / next-chunk notes:
+
+- OCS-1 is the recommended next implementation chunk because it makes GLW-1
+  usable from a real local operator surface without promoting live connector
+  authority.
+- M365-OAUTH-1, M365-RO-1, and M365-W1 are planned promotion gates only. They
+  still require explicit owner approval before any OAuth/login, live Graph
+  read, or live Graph write.
+- CSX-1 needs an owner decision on local-only, private-network, hosted, or
+  Freedom-mediated access before implementation.
 
 ## Non-Approval Boundary
 
