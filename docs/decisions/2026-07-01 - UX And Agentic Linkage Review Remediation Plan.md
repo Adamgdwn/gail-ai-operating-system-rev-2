@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T12:19:58-06:00
-Status: active remediation plan; EX-3 integration complete; next chunk owner-gated
+Last Updated: 2026-07-01T12:43:18-06:00
+Status: active remediation plan; GLW-1 integration complete; next chunk owner-gated
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -458,6 +458,7 @@ observed owner environment.
 | EX-2 | integration complete | EX-1 | Integration complete | 2026-07-01T11:41:25-06:00 | EX-2 Handoff |
 | RMP-1 | task complete | owner direction | Task complete | 2026-07-01T11:58:04-06:00 | RMP-1 Handoff |
 | EX-3 | integration complete | EX-1 | Integration complete | 2026-07-01T12:19:58-06:00 | EX-3 Handoff |
+| GLW-1 | integration complete | EX-1, EX-3, owner approval | Integration complete | 2026-07-01T12:43:18-06:00 | GLW-1 Handoff |
 
 ### Dependency Map
 
@@ -468,6 +469,7 @@ RMP-0  Plan adoption and chunk detail
   └─ EX-1  Shared read model and trace spine
         ├─ EX-2  Command center live read-only
         └─ EX-3  Freedom relationship brief
+              └─ GLW-1  Governed local write action loop
 ```
 
 PH-1 and PH-2 may run before EX-1. EX-2 and EX-3 must wait for EX-1's
@@ -981,11 +983,119 @@ Rollback:
 
 - Revert the EX-3 commit.
 
+### GLW-1 - Governed Local Write Action Loop
+
+Intent: provide the first functional local write/action loop so an approved
+surface can create a local policy-gated action request, record an operator
+decision, persist evidence, and inspect the result through the same trace and
+Freedom brief surfaces.
+
+Depends on: EX-1, EX-3, owner approval.
+
+Owner approval:
+
+- Adam approved proceeding after the next-step recommendation by saying
+  "Okay, sounds good. Proceed."
+
+Size: Medium
+
+Preconditions:
+
+- No live connector, OAuth, Graphify ingest, hosted worker, or R4 live
+  execution approval is implied.
+- The API remains protected by the existing local `X-Api-Key` dependency.
+- The path operates on existing persisted local mission records.
+
+Context manifest:
+
+- Known files:
+  - `packages/uaos-core/src/gail_ai_operating_system/action.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/approval_actions.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/local_action_loop.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/read_model.py`
+  - `apps/gail-os-api/routers/actions.py`
+  - `tests/test_action.py`
+  - `tests/test_approval_actions.py`
+  - `tests/test_api_actions.py`
+  - `tests/test_api_read_model.py`
+  - `tests/test_public_api.py`
+- Discovery scope:
+  - inspect existing mission, action, approval, evidence, trace, and read-model
+    contracts;
+  - avoid command-center UI internals unless the read-model contract requires
+    a later frontend update.
+- Do not read or modify:
+  - Freedom repo implementation;
+  - live Microsoft 365 auth/connector internals beyond existing boundary
+    language;
+  - Graphify runtime services;
+  - hosted deployment settings;
+  - R4 live adapters.
+
+Implementation:
+
+- Add local action persistence for governed `Action` records.
+- Extend approval persistence so decisions can be listed by trace/action.
+- Add a transport-independent GLW-1 local action loop that:
+  - creates policy-gated local action requests in `approval_requested` state;
+  - records approve, reject, hold, and more-info decisions;
+  - checks expected action state before decision writes;
+  - uses idempotency keys for retry-safe decision writes;
+  - writes dry-run evidence packets;
+  - records `action.validated`, `approval.decided`, and `evidence.recorded`
+    trace events;
+  - explicitly reports no execution authority.
+- Add authenticated API endpoints:
+  - `POST /api/v1/actions/local`;
+  - `POST /api/v1/actions/local/{action_id}/decisions`.
+- Extend trace and Freedom brief read models with local action and approval
+  refs/snapshots.
+
+Out of scope / stop before:
+
+- No live M365 read/write/send/configuration.
+- No OAuth or browser consent/login.
+- No Graphify persistent ingest.
+- No R4 live execution.
+- No hosted worker, relay polling, or external system mutation.
+- No command-center write UI yet.
+
+Deliverables:
+
+- Functional local write endpoints.
+- Local action, approval, evidence, and trace persistence.
+- Idempotency and stale-state protection for decisions.
+- Read-model/Freedom brief visibility.
+- Focused API/core/public-export tests.
+
+Acceptance:
+
+- A caller can create a mission, create a local action request, approve or hold
+  it, retrieve evidence, inspect the trace, and see action/approval state in a
+  Freedom relationship brief.
+- Duplicate decision requests with the same idempotency key return existing
+  records instead of creating duplicate decisions or evidence.
+- Decisions against stale expected state are rejected.
+- Live connector requests remain blocked by policy.
+
+Validation:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest tests/test_action.py tests/test_approval_actions.py tests/test_api_actions.py tests/test_api_read_model.py tests/test_read_model.py tests/test_public_api.py -q
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Rollback:
+
+- Revert the GLW-1 commit; local runtime records under `local_store/` are
+  ignored local state and can be archived or deleted by the operator if needed.
+
 ### Deferred Owner-Gated Work
 
 Do not start these without a separate owner greenlight:
 
-- one governed local write action after EX-1 through EX-3;
 - Graphify synthetic fact-bundle replay, then persistent ingest;
 - Microsoft 365 dual-profile promotion and any live read/write/send/config
   proof;
@@ -1410,6 +1520,105 @@ Open risks / next-chunk notes:
   the likely next promotion gate is not another brief; it is a governed action
   or connector-promotion slice with explicit auth, identity, evidence, and
   rollback boundaries.
+
+#### GLW-1 Handoff
+
+Status: integration complete.
+
+Completion target: Integration complete.
+
+Completed: 2026-07-01T12:43:18-06:00
+
+Owner approval:
+
+- Adam approved proceeding with GLW-1 by saying "Okay, sounds good. Proceed."
+
+Files / surfaces changed:
+
+- Added local action persistence in
+  `packages/uaos-core/src/gail_ai_operating_system/action.py`.
+- Extended approval persistence in
+  `packages/uaos-core/src/gail_ai_operating_system/approval_actions.py`.
+- Added evidence packet loading in
+  `packages/uaos-core/src/gail_ai_operating_system/evidence_store.py`.
+- Added transport-independent GLW-1 orchestration in
+  `packages/uaos-core/src/gail_ai_operating_system/local_action_loop.py`.
+- Extended `packages/uaos-core/src/gail_ai_operating_system/read_model.py`
+  with action and approval refs/snapshots.
+- Added authenticated API routes in `apps/gail-os-api/routers/actions.py`.
+- Updated public exports in
+  `packages/uaos-core/src/gail_ai_operating_system/__init__.py`.
+- Added focused tests in `tests/test_action.py`,
+  `tests/test_approval_actions.py`, `tests/test_api_actions.py`, and
+  `tests/test_public_api.py`.
+- Updated `AGENTS.md`, `README.md`, `docs/architecture.md`,
+  `docs/source-of-truth-map.md`, and `docs/CHANGELOG.md`.
+
+Endpoint/schema shape introduced:
+
+- `POST /api/v1/actions/local` returns
+  `schema_version: rev2.local-action-request.v1` with:
+  - `cns_trace_id`;
+  - `duplicate_detected`;
+  - persisted `action` in `approval_requested` state;
+  - local `policy_decision`;
+  - `trace_event`;
+  - `write_state`;
+  - `execution_authority.granted = false`.
+- `POST /api/v1/actions/local/{action_id}/decisions` returns
+  `schema_version: rev2.local-action-decision.v1` with:
+  - `cns_trace_id`;
+  - `duplicate_detected`;
+  - updated `action`;
+  - append-only approval `decision`;
+  - dry-run `evidence`;
+  - `approval.decided` and `evidence.recorded` trace events;
+  - `execution_authority.target_action_executed = false`.
+- `GET /api/v1/traces/{cns_trace_id}` now includes `action_refs` and
+  `approval_refs`.
+- `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` now includes
+  `action_snapshot` and `approval_snapshot`.
+
+Runtime behavior:
+
+- The local action request endpoint loads an existing mission, evaluates the
+  local policy gate, creates a governed `Action`, advances it to
+  `approval_requested`, persists it, and records an `action.validated` event.
+- The decision endpoint supports `approved`, `rejected`, `held`, and
+  `more_info_requested`, checks `expected_status`, persists decision and
+  evidence records, and records trace events.
+- Duplicate decision requests with the same idempotency key return existing
+  decision/evidence records with HTTP 200 and do not create duplicate approval
+  or evidence files.
+- Stale expected-state decisions return HTTP 409.
+- Live connector requests such as Microsoft 365 content reads remain blocked by
+  the policy gate.
+
+Validation:
+
+- Focused GLW-1 subset:
+  `uv run --with-requirements requirements.txt python -m pytest tests/test_action.py tests/test_approval_actions.py tests/test_api_actions.py tests/test_api_read_model.py tests/test_read_model.py tests/test_public_api.py -q`
+  passed: 108 passed, 4 warnings, 31 subtests.
+- Full Python suite:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  591 passed, 6 warnings, 73 subtests.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- `git diff --check` passed.
+- `graphify update . --no-cluster` passed; final run reported no additional
+  code-graph changes after the cleanup pass.
+
+Open risks / next-chunk notes:
+
+- This is the first real local governed write loop, but it is still local CNS
+  state only.
+- No command-center write UI, Freedom runtime implementation, OAuth/browser
+  login, live Microsoft 365 read/write/send/config, Graphify persistent ingest,
+  hosted worker/relay polling, R4 live execution, cloud placement change, or
+  source-of-truth migration was added.
+- The next likely functional promotion is either a command-center/Freedom
+  caller surface for GLW-1, Graphify synthetic fact-bundle replay from these
+  records, or a Microsoft 365 delegated OAuth/read-only proof. Each remains
+  owner-gated.
 
 ## Non-Approval Boundary
 

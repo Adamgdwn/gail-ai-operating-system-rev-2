@@ -2,6 +2,16 @@
 
 ## 2026-07-01
 
+- Added GLW-1 governed local write-action loop:
+  `POST /api/v1/actions/local` now persists policy-gated local action requests
+  in `approval_requested` state, and
+  `POST /api/v1/actions/local/{action_id}/decisions` records stale-protected
+  local approval decisions, append-only approval records, dry-run evidence
+  packets, and trace events. Trace lookup and Freedom briefs now include local
+  action and approval snapshots. This is functional local CNS state only; it
+  does not add OAuth, live Microsoft 365 reads/writes/sends/configuration,
+  Graphify persistent ingest, R4 live execution, or external connector
+  mutation.
 - Added EX-3 Freedom relationship brief runtime support:
   `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` now returns a
   `rev2.freedom-relationship-brief.v1` payload over the shared local trace

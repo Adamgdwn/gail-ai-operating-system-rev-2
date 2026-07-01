@@ -329,25 +329,64 @@ class ApprovalStore:
     def __init__(self, base_path: str | Path) -> None:
         self._base_path = Path(base_path)
 
+    def path_for(self, decision_id: str) -> Path:
+        safe_id = decision_id.strip()
+        if not _safe_decision_id(safe_id):
+            raise ValueError("Approval decision ID is not safe for local storage.")
+        return self._base_path / f"{safe_id}.json"
+
     def write(self, decision: ApprovalDecision) -> Path:
         """Write an ApprovalDecision to local JSON. Returns the written file path."""
         errors = validate_approval_decision(decision)
         if errors:
             raise ValueError(f"ApprovalDecision is invalid: {'; '.join(errors)}")
         self._base_path.mkdir(parents=True, exist_ok=True)
-        path = self._base_path / f"{decision.decision_id}.json"
+        path = self.path_for(decision.decision_id)
         path.write_text(json.dumps(decision.to_dict(), indent=2), encoding="utf-8")
         return path
 
     def read(self, decision_id: str) -> ApprovalDecision:
         """Read an ApprovalDecision by decision_id from local JSON."""
-        path = self._base_path / f"{decision_id}.json"
+        path = self.path_for(decision_id)
         payload = json.loads(path.read_text(encoding="utf-8"))
         return ApprovalDecision.from_dict(payload)
 
     def exists(self, decision_id: str) -> bool:
         """Return True if a decision record file exists for this decision_id."""
-        return (self._base_path / f"{decision_id}.json").exists()
+        return self.path_for(decision_id).exists()
+
+    def list_by_trace(self, cns_trace_id: str) -> tuple[ApprovalDecision, ...]:
+        """Return valid decisions for one CNS trace."""
+        decisions = [decision for decision in self._load_all() if decision.cns_trace_id == cns_trace_id]
+        decisions.sort(key=lambda decision: (decision.decided_at, decision.decision_id))
+        return tuple(decisions)
+
+    def list_by_action(self, action_id: str) -> tuple[ApprovalDecision, ...]:
+        """Return valid decisions for one action."""
+        decisions = [decision for decision in self._load_all() if decision.action_id == action_id]
+        decisions.sort(key=lambda decision: (decision.decided_at, decision.decision_id))
+        return tuple(decisions)
+
+    def _load_all(self) -> list[ApprovalDecision]:
+        if not self._base_path.exists():
+            return []
+        decisions: list[ApprovalDecision] = []
+        for path in sorted(self._base_path.glob("aprv-*.json")):
+            try:
+                decision = ApprovalDecision.from_dict(json.loads(path.read_text(encoding="utf-8")))
+                if not validate_approval_decision(decision):
+                    decisions.append(decision)
+            except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+                continue
+        return decisions
+
+
+def _safe_decision_id(value: str) -> bool:
+    if not value.startswith("aprv-"):
+        return False
+    if any(part in value for part in ("/", "\\", "..")):
+        return False
+    return all(character.isalnum() or character in {"-", "_"} for character in value)
 
 
 __all__ = [

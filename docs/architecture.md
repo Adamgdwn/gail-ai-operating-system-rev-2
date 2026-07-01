@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-07-01T12:16:59-06:00
+Last Updated: 2026-07-01T12:43:18-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -62,6 +62,10 @@ Active now:
   model with observable governed spokes;
 - read-only Freedom relationship brief endpoint over the same trace/read-model
   spine at `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}`;
+- governed local write-action loop at `POST /api/v1/actions/local` and
+  `POST /api/v1/actions/local/{action_id}/decisions`, which records local
+  action state, approval decisions, evidence, and trace events without
+  executing connectors;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -115,6 +119,7 @@ contract, integration test, or explicit boundary is required.
 | Linux reference or worker surface | Superseded v1 reference host only. | Trusted worker clone that pulls from private GitHub. | Linux is not the Rev 2 source of truth and must not rely on tunnel-dependent operation. |
 | Browser command center | Vite React TypeScript shell under `apps/command-center` now renders the read-only hub-and-spoke operating cockpit from `GET /api/v1/read-model` through the local Vite proxy. | Main shared cockpit for desktop, larger tablet, and mobile browser fallback use. | Current shell is read-only; future record writes must go through approved local or relay paths, must not become a second truth store, and must not replace Freedom's core operator role. |
 | Freedom relationship brief API | Authenticated local endpoint `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` over the same trace, mission, evidence, authority, connector, and event read spine used by command center. | Gives Freedom a compact posture and relationship brief for answering "what happened?" and "what is the posture?" | Read-only only; it grants no execution authority, performs no Freedom runtime work, and does not approve live M365, Graphify ingest, OAuth, or R4 execution. |
+| Governed local action write API | Authenticated local endpoints `POST /api/v1/actions/local` and `POST /api/v1/actions/local/{action_id}/decisions` over the mission, action, approval, evidence, and trace stores. | First functional local write loop for recording a policy-gated action request and operator decision that Freedom or command center can inspect through the shared trace layer. | Local CNS state only; decisions are stale-state protected and idempotent, but they do not execute external tools, Microsoft 365, Graphify ingest, R4 live behavior, or hosted workers. |
 | Android phone cockpit | Not built in Rev 2. | Freedom is the core phone-side operator interface for intent capture, approval, pause/resume, status, and safe evidence review; Rev 2 may provide browser fallback or compatibility views that augment Freedom. | Do not build a competing native phone app. No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, direct connector access, generated Freedom config import, or Freedom runtime activation without a bounded later chunk. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
@@ -481,6 +486,7 @@ being introduced.
 | DirectLink is transport/status only. | Active | It can help with explicit cross-machine work, but Rev 2 should not depend on tunneling for normal operation. |
 | Browser-first Rev 2 cockpit with Freedom as core interface. | Active decision | Rev 2 should reach Windows, Linux, Android tablet, and desktop browsers through the Vite React TypeScript shell in `apps/command-center`, while Freedom carries the phone-side operator link. Rev 2 must not build a competing native phone app unless Adam explicitly reverses this decision. |
 | Freedom relationship briefs are read-only CNS posture records. | Active decision | `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` may brief Freedom on local GAIL OS trace, evidence, authority, connector, event, and Graphify-context refs, but it must not become an action, OAuth, live connector, Graphify ingest, or R4 execution path. |
+| Governed local action decisions are local CNS records, not connector execution. | Active decision | `POST /api/v1/actions/local` may create a policy-gated local action request and `POST /api/v1/actions/local/{action_id}/decisions` may record approval/hold/reject/more-info decisions, evidence, and trace events. These records can inform Freedom and command-center surfaces, but they do not execute external systems or grant live M365, Graphify, or R4 authority. |
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |

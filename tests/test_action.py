@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "packages", "ua
 from gail_ai_operating_system.action import (
     Action,
     ActionTransitionError,
+    LocalActionStore,
     TERMINAL_STATES,
     VALID_TRANSITIONS,
     create_action,
@@ -295,6 +296,36 @@ def test_round_trip_serialization():
     assert restored.actor == action.actor
     assert restored.risk_tier == action.risk_tier
     assert restored.arguments == dict(action.arguments)
+
+
+def test_local_action_store_write_and_load_roundtrip(tmp_path):
+    action = make_action()
+    action = transition_action(action, MissionStatus.PROPOSED)
+    store = LocalActionStore(tmp_path / "actions")
+
+    path = store.save(action)
+    loaded = store.load(action.action_id)
+
+    assert path.exists()
+    assert loaded == action
+
+
+def test_local_action_store_lists_by_trace(tmp_path):
+    action = make_action(cns_trace_id="cns-20260701-aabbccddeeff")
+    other = make_action(cns_trace_id="cns-20260701-ffeeddccbbaa")
+    store = LocalActionStore(tmp_path / "actions")
+    store.save(action)
+    store.save(other)
+
+    refs = store.list_by_trace("cns-20260701-aabbccddeeff")
+
+    assert refs == (action,)
+
+
+def test_local_action_store_rejects_unsafe_id(tmp_path):
+    store = LocalActionStore(tmp_path / "actions")
+    with raises(ValueError, match="safe"):
+        store.load("../action-bad")
 
 
 # ── validate_action ────────────────────────────────────────────────

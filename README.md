@@ -63,6 +63,14 @@ posture briefs. The brief gives Freedom mission, authority, connector,
 evidence, event, and Graphify-context references without granting execution
 authority.
 
+The first governed local write loop is available through
+`POST /api/v1/actions/local` and
+`POST /api/v1/actions/local/{action_id}/decisions`. It persists a local
+policy-gated action request, applies a stale-protected approval decision,
+writes an evidence packet, and records trace events. This is local CNS state
+only: it does not execute Microsoft 365, Graphify, R4, or any external
+connector action.
+
 For local live read-only cockpit use, run the API and command center in
 separate shells with the same local key:
 

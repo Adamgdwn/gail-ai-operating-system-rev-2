@@ -52,6 +52,8 @@ not authority and not execution.
 - `GET /api/v1/health` — Liveness and boundary check
 - `POST /api/v1/missions` — Classify and create mission records
 - `POST /api/v1/actions` — Validate proposed actions against policy
+- `POST /api/v1/actions/local` — Persist a policy-gated local action request in `approval_requested` state
+- `POST /api/v1/actions/local/{action_id}/decisions` — Record a stale-protected local approval decision, evidence packet, and trace events without executing connectors
 - `GET /api/v1/authority` — Return read-only R0-R5 authority registry
 - `POST /api/v1/authority/override` — Record override requests
 - `GET /api/v1/evidence/{mission_id}` — Retrieve mission evidence summaries

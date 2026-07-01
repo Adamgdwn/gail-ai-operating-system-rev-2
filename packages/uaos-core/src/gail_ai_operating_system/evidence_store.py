@@ -11,7 +11,7 @@ import json
 import os
 from pathlib import Path
 
-from gail_ai_operating_system.evidence_packet import EvidencePacket
+from gail_ai_operating_system.evidence_packet import EvidencePacket, validate_evidence_packet
 
 
 def _default_store_path() -> Path:
@@ -38,4 +38,29 @@ def save_evidence_packet(
     return file_path
 
 
-__all__ = ["save_evidence_packet"]
+def load_evidence_packet(
+    evidence_id: str,
+    *,
+    store_path: Path | None = None,
+) -> EvidencePacket:
+    """Read one EvidencePacket from the local JSON store."""
+    if not _safe_evidence_id(evidence_id):
+        raise ValueError("Evidence ID is not safe for local storage.")
+    base = store_path if store_path is not None else _default_store_path()
+    file_path = base / f"{evidence_id}.json"
+    packet = EvidencePacket.from_dict(json.loads(file_path.read_text(encoding="utf-8")))
+    errors = validate_evidence_packet(packet)
+    if errors:
+        raise ValueError(f"EvidencePacket is invalid: {'; '.join(errors)}")
+    return packet
+
+
+def _safe_evidence_id(value: str) -> bool:
+    if not value.startswith("evidence-"):
+        return False
+    if any(part in value for part in ("/", "\\", "..")):
+        return False
+    return all(character.isalnum() or character in {"-", "_"} for character in value)
+
+
+__all__ = ["load_evidence_packet", "save_evidence_packet"]

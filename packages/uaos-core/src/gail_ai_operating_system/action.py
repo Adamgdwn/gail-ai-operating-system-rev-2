@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import json
+from pathlib import Path
 from typing import Any, Mapping
 from uuid import uuid4
 
@@ -221,6 +223,56 @@ def validate_action(action: Action) -> list[str]:
     return errors
 
 
+class LocalActionStore:
+    """Local JSON store for governed Action records."""
+
+    def __init__(self, root: str | Path) -> None:
+        self.root = Path(root)
+
+    def path_for(self, action_id: str) -> Path:
+        safe_id = action_id.strip()
+        if not _safe_action_id(safe_id):
+            raise ValueError("Action ID is not safe for local storage.")
+        return self.root / f"{safe_id}.json"
+
+    def save(self, action: Action) -> Path:
+        errors = validate_action(action)
+        if errors:
+            raise ValueError(f"Action is invalid: {'; '.join(errors)}")
+        self.root.mkdir(parents=True, exist_ok=True)
+        path = self.path_for(action.action_id)
+        path.write_text(json.dumps(action.to_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        return path
+
+    def load(self, action_id: str) -> Action:
+        action = Action.from_dict(json.loads(self.path_for(action_id).read_text(encoding="utf-8")))
+        errors = validate_action(action)
+        if errors:
+            raise ValueError(f"Action is invalid: {'; '.join(errors)}")
+        return action
+
+    def exists(self, action_id: str) -> bool:
+        return self.path_for(action_id).exists()
+
+    def list_by_trace(self, cns_trace_id: str) -> tuple[Action, ...]:
+        actions = [action for action in self._load_all() if action.cns_trace_id == cns_trace_id]
+        actions.sort(key=lambda action: (action.created_at, action.action_id))
+        return tuple(actions)
+
+    def _load_all(self) -> list[Action]:
+        if not self.root.exists():
+            return []
+        actions: list[Action] = []
+        for path in sorted(self.root.glob("action-*.json")):
+            try:
+                action = Action.from_dict(json.loads(path.read_text(encoding="utf-8")))
+                if not validate_action(action):
+                    actions.append(action)
+            except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+                continue
+        return actions
+
+
 def _validate_authority_fields(
     authority_level: str,
     risk_tier: int,
@@ -247,6 +299,14 @@ def _validate_authority_fields(
     return errors
 
 
+def _safe_action_id(value: str) -> bool:
+    if not value.startswith("action-"):
+        return False
+    if any(part in value for part in ("/", "\\", "..")):
+        return False
+    return all(character.isalnum() or character in {"-", "_"} for character in value)
+
+
 __all__ = [
     "Action",
     "ActionTransitionError",
@@ -254,6 +314,7 @@ __all__ = [
     "R5_AGENT_BLOCKED_STATES",
     "TERMINAL_STATES",
     "VALID_TRANSITIONS",
+    "LocalActionStore",
     "create_action",
     "transition_action",
     "validate_action",

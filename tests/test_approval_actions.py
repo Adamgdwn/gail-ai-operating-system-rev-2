@@ -528,6 +528,42 @@ def test_approval_store_exists():
         assert store.exists(decision.decision_id)
 
 
+def test_approval_store_lists_by_trace():
+    action = make_approval_requested_action(cns_trace_id="cns-20260701-aabbccddeeff")
+    _, decision = approve_action(
+        action,
+        approver="Adam",
+        rationale="OK",
+        authority_basis="R0",
+        decided_at=DECIDED_AT,
+        cns_trace_id="cns-20260701-aabbccddeeff",
+    )
+    other_action = make_approval_requested_action(cns_trace_id="cns-20260701-ffeeddccbbaa")
+    _, other = approve_action(
+        other_action,
+        approver="Adam",
+        rationale="OK",
+        authority_basis="R0",
+        decided_at=DECIDED_AT,
+        cns_trace_id="cns-20260701-ffeeddccbbaa",
+    )
+    with tempfile.TemporaryDirectory() as tmpdir:
+        store = ApprovalStore(tmpdir)
+        store.write(decision)
+        store.write(other)
+
+        refs = store.list_by_trace("cns-20260701-aabbccddeeff")
+
+        assert refs == (decision,)
+
+
+def test_approval_store_rejects_unsafe_id():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        store = ApprovalStore(tmpdir)
+        with raises(ValueError, match="safe"):
+            store.read("../aprv-bad")
+
+
 def test_approval_store_json_is_readable():
     action = make_approval_requested_action()
     _, decision = reject_action(

@@ -17,6 +17,8 @@ from typing import Any, Iterable, Mapping
 from uuid import uuid4
 
 from .agent_registry import AgentRegistry
+from .action import Action, LocalActionStore
+from .approval_actions import ApprovalDecision, ApprovalStore
 from .authority_registry import authority_registry_payload
 from .connector_registry import ConnectorRegistry
 from .evidence_packet import EvidencePacket
@@ -222,6 +224,16 @@ def default_evidence_store_path(store_root: str | Path | None = None) -> Path:
     return root / "evidence"
 
 
+def default_action_store_path(store_root: str | Path | None = None) -> Path:
+    root = Path(store_root) if store_root is not None else default_store_root()
+    return root / "actions"
+
+
+def default_approval_store_path(store_root: str | Path | None = None) -> Path:
+    root = Path(store_root) if store_root is not None else default_store_root()
+    return root / "approvals"
+
+
 def create_trace_event(
     *,
     cns_trace_id: str,
@@ -339,6 +351,26 @@ def evidence_refs_for_trace(
     return [_evidence_ref(packet) for packet in packets]
 
 
+def action_refs_for_trace(
+    cns_trace_id: str,
+    *,
+    store_root: str | Path | None = None,
+) -> list[dict[str, Any]]:
+    _require_valid_cns_trace_id(cns_trace_id)
+    store = LocalActionStore(default_action_store_path(store_root))
+    return [_action_ref(action) for action in store.list_by_trace(cns_trace_id)]
+
+
+def approval_refs_for_trace(
+    cns_trace_id: str,
+    *,
+    store_root: str | Path | None = None,
+) -> list[dict[str, Any]]:
+    _require_valid_cns_trace_id(cns_trace_id)
+    store = ApprovalStore(default_approval_store_path(store_root))
+    return [_approval_ref(decision) for decision in store.list_by_trace(cns_trace_id)]
+
+
 def mission_refs_for_trace(
     cns_trace_id: str,
     *,
@@ -380,6 +412,8 @@ def build_trace_read_model(
     store = LocalTraceEventStore(default_trace_event_store_path(root))
     events = store.find_by_trace(cns_trace_id)
     evidence_refs = evidence_refs_for_trace(cns_trace_id, store_root=root)
+    action_refs = action_refs_for_trace(cns_trace_id, store_root=root)
+    approval_refs = approval_refs_for_trace(cns_trace_id, store_root=root)
     mission_refs = mission_refs_for_trace(cns_trace_id, store_root=root)
     mission_ids = sorted(
         {
@@ -387,23 +421,41 @@ def build_trace_read_model(
             for value in (
                 [event.mission_id for event in events]
                 + [ref.get("mission_id") for ref in evidence_refs]
+                + [ref.get("mission_id") for ref in action_refs]
+                + [ref.get("mission_id") for ref in approval_refs]
                 + [ref.get("mission_id") for ref in mission_refs]
             )
             if value
         }
     )
-    action_ids = sorted({str(value) for value in [event.action_id for event in events] + [ref.get("action_id") for ref in evidence_refs] if value})
+    action_ids = sorted(
+        {
+            str(value)
+            for value in (
+                [event.action_id for event in events]
+                + [ref.get("action_id") for ref in evidence_refs]
+                + [ref.get("action_id") for ref in action_refs]
+                + [ref.get("action_id") for ref in approval_refs]
+            )
+            if value
+        }
+    )
     evidence_ids = sorted({str(value) for value in [event.evidence_id for event in events] + [ref.get("evidence_id") for ref in evidence_refs] if value})
-    authority_refs = sorted({str(event.authority_ref) for event in events if event.authority_ref})
+    authority_refs = sorted(
+        {str(event.authority_ref) for event in events if event.authority_ref}
+        | {str(ref["decision_id"]) for ref in approval_refs if ref.get("decision_id")}
+    )
     return {
         "schema_version": TRACE_READ_MODEL_SCHEMA_VERSION,
         "cns_trace_id": cns_trace_id,
-        "found": bool(events or evidence_refs or mission_refs),
+        "found": bool(events or evidence_refs or action_refs or approval_refs or mission_refs),
         "mission_ids": mission_ids,
         "action_ids": action_ids,
         "evidence_ids": evidence_ids,
         "authority_refs": authority_refs,
         "mission_refs": mission_refs,
+        "action_refs": action_refs,
+        "approval_refs": approval_refs,
         "evidence_refs": evidence_refs,
         "events": [event.to_dict() for event in events],
     }
@@ -435,8 +487,10 @@ def build_freedom_relationship_brief(
     trace = build_trace_read_model(cns_trace_id, store_root=store_root)
     events = list(trace["events"])
     mission_refs = list(trace["mission_refs"])
+    action_refs = list(trace["action_refs"])
+    approval_refs = list(trace["approval_refs"])
     evidence_refs = list(trace["evidence_refs"])
-    latest_observed_at = _latest_observed_at(events, mission_refs, evidence_refs)
+    latest_observed_at = _latest_observed_at(events, mission_refs, action_refs, approval_refs, evidence_refs)
     stale = _is_stale(latest_observed_at, generated, stale_after_seconds) if trace["found"] else False
     data_state = _brief_data_state(found=bool(trace["found"]), stale=stale)
     graph_context_refs = _graph_context_refs_from_events(events)
@@ -456,10 +510,14 @@ def build_freedom_relationship_brief(
             "evidence_ids": trace["evidence_ids"],
             "authority_refs": trace["authority_refs"],
             "mission_refs": mission_refs,
+            "action_refs": action_refs,
+            "approval_refs": approval_refs,
             "evidence_refs": evidence_refs,
             "event_refs": _event_refs(events),
         },
         "mission_snapshot": _mission_snapshot(mission_refs),
+        "action_snapshot": _action_snapshot(action_refs),
+        "approval_snapshot": _approval_snapshot(approval_refs),
         "authority_snapshot": _authority_snapshot(events, trace["authority_refs"]),
         "connector_state": _connector_state_snapshot(),
         "evidence_snapshot": _evidence_snapshot(evidence_refs),
@@ -517,6 +575,41 @@ def _evidence_ref(packet: EvidencePacket) -> dict[str, Any]:
         "action_type": packet.action_type,
         "created_at": packet.created_at,
         "outcome_summary": packet.outcome_summary,
+    }
+
+
+def _action_ref(action: Action) -> dict[str, Any]:
+    return {
+        "action_id": action.action_id,
+        "cns_trace_id": action.cns_trace_id,
+        "mission_id": action.mission_id,
+        "action_type": action.action_type,
+        "title": action.title,
+        "actor": action.actor,
+        "status": action.status.value,
+        "authority_level": action.authority_level,
+        "risk_tier": action.risk_tier,
+        "created_at": action.created_at,
+        "claimed_at": action.claimed_at,
+        "executed_at": action.executed_at,
+        "envelope_id": action.envelope_id,
+    }
+
+
+def _approval_ref(decision: ApprovalDecision) -> dict[str, Any]:
+    return {
+        "decision_id": decision.decision_id,
+        "cns_trace_id": decision.cns_trace_id,
+        "action_id": decision.action_id,
+        "mission_id": decision.mission_id,
+        "decision_type": decision.decision_type,
+        "decided_by": decision.decided_by,
+        "decided_at": decision.decided_at,
+        "authority_basis": decision.authority_basis,
+        "envelope_id": decision.envelope_id,
+        "hold_until": decision.hold_until,
+        "info_requested": decision.info_requested,
+        "info_from": decision.info_from,
     }
 
 
@@ -580,6 +673,30 @@ def _mission_snapshot(mission_refs: list[dict[str, Any]]) -> dict[str, Any]:
         "current_mission_id": sorted_refs[-1].get("mission_id") if sorted_refs else None,
         "by_status": dict(sorted(status_counts.items())),
         "missions": sorted_refs,
+    }
+
+
+def _action_snapshot(action_refs: list[dict[str, Any]]) -> dict[str, Any]:
+    sorted_refs = _sort_refs_by_timestamp(action_refs, "created_at")
+    status_counts = Counter(str(ref.get("status")) for ref in sorted_refs if ref.get("status"))
+    type_counts = Counter(str(ref.get("action_type")) for ref in sorted_refs if ref.get("action_type"))
+    return {
+        "action_count": len(sorted_refs),
+        "current_action_id": sorted_refs[-1].get("action_id") if sorted_refs else None,
+        "by_status": dict(sorted(status_counts.items())),
+        "by_action_type": dict(sorted(type_counts.items())),
+        "actions": sorted_refs,
+    }
+
+
+def _approval_snapshot(approval_refs: list[dict[str, Any]]) -> dict[str, Any]:
+    sorted_refs = _sort_refs_by_timestamp(approval_refs, "decided_at")
+    decision_counts = Counter(str(ref.get("decision_type")) for ref in sorted_refs if ref.get("decision_type"))
+    return {
+        "approval_count": len(sorted_refs),
+        "latest_decision_at": sorted_refs[-1].get("decided_at") if sorted_refs else None,
+        "by_decision_type": dict(sorted(decision_counts.items())),
+        "approvals": sorted_refs,
     }
 
 
@@ -749,10 +866,14 @@ def _highest_observed_risk_tier(events: list[dict[str, Any]]) -> int | None:
 def _latest_observed_at(
     events: list[dict[str, Any]],
     mission_refs: list[dict[str, Any]],
+    action_refs: list[dict[str, Any]],
+    approval_refs: list[dict[str, Any]],
     evidence_refs: list[dict[str, Any]],
 ) -> str | None:
     values = [event.get("occurred_at") for event in events]
     values.extend(ref.get("created_at") for ref in mission_refs)
+    values.extend(ref.get("created_at") for ref in action_refs)
+    values.extend(ref.get("decided_at") for ref in approval_refs)
     values.extend(ref.get("created_at") for ref in evidence_refs)
     return _latest_timestamp_value(values)
 
@@ -878,10 +999,14 @@ __all__ = [
     "TRACE_READ_MODEL_SCHEMA_VERSION",
     "LocalTraceEventStore",
     "TraceEvent",
+    "action_refs_for_trace",
+    "approval_refs_for_trace",
     "build_freedom_relationship_brief",
     "build_trace_read_model",
     "create_cns_trace_id",
     "create_trace_event",
+    "default_action_store_path",
+    "default_approval_store_path",
     "default_evidence_store_path",
     "default_store_root",
     "default_trace_event_store_path",
