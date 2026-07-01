@@ -1,7 +1,7 @@
 # App Shell Command Center
 
 Created: 2026-06-21T21:06:13-06:00
-Last Updated: 2026-06-21T21:15:59-06:00
+Last Updated: 2026-07-01T11:41:25-06:00
 Status: active decision
 Owner: Adam Goodwin
 
@@ -132,8 +132,14 @@ Chunk Seventeen validation should include:
 
 ## Current Result
 
-This decision permits a buildable browser shell scaffold only. Chunk Eighteen
-may build the first operating cockpit view from local sample data. It must not
-add approval mutation behavior, live bridge behavior, Freedom runtime access,
-M365 adapter work, worker bootstrap, hosted relay, live connector access,
-client data, or production behavior.
+This decision originally permitted a buildable browser shell scaffold only.
+Chunk Eighteen built the first operating cockpit view from local sample data.
+Chunk Nineteen hardened the multi-viewport hub-and-spoke surface. EX-2 later
+wired the cockpit to the shared GAIL OS read-only read model through the local
+Vite proxy.
+
+The current command center still must not add approval mutation behavior, live
+bridge behavior, Freedom runtime access, Microsoft 365 live read/write work,
+Graphify ingest, R4 live execution, worker bootstrap, hosted relay, live
+connector access, client data, or production behavior without a later approved
+chunk.

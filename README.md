@@ -49,12 +49,26 @@ plan, policy-check, save, and load local mission records without connector,
 portal, worker, hosted relay, or production side effects.
 
 The first browser app shell lives under `apps/command-center`. It is a local
-Vite React TypeScript command-center cockpit that renders safe static mission,
-approval-boundary, worker-status, evidence, and connector-posture sample
-records. It does not activate approval actions, service workers, live
-connectors, Freedom runtime access, hosted relay, workers, or production
-behavior. Live read-only command-center data is planned for the EX-2 remediation
-track and is not present in this first-run app shell.
+Vite React TypeScript command-center cockpit that reads the shared GAIL OS
+read model through `GET /api/v1/read-model` when the local API and Vite proxy
+are configured. It shows loading, empty, missing local API key, unauthorized,
+offline, stale-data, and protocol-error states. It does not activate approval
+actions, service workers, live connectors, Microsoft 365 live reads or writes,
+Graphify ingest, Freedom runtime access, hosted relay, workers, or production
+behavior.
+
+For local live read-only cockpit use, run the API and command center in
+separate shells with the same local key:
+
+```powershell
+$env:GAIL_OS_API_KEY = "dev-key-local"
+uv run --with-requirements requirements.txt uvicorn main:app --app-dir apps/gail-os-api --host 127.0.0.1 --port 8123
+```
+
+```powershell
+$env:GAIL_OS_API_KEY = "dev-key-local"
+npm --prefix apps/command-center run dev
+```
 
 Do not connect live Microsoft 365, QuickBooks, finance, billing, client,
 or third-party account systems from this workspace until a later approved

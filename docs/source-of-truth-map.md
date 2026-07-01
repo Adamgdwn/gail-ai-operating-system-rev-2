@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-06-29T19:31:31-06:00
+Last Updated: 2026-07-01T11:41:25-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -85,7 +85,7 @@ not move into Graphify.
 | `docs/migration/file-migration-decisions.md` | Active file-level migration queue, exclusions, and future migration stop triggers. |
 | `docs/migration/freedom-engine-objective-review.md` | Objective external review of the downloaded Freedom Engine archive, Freedom core interface posture, agentic business partner preservation track, and selective fold-in/fold-back boundaries. |
 | `docs/decisions/freedom-phone-interface-business-partner-boundary.md` | Active Chunk Sixteen decision record defining what Freedom may feed into Rev 2, what Rev 2 may feed back, initial neutral bridge record shapes, and the no-import/no-runtime boundary. |
-| `docs/decisions/app-shell-command-center.md` | Active Chunk Seventeen decision record selecting the Vite React TypeScript browser shell and deferring service worker, auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
+| `docs/decisions/app-shell-command-center.md` | Active shell decision record selecting the Vite React TypeScript browser shell, now noting the later EX-2 read-only read-model proxy while still deferring service worker, command-center session auth, hosted relay, worker bootstrap, live connectors, desktop wrapper, and competing native phone app work. |
 | `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` | Active decision process for reviewing whether Rev 2, Freedom, and AG Operations should stay separate, bridge, fold under one build, fold back, stay in AG Operations, retire, or defer after AG Operations boxes its current evolution. |
 | `docs/decisions/2026-06-27 - Graphify Acceleration Readiness Plan.md` | Active GAIL-side plan for future Graphify acceleration readiness: Rev 2 should emit sanitized authority, action, evidence, connector, and system-state facts later, while Graphify remains relationship intelligence and never an execution authority. |
 | `docs/decisions/2026-06-27 - Graphify Preview Retention Decision.md` | Active GA-C1 retention decision: local preview output stays ignored under `tmp/graphify-acceleration-preview/` and is not committed, retained as evidence, or treated as Graphify ingest. |
@@ -120,7 +120,7 @@ not move into Graphify.
 | `tests/test_relay_store.py` | Local relay store tests for persistence, reload, policy-gated claim validation, stale state rejection, duplicate worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payloads. |
 | `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` | Local no-network proof runner that exercises one mission path from intent through policy, connector registry, relay envelope, relay store, trusted-worker claim, reference-only evidence, and completed relay status. |
 | `tests/test_local_proof_runner.py` | Local proof-runner tests for complete mission-to-evidence proof, reference-only payload safety, and stop-trigger failure before relay records are written. |
-| `apps/command-center` | Browser-first Vite React TypeScript command-center cockpit shell with a read-only multi-viewport operator hub, local/static governed spokes, mission, approval-boundary, worker/device, evidence, and connector-posture areas shaped by the local proof runner. No approval mutation, service worker, auth, relay call/write, Freedom runtime, M365 adapter, worker bootstrap, live connector, client data, or production behavior. |
+| `apps/command-center` | Browser-first Vite React TypeScript command-center cockpit shell with a read-only multi-viewport operator hub over `GET /api/v1/read-model`, including governed spokes, mission, approval-boundary, agent/device, evidence, and connector-posture areas plus loading, empty, missing local API key, unauthorized, offline, stale-data, and protocol-error states. No approval mutation, service worker, relay write, Freedom runtime, Microsoft 365 live read/write, Graphify ingest, R4 live execution, worker bootstrap, live connector, client data, or production behavior. |
 
 ## Active Placeholders To Promote
 
@@ -212,7 +212,7 @@ unless Adam explicitly reverses that decision.
 | Linux | Superseded v1 reference host and future trusted worker clone. | Not the Rev 2 project home; future Linux work must pull from private GitHub and preserve Rev 2 controls. |
 | Android phone | Freedom-owned operator link. | Freedom is the core phone-side interface for intent capture, approval, pause/resume, safe evidence summaries, and business-partner continuity; Rev 2 must not build a competing native phone app. No local execution, raw secrets/logs, generated config import, direct connector access, or runtime activation without a bounded later chunk. |
 | Android tablet | Future review cockpit. | Larger evidence and status review surface; no unrestricted connector or filesystem access. |
-| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view. | Reads/writes governed records through approved local or relay paths only after later chunks add those flows; must not become a second source of truth or replace Freedom's core operator role. |
+| Browser | Shared cockpit surface across desktop and mobile, now anchored by the `apps/command-center` Vite React TypeScript shell with the read-only hub-and-spoke operating cockpit view over the shared GAIL OS read model. | Reads governed records through approved read-only local paths today; writes require later approved local or relay paths and must not become a second source of truth or replace Freedom's core operator role. |
 | Private GitHub | Canonical durable spine. | Commits, request records, issues/PRs, relay references, and evidence links; no secrets or unredacted sensitive payloads. |
 | Graphify | Knowledge spoke and high-importance neuronal pathway layer for relationship intelligence. | Read-only handoff and graph references; recommendations are not execution approval. Current acceleration work emits local sanitized preview facts only. Future ingest still requires an approved connector-like boundary. |
 | Microsoft 365 / AG Operations | Future business substrate, identity/records/signals spoke, and likely first tactile input/output environment. | Planning-only in Rev 2; feed cockpit through approved metadata, safe summaries, action logs, decision records, and links only after connector boundaries exist. No tenant content, live actions, or physical operating outputs are active in this repo. |

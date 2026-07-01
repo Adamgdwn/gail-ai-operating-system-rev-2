@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-06-27T09:06:27-06:00
+Last Updated: 2026-07-01T11:41:25-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -53,7 +53,8 @@ Active now:
   Freedom, and AG Operations Workspace are coordinated as related builds while
   AG Operations finishes its current evolution;
 - read-only browser command-center cockpit shell at `apps/command-center`,
-  now shaped as a multi-viewport operator hub with observable governed spokes;
+  now shaped as a multi-viewport operator hub over the shared GAIL OS read
+  model with observable governed spokes;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -98,7 +99,7 @@ current state, policy boundary, and stale-state checks before acting.
 | Active control records | Define source routing, permissions, runtime scope, agents, prompts, models, and architecture. | Gate future code migration, workers, connectors, portal actions, and release readiness. | Controls do not activate live capabilities by themselves. |
 | Windows operator workspace | Current local editing and validation environment. | Trusted worker and operator surface after bootstrap controls exist. | No live business connectors, persistent worker service, or broad local filesystem automation without later approval. |
 | Linux reference or worker surface | Superseded v1 reference host only. | Trusted worker clone that pulls from private GitHub. | Linux is not the Rev 2 source of truth and must not rely on tunnel-dependent operation. |
-| Browser command center | Vite React TypeScript shell under `apps/command-center` now renders the read-only hub-and-spoke operating cockpit from safe local sample/proof-runner-shaped data. | Main shared cockpit for desktop, larger tablet, and mobile browser fallback use. | Current shell is display-only; future record reads/writes must go through approved local or relay paths, must not become a second truth store, and must not replace Freedom's core operator role. |
+| Browser command center | Vite React TypeScript shell under `apps/command-center` now renders the read-only hub-and-spoke operating cockpit from `GET /api/v1/read-model` through the local Vite proxy. | Main shared cockpit for desktop, larger tablet, and mobile browser fallback use. | Current shell is read-only; future record writes must go through approved local or relay paths, must not become a second truth store, and must not replace Freedom's core operator role. |
 | Android phone cockpit | Not built in Rev 2. | Freedom is the core phone-side operator interface for intent capture, approval, pause/resume, status, and safe evidence review; Rev 2 may provide browser fallback or compatibility views that augment Freedom. | Do not build a competing native phone app. No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, direct connector access, generated Freedom config import, or Freedom runtime activation without a bounded later chunk. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
@@ -156,7 +157,9 @@ posture visibility from local static sample records. Chunk Nineteen hardened
 that shell into a multi-viewport hub-and-spoke cockpit with a talk-first
 operator hub, observable governed spokes, desktop and larger-tablet arc layout,
 and hub-first phone-browser fallback while preserving Freedom as the phone
-anchor.
+anchor. EX-2 wired that cockpit to the shared read-only GAIL OS read model,
+with loading, empty, missing local API key, unauthorized, offline, stale-data,
+and protocol-error states.
 
 Expected first portal capabilities:
 

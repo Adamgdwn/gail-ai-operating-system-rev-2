@@ -90,7 +90,8 @@ Preserve existing secret-handling rules: do not index, print, summarize, or comm
 ## Commands
 - Python deps: `uv run --with-requirements requirements.txt <command>`
 - Install: `npm --prefix apps/command-center ci`
-- Dev:     `npm --prefix apps/command-center run dev`
+- API dev: set `GAIL_OS_API_KEY` in the shell, then `uv run --with-requirements requirements.txt uvicorn main:app --app-dir apps/gail-os-api --host 127.0.0.1 --port 8123`
+- Command center dev: set the same local `GAIL_OS_API_KEY` in the shell, then `npm --prefix apps/command-center run dev`
 - Lint:    `<not configured yet>`
 - Build:   `npm --prefix apps/command-center run build`
 - Test:    `uv run --with-requirements requirements.txt python -m pytest -q`

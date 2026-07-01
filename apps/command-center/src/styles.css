@@ -27,6 +27,7 @@ body {
 }
 
 .cockpit-header,
+.status-banner,
 .cockpit-stage,
 .review-grid {
   width: min(100%, 1360px);
@@ -118,6 +119,72 @@ dd {
   flex-direction: column;
   gap: 18px;
   padding: 0 0 20px;
+}
+
+.status-banner {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.status-banner div {
+  min-width: 0;
+}
+
+.status-banner span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.status-banner strong {
+  display: block;
+  color: #172937;
+  font-size: 1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.status-banner p {
+  margin: 5px 0 0;
+  color: #435765;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.status-banner button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  border: 1px solid #8da4ad;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #173242;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.status-banner button:focus-visible {
+  outline: 3px solid rgb(31 111 106 / 28%);
+  outline-offset: 2px;
+}
+
+.status-banner button:disabled {
+  border-color: #c6d0d5;
+  color: #6f7c84;
+  cursor: not-allowed;
 }
 
 .operator-hub {
@@ -213,6 +280,21 @@ dd {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.empty-arc {
+  grid-column: 1 / -1;
+  min-width: 0;
+  border: 1px dashed #becbd2;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #586a76;
+  padding: 20px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .spoke-card {
@@ -385,7 +467,7 @@ dd {
 .mission-meta,
 .approval-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1px;
   overflow: hidden;
   border: 1px solid #d5dfdc;
@@ -616,7 +698,7 @@ dd {
   }
 
   .mission-meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .connector-grid {
@@ -676,8 +758,13 @@ dd {
 
   .shell-facts div,
   .status-row,
+  .status-banner,
   .connector-row {
     grid-template-columns: 1fr;
+  }
+
+  .status-banner {
+    display: grid;
   }
 
   .mission-meta,

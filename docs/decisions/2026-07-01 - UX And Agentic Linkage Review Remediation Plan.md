@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T11:23:53-06:00
-Status: active remediation plan; EX-1 integration complete; EX-2 awaiting owner approval
+Last Updated: 2026-07-01T11:41:25-06:00
+Status: active remediation plan; EX-2 integration complete; EX-3 awaiting owner approval
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -372,7 +372,7 @@ observed owner environment.
 | PH-1 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:44:03-06:00 | PH-1 Handoff |
 | PH-2 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:57:46-06:00 | PH-2 Handoff |
 | EX-1 | integration complete | RMP-0 owner approval | Integration complete | 2026-07-01T11:23:53-06:00 | EX-1 Handoff |
-| EX-2 | planned | EX-1 | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-2 | integration complete | EX-1 | Integration complete | 2026-07-01T11:41:25-06:00 | EX-2 Handoff |
 | EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
 
 ### Dependency Map
@@ -1128,7 +1128,83 @@ Open risks / next-chunk notes:
 
 #### EX-2 Handoff
 
-Status: not started.
+Status: integration complete.
+
+Completion target: Integration complete.
+
+Files / surfaces changed:
+
+- Added `apps/command-center/src/readModelClient.ts` as the typed frontend
+  boundary for `GET /api/v1/read-model`, including runtime response validation,
+  timeout handling, stale-data detection, and explicit HTTP/protocol/offline
+  errors.
+- Replaced the static cockpit snapshot in
+  `apps/command-center/src/cockpitData.ts` with a read-model-to-operator-view
+  mapper plus a non-fake waiting snapshot.
+- Updated `apps/command-center/src/App.tsx` to render live read-model state and
+  explicit loading, empty, local API-key missing/config missing,
+  unauthorized, offline/unreachable, stale-data, and protocol-error states.
+- Updated `apps/command-center/vite.config.ts` with a local same-origin proxy:
+  `/gail-os-api/*` rewrites to `/api/v1/*` on the GAIL OS API target and
+  injects `X-Api-Key` from the shell environment. The browser receives only a
+  configured/not-configured flag, not the key value.
+- Updated command-center styling for the status banner, refresh button, empty
+  spoke state, responsive mission metadata, and mobile wrapping.
+- Updated `README.md`, `AI_BOOTSTRAP.md`, `apps/command-center/README.md`,
+  `docs/architecture.md`, `docs/source-of-truth-map.md`, and
+  `docs/decisions/app-shell-command-center.md` to stop describing the cockpit
+  as static-only.
+
+Endpoint/UI shape introduced:
+
+- Command center now consumes `GET /api/v1/read-model?limit=25`.
+- Default frontend API base is `/gail-os-api`, with
+  `GAIL_OS_API_PROXY_TARGET` defaulting to `http://127.0.0.1:8123`.
+- Local run requires `GAIL_OS_API_KEY` in the shell running Vite/preview so the
+  proxy can authenticate to GAIL OS without exposing the key to browser code.
+- The cockpit shows:
+  - GAIL OS reachability and freshness;
+  - authority posture;
+  - connector posture;
+  - agent posture;
+  - Microsoft 365 delegated/current app-only-future posture;
+  - recent trace/evidence freshness.
+
+Validation:
+
+- Baseline before edits:
+  `npm --prefix apps/command-center run build` passed.
+- Final frontend build:
+  `npm --prefix apps/command-center run build` passed.
+- Frontend audit:
+  `npm --prefix apps/command-center audit --audit-level=moderate` passed with
+  0 vulnerabilities.
+- Live read-only smoke:
+  temporary local GAIL OS API on `127.0.0.1:8125` plus Vite on
+  `127.0.0.1:5177` passed. The command center proxy returned
+  `rev2.shared-read-model.v1` and 1 synthetic trace event for
+  `cns-20260701-facefeedcafe`.
+- Viewport evidence:
+  Playwright using system Edge captured screenshots:
+  - `tmp/screenshots/command-center-ex2-desktop.png` at 1366x900;
+  - `tmp/screenshots/command-center-ex2-tablet.png` at 900x900;
+  - `tmp/screenshots/command-center-ex2-phone.png` at 390x844.
+  Visual review found no obvious overlap, clipped controls, or broken wrapping.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- `git diff --check` passed.
+
+Open risks / next-chunk notes:
+
+- No Python read-model shape changed during EX-2.
+- No write controls, live connector actions, OAuth/login, Microsoft 365 live
+  reads/writes/sends/configuration, Graphify ingest, R4 live execution, cloud
+  placement, source-of-truth migration, or native phone app was added.
+- Frontend has no dedicated unit/component test harness yet; EX-2 uses
+  TypeScript build, live proxy smoke, npm audit, governance preflight, and
+  screenshot/manual viewport review as the risk-appropriate evidence.
+- The Vite proxy is a local dev/preview convenience. A hosted command-center
+  path would need a separate approved auth/reverse-proxy boundary.
+- Next planned implementation chunk is EX-3, pending owner approval.
 
 #### EX-3 Handoff
 
