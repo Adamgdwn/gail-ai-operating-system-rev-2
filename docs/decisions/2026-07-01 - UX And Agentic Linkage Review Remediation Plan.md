@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T10:11:09-06:00
-Status: draft; experience-first execution chunks detailed for owner review
+Last Updated: 2026-07-01T10:44:03-06:00
+Status: active remediation plan; PH-1 task complete; PH-2 awaiting owner approval
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -368,8 +368,8 @@ observed owner environment.
 
 | Chunk | State | Depends On | Completion Target | Last Updated | Handoff |
 |---|---|---|---|---|---|
-| RMP-0 | draft complete; awaiting owner review | none | Draft complete | 2026-07-01T10:11:09-06:00 | RMP-0 Handoff |
-| PH-1 | planned | RMP-0 owner approval | Task complete | 2026-07-01T10:11:09-06:00 | pending |
+| RMP-0 | owner approved; draft complete | none | Draft complete | 2026-07-01T10:43:19-06:00 | RMP-0 Handoff |
+| PH-1 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:44:03-06:00 | PH-1 Handoff |
 | PH-2 | planned | RMP-0 owner approval | Task complete | 2026-07-01T10:11:09-06:00 | pending |
 | EX-1 | planned | RMP-0 owner approval | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
 | EX-2 | planned | EX-1 | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
@@ -922,7 +922,7 @@ Each completed chunk should add:
 
 #### RMP-0 Handoff
 
-Status: draft complete; awaiting owner review.
+Status: owner approved; draft complete.
 
 What changed:
 
@@ -939,14 +939,52 @@ Validation:
 - `git diff --check` passed.
 - `bash scripts/governance-preflight.sh` passed with 0 warnings.
 
-Open owner decision:
+Owner decision:
 
-- Approve PH-1 as the first implementation chunk, request revisions to this
-  plan, or choose a different first chunk.
+- Adam approved RMP-0 and PH-1 on 2026-07-01.
 
 #### PH-1 Handoff
 
-Status: not started.
+Status: task complete.
+
+Completed: 2026-07-01T10:43:19-06:00
+
+What changed:
+
+- Updated `README.md` Quick Start to use the observed reliable full Python
+  validation command and CP-1 schema export command:
+  `uv run --with-requirements requirements.txt python -m pytest -q` and
+  `uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose`.
+- Added a short first-run prerequisite note for `uv`, Node/npm, and current
+  requirements-based Python dependency handling.
+- Marked `python -m unittest discover -s tests` as a historical partial check
+  rather than the full Python validation gate.
+- Clarified that command-center live read-only data is planned for EX-2 and is
+  not present in the first-run static app shell.
+- Updated `AI_BOOTSTRAP.md` commands so future agents see the same full Python
+  and CP-1 validation path.
+- Added `local_store/` to `.gitignore` after confirming it is default local
+  runtime persistence for evidence and OKP stores.
+
+Endpoint/schema/UI shape introduced:
+
+- None. PH-1 changed only onboarding, bootstrap guidance, and ignore rules.
+
+Validation:
+
+- `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  563 tests, 55 subtests, 4 existing Starlette deprecation warnings.
+- `uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose`
+  passed: all 9 CP-1 schemas valid.
+- `git diff --check` passed.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+
+Open risks / next-chunk notes:
+
+- Python dependencies are still requirements-based and not pinned by a durable
+  lockfile; this remains Track H work, not PH-1 scope.
+- The existing Starlette deprecation warnings remain open Track H cleanup.
+- Next approved implementation chunk remains owner-gated.
 
 #### PH-2 Handoff
 

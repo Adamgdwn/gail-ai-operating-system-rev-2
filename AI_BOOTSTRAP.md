@@ -88,11 +88,14 @@ Do not trigger a full `/graphify` rebuild to answer a question, at session start
 Preserve existing secret-handling rules: do not index, print, summarize, or commit secrets or environment files.
 
 ## Commands
+- Python deps: `uv run --with-requirements requirements.txt <command>`
 - Install: `npm --prefix apps/command-center ci`
 - Dev:     `npm --prefix apps/command-center run dev`
 - Lint:    `<not configured yet>`
 - Build:   `npm --prefix apps/command-center run build`
-- Test:    `python -m unittest discover -s tests`
+- Test:    `uv run --with-requirements requirements.txt python -m pytest -q`
+- CP-1 contracts: `uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose`
+- Legacy partial test path: `python -m unittest discover -s tests`
 
 ## Document control
 - Architecture decisions go in `docs/`

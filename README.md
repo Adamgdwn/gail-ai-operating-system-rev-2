@@ -27,14 +27,21 @@ deliberately.
 
 ## Quick Start
 
+Prerequisites: install `uv` for Python command execution and Node/npm for the
+command-center app. Python dependencies are currently resolved from
+`requirements.txt` at command time rather than from a pinned lockfile.
+
 ```powershell
 cd "C:\Users\adamg\01. Code Projects\GAIL AI Operating System Rev 2"
-python "L:\agents\New Build Agent\automation\schema_validation.py" --project .
-python -m unittest discover -s tests
+uv run --with-requirements requirements.txt python -m pytest -q
+uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose
 npm --prefix apps/command-center ci
 npm --prefix apps/command-center run build
 git status --short
 ```
+
+`python -m unittest discover -s tests` is a historical partial check, not the
+current full Python validation gate.
 
 The first executable Rev 2 slice is the local no-network mission spine under
 `packages/uaos-core/src/gail_ai_operating_system`. It can create, validate,
@@ -46,7 +53,8 @@ Vite React TypeScript command-center cockpit that renders safe static mission,
 approval-boundary, worker-status, evidence, and connector-posture sample
 records. It does not activate approval actions, service workers, live
 connectors, Freedom runtime access, hosted relay, workers, or production
-behavior.
+behavior. Live read-only command-center data is planned for the EX-2 remediation
+track and is not present in this first-run app shell.
 
 Do not connect live Microsoft 365, QuickBooks, finance, billing, client,
 or third-party account systems from this workspace until a later approved

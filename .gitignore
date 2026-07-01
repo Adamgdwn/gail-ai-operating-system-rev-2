@@ -26,6 +26,7 @@ tmp/
 logs/
 *.log
 graphify-out/
+local_store/
 
 # OS/editor noise
 .DS_Store
