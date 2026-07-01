@@ -2,6 +2,13 @@
 
 ## 2026-07-01
 
+- Updated active Rev 2 control documents to record Adam's feature-integrity
+  direction: GAIL OS is the CNS mid-brain and brain-stem layer, feature work
+  must be planned before writing, built as tested vertical slices, and reported
+  honestly as groundwork when OAuth, live connectors, R4 live execution,
+  Graphify ingest, or other owner-gated capabilities are not yet implemented.
+  No runtime behavior, connector action, OAuth flow, secret, or deployment
+  setting changed.
 - Corrected PH-2 truth-in-naming boundaries: replaced the exported R4
   live-executor surface with `r4_synthetic_execution_record.py`, which records
   dry-run synthetic evidence and OKP records without advertising external

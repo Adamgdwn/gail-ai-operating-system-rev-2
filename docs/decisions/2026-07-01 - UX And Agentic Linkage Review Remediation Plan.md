@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T11:41:25-06:00
-Status: active remediation plan; EX-2 integration complete; EX-3 awaiting owner approval
+Last Updated: 2026-07-01T11:58:04-06:00
+Status: active remediation plan; feature-integrity doctrine updated; EX-3 awaiting owner approval
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -35,6 +35,16 @@ Adam clarified the following direction on 2026-07-01:
   surfaces. The user should be able to ask Freedom to execute commands, pull
   information, build, refine, and operate integrated tools in controlled,
   governed ways.
+- GAIL OS Rev 2 is the CNS mid-brain and brain-stem layer, not a cosmetic
+  cockpit. It must coordinate intent, authority, connector identity, action
+  state, evidence, traceability, stop conditions, and recovery.
+- Feature work must follow plan, do, check, act. We plan before writing,
+  build the feature, test the feature through its real approved integration
+  path, record evidence, and only then move on.
+- Do not staple weak layers on top of the repo. A chunk that adds UI,
+  projection, sample state, wrappers, or docs without the corresponding
+  governed connection must be labeled as groundwork, not a complete
+  operational user capability.
 
 This direction does not approve live Microsoft 365 business actions, Graphify
 production ingest, R4 live execution, production readiness, or source-of-truth
@@ -82,6 +92,12 @@ operator system. A new user or future agent can see the intent, but the first
 run path, live state visibility, API/UI persistence, auth-profile story,
 Graphify replay path, and R4 naming boundaries need to become sharper before
 the system should claim fully functional agentic operation.
+
+The current remediation sequence must therefore distinguish foundational
+plumbing from dogfoodable capability. Shared read models, cockpit states, and
+relationship briefs are useful only if they keep tightening the path toward a
+real governed action loop. They are not enough by themselves to satisfy the
+owner's fully agentic, tactile-tool goal.
 
 ## Findings Table
 
@@ -289,6 +305,55 @@ Acceptance:
 - A future agent can tell which checks are advisory and which are enforced.
 - Release readiness does not rely on placeholder operational documents.
 
+## CNS Feature Integrity Doctrine
+
+GAIL OS Rev 2 is the CNS mid-brain and brain-stem for the broader agentic
+system. It is allowed to be careful, but it is not allowed to become theatrical
+scaffolding. The purpose of the repo is to create controlled, governed
+capability that the owner can actually use through Freedom, command-center
+views, and future tactile-tool surfaces.
+
+Feature chunks must satisfy these rules before they may be reported as a
+functional capability:
+
+- Plan before writing. The chunk must name the operator outcome, source of
+  truth, authority boundary, integration path, tests, stop-before lines, and
+  rollback or recovery posture.
+- Build a vertical slice. The change should connect the deepest approved
+  pathway for that chunk: intent, GAIL OS authority, connector identity,
+  action state, evidence, trace, and operator explanation. If live connector
+  access is not approved, the chunk must say so plainly and define the next
+  promotion gate.
+- Test the actual feature. Run automated or manual checks that exercise the
+  user/operator path, not only isolated helper code. For frontend work, include
+  state and viewport checks. For API/integration work, include route or
+  contract tests. For connector work, include dry-run, read-only, bounded
+  write, or live proof according to the approved stage.
+- Do not count paint as capability. UI, sample data, read-only projections,
+  wrappers, and docs can be valid groundwork, but they must not be described as
+  usable operational capability until the governed end-to-end path exists.
+- Prefer deep modules with simple interfaces. Avoid shallow pass-through
+  layers that hide risk without owning validation, authorization,
+  persistence, transformation, orchestration, error handling, or observability.
+- Record evidence and limits. Every handoff must say what works, what was
+  tested, what remains unverified, and which owner-gated capability is still
+  absent.
+
+Completion language must stay honest:
+
+- `Draft complete` can describe a design, doc, or incomplete implementation.
+- `Task complete` can describe a bounded change whose acceptance and checks
+  passed, but not necessarily a usable cross-surface feature.
+- `Integration complete` requires evidence that the changed surface works in
+  the surrounding GAIL OS path.
+- `Release ready` requires human review, operational readiness, and accepted
+  residual risk.
+
+For the owner's current concern, Microsoft 365 execution, OAuth/browser login,
+Freedom-issued executable commands, R4 live execution, Graphify persistent
+ingest, and cross-surface hosted access remain absent until explicitly built,
+tested, approved, and recorded as their own chunks.
+
 ## Experience-First Execution Packet
 
 This section merges the 2026-07-01 experience-first execution packet into this
@@ -300,9 +365,13 @@ restart document; split only when doing so improves handoff clarity.
 Use plan, do, check, act.
 
 - Plan: each chunk must have scope, acceptance, validation, stop-before lines,
-  and a rollback path before implementation starts.
-- Do: implement one approved chunk at a time.
-- Check: run every validation command named in the chunk.
+  a rollback path, the deepest approved integration path, and the exact user
+  or operator capability claim before implementation starts.
+- Do: implement one approved chunk at a time as a vertical slice. Do not add a
+  weak layer when the correct next step is a contract, domain module,
+  persistence path, authority check, connector boundary, or integration test.
+- Check: run every validation command named in the chunk and add feature-near
+  proof for the actual path changed.
 - Act: record the result in this file, update the chunk status, note any
   follow-on work, then stop for owner review before the next chunk unless Adam
   explicitly approves continuing.
@@ -310,6 +379,10 @@ Use plan, do, check, act.
 No feature implementation starts from this packet until Adam approves the
 specific chunk. Planning updates to this document are allowed when they improve
 chunk clarity.
+
+If a chunk cannot deliver an owner-usable capability because OAuth, live
+connector access, R4 execution, Graphify ingest, hosted access, or another
+promotion gate is not approved, its handoff must say that plainly.
 
 ### Token-Friendly Continuity Model
 
@@ -337,6 +410,16 @@ visible from the cockpit.
 Architecture invariant: one shared read/trace layer. Freedom and the command
 center are thin views over it and must not show divergent state. Every newly
 persisted lifecycle record should carry a `cns_trace_id`.
+
+CNS invariant: GAIL OS owns the mid-brain/brain-stem functions for governed
+autonomy: authority, connector identity, action state, evidence, traceability,
+stop conditions, and recovery. Freedom, Graphify, M365, devices, and future
+tactile tools must connect through those functions rather than bypass them.
+
+Usability invariant: a feature is not considered dogfoodable merely because it
+renders or returns data. It is dogfoodable when Adam can use an approved
+surface to accomplish the scoped outcome, see truthful state, recover from
+failure, and inspect evidence.
 
 Hard boundary for this iteration:
 
@@ -373,6 +456,7 @@ observed owner environment.
 | PH-2 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:57:46-06:00 | PH-2 Handoff |
 | EX-1 | integration complete | RMP-0 owner approval | Integration complete | 2026-07-01T11:23:53-06:00 | EX-1 Handoff |
 | EX-2 | integration complete | EX-1 | Integration complete | 2026-07-01T11:41:25-06:00 | EX-2 Handoff |
+| RMP-1 | task complete | owner direction | Task complete | 2026-07-01T11:58:04-06:00 | RMP-1 Handoff |
 | EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
 
 ### Dependency Map
@@ -1205,6 +1289,44 @@ Open risks / next-chunk notes:
 - The Vite proxy is a local dev/preview convenience. A hosted command-center
   path would need a separate approved auth/reverse-proxy boundary.
 - Next planned implementation chunk is EX-3, pending owner approval.
+
+#### RMP-1 Handoff
+
+Status: task complete.
+
+Completed: 2026-07-01T11:58:04-06:00
+
+What changed:
+
+- Added Adam's feature-integrity direction to this remediation plan: GAIL OS is
+  the CNS mid-brain and brain-stem control layer, not a cosmetic cockpit.
+- Added the `CNS Feature Integrity Doctrine`, requiring plan-before-writing,
+  tested vertical slices, deep governed connections, honest groundwork labels,
+  and explicit evidence/limits in handoffs.
+- Strengthened the operating cadence so each chunk must name the deepest
+  approved integration path and the exact user/operator capability claim before
+  implementation starts.
+- Added a usability invariant: a feature is dogfoodable only when Adam can use
+  an approved surface to accomplish the scoped outcome, see truthful state,
+  recover from failure, and inspect evidence.
+- Updated `AGENTS.md`, `START_HERE.md`, `docs/architecture.md`, and
+  `docs/CHANGELOG.md` with the same mid-brain/brain-stem and build-test
+  doctrine.
+
+Validation:
+
+- `bash scripts/governance-preflight.sh` passed with 0 warnings before edits.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings after edits.
+- `git diff --check` passed.
+- Targeted text scan confirmed the new doctrine appears in the active startup,
+  architecture, remediation, and changelog documents.
+
+Open risks / next-chunk notes:
+
+- This was documentation/control work only. It did not add OAuth, live
+  Microsoft 365 execution, Freedom executable commands, Graphify ingest,
+  hosted cross-surface access, R4 live execution, or any runtime behavior.
+- EX-3 remains the next planned chunk only if Adam explicitly approves it.
 
 #### EX-3 Handoff
 

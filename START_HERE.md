@@ -1,6 +1,6 @@
 # Start Here
 
-Last Updated: 2026-06-29T19:31:31-06:00
+Last Updated: 2026-07-01T11:58:04-06:00
 Status: draft
 Owner: Adam Goodwin
 
@@ -191,6 +191,13 @@ Current priorities:
 - fill in project commands in `AI_BOOTSTRAP.md`
 - keep work in context-window-friendly chunks
 - timestamp material work, decisions, validation, and handoffs
+- treat Rev 2 as the CNS mid-brain and brain-stem control layer: future
+  feature chunks must deepen the governed path from intent to authority,
+  connector identity, action state, evidence, traceability, recovery, and
+  operator explanation
+- build features as tested vertical slices, not weak presentation or
+  pass-through layers; if a chunk is only groundwork, label it as groundwork
+  and do not claim it is an end-user operational capability
 - use `docs/decisions/2026-06-29 - Graphify Boundary Transfer And GAIL OS Informing Plan.md`
   as the current GAIL OS informing packet while Freedom work is parked
 - preserve the completed Chunk Nineteen cockpit direction: a talk-first

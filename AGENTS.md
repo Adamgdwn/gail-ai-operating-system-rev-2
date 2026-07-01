@@ -2,13 +2,19 @@
 
 ## CNS Role (Guided AI Labs Agentic OS - updated 2026-07-01)
 
-**Layer:** GAIL OS - Deep-brain / Autonomic Management
-**Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate
+**Layer:** GAIL OS - Deep-brain / Mid-brain / Brain-stem governed control layer
+**Function:** Authority envelopes, evidence ledger, action state machine, connector/agent registries, R0–R5 policy gate, trace continuity, and safe execution coordination
 **In the CNS loop:** `Signal → GAIL OS classifies → Freedom reasons → OS validates authority → Motor system executes → Evidence returned to OS → Graphify updates → Freedom learns`
 
 GAIL OS is the governed spine - the authority and evidence layer beneath all
 other systems. No restricted action may execute without passing through the
 GAIL OS policy gate.
+
+**Critical CNS role:** Treat GAIL OS as the mid-brain and brain-stem of the
+agentic operating system, not as a presentation layer. It coordinates intent,
+authority, connector identity, action state, evidence, traceability, and stop
+conditions. UI, read models, briefs, and docs are useful only when they are
+tethered to real governed contracts and tested integration paths.
 
 **Enabler, not a hand brake:** GAIL OS is what makes autonomy *safe and
 legible*. By classifying actions, issuing authority envelopes, and recording
@@ -136,6 +142,15 @@ bash scripts/governance-preflight.sh
 - Record justified deviations as exceptions.
 - Reassess governance when risk, autonomy, data sensitivity, or money movement changes.
 - Keep work in context-window-friendly chunks with one objective, clear files, validation, and handoff notes.
+- Plan before writing for meaningful changes: each feature chunk must name the
+  user/operator outcome, source-of-truth path, integration seam, acceptance
+  tests, stop-before lines, and rollback/recovery posture.
+- Build the feature and test the feature. A chunk that adds only UI, sample
+  data, a pass-through wrapper, or a disconnected read model is not a complete
+  user capability unless it is explicitly scoped and reported as groundwork.
+- Favor deep, tested connections across intent, authority, connector identity,
+  action state, evidence, trace, and operator surfaces over weak layers stapled
+  on top of the system.
 - Define the target completion state for each meaningful chunk: `Draft complete`, `Task complete`, `Integration complete`, `Release ready`, or `Blocked`.
 - Project completion is a human decision. Agents may report only bounded completion states when the documented criteria and verification evidence support that label.
 - Stop when the chunk's definition of done is met, when its stop condition is reached, or when repeated attempts stop producing new evidence.

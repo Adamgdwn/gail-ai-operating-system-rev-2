@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-07-01T11:41:25-06:00
+Last Updated: 2026-07-01T11:58:04-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -18,6 +18,11 @@ authority.
 ## Current Architecture Posture
 
 Rev 2 is currently a governed private repository and control set.
+
+Architectural role: Rev 2 is the CNS mid-brain and brain-stem control layer for
+the agentic system. It must coordinate intent, authority, connector identity,
+action state, evidence, trace continuity, stop conditions, and recovery. It is
+not merely a cockpit, planning note, or adapter facade.
 
 Active now:
 
@@ -90,6 +95,13 @@ Devices and services have roles:
 Every future executable path must preserve planning and execution separation:
 human intent and approval are recorded first, then a worker validates the
 current state, policy boundary, and stale-state checks before acting.
+
+Feature integrity rule: a meaningful feature must be built and tested through
+the deepest approved source-of-truth path for that chunk. UI-only affordances,
+sample data, read-only projections, wrappers, and docs can be valuable
+groundwork, but they must be labeled as such until the governed end-to-end path
+works under validation. Do not add weak pass-through layers where a deep module,
+contract, integration test, or explicit boundary is required.
 
 ## System Layers
 
@@ -461,6 +473,7 @@ being introduced.
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |
 | Graphify acceleration is GAIL-side first. | Active plan | Rev 2 should later emit sanitized authority, action, evidence, connector, and system-state facts so enhanced Graphify can move faster without crawling raw state or becoming an authority layer. |
 | Microsoft 365 is the business substrate, not the cockpit brain. | Active direction | M365 owns identity, records, collaboration, and signals; Graphify owns knowledge intelligence; Rev 2 owns mission policy, relay, worker execution, evidence, and stop rules. |
+| Rev 2 is the CNS mid-brain and brain-stem control layer. | Active direction | Feature work must connect real governed contracts across intent, authority, connector identity, action state, evidence, traceability, and operator explanation. UI or read-model polish alone is groundwork unless the tested user/operator capability is complete. |
 | Freedom Engine is operating-partner runtime, agentic business partner, and core interface, not the Rev 2 spine. | Active decision | Freedom should carry the phone-side link and feed mature self-learning, research, agent/tool calling, business-memory, UX, and action-ledger patterns into Rev 2 through safe bridge records defined in `docs/decisions/freedom-phone-interface-business-partner-boundary.md`; Rev 2 should not inherit Freedom's live provider/runtime posture by default. |
 | Build consolidation waits for evidence. | Active decision process | AG Operations should finish its current evolution before Rev 2, Freedom, and AG Operations are evaluated for one-build consolidation. The process in `docs/decisions/2026-06-24 - Build Consolidation Decision Process.md` must be used to avoid weak pass-through layers, duplicate approval truth, and premature runtime coupling. |
 | Three-repo coordination is the current startup posture. | Active direction | Next startup should acknowledge that GAIL AI Operating System Rev 2, Freedom, and AG Operations Workspace are being coordinated but not consolidated. Rev 2 implementation can resume at Chunk Twenty only after that direction is understood. |
