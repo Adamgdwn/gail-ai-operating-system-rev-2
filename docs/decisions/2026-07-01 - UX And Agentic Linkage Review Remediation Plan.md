@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T09:32:16-06:00
-Status: draft
+Last Updated: 2026-07-01T10:11:09-06:00
+Status: draft; experience-first execution chunks detailed for owner review
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -289,49 +289,680 @@ Acceptance:
 - A future agent can tell which checks are advisory and which are enforced.
 - Release readiness does not rely on placeholder operational documents.
 
-## Recommended Execution Order
+## Experience-First Execution Packet
 
-1. Track A: truthful onboarding and local validation.
-2. Track G: R4/live-execution naming and feature-gate clarity.
-3. Track F: Microsoft 365 dual-profile connector design and auth-code
-   reconciliation.
-4. Track B and Track C: live read-only command center plus governed local
-   action loop.
-5. Track D and Track E: `cns_trace_id`, Freedom relationship brief, event
-   ledger, and Graphify synthetic fact-bundle replay.
-6. Track H: harden quality gates and replace placeholder ops docs before
-   declaring release readiness.
+This section merges the 2026-07-01 experience-first execution packet into this
+remediation plan. Keep it here until the file becomes too large to use as a
+restart document; split only when doing so improves handoff clarity.
 
-This order fixes trust and safety language before adding more capability. It
-also lets the user experience become real in read-only form before the system
-promotes controlled writes.
+### Operating Cadence
 
-## Suggested Next Chunk
+Use plan, do, check, act.
 
-Start with a small remediation chunk:
+- Plan: each chunk must have scope, acceptance, validation, stop-before lines,
+  and a rollback path before implementation starts.
+- Do: implement one approved chunk at a time.
+- Check: run every validation command named in the chunk.
+- Act: record the result in this file, update the chunk status, note any
+  follow-on work, then stop for owner review before the next chunk unless Adam
+  explicitly approves continuing.
 
-**RMP-A - Truthful First Run And Local Runtime State Hygiene**
+No feature implementation starts from this packet until Adam approves the
+specific chunk. Planning updates to this document are allowed when they improve
+chunk clarity.
+
+### Token-Friendly Continuity Model
+
+For now, this document is the single execution status, handoff, and restart
+record. Fresh sessions should read:
+
+1. `AGENTS.md`;
+2. this document's metadata, Operating Cadence, Execution Status, Shared
+   Context, and the one assigned chunk;
+3. the chunk's most recent handoff note in this document, if any;
+4. only the files named in the chunk's context manifest.
+
+Do not create a separate root-level `EXECUTION-STATUS.md` or handoff directory
+yet. If this document becomes too large, split handoffs into dated companion
+records under `docs/decisions/` and leave short links here.
+
+### Shared Context
+
+Iteration goal: make the system feel alive and usable for owner dogfooding in
+read-only mode. Golden path v1 is: open Freedom or the command center, see true
+live state, ask Freedom "what happened to X," and get a traceable answer
+grounded in GAIL OS evidence and Graphify context. The same trace should be
+visible from the cockpit.
+
+Architecture invariant: one shared read/trace layer. Freedom and the command
+center are thin views over it and must not show divergent state. Every newly
+persisted lifecycle record should carry a `cns_trace_id`.
+
+Hard boundary for this iteration:
+
+- no live Microsoft 365 reads, writes, sends, or configuration changes;
+- no app-only Microsoft 365 credentials, client secrets, or certificates;
+- no OAuth, browser login, or consent surfaces;
+- no Graphify production or persistent ingest;
+- no R4 live execution;
+- no new external-effect write/action endpoints;
+- no cloud placement, production promotion, runtime consolidation, or
+  source-of-truth migration.
+
+Known-good validation commands:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest -q
+uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose
+npm --prefix apps/command-center run build
+npm --prefix apps/command-center audit --audit-level=moderate
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Plain `python -m pytest`, plain schema export, and
+`python -m unittest discover -s tests` are not reliable full gates in the
+observed owner environment.
+
+### Execution Status
+
+| Chunk | State | Depends On | Completion Target | Last Updated | Handoff |
+|---|---|---|---|---|---|
+| RMP-0 | draft complete; awaiting owner review | none | Draft complete | 2026-07-01T10:11:09-06:00 | RMP-0 Handoff |
+| PH-1 | planned | RMP-0 owner approval | Task complete | 2026-07-01T10:11:09-06:00 | pending |
+| PH-2 | planned | RMP-0 owner approval | Task complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-1 | planned | RMP-0 owner approval | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-2 | planned | EX-1 | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
+
+### Dependency Map
+
+```text
+RMP-0  Plan adoption and chunk detail
+  ├─ PH-1  Truthful first run and runtime hygiene
+  ├─ PH-2  Truth-in-naming, cheap safety clarity
+  └─ EX-1  Shared read model and trace spine
+        ├─ EX-2  Command center live read-only
+        └─ EX-3  Freedom relationship brief
+```
+
+PH-1 and PH-2 may run before EX-1. EX-2 and EX-3 must wait for EX-1's
+handoff. No chunk may begin until Adam approves it after reviewing this
+execution packet.
+
+### RMP-0 - Adopt Experience-First Execution Plan
+
+Intent: merge the uploaded execution packet into this remediation plan and
+create an owner-reviewable chunk sequence before feature work starts.
+
+Depends on: none
+
+Size: Small
+
+Preconditions:
+
+- Working tree is clean before the planning edit.
+- Uploaded execution packet is available for review.
+- No feature implementation begins during this chunk.
+
+Context manifest:
+
+- Known files:
+  - `AGENTS.md`
+  - `docs/decisions/2026-07-01 - UX And Agentic Linkage Review Remediation Plan.md`
+  - `C:\Users\adamg\Downloads\2026-07-01_-_Experience_First_Agent_Execution_Packet.md`
+- Discovery scope: only planning/status/handoff conventions already present in
+  this repo.
+- Do not read: application code, frontend internals, M365 auth internals, or
+  Graphify internals.
 
 Scope:
 
-- update first-run docs to the reliable uv-based validation path;
-- mark unittest as partial or remove it from the main path;
-- add `local_store/` to `.gitignore` if local evidence remains runtime-only;
-- optionally add a short note that command center is currently static/sample
-  state until Track B begins.
+- Merge the packet's PDCA cadence into this plan.
+- Keep status and handoffs in this document for now.
+- Detail PH-1, PH-2, EX-1, EX-2, and EX-3 enough for owner approval.
+- Preserve all non-approval boundaries.
 
-Completion target: Task complete
+Out of scope / stop before:
+
+- No README, bootstrap, code, test, API, frontend, auth, Graphify, M365, R4, or
+  runtime behavior changes.
+- No separate status file unless Adam asks for it.
+
+Deliverables:
+
+- Updated remediation plan with detailed chunks and execution status.
+
+Acceptance:
+
+- Adam can review the chunk plan and decide whether to approve PH-1, request
+  revisions, or choose a different first implementation chunk.
+- The plan is token-friendly for restarts.
+- No implementation work is started.
 
 Validation:
 
-- run the documented uv pytest command;
-- run CP-1 schema export through uv;
-- run command-center build if docs mention the frontend;
-- run `git diff --check`.
+```bash
+bash scripts/governance-preflight.sh
+git diff --check
+```
 
-Stop before changing Microsoft 365 auth behavior, opening OAuth/login surfaces,
-promoting Graphify ingest, changing live execution code, or exposing new
-write/action endpoints.
+Handoff:
+
+- Record the final status of RMP-0 in this document after owner review or
+  commit.
+
+Rollback:
+
+- Revert the planning-doc commit.
+
+### PH-1 - Truthful First Run And Runtime Hygiene
+
+Intent: stop the owner or any future agent from trusting the wrong validation
+result.
+
+Depends on: RMP-0 owner approval
+
+Size: Small
+
+Preconditions:
+
+- Adam approves PH-1 after reviewing this plan.
+- Working tree is clean.
+
+Context manifest:
+
+- Known files:
+  - `README.md`
+  - `AI_BOOTSTRAP.md`
+  - `START_HERE.md`
+  - `requirements.txt`
+  - `.gitignore`
+  - this remediation plan
+- Discovery scope:
+  - find active doc references to `python -m unittest discover`;
+  - confirm whether `local_store/` is currently ignored;
+  - inspect only documentation and ignore rules needed for first-run guidance.
+- Do not read: application code, M365 internals, Graphify internals, command
+  center implementation files, or old archived pathway sections except when a
+  direct search result must be classified as historical.
+
+Scope:
+
+- Update first-run guidance so the primary full Python validation command is:
+
+  ```bash
+  uv run --with-requirements requirements.txt python -m pytest -q
+  ```
+
+- Update CP-1 schema validation guidance to use:
+
+  ```bash
+  uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose
+  ```
+
+- Mark `python -m unittest discover -s tests` as historical, partial, or
+  legacy wherever it appears in active first-run guidance.
+- Add a short prerequisites note covering uv, Node/npm, and current Python
+  dependency handling.
+- Add `local_store/` to `.gitignore` if local runtime evidence and OKP stores
+  are intended to remain untracked.
+- Optionally add one sentence saying command center live data is planned in
+  EX-2 if a first-run doc currently implies it is already live.
+- Update this document's PH-1 handoff/status section after validation.
+
+Out of scope / stop before:
+
+- No M365 auth behavior changes.
+- No OAuth, browser login, or tenant consent surfaces.
+- No Graphify ingest.
+- No R4 naming or execution changes.
+- No new API endpoints.
+- No frontend behavior changes.
+- No dependency pinning or lockfile work; note it for Track H instead.
+
+Deliverables:
+
+- Updated first-run docs.
+- Updated `.gitignore` if `local_store/` is runtime-only.
+- PH-1 handoff note in this document.
+
+Acceptance:
+
+- A fresh local agent can find one documented full Python validation path.
+- Active docs no longer imply unittest discovery is the full quality gate.
+- Runtime local store output will not be accidentally committed if it is meant
+  to remain local state.
+
+Validation:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest -q
+uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose
+git diff --check
+```
+
+Rollback:
+
+- Revert the PH-1 commit.
+
+### PH-2 - Truth-In-Naming And Identity Boundary
+
+Intent: remove false signals around R4 "live" naming and app-only M365
+identity without changing runtime behavior.
+
+Depends on: RMP-0 owner approval
+
+Size: Small to Medium
+
+Preconditions:
+
+- Adam approves PH-2 after reviewing this plan.
+- Working tree is clean.
+- Full Python suite passes before edits.
+
+Context manifest:
+
+- Known files:
+  - `AGENTS.md`
+  - `packages/uaos-core/src/gail_ai_operating_system/r4_live_executor.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/__init__.py`
+  - `tests/test_r4_live_executor.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/m365_auth.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/m365_reader.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/m365_writer.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py`
+  - `tests/test_m365_auth.py`
+  - `tests/test_m365_observe.py`
+  - `tests/test_m365_write.py`
+  - `docs/decisions/2026-06-28 - M365 Entra Permission Expansion Report.md`
+- Discovery scope:
+  - find imports/exports and tests for `r4_live_executor`;
+  - find code/docs implying app-only M365 credentials, client secrets, or
+    `svc-gail-os-graph` runtime availability.
+- Do not read: command center internals, EX read-model code, Graphify internals,
+  or unrelated M365 tenant/provider docs.
+
+Scope:
+
+- Rename, quarantine, or feature-gate the R4 live executor so synthetic proof
+  code cannot be mistaken for a real external-system adapter.
+- Preserve tests by updating names/imports/expected language only as needed.
+- Reconcile M365 identity language so current approved tenant state is clear:
+  delegated permission expansion exists; app-only secret/certificate does not.
+- Keep existing dry-run behavior unchanged.
+- Update this document's PH-2 handoff/status section after validation.
+
+Out of scope / stop before:
+
+- Do not create credentials, secrets, certificates, OAuth flows, or consent
+  surfaces.
+- Do not implement dual-profile M365 promotion.
+- Do not change live/dry-run behavior.
+- Do not add R4 authority-envelope functionality.
+- Do not add executable adapters or external effects.
+
+Deliverables:
+
+- R4 naming/export posture that does not advertise live external execution.
+- M365 code/docs/tests/registry language aligned with delegated-only current
+  approval.
+- PH-2 handoff note in this document.
+
+Acceptance:
+
+- No active code or doc path implies R4 live external-system execution is
+  approved or available.
+- No active code or doc path implies app-only M365 credentials currently exist.
+- Full Python behavior remains green.
+
+Validation:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Rollback:
+
+- Revert the PH-2 commit.
+
+### EX-1 - Shared Read Model And Trace Spine
+
+Intent: give GAIL OS one persisted read/trace layer that the API serves
+read-only, so Freedom and the command center can render the same live state.
+
+Depends on: RMP-0 owner approval
+
+Size: Large
+
+Preconditions:
+
+- Adam approves EX-1 after reviewing this plan.
+- Working tree is clean.
+- Governance preflight passes.
+- Full Python suite passes before edits.
+
+Context manifest:
+
+- Known files:
+  - `apps/gail-os-api/main.py`
+  - `apps/gail-os-api/deps.py`
+  - `apps/gail-os-api/routers/`
+  - `packages/uaos-core/src/gail_ai_operating_system/mission_spine.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/action.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/approval_actions.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/authority_envelope.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/evidence_packet.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/evidence_store.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/connector_registry.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/agent_registry.py`
+  - `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`
+  - relevant API tests under `tests/`
+- Discovery scope:
+  - locate existing mission/action/authority/evidence persistence paths;
+  - locate current route tests for health, missions, actions, authority,
+    evidence, connectors, agents, and M365 dry-run status;
+  - locate existing `cns_trace_id` references in docs/contracts/code.
+- Do not read: command center frontend internals, M365 auth internals beyond
+  dry-run status shape, Freedom repo implementation, Graphify internals beyond
+  local fact-bundle/reference contracts.
+
+Scope:
+
+- Add or standardize `cns_trace_id` on newly persisted signal, mission, action,
+  authority, approval, evidence, Graphify fact-bundle candidate, and tactile
+  request/response records where those records already exist in this repo.
+- Persist mission records, authority override requests, approval decisions, and
+  action lifecycle transitions to one local event ledger or clearly related
+  local stores.
+- Expose a read-only API read model covering:
+  - health and boundary;
+  - authority posture;
+  - connector registry live/planning-only posture;
+  - agent registry posture;
+  - M365 dry-run status;
+  - recent evidence/events;
+  - trace lookup by `cns_trace_id`, if feasible inside this chunk.
+- Add focused tests for persistence, trace IDs, and read-model response shapes.
+- Update this document's EX-1 handoff/status section after validation.
+
+Out of scope / stop before:
+
+- No new external-effect write/action endpoints.
+- No live M365 read/write/send/config.
+- No OAuth or browser login.
+- No Graphify persistent ingest.
+- No R4 live execution.
+- No frontend changes.
+- No cloud placement or production-readiness claims.
+
+Deliverables:
+
+- Trace-aware local event/read store.
+- Read-only API endpoint or endpoints for shared live state.
+- Focused API/core tests.
+- EX-1 handoff note in this document with endpoint paths and response shapes.
+
+Acceptance:
+
+- API returns live read-model data, not sample data, for the agreed state list.
+- Every newly persisted lifecycle record carries a `cns_trace_id`.
+- Duplicate or replayed requests are at least detectable, or explicitly noted
+  as the next follow-up if full idempotency is too large for this chunk.
+- Full Python suite and CP-1 schema export remain green.
+- No external-effect endpoint or live connector path is added.
+
+Validation:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest -q
+uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Rollback:
+
+- Revert the EX-1 commit.
+- If a new local store file shape is introduced, delete only generated local
+  runtime data under ignored local-store paths after confirming it is untracked.
+
+### EX-2 - Command Center Live Read-Only
+
+Intent: make the cockpit a real read-only operator surface over the EX-1 shared
+read model.
+
+Depends on: EX-1
+
+Size: Medium
+
+Preconditions:
+
+- EX-1 handoff in this document is marked PASS.
+- Adam approves EX-2 after reviewing the EX-1 handoff.
+- Working tree is clean.
+- Command center build passes before edits.
+
+Context manifest:
+
+- Known files:
+  - EX-1 handoff section in this document;
+  - `apps/command-center/src/App.tsx`
+  - `apps/command-center/src/cockpitData.ts`
+  - `apps/command-center/src/appShellDecision.ts`
+  - `apps/command-center/src/styles.css`
+  - `apps/command-center/package.json`
+- Discovery scope:
+  - locate sample-state source and any existing API/client/env handling inside
+    `apps/command-center`;
+  - inspect only frontend files needed to consume EX-1 read-model fields.
+- Do not read: Python internals beyond the EX-1 read-model contract; M365 auth
+  internals; Graphify internals; Freedom repo implementation.
+
+Scope:
+
+- Replace or clearly subordinate sample cockpit state with EX-1 live read-model
+  data.
+- Add explicit UI states:
+  - loading;
+  - empty;
+  - API key missing or config missing;
+  - unauthorized;
+  - offline/unreachable;
+  - stale data.
+- Preserve the cockpit's role as a read-only operator view that augments
+  Freedom.
+- Add or update lightweight frontend tests if the repo already has a frontend
+  test harness; otherwise use build plus documented screenshot/manual viewport
+  evidence.
+- Verify desktop, tablet, and phone-sized layouts.
+- Update this document's EX-2 handoff/status section after validation.
+
+Out of scope / stop before:
+
+- No write controls.
+- No live connector actions.
+- No Python read-model shape changes. If the EX-1 contract is insufficient,
+  stop and record an EX-1 follow-up.
+- No new native phone app.
+
+Deliverables:
+
+- Command center wired to live read-model data.
+- Six explicit state treatments.
+- Layout evidence for desktop/tablet/phone.
+- EX-2 handoff note in this document.
+
+Acceptance:
+
+- The owner can open the cockpit and tell whether GAIL OS is reachable.
+- The cockpit shows authority posture, connector posture, agent posture, M365
+  dry-run posture, and evidence/event freshness from live API data.
+- No write or live connector action is exposed.
+- Text and controls fit at desktop, tablet, and phone widths.
+
+Validation:
+
+```bash
+npm --prefix apps/command-center run build
+npm --prefix apps/command-center audit --audit-level=moderate
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Rollback:
+
+- Revert the EX-2 commit.
+
+### EX-3 - Freedom Relationship Brief
+
+Intent: let Freedom answer "what is the posture?" and "what happened to X?"
+from the same read/trace layer, with no execution authority.
+
+Depends on: EX-1
+
+Size: Medium
+
+Preconditions:
+
+- EX-1 handoff in this document is marked PASS.
+- Adam approves EX-3 after reviewing the EX-1 handoff.
+- Working tree is clean.
+- Full Python suite passes before edits.
+
+Context manifest:
+
+- Known files:
+  - EX-1 handoff section in this document;
+  - `apps/gail-os-api/routers/`
+  - `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md`
+  - `docs/contracts/2026-06-28 - Graphify Fact Export Contract.md`
+  - `packages/uaos-core/src/gail_ai_operating_system/graphify_acceleration.py`
+  - shared read-model files introduced by EX-1
+- Discovery scope:
+  - locate Freedom-facing route or client-contract conventions in this repo;
+  - locate current `FreedomRelationshipBrief` mentions in docs/contracts;
+  - locate Graphify fact reference fields available without Graphify ingest.
+- Do not read: command center frontend internals beyond EX-1 trace contract;
+  Freedom repo implementation; live Graphify services; M365 auth internals.
+
+Scope:
+
+- Implement or document a `FreedomRelationshipBrief` read model over EX-1.
+- Include current operator context, mission status, authority posture,
+  connector state, recent evidence/event state, and relevant Graphify fact
+  references where available.
+- Define retry/failure semantics so Freedom can explain stale, degraded,
+  unavailable, unauthorized, and not-found states.
+- Ensure the same `cns_trace_id` resolves to the same underlying GAIL OS trace
+  records that command center uses.
+- Update this document's EX-3 handoff/status section after validation.
+
+Out of scope / stop before:
+
+- No execution authority for Freedom.
+- No live M365.
+- No Graphify persistent ingest.
+- No R4 live.
+- No write/action endpoints.
+- No Freedom repo implementation unless Adam explicitly routes the session
+  there later.
+
+Deliverables:
+
+- `FreedomRelationshipBrief` endpoint, schema, or contract record in this repo.
+- Retry/failure semantics.
+- Focused tests or contract validation.
+- EX-3 handoff note in this document.
+
+Acceptance:
+
+- Freedom can ask GAIL OS for a traceable relationship/posture brief without
+  receiving execution authority.
+- The same `cns_trace_id` maps to the same source records visible to command
+  center.
+- Degraded or missing data is explicit rather than silently omitted.
+
+Validation:
+
+```bash
+uv run --with-requirements requirements.txt python -m pytest -q
+bash scripts/governance-preflight.sh
+git diff --check
+```
+
+Rollback:
+
+- Revert the EX-3 commit.
+
+### Deferred Owner-Gated Work
+
+Do not start these without a separate owner greenlight:
+
+- one governed local write action after EX-1 through EX-3;
+- Graphify synthetic fact-bundle replay, then persistent ingest;
+- Microsoft 365 dual-profile promotion and any live read/write/send/config
+  proof;
+- full R4 authority-envelope, stop conditions, and adapter allowlist;
+- dependency pinning, placeholder ops-doc replacement, lint, and secret-scan
+  gates before any release-ready claim.
+
+### Handoff Log
+
+Use this section for short handoff notes until this document becomes too large.
+Each completed chunk should add:
+
+- result;
+- files changed;
+- exact endpoint/schema/UI shape introduced;
+- validation commands and pass/fail result;
+- open risks or next-chunk notes.
+
+#### RMP-0 Handoff
+
+Status: draft complete; awaiting owner review.
+
+What changed:
+
+- Merged the experience-first execution packet into this remediation plan.
+- Added the PDCA operating cadence.
+- Chose this document as the token-friendly status and handoff record for now.
+- Added detailed chunk definitions for PH-1, PH-2, EX-1, EX-2, and EX-3.
+- Preserved the hard non-approval boundary against live M365, OAuth/login,
+  Graphify persistent ingest, R4 live execution, cloud changes, and source of
+  truth migration.
+
+Validation:
+
+- `git diff --check` passed.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+
+Open owner decision:
+
+- Approve PH-1 as the first implementation chunk, request revisions to this
+  plan, or choose a different first chunk.
+
+#### PH-1 Handoff
+
+Status: not started.
+
+#### PH-2 Handoff
+
+Status: not started.
+
+#### EX-1 Handoff
+
+Status: not started.
+
+#### EX-2 Handoff
+
+Status: not started.
+
+#### EX-3 Handoff
+
+Status: not started.
 
 ## Non-Approval Boundary
 
@@ -347,4 +978,3 @@ This review and plan do not approve:
 - source-of-truth migration;
 - runtime consolidation across Rev 2, Freedom, Graphify, or AG Operations
   Workspace.
-
