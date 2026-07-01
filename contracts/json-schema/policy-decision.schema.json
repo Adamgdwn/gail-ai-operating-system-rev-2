@@ -17,6 +17,12 @@
       "description": "Action this decision applies to. Must use the 'action-' prefix.",
       "pattern": "^action-"
     },
+    "cns_trace_id": {
+      "type": ["string", "null"],
+      "description": "Shared CNS trace thread when this decision is part of a persisted trace.",
+      "pattern": "^cns-[0-9]{8}-[a-z0-9]{12}$",
+      "default": null
+    },
     "allowed": {
       "type": "boolean",
       "description": "Whether the action is permitted under current policy."

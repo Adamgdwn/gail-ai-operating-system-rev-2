@@ -23,12 +23,19 @@ class PublicApiExportTests(unittest.TestCase):
             "EvidencePacket",
             "EvidenceResult",
             "ExecutionMode",
+            "LocalTraceEventStore",
             "MissionStatus",
+            "TraceEvent",
             "create_action",
+            "create_cns_trace_id",
             "create_evidence_packet",
+            "create_trace_event",
+            "ensure_cns_trace_id",
             "validate_action",
             "validate_authority_envelope",
+            "validate_cns_trace_id",
             "validate_evidence_packet",
+            "validate_trace_event",
         ]
 
         for export_name in expected_exports:

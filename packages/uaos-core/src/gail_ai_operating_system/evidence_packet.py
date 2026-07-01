@@ -13,6 +13,8 @@ from enum import Enum
 from typing import Any, Mapping
 from uuid import uuid4
 
+from .trace_identity import ensure_cns_trace_id, validate_cns_trace_id
+
 
 class EvidenceResult(str, Enum):
     """Outcome classification for a governed action."""
@@ -51,10 +53,12 @@ class EvidencePacket:
     envelope_id: str | None
     rollback_note: str | None
     outcome_summary: str
+    cns_trace_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "evidence_id": self.evidence_id,
+            "cns_trace_id": self.cns_trace_id,
             "mission_id": self.mission_id,
             "action_id": self.action_id,
             "actor": self.actor,
@@ -83,6 +87,7 @@ class EvidencePacket:
             envelope_id=str(payload["envelope_id"]) if payload.get("envelope_id") is not None else None,
             rollback_note=str(payload["rollback_note"]) if payload.get("rollback_note") is not None else None,
             outcome_summary=str(payload.get("outcome_summary", "")),
+            cns_trace_id=str(payload["cns_trace_id"]) if payload.get("cns_trace_id") else None,
         )
 
 
@@ -99,6 +104,7 @@ def create_evidence_packet(
     envelope_id: str | None = None,
     rollback_note: str | None = None,
     outcome_summary: str = "",
+    cns_trace_id: str | None = None,
     allow_live: bool = False,
 ) -> EvidencePacket:
     """Create a new EvidencePacket with a generated evidence_id."""
@@ -115,6 +121,7 @@ def create_evidence_packet(
         execution_mode,
         created_at,
         envelope_id,
+        cns_trace_id,
         allow_live=allow_live,
     )
     if errors:
@@ -133,6 +140,7 @@ def create_evidence_packet(
         envelope_id=envelope_id,
         rollback_note=rollback_note,
         outcome_summary=outcome_summary,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id),
     )
 
 
@@ -150,6 +158,7 @@ def validate_evidence_packet(packet: EvidencePacket, *, allow_live: bool = False
         packet.execution_mode,
         packet.created_at,
         packet.envelope_id,
+        packet.cns_trace_id,
         allow_live=allow_live,
     )
 
@@ -165,6 +174,7 @@ def _validate_inputs(
     execution_mode: str,
     created_at: str,
     envelope_id: str | None,
+    cns_trace_id: str | None,
     *,
     allow_live: bool,
 ) -> list[str]:
@@ -196,6 +206,7 @@ def _validate_inputs(
         errors.append("created_at is required.")
     if envelope_id is not None and not envelope_id.startswith("env-"):
         errors.append("envelope_id must use the env- prefix when present.")
+    errors.extend(validate_cns_trace_id(cns_trace_id))
     return errors
 
 

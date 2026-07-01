@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T10:57:46-06:00
-Status: active remediation plan; PH-2 task complete; EX-1 awaiting owner approval
+Last Updated: 2026-07-01T11:23:53-06:00
+Status: active remediation plan; EX-1 integration complete; EX-2 awaiting owner approval
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -371,7 +371,7 @@ observed owner environment.
 | RMP-0 | owner approved; draft complete | none | Draft complete | 2026-07-01T10:43:19-06:00 | RMP-0 Handoff |
 | PH-1 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:44:03-06:00 | PH-1 Handoff |
 | PH-2 | task complete | RMP-0 owner approval | Task complete | 2026-07-01T10:57:46-06:00 | PH-2 Handoff |
-| EX-1 | planned | RMP-0 owner approval | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-1 | integration complete | RMP-0 owner approval | Integration complete | 2026-07-01T11:23:53-06:00 | EX-1 Handoff |
 | EX-2 | planned | EX-1 | Integration complete | 2026-07-01T10:11:09-06:00 | pending |
 | EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
 
@@ -1029,11 +1029,102 @@ Open risks / next-chunk notes:
 - The dormant future app-only code path still exists for tests and later
   promotion planning, but no credential, secret, certificate, OAuth/consent, or
   live Microsoft 365 behavior was added.
-- Next planned implementation chunk remains EX-1, pending owner approval.
+- Next planned implementation chunk is EX-2, pending owner approval.
 
 #### EX-1 Handoff
 
-Status: not started.
+Status: integration complete.
+
+Completion target: Integration complete.
+
+Files / surfaces changed:
+
+- Added a shared trace identity helper:
+  `packages/uaos-core/src/gail_ai_operating_system/trace_identity.py`.
+- Added a local trace/event/read-model spine:
+  `packages/uaos-core/src/gail_ai_operating_system/read_model.py`.
+- Added a core authority posture payload:
+  `packages/uaos-core/src/gail_ai_operating_system/authority_registry.py`.
+- Added read-only API endpoints:
+  - `GET /api/v1/read-model`
+  - `GET /api/v1/traces/{cns_trace_id}`
+- Wired trace-aware persistence into:
+  - `POST /api/v1/missions`
+  - `POST /api/v1/actions`
+  - `POST /api/v1/authority/override`
+  - `POST /api/v1/m365/observe`
+  - `POST /api/v1/m365/write/planner-task`
+  - `GET /api/v1/evidence/{mission_id}`
+- Added optional `cns_trace_id` to CP-1 mission, action, policy-decision,
+  evidence-packet, and approval-decision schemas.
+
+Response shapes now available:
+
+- `GET /api/v1/read-model` returns:
+  - `schema_version`
+  - `generated_at`
+  - `health`
+  - `authority`
+  - `connectors`
+  - `agents`
+  - `m365`
+  - `recent_events`
+  - `recent_evidence`
+- `GET /api/v1/traces/{cns_trace_id}` returns:
+  - `schema_version`
+  - `cns_trace_id`
+  - `found`
+  - `mission_ids`
+  - `action_ids`
+  - `evidence_ids`
+  - `authority_refs`
+  - `mission_refs`
+  - `evidence_refs`
+  - `events`
+
+Core behavior:
+
+- New `cns_trace_id` values use `cns-YYYYMMDD-12safechars`.
+- New mission, action, approval, and evidence factory paths generate or
+  preserve a valid trace ID.
+- Legacy records can still load when `cns_trace_id` is absent.
+- API-created mission records persist under `GAIL_OS_STORE_PATH/missions`.
+- Trace events persist under `GAIL_OS_STORE_PATH/trace-events`.
+- Evidence remains under `GAIL_OS_STORE_PATH/evidence`.
+- M365 observe now persists dry-run/stopped evidence, matching the existing
+  dry-run write evidence posture.
+- Duplicate/replay detection is visible through trace events via
+  `idempotency_key`, `duplicate_detected`, and `duplicate_of_event_id`.
+
+Validation:
+
+- Baseline before edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  564 passed, 4 warnings, 55 subtests.
+- Focused EX-1 subset:
+  `uv run --with-requirements requirements.txt python -m pytest tests/test_read_model.py tests/test_api_read_model.py tests/test_api_missions.py tests/test_api_actions.py tests/test_api_authority.py tests/test_api_evidence.py tests/test_m365_observe.py tests/test_m365_evidence_store.py tests/test_m365_write.py tests/test_mission.py tests/test_action.py tests/test_approval_actions.py tests/test_evidence_packet.py tests/test_public_api.py -q`
+  passed: 201 passed, 4 warnings, 20 subtests.
+- CP-1 schema export:
+  `uv run --with-requirements requirements.txt python scripts/export-cp1-contracts.py --verbose`
+  passed: all 9 CP-1 schemas valid.
+- Full after edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  577 passed, 5 warnings, 62 subtests.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- `git diff --check` passed.
+
+Open risks / next-chunk notes:
+
+- This is still a local JSON persistence layer, not a production datastore.
+- `cns_trace_id` remains optional for legacy/manual records, but API-created
+  and factory-created records now get one.
+- EX-2 should consume `GET /api/v1/read-model` in the command center without
+  changing Python response shapes unless a gap is explicitly recorded.
+- EX-3 should build the Freedom relationship/posture brief over the same trace
+  layer.
+- No live connector route, OAuth flow, Microsoft 365 live read/write/send,
+  Graphify ingest, R4 live execution, frontend change, cloud placement, or
+  source-of-truth migration was added.
 
 #### EX-2 Handoff
 

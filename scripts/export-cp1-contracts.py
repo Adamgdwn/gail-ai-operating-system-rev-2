@@ -33,6 +33,7 @@ CP1_SCHEMA_FILES = [
 SYNTHETIC_RECORDS = {
     "mission.schema.json": {
         "mission_id": "mission-abc123def456",
+        "cns_trace_id": "cns-20260628-abc123def456",
         "request_id": "req-abc123def456",
         "command": "Validate local proof runner output against schema",
         "domain": "validation",
@@ -47,6 +48,7 @@ SYNTHETIC_RECORDS = {
     },
     "action.schema.json": {
         "action_id": "action-abc123def456",
+        "cns_trace_id": "cns-20260628-abc123def456",
         "mission_id": "mission-abc123def456",
         "action_type": "local_mission_record",
         "title": "Record local validation result",
@@ -62,6 +64,7 @@ SYNTHETIC_RECORDS = {
     },
     "policy-decision.schema.json": {
         "action_id": "action-abc123def456",
+        "cns_trace_id": "cns-20260628-abc123def456",
         "allowed": True,
         "mode": "dry-run",
         "reason": "Action is within A1 local no-network boundary.",
@@ -85,6 +88,7 @@ SYNTHETIC_RECORDS = {
     },
     "evidence-packet.schema.json": {
         "evidence_id": "evidence-abc123def456",
+        "cns_trace_id": "cns-20260628-abc123def456",
         "mission_id": "mission-abc123def456",
         "action_id": "action-abc123def456",
         "actor": "Adam Goodwin",
@@ -137,6 +141,7 @@ SYNTHETIC_RECORDS = {
     },
     "approval-decision.schema.json": {
         "decision_id": "aprv-abc123def456",
+        "cns_trace_id": "cns-20260628-abc123def456",
         "action_id": "action-abc123def456",
         "mission_id": "mission-abc123def456",
         "decision_type": "approved",

@@ -108,6 +108,18 @@ def test_approve_decision_id_prefix():
     assert decision.decision_id.startswith("aprv-")
 
 
+def test_approve_decision_has_cns_trace_id():
+    action = make_approval_requested_action()
+    _, decision = approve_action(
+        action,
+        approver="Adam Goodwin",
+        rationale="OK",
+        authority_basis="R0",
+        decided_at=DECIDED_AT,
+    )
+    assert decision.cns_trace_id.startswith("cns-")
+
+
 def test_approve_preserves_action_identity():
     action = make_approval_requested_action()
     approved, decision = approve_action(

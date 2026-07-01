@@ -1,12 +1,12 @@
 """Action policy-gate endpoint — POST /api/v1/actions."""
 from __future__ import annotations
 
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, Mapping, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-from deps import verify_api_key
+from deps import record_api_trace_event, verify_api_key
 from gail_ai_operating_system.mission_spine import (
     DEFAULT_APPROVAL_LEVEL,
     REV2_OWNER,
@@ -14,6 +14,7 @@ from gail_ai_operating_system.mission_spine import (
     MissionEnvelope,
     PermissionGate,
 )
+from gail_ai_operating_system.trace_identity import CNS_TRACE_ID_PATTERN, ensure_cns_trace_id
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
@@ -21,6 +22,7 @@ router = APIRouter(dependencies=[Depends(verify_api_key)])
 class ValidateActionRequest(BaseModel):
     mission: Dict[str, Any]
     action: Dict[str, Any]
+    cns_trace_id: Optional[str] = Field(default=None, pattern=CNS_TRACE_ID_PATTERN)
 
 
 def _canonicalize_bridge_mission(payload: Mapping[str, Any]) -> dict[str, Any]:
@@ -52,14 +54,33 @@ def validate_action(req: ValidateActionRequest) -> dict:
     try:
         mission = MissionEnvelope.from_dict(_canonicalize_bridge_mission(req.mission))
         action = MissionAction.from_dict(_canonicalize_bridge_action(req.action))
+        cns_trace_id = ensure_cns_trace_id(req.cns_trace_id or mission.cns_trace_id)
     except (KeyError, ValueError, TypeError) as exc:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=f"Invalid mission or action payload: {exc}",
         )
     decision = PermissionGate().evaluate(mission, action)
+    record_api_trace_event(
+        cns_trace_id=cns_trace_id,
+        event_type="action.validated",
+        source_ref=f"api/v1/actions/{decision.action_id}",
+        summary="Action proposal evaluated by the GAIL OS policy gate.",
+        mission_id=mission.mission_id,
+        action_id=decision.action_id,
+        status="allowed" if decision.allowed else "blocked",
+        risk_tier=action.risk_tier,
+        idempotency_key=f"action-validation:{mission.mission_id}:{decision.action_id}",
+        metadata={
+            "allowed": decision.allowed,
+            "mode": decision.mode,
+            "action_type": action.action_type,
+            "stop_reason_present": decision.stop_reason is not None,
+        },
+    )
     return {
         "action_id": decision.action_id,
+        "cns_trace_id": cns_trace_id,
         "allowed": decision.allowed,
         "mode": decision.mode,
         "reason": decision.reason,

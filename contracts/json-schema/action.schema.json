@@ -48,6 +48,12 @@
       "description": "Unique action identifier. Must use the 'action-' prefix.",
       "pattern": "^action-"
     },
+    "cns_trace_id": {
+      "type": ["string", "null"],
+      "description": "Shared CNS trace thread. Must not encode tenant, customer, file, secret, or provider identifiers.",
+      "pattern": "^cns-[0-9]{8}-[a-z0-9]{12}$",
+      "default": null
+    },
     "mission_id": {
       "type": "string",
       "description": "Parent mission identifier. Must use the 'mission-' prefix.",

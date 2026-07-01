@@ -6,66 +6,19 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-from deps import verify_api_key
+from deps import record_api_trace_event, verify_api_key
+from gail_ai_operating_system.authority_registry import authority_registry_payload
+from gail_ai_operating_system.trace_identity import CNS_TRACE_ID_PATTERN, ensure_cns_trace_id
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
-
-
-AUTHORITY_LEVELS = [
-    {
-        "level": "R0",
-        "name": "Observe",
-        "meaning": "Read-only, no external effect",
-        "agent_boundary": "Allowed for local dry-run observation.",
-    },
-    {
-        "level": "R1",
-        "name": "Propose",
-        "meaning": "Draft, recommend, prepare - no external effect",
-        "agent_boundary": "Allowed for proposal work only.",
-    },
-    {
-        "level": "R2",
-        "name": "Internal approved action",
-        "meaning": "Reversible internal write with named approval",
-        "agent_boundary": "Requires GAIL OS policy validation and evidence.",
-    },
-    {
-        "level": "R3",
-        "name": "Restricted action",
-        "meaning": "External send, production release, irreversible change",
-        "agent_boundary": "Requires explicit approval before execution.",
-    },
-    {
-        "level": "R4",
-        "name": "Delegated autonomous restricted action",
-        "meaning": "Inside a valid pre-approved authority charter",
-        "agent_boundary": "Owner-gated; requires a signed AuthorityEnvelope.",
-    },
-    {
-        "level": "R5",
-        "name": "Blocked / human-only",
-        "meaning": "Agent may analyze only; human decides",
-        "agent_boundary": "Human-only. No agent execution.",
-    },
-]
 
 
 @router.get("/authority")
 def authority_registry() -> dict:
     """Return the read-only authority ladder used by local integration probes."""
-    return {
-        "registry_valid": True,
-        "source": "docs/governance/authority-ladders.md",
-        "boundary": "A1 local no-network",
-        "autonomy_level": "A1",
-        "live_execution_enabled": False,
-        "r4_requires_authority_envelope": True,
-        "r5_human_only": True,
-        "authority_levels": AUTHORITY_LEVELS,
-    }
+    return authority_registry_payload()
 
 
 class OverrideRequest(BaseModel):
@@ -77,6 +30,7 @@ class OverrideRequest(BaseModel):
     blocking_reason: str
     requested_by: str = "freedom"
     request_id: Optional[str] = None
+    cns_trace_id: Optional[str] = Field(default=None, pattern=CNS_TRACE_ID_PATTERN)
 
 
 @router.post("/authority/override", status_code=201)
@@ -89,9 +43,32 @@ def request_authority_override(req: OverrideRequest) -> dict:
     """
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     override_id = f"override-{req.mission_id}-{req.action_id}-{uuid.uuid4().hex[:8]}"
+    cns_trace_id = ensure_cns_trace_id(req.cns_trace_id)
+    record_api_trace_event(
+        cns_trace_id=cns_trace_id,
+        event_type="authority.override_requested",
+        source_ref=f"api/v1/authority/override/{override_id}",
+        summary="Authority override request recorded as pending.",
+        mission_id=req.mission_id,
+        action_id=req.action_id,
+        authority_ref=override_id,
+        status="pending",
+        risk_tier=req.risk_tier,
+        idempotency_key=(
+            f"authority-override:{req.request_id}"
+            if req.request_id
+            else f"authority-override:{req.mission_id}:{req.action_id}"
+        ),
+        metadata={
+            "action_kind": req.action_kind,
+            "requested_by": req.requested_by,
+            "request_id": req.request_id,
+        },
+    )
 
     return {
         "override_request_id": override_id,
+        "cns_trace_id": cns_trace_id,
         "status": "pending",
         "action_id": req.action_id,
         "mission_id": req.mission_id,

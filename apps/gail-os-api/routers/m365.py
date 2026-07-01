@@ -5,21 +5,20 @@
 """
 from __future__ import annotations
 
-import os
 from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 
-from deps import verify_api_key
+from deps import record_api_trace_event, verify_api_key
+from gail_ai_operating_system.evidence_store import save_evidence_packet
 from gail_ai_operating_system.m365_auth import (
-    APP_ONLY_AUTH_PROFILE_STATE,
-    CURRENT_M365_IDENTITY_BOUNDARY,
-    GRAPH_SCOPE,
     GraphAuthProvider,
+    graph_auth_status_from_env,
 )
 from gail_ai_operating_system.m365_reader import observe_graph_metadata
+from gail_ai_operating_system.trace_identity import CNS_TRACE_ID_PATTERN, ensure_cns_trace_id
 
 router = APIRouter(dependencies=[Depends(verify_api_key)])
 
@@ -27,25 +26,7 @@ router = APIRouter(dependencies=[Depends(verify_api_key)])
 @router.get("/m365/status")
 def m365_status() -> dict:
     """Return Graph auth configuration readiness. No live MSAL call, no token in response."""
-    tenant_id_present = bool(os.environ.get("AZURE_TENANT_ID", ""))
-    client_id_present = bool(os.environ.get("AZURE_CLIENT_ID", ""))
-    client_secret_present = bool(os.environ.get("AZURE_CLIENT_SECRET", ""))
-    configured = tenant_id_present and client_id_present and client_secret_present
-    return {
-        "configured": configured,
-        "tenant_id_present": tenant_id_present,
-        "client_id_present": client_id_present,
-        "client_secret_present": client_secret_present,
-        "scope": GRAPH_SCOPE,
-        "boundary": "A1 local no-network",
-        "identity_boundary": CURRENT_M365_IDENTITY_BOUNDARY,
-        "app_only_profile_state": APP_ONLY_AUTH_PROFILE_STATE,
-        "note": (
-            "Current approved Microsoft 365 tenant state is delegated-only. "
-            "No client secret, certificate, or app-only grant exists; AZURE_* "
-            "presence only describes a future app-only test/promotion path."
-        ),
-    }
+    return graph_auth_status_from_env()
 
 
 class ObserveRequest(BaseModel):
@@ -62,6 +43,7 @@ class ObserveRequest(BaseModel):
     )
     observe_target: str = Field(default="organization", max_length=64)
     dry_run: bool = Field(default=True)
+    cns_trace_id: Optional[str] = Field(default=None, pattern=CNS_TRACE_ID_PATTERN)
 
 
 @router.post("/m365/observe")
@@ -73,6 +55,7 @@ def m365_observe(req: Optional[ObserveRequest] = None) -> dict:
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="m365/observe is dry-run only in the A1 local boundary.",
         )
+    cns_trace_id = ensure_cns_trace_id(req.cns_trace_id)
     auth = GraphAuthProvider.from_env()
     packet = observe_graph_metadata(
         auth,
@@ -83,5 +66,24 @@ def m365_observe(req: Optional[ObserveRequest] = None) -> dict:
         observe_target=req.observe_target,
         dry_run=True,
         allow_live=False,
+        cns_trace_id=cns_trace_id,
     )
-    return {"ok": True, "evidence": packet.to_dict()}
+    save_evidence_packet(packet)
+    record_api_trace_event(
+        cns_trace_id=cns_trace_id,
+        event_type="evidence.recorded",
+        source_ref=f"api/v1/m365/observe/{packet.evidence_id}",
+        summary="Microsoft 365 dry-run observe evidence recorded.",
+        mission_id=packet.mission_id,
+        action_id=packet.action_id,
+        evidence_id=packet.evidence_id,
+        status=packet.result,
+        risk_tier=0,
+        idempotency_key=f"m365-observe:{packet.mission_id}:{packet.action_id}",
+        metadata={
+            "action_type": packet.action_type,
+            "execution_mode": packet.execution_mode,
+            "observe_target": req.observe_target,
+        },
+    )
+    return {"ok": True, "cns_trace_id": cns_trace_id, "evidence": packet.to_dict()}

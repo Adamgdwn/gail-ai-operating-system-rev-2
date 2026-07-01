@@ -64,6 +64,7 @@ class EvidencePacketSchemaTests(unittest.TestCase):
             "evidence_id", "mission_id", "action_id", "actor",
             "action_type", "authority_basis", "result", "execution_mode",
             "created_at", "envelope_id", "rollback_note", "outcome_summary",
+            "cns_trace_id",
         }
         packet_dict = packet.to_dict()
         for f in required_fields:
@@ -115,6 +116,18 @@ class CreateEvidencePacketTests(unittest.TestCase):
             created_at="2026-06-27T10:00:00-06:00",
         )
         self.assertEqual(packet.execution_mode, "dry-run")
+
+    def test_create_assigns_cns_trace_id(self) -> None:
+        packet = create_evidence_packet(
+            mission_id="mission-abc123",
+            action_id="action-001",
+            actor="Adam Goodwin",
+            action_type="local_mission_record",
+            authority_basis="A1 local no-network",
+            result="success",
+            created_at="2026-06-27T10:00:00-06:00",
+        )
+        self.assertTrue(packet.cns_trace_id.startswith("cns-"))
 
     def test_create_rejects_bad_mission_id_prefix(self) -> None:
         with self.assertRaises(ValueError):

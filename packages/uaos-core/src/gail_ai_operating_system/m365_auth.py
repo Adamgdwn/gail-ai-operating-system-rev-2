@@ -87,3 +87,27 @@ class GraphAuthProvider:
             )
         token: str = result["access_token"]
         return token
+
+
+def graph_auth_status_from_env() -> dict[str, object]:
+    """Return future app-only auth readiness without acquiring a token."""
+
+    tenant_id_present = bool(os.environ.get("AZURE_TENANT_ID", ""))
+    client_id_present = bool(os.environ.get("AZURE_CLIENT_ID", ""))
+    client_secret_present = bool(os.environ.get("AZURE_CLIENT_SECRET", ""))
+    configured = tenant_id_present and client_id_present and client_secret_present
+    return {
+        "configured": configured,
+        "tenant_id_present": tenant_id_present,
+        "client_id_present": client_id_present,
+        "client_secret_present": client_secret_present,
+        "scope": GRAPH_SCOPE,
+        "boundary": "A1 local no-network",
+        "identity_boundary": CURRENT_M365_IDENTITY_BOUNDARY,
+        "app_only_profile_state": APP_ONLY_AUTH_PROFILE_STATE,
+        "note": (
+            "Current approved Microsoft 365 tenant state is delegated-only. "
+            "No client secret, certificate, or app-only grant exists; AZURE_* "
+            "presence only describes a future app-only test/promotion path."
+        ),
+    }

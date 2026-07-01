@@ -14,6 +14,7 @@ from .mission_spine import (
     PolicyDecision,
     current_timestamp,
 )
+from .trace_identity import ensure_cns_trace_id, validate_cns_trace_id
 
 
 VALID_TRANSITIONS: dict[MissionStatus, frozenset[MissionStatus]] = {
@@ -73,10 +74,12 @@ class Action:
     claimed_at: str | None = None
     executed_at: str | None = None
     envelope_id: str | None = None
+    cns_trace_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "action_id": self.action_id,
+            "cns_trace_id": self.cns_trace_id,
             "mission_id": self.mission_id,
             "action_type": self.action_type,
             "title": self.title,
@@ -107,6 +110,7 @@ class Action:
             claimed_at=str(payload["claimed_at"]) if payload.get("claimed_at") else None,
             executed_at=str(payload["executed_at"]) if payload.get("executed_at") else None,
             envelope_id=str(payload["envelope_id"]) if payload.get("envelope_id") else None,
+            cns_trace_id=str(payload["cns_trace_id"]) if payload.get("cns_trace_id") else None,
         )
 
 
@@ -120,6 +124,7 @@ def create_action(
     risk_tier: int = 1,
     arguments: Mapping[str, Any] | None = None,
     envelope_id: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> Action:
     """Create a new Action in the OBSERVED state."""
     if not mission_id.startswith("mission-"):
@@ -145,6 +150,7 @@ def create_action(
         arguments=dict(arguments) if arguments else {},
         created_at=current_timestamp(),
         envelope_id=envelope_id,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id),
     )
 
 
@@ -189,6 +195,7 @@ def transition_action(action: Action, to_status: MissionStatus) -> Action:
         claimed_at=claimed_at,
         executed_at=executed_at,
         envelope_id=action.envelope_id,
+        cns_trace_id=action.cns_trace_id,
     )
 
 
@@ -210,6 +217,7 @@ def validate_action(action: Action) -> list[str]:
     errors.extend(_validate_authority_fields(action.authority_level, action.risk_tier, action.envelope_id))
     if action.authority_level == AuthorityLevel.R5.value and action.status in R5_AGENT_BLOCKED_STATES:
         errors.append("R5 actions are human-only and cannot enter approved or execution states.")
+    errors.extend(validate_cns_trace_id(action.cns_trace_id))
     return errors
 
 

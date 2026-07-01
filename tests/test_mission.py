@@ -47,7 +47,7 @@ class MissionEnvelopeSchemaTests(unittest.TestCase):
         required_fields = {
             "mission_id", "request_id", "command", "domain",
             "created_at", "owner", "approval_level", "dry_run",
-            "data_classification", "status",
+            "data_classification", "status", "cns_trace_id",
         }
         envelope_dict = mission.to_dict()
         for field in required_fields:
@@ -61,6 +61,10 @@ class MissionEnvelopeSchemaTests(unittest.TestCase):
     def test_mission_id_uses_mission_prefix(self) -> None:
         mission = create_mission("Check mission ID prefix", request_id="REQ-SCHEMA-003")
         self.assertTrue(mission.mission_id.startswith("mission-"))
+
+    def test_mission_has_cns_trace_id(self) -> None:
+        mission = create_mission("Check trace ID", request_id="REQ-SCHEMA-TRACE")
+        self.assertTrue(mission.cns_trace_id.startswith("cns-"))
 
     def test_validate_mission_returns_valid_for_well_formed_envelope(self) -> None:
         mission = create_mission("Valid envelope check", request_id="REQ-SCHEMA-004")

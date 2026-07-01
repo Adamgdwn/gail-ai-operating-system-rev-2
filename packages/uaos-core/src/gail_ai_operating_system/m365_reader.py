@@ -39,6 +39,7 @@ def observe_graph_metadata(
     observe_target: str = "organization",
     dry_run: bool = True,
     allow_live: bool = False,
+    cns_trace_id: str | None = None,
 ) -> EvidencePacket:
     """Execute an R0 observe action against Microsoft Graph.
 
@@ -64,6 +65,7 @@ def observe_graph_metadata(
                 f"observe_target '{observe_target}' is not allowed. "
                 f"Allowed: {sorted(ALLOWED_OBSERVE_TARGETS)}."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -83,6 +85,7 @@ def observe_graph_metadata(
                 "Current approved Microsoft 365 state is delegated-only; "
                 "no client secret, certificate, or app-only grant exists."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -104,6 +107,7 @@ def observe_graph_metadata(
                 f"Dry-run observe planned for target '{observe_target}'. "
                 "Auth provider is configured. No live Graph call made."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -122,6 +126,7 @@ def observe_graph_metadata(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No data read; token acquisition failed before any Graph call.",
             outcome_summary=f"Token acquisition failed: {exc}",
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -140,6 +145,7 @@ def observe_graph_metadata(
         execution_mode=ExecutionMode.LIVE.value,
         rollback_note="R0 observe — read-only, no state mutation, no rollback needed.",
         outcome_summary=_summarize_org(metadata),
+        cns_trace_id=cns_trace_id,
         allow_live=allow_live,
     )
 

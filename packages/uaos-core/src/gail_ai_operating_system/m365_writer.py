@@ -44,6 +44,7 @@ def create_planner_task(
     task_title: str,
     dry_run: bool = True,
     allow_live: bool = False,
+    cns_trace_id: str | None = None,
 ) -> EvidencePacket:
     """Execute an R2 internal write — create a Planner task under a known plan.
 
@@ -66,6 +67,7 @@ def create_planner_task(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No action taken; plan_id is required.",
             outcome_summary="plan_id must be a non-empty string.",
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -81,6 +83,7 @@ def create_planner_task(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No action taken; bucket_id is required.",
             outcome_summary="bucket_id must be a non-empty string.",
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -99,6 +102,7 @@ def create_planner_task(
                 f"task_title must be 1–{_MAX_TITLE_LEN} characters. "
                 f"Got: {len(task_title)} chars."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -118,6 +122,7 @@ def create_planner_task(
                 "Current approved Microsoft 365 state is delegated-only; "
                 "no client secret, certificate, or app-only grant exists."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -140,6 +145,7 @@ def create_planner_task(
                 f"plan_id={plan_id!r}, bucket_id={bucket_id!r}. "
                 "No live Graph call made."
             ),
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -158,6 +164,7 @@ def create_planner_task(
             execution_mode=ExecutionMode.DRY_RUN.value,
             rollback_note="No task created; token acquisition failed before any Graph call.",
             outcome_summary=f"Token acquisition failed: {exc}",
+            cns_trace_id=cns_trace_id,
             allow_live=False,
         )
 
@@ -179,6 +186,7 @@ def create_planner_task(
             f"Planner task created: task_id={task_id!r}, title={task_title!r}, "
             f"plan_id={plan_id!r}. No raw task content stored."
         ),
+        cns_trace_id=cns_trace_id,
         allow_live=allow_live,
     )
 

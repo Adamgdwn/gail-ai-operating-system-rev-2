@@ -69,6 +69,10 @@ def test_create_action_generates_action_prefix():
     assert make_action().action_id.startswith("action-")
 
 
+def test_create_action_assigns_cns_trace_id():
+    assert make_action().cns_trace_id.startswith("cns-")
+
+
 def test_create_action_bad_mission_prefix_raises():
     with raises(ValueError, match="mission- prefix"):
         create_action(
@@ -285,6 +289,7 @@ def test_round_trip_serialization():
     action = make_action()
     restored = Action.from_dict(action.to_dict())
     assert restored.action_id == action.action_id
+    assert restored.cns_trace_id == action.cns_trace_id
     assert restored.mission_id == action.mission_id
     assert restored.status == action.status
     assert restored.actor == action.actor

@@ -21,6 +21,7 @@ from uuid import uuid4
 
 from .action import Action, transition_action
 from .mission import MissionStatus
+from .trace_identity import ensure_cns_trace_id, validate_cns_trace_id
 
 
 class ApprovalDecisionType(str, Enum):
@@ -60,10 +61,12 @@ class ApprovalDecision:
     hold_until: str | None
     info_requested: str | None
     info_from: str | None
+    cns_trace_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "decision_id": self.decision_id,
+            "cns_trace_id": self.cns_trace_id,
             "action_id": self.action_id,
             "mission_id": self.mission_id,
             "decision_type": self.decision_type,
@@ -92,6 +95,7 @@ class ApprovalDecision:
             hold_until=str(payload["hold_until"]) if payload.get("hold_until") is not None else None,
             info_requested=str(payload["info_requested"]) if payload.get("info_requested") is not None else None,
             info_from=str(payload["info_from"]) if payload.get("info_from") is not None else None,
+            cns_trace_id=str(payload["cns_trace_id"]) if payload.get("cns_trace_id") else None,
         )
 
 
@@ -118,6 +122,7 @@ def validate_approval_decision(decision: ApprovalDecision) -> list[str]:
         errors.append("authority_basis is required.")
     if decision.envelope_id is not None and not decision.envelope_id.startswith("env-"):
         errors.append("envelope_id must use the env- prefix when present.")
+    errors.extend(validate_cns_trace_id(decision.cns_trace_id))
     if decision.decision_type == ApprovalDecisionType.MORE_INFO_REQUESTED.value:
         if not decision.info_requested or not decision.info_requested.strip():
             errors.append("info_requested is required for more_info_requested decisions.")
@@ -146,6 +151,7 @@ def approve_action(
     authority_basis: str,
     decided_at: str,
     envelope_id: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> tuple[Action, ApprovalDecision]:
     """Approve an action in APPROVAL_REQUESTED state.
 
@@ -175,6 +181,7 @@ def approve_action(
         hold_until=None,
         info_requested=None,
         info_from=None,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id or action.cns_trace_id),
     )
     return approved_action, decision
 
@@ -187,6 +194,7 @@ def reject_action(
     authority_basis: str,
     decided_at: str,
     envelope_id: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> tuple[Action, ApprovalDecision]:
     """Reject an action in APPROVAL_REQUESTED state.
 
@@ -215,6 +223,7 @@ def reject_action(
         hold_until=None,
         info_requested=None,
         info_from=None,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id or action.cns_trace_id),
     )
     return rejected_action, decision
 
@@ -228,6 +237,7 @@ def hold_action(
     decided_at: str,
     hold_until: str | None = None,
     envelope_id: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> tuple[Action, ApprovalDecision]:
     """Place an action on administrative hold.
 
@@ -256,6 +266,7 @@ def hold_action(
         hold_until=hold_until,
         info_requested=None,
         info_from=None,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id or action.cns_trace_id),
     )
     return action, decision
 
@@ -270,6 +281,7 @@ def request_more_info(
     authority_basis: str,
     decided_at: str,
     envelope_id: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> tuple[Action, ApprovalDecision]:
     """Request additional information before deciding on an action.
 
@@ -302,6 +314,7 @@ def request_more_info(
         hold_until=None,
         info_requested=info_requested,
         info_from=info_from,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id or action.cns_trace_id),
     )
     return action, decision
 

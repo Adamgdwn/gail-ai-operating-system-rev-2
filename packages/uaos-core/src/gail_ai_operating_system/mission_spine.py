@@ -9,6 +9,8 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping
 from uuid import uuid4
 
+from .trace_identity import ensure_cns_trace_id, validate_cns_trace_id
+
 
 REV2_OWNER = "Adam Goodwin"
 DEFAULT_APPROVAL_LEVEL = "A1 local no-network"
@@ -224,10 +226,12 @@ class MissionEnvelope:
     data_classification: str = "internal"
     status: str = "draft"
     source_commit: str | None = None
+    cns_trace_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "mission_id": self.mission_id,
+            "cns_trace_id": self.cns_trace_id,
             "request_id": self.request_id,
             "command": self.command,
             "domain": self.domain,
@@ -257,6 +261,7 @@ class MissionEnvelope:
             data_classification=normalize_data_class(str(payload.get("data_classification", "internal"))),
             status=str(payload.get("status", "draft")),
             source_commit=str(raw_source_commit) if raw_source_commit is not None else None,
+            cns_trace_id=str(payload["cns_trace_id"]) if payload.get("cns_trace_id") else None,
         )
 
 
@@ -315,6 +320,7 @@ def create_mission(
     data_classification: str = "internal",
     created_at: datetime | str | None = None,
     source_commit: str | None = None,
+    cns_trace_id: str | None = None,
 ) -> MissionEnvelope:
     """Create a local mission envelope under the current Rev 2 A1 boundary."""
 
@@ -341,6 +347,7 @@ def create_mission(
         requested_tools=tuple(str(tool).strip().lower() for tool in requested_tools if str(tool).strip()),
         data_classification=normalize_data_class(data_classification),
         source_commit=source_commit,
+        cns_trace_id=ensure_cns_trace_id(cns_trace_id),
     )
     validate_mission(mission).require_valid()
     return mission
@@ -372,6 +379,8 @@ def validate_mission(mission: MissionEnvelope) -> MissionValidationResult:
                 "Only public, internal, or synthetic data classes are allowed in the local mission spine.",
             )
         )
+    for trace_error in validate_cns_trace_id(mission.cns_trace_id):
+        issues.append(MissionValidationIssue("cns_trace_id", trace_error))
     unknown_tools = sorted(set(mission.requested_tools) - ALLOWED_LOCAL_TOOLS)
     if unknown_tools:
         issues.append(
