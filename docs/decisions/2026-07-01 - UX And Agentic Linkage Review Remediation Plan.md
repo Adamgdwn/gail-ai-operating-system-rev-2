@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T17:39:23-06:00
-Status: active remediation plan; functional promotion plan detailed; next chunk owner-gated
+Last Updated: 2026-07-01T17:47:54-06:00
+Status: active remediation plan; restart handoff boxed; next chunk owner-gated
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -472,6 +472,7 @@ observed owner environment.
 | M365-W1 | planned; owner-gated | M365-RO-1, GLW-1, explicit live-write approval | Integration complete | not started | Pending |
 | CSX-1 | planned; owner-gated | OCS-1, cross-surface auth/hosting decision | Draft complete or Integration complete | not started | Pending |
 | GFR-1 | planned; owner-gated | GLW-1, EX-3 | Integration complete | not started | Pending |
+| RSH-1 | task complete | RMP-2, owner restart request | Task complete | 2026-07-01T17:47:54-06:00 | RSH-1 Handoff |
 
 ### Dependency Map
 
@@ -2273,6 +2274,31 @@ Open risks / next-chunk notes:
   read, or live Graph write.
 - CSX-1 needs an owner decision on local-only, private-network, hosted, or
   Freedom-mediated access before implementation.
+
+#### RSH-1 Handoff
+
+Status: task complete.
+
+Completed: 2026-07-01T17:47:54-06:00
+
+What changed:
+
+- Added a compact VS Code restart handoff at
+  `docs/decisions/2026-07-01 - VS Code Restart Handoff.md`.
+- Updated `START_HERE.md` so the immediate restart route points to that
+  handoff before opening the larger remediation plan.
+- Updated the `01 Work Tracking` GAIL OS latest/log records outside this repo.
+- Confirmed `CARRY_FORWARD.md` has no open flags.
+
+Endpoint/schema/UI shape introduced:
+
+- None. RSH-1 is a restart/document-control closeout only.
+
+Open risks / next-chunk notes:
+
+- Next implementation remains `OCS-1`, owner-gated.
+- No live OAuth, M365, Graphify ingest, R4, hosted access, or source-of-truth
+  migration was approved by this closeout.
 
 ## Non-Approval Boundary
 

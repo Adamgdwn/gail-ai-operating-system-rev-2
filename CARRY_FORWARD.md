@@ -1,6 +1,6 @@
 # Carry-Forward Flags
 
-Last Updated: 2026-06-28T23:12:30-06:00
+Last Updated: 2026-07-01T17:47:54-06:00
 Status: empty
 
 Use this file to record anything that must survive a context reset:
@@ -22,6 +22,10 @@ tool-owned config files from date-prefix naming.
 Night closeout on 2026-06-28 did not add a carry-forward blocker. Resume from
 `docs/decisions/2026-06-28 - Nightly Turnover And Token-Friendly Startup.md`
 for Rev 2 work only unless Adam explicitly routes the next session elsewhere.
+
+VS Code restart closeout on 2026-07-01 did not add a carry-forward blocker.
+Resume from `docs/decisions/2026-07-01 - VS Code Restart Handoff.md`, then
+continue with `OCS-1` only after Adam explicitly approves implementation.
 
 | Flag | Added | Owner | Status | Notes |
 |---|---|---|---|---|

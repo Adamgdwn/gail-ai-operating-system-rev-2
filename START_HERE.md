@@ -1,10 +1,19 @@
 # Start Here
 
-Last Updated: 2026-07-01T11:58:04-06:00
-Status: draft
+Last Updated: 2026-07-01T17:47:54-06:00
+Status: active restart route
 Owner: Adam Goodwin
 
 ## Low-Token Restart
+
+Immediate VS Code restart handoff:
+
+1. Run `git status --short --branch`.
+2. Read `AGENTS.md`.
+3. Read
+   `docs/decisions/2026-07-01 - VS Code Restart Handoff.md`.
+4. If Adam approves implementation, continue with `OCS-1` in
+   `docs/decisions/2026-07-01 - UX And Agentic Linkage Review Remediation Plan.md`.
 
 For the next session:
 
