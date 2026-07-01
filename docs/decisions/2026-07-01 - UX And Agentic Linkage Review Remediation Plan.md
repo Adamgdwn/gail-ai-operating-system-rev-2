@@ -3,8 +3,8 @@
 Document type: review packet and remediation plan
 Date: 2026-07-01
 Saved: 2026-07-01T09:32:16-06:00
-Last Updated: 2026-07-01T11:58:04-06:00
-Status: active remediation plan; feature-integrity doctrine updated; EX-3 awaiting owner approval
+Last Updated: 2026-07-01T12:19:58-06:00
+Status: active remediation plan; EX-3 integration complete; next chunk owner-gated
 Owner: Adam Goodwin
 Prepared by: Codex
 
@@ -457,7 +457,7 @@ observed owner environment.
 | EX-1 | integration complete | RMP-0 owner approval | Integration complete | 2026-07-01T11:23:53-06:00 | EX-1 Handoff |
 | EX-2 | integration complete | EX-1 | Integration complete | 2026-07-01T11:41:25-06:00 | EX-2 Handoff |
 | RMP-1 | task complete | owner direction | Task complete | 2026-07-01T11:58:04-06:00 | RMP-1 Handoff |
-| EX-3 | planned | EX-1 | Draft complete | 2026-07-01T10:11:09-06:00 | pending |
+| EX-3 | integration complete | EX-1 | Integration complete | 2026-07-01T12:19:58-06:00 | EX-3 Handoff |
 
 ### Dependency Map
 
@@ -1288,7 +1288,8 @@ Open risks / next-chunk notes:
   screenshot/manual viewport review as the risk-appropriate evidence.
 - The Vite proxy is a local dev/preview convenience. A hosted command-center
   path would need a separate approved auth/reverse-proxy boundary.
-- Next planned implementation chunk is EX-3, pending owner approval.
+- EX-3 was later owner-approved by "Okay, carry on" and its handoff supersedes
+  this note.
 
 #### RMP-1 Handoff
 
@@ -1326,11 +1327,89 @@ Open risks / next-chunk notes:
 - This was documentation/control work only. It did not add OAuth, live
   Microsoft 365 execution, Freedom executable commands, Graphify ingest,
   hosted cross-surface access, R4 live execution, or any runtime behavior.
-- EX-3 remains the next planned chunk only if Adam explicitly approves it.
+- At RMP-1 close, EX-3 still awaited owner approval. Adam later approved it
+  with "Okay, carry on"; see the EX-3 handoff below.
 
 #### EX-3 Handoff
 
-Status: not started.
+Status: integration complete.
+
+Completion target: Integration complete.
+
+Completed: 2026-07-01T12:19:58-06:00
+
+Owner approval:
+
+- Adam approved EX-3 by saying "Okay, carry on" after the RMP-1 feature
+  integrity update.
+
+Files / surfaces changed:
+
+- Extended `packages/uaos-core/src/gail_ai_operating_system/read_model.py`
+  with `build_freedom_relationship_brief` and the
+  `rev2.freedom-relationship-brief.v1` schema payload.
+- Exported the new read model through
+  `packages/uaos-core/src/gail_ai_operating_system/__init__.py`.
+- Added authenticated API route:
+  `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}`.
+- Added core/API/public-export tests in `tests/test_read_model.py`,
+  `tests/test_api_read_model.py`, and `tests/test_public_api.py`.
+- Updated `AGENTS.md`, `README.md`, `apps/command-center/README.md`,
+  `docs/architecture.md`, `docs/source-of-truth-map.md`, and
+  `docs/CHANGELOG.md` so active docs route to the implemented surface.
+
+Endpoint/schema shape introduced:
+
+- `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` returns:
+  - `schema_version: rev2.freedom-relationship-brief.v1`;
+  - `generated_at`, `cns_trace_id`, `found`, `data_state`, `brief_type`;
+  - `operator_context`;
+  - `relationship_map` with mission/action/evidence/authority/event refs;
+  - `mission_snapshot`, `authority_snapshot`, `connector_state`,
+    `evidence_snapshot`, and `event_snapshot`;
+  - `graph_context_state` and `graph_context_refs` from local
+    `graphify.fact_candidate_prepared` trace events when present;
+  - `options`, `confidence`, `failure_semantics`, and `source_alignment`;
+  - `execution_authority.granted = false`.
+
+Runtime behavior:
+
+- The endpoint is read-only and uses the same API-key dependency as other
+  local GAIL OS read endpoints.
+- The same `cns_trace_id` resolves through both
+  `GET /api/v1/traces/{cns_trace_id}` and the Freedom brief endpoint.
+- Missing traces return HTTP 200 with `found=false` and
+  `data_state=not_found`.
+- Bad trace IDs or unsupported `brief_type` values return HTTP 422.
+- The brief explicitly describes unauthorized, unavailable, stale, and
+  not-found semantics so Freedom can explain degraded posture.
+
+Validation:
+
+- Baseline before edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  577 passed, 5 warnings, 62 subtests.
+- Focused EX-3 subset:
+  `uv run --with-requirements requirements.txt python -m pytest tests/test_read_model.py tests/test_api_read_model.py tests/test_public_api.py -q`
+  passed: 15 passed, 3 warnings, 22 subtests.
+- Full after edits:
+  `uv run --with-requirements requirements.txt python -m pytest -q` passed:
+  582 passed, 6 warnings, 64 subtests.
+- `bash scripts/governance-preflight.sh` passed with 0 warnings.
+- `git diff --check` passed.
+
+Open risks / next-chunk notes:
+
+- This is a real read-only integration surface, not a live execution surface.
+- No Freedom repo implementation, Freedom runtime activation, executable
+  Freedom command path, OAuth/browser login, live Microsoft 365 read/write/send
+  or configuration action, Graphify persistent ingest, R4 live execution,
+  hosted cross-surface auth, cloud placement change, native phone app, or
+  source-of-truth migration was added.
+- The next chunk should be owner-selected. If the goal is dogfoodable action,
+  the likely next promotion gate is not another brief; it is a governed action
+  or connector-promotion slice with explicit auth, identity, evidence, and
+  rollback boundaries.
 
 ## Non-Approval Boundary
 

@@ -113,6 +113,75 @@ def test_trace_lookup_unifies_mission_and_m365_dry_run_evidence(tmp_path, monkey
     assert {"mission.created", "evidence.recorded"} <= event_types
 
 
+def test_freedom_relationship_brief_endpoint_uses_same_trace_records(tmp_path, monkeypatch):
+    monkeypatch.setenv("GAIL_OS_STORE_PATH", str(tmp_path))
+    mission_resp = client.post(
+        "/api/v1/missions",
+        headers=HEADERS,
+        json={
+            "command": "Create a mission for Freedom briefing",
+            "domain": "operations",
+            "request_id": "REQ-FREEDOM-BRIEF-001",
+            "cns_trace_id": TRACE_ID,
+        },
+    )
+    mission_id = mission_resp.json()["mission_id"]
+
+    observe_resp = client.post(
+        "/api/v1/m365/observe",
+        headers=HEADERS,
+        json={
+            "mission_id": mission_id,
+            "action_id": "action-freedom-observe",
+            "actor": "gail-os-m365-dry-run-actor",
+            "created_at": NOW,
+            "cns_trace_id": TRACE_ID,
+            "dry_run": True,
+        },
+    )
+
+    assert observe_resp.status_code == 200
+
+    brief_resp = client.get(
+        f"/api/v1/freedom/relationship-briefs/{TRACE_ID}?stale_after_seconds=86400",
+        headers=HEADERS,
+    )
+
+    assert brief_resp.status_code == 200
+    brief = brief_resp.json()
+    assert brief["schema_version"] == "rev2.freedom-relationship-brief.v1"
+    assert brief["found"] is True
+    assert brief["cns_trace_id"] == TRACE_ID
+    assert mission_id in brief["relationship_map"]["mission_ids"]
+    assert "action-freedom-observe" in brief["relationship_map"]["action_ids"]
+    assert brief["source_alignment"]["trace_endpoint"] == f"/api/v1/traces/{TRACE_ID}"
+    assert brief["execution_authority"]["granted"] is False
+    assert brief["connector_state"]["live_access_enabled"] is False
+
+
+def test_freedom_relationship_brief_endpoint_reports_not_found(tmp_path, monkeypatch):
+    monkeypatch.setenv("GAIL_OS_STORE_PATH", str(tmp_path))
+
+    resp = client.get(f"/api/v1/freedom/relationship-briefs/{TRACE_ID}", headers=HEADERS)
+
+    assert resp.status_code == 200
+    brief = resp.json()
+    assert brief["found"] is False
+    assert brief["data_state"] == "not_found"
+    assert brief["failure_semantics"]["retry"]["recommended"] is True
+
+
+def test_freedom_relationship_brief_rejects_bad_brief_type(tmp_path, monkeypatch):
+    monkeypatch.setenv("GAIL_OS_STORE_PATH", str(tmp_path))
+
+    resp = client.get(
+        f"/api/v1/freedom/relationship-briefs/{TRACE_ID}?brief_type=execute_now",
+        headers=HEADERS,
+    )
+
+    assert resp.status_code == 422
+
+
 def test_duplicate_request_is_visible_in_trace_events(tmp_path, monkeypatch):
     monkeypatch.setenv("GAIL_OS_STORE_PATH", str(tmp_path))
     body = {

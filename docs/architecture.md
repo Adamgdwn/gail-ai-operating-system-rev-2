@@ -1,7 +1,7 @@
 # Rev 2 Architecture
 
 Created: 2026-06-21T14:59:46-06:00
-Last Updated: 2026-07-01T11:58:04-06:00
+Last Updated: 2026-07-01T12:16:59-06:00
 Status: active architecture
 Owner: Adam Goodwin
 
@@ -60,6 +60,8 @@ Active now:
 - read-only browser command-center cockpit shell at `apps/command-center`,
   now shaped as a multi-viewport operator hub over the shared GAIL OS read
   model with observable governed spokes;
+- read-only Freedom relationship brief endpoint over the same trace/read-model
+  spine at `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}`;
 - documentation and local validation chunks only.
 
 Not active yet:
@@ -112,6 +114,7 @@ contract, integration test, or explicit boundary is required.
 | Windows operator workspace | Current local editing and validation environment. | Trusted worker and operator surface after bootstrap controls exist. | No live business connectors, persistent worker service, or broad local filesystem automation without later approval. |
 | Linux reference or worker surface | Superseded v1 reference host only. | Trusted worker clone that pulls from private GitHub. | Linux is not the Rev 2 source of truth and must not rely on tunnel-dependent operation. |
 | Browser command center | Vite React TypeScript shell under `apps/command-center` now renders the read-only hub-and-spoke operating cockpit from `GET /api/v1/read-model` through the local Vite proxy. | Main shared cockpit for desktop, larger tablet, and mobile browser fallback use. | Current shell is read-only; future record writes must go through approved local or relay paths, must not become a second truth store, and must not replace Freedom's core operator role. |
+| Freedom relationship brief API | Authenticated local endpoint `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` over the same trace, mission, evidence, authority, connector, and event read spine used by command center. | Gives Freedom a compact posture and relationship brief for answering "what happened?" and "what is the posture?" | Read-only only; it grants no execution authority, performs no Freedom runtime work, and does not approve live M365, Graphify ingest, OAuth, or R4 execution. |
 | Android phone cockpit | Not built in Rev 2. | Freedom is the core phone-side operator interface for intent capture, approval, pause/resume, status, and safe evidence review; Rev 2 may provide browser fallback or compatibility views that augment Freedom. | Do not build a competing native phone app. No local execution, raw secret display, raw logs, raw audio, unrestricted filesystem access, direct connector access, generated Freedom config import, or Freedom runtime activation without a bounded later chunk. |
 | Android tablet cockpit | Not built. | Larger review surface for evidence, approvals, and handoffs. | Same mobile limits as phone; no unrestricted connector authority. |
 | Relay records | Local no-network JSON-backed proof for validated relay envelopes, status transitions, reference-only evidence records, and single trusted-worker claim attempts. | Coordination records for intent, approval, worker claim, status, evidence links, and recovery. | Relay carries safe summaries and references only; it does not execute work, poll workers, call connectors, or own permanent audit truth alone. |
@@ -171,7 +174,9 @@ operator hub, observable governed spokes, desktop and larger-tablet arc layout,
 and hub-first phone-browser fallback while preserving Freedom as the phone
 anchor. EX-2 wired that cockpit to the shared read-only GAIL OS read model,
 with loading, empty, missing local API key, unauthorized, offline, stale-data,
-and protocol-error states.
+and protocol-error states. EX-3 added a read-only Freedom relationship brief
+over the same trace layer so Freedom can explain posture and trace history
+without receiving execution authority.
 
 Expected first portal capabilities:
 
@@ -362,6 +367,13 @@ operator interface and the high-level agentic business partner capability
 source; Rev 2 owns the mission, policy, relay, connector, worker, and evidence
 contracts that any future Freedom bridge must satisfy.
 
+EX-3 implements the first Rev 2 runtime read contract for that relationship:
+`GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` returns a
+`rev2.freedom-relationship-brief.v1` payload grounded in local GAIL OS trace,
+mission, evidence, authority, connector, event, and Graphify-context references.
+It is a briefing surface only and does not activate Freedom runtime behavior or
+grant execution authority.
+
 The future bridge should translate Freedom concepts into Rev 2 records:
 
 ```text
@@ -468,6 +480,7 @@ being introduced.
 | Private GitHub is the durable spine. | Active | It gives Rev 2 a private, auditable, device-independent source of truth. |
 | DirectLink is transport/status only. | Active | It can help with explicit cross-machine work, but Rev 2 should not depend on tunneling for normal operation. |
 | Browser-first Rev 2 cockpit with Freedom as core interface. | Active decision | Rev 2 should reach Windows, Linux, Android tablet, and desktop browsers through the Vite React TypeScript shell in `apps/command-center`, while Freedom carries the phone-side operator link. Rev 2 must not build a competing native phone app unless Adam explicitly reverses this decision. |
+| Freedom relationship briefs are read-only CNS posture records. | Active decision | `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` may brief Freedom on local GAIL OS trace, evidence, authority, connector, event, and Graphify-context refs, but it must not become an action, OAuth, live connector, Graphify ingest, or R4 execution path. |
 | Workers pull outward and do not expose public inbound local services. | Active direction | This keeps high-risk execution inside trusted worker boundaries. |
 | GitHub-backed relay records come before hosted relay. | Active direction | Durable, auditable, slower proof beats custom infrastructure too early. |
 | Graphify remains separate. | Active | It owns knowledge lookup and recommendations; Rev 2 owns mission approval, policy, execution, validation, and evidence. |

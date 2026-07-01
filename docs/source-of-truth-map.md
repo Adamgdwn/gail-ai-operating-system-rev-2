@@ -1,7 +1,7 @@
 # Source Of Truth Map
 
 Created: 2026-06-21T13:58:36-06:00
-Last Updated: 2026-07-01T11:41:25-06:00
+Last Updated: 2026-07-01T12:16:59-06:00
 Status: active navigation
 Owner: Adam Goodwin
 
@@ -53,6 +53,7 @@ edits.
 | 16 | `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md` | First post-CMS local connection scout across Freedom, GAIL OS, and Graphify, including validation evidence and the next no-M365 connection-test lane. |
 | 17 | `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` | Current builder-facing communication target for `cns_trace_id`, signal packets, Freedom relationship briefs, Graphify fact bundles, application envelopes, and build handoff facts. |
 | 18 | `docs/decisions/2026-06-27 - Builder Graphify Freedom AG Operations Integration Summary.md` | Handoff summary for the agentic multi-agent builder, connecting builder CNS schema work, Rev 2 Graphify readiness, Freedom, Codex/future coding agents, and AG Operations Workspace / Microsoft 365 integration wishes. |
+| 19 | `docs/decisions/2026-07-01 - UX And Agentic Linkage Review Remediation Plan.md` | Active PDCA remediation packet for UX, agentic linkage, feature-integrity doctrine, EX chunks, validation evidence, and handoffs. |
 
 Startup direction as of 2026-06-29T19:31:31-06:00: the current active lane is
 GAIL OS informing and Graphify boundary transfer. Freedom implementation work
@@ -93,6 +94,7 @@ not move into Graphify.
 | `docs/decisions/2026-06-28 - Current Main Stabilization Builder Report.md` | Current-main addendum for the builder handoff: records green CMS-A/CMS-B proof state, CMS-C closeout, dry-run M365 boundary, paused login edge, and next owner decision lanes. |
 | `docs/decisions/2026-06-28 - Local CNS Connection Proof Report.md` | First post-CMS local connection scout across Freedom, GAIL OS, and Graphify. Read this before rerunning connection proofs or deciding whether to move into a bounded local Graphify evidence-ingest proof. |
 | `docs/decisions/2026-06-28 - CNS Communication Enhancement Contract.md` | Active communication contract for enhancing the Freedom/GAIL OS/Graphify/AG Operations loop through shared trace IDs, safe signal envelopes, Freedom relationship briefs, Graphify fact bundles, application action envelopes, and build handoff facts without approving live connectors or Graphify ingest. |
+| `docs/decisions/2026-07-01 - UX And Agentic Linkage Review Remediation Plan.md` | Active PDCA remediation and handoff packet for UX, cross-surface agentic linkage, feature-integrity doctrine, EX-1 through EX-3 evidence, and next-chunk selection. |
 | `docs/standards/README.md` | Standards index. |
 | `docs/standards/2026-06-25 - Document Control Standard.md` | Active document naming, dated filename, stable-path exception, and cross-build work-tracking rule for Rev 2, Freedom, and AG Operations Workspace. |
 | `docs/policy/durable-development-engineering-policy.md` | Durable development policy. |
@@ -120,6 +122,8 @@ not move into Graphify.
 | `tests/test_relay_store.py` | Local relay store tests for persistence, reload, policy-gated claim validation, stale state rejection, duplicate worker claim rejection, trusted worker boundaries, evidence safety, and reference-only payloads. |
 | `packages/uaos-core/src/gail_ai_operating_system/local_proof_runner.py` | Local no-network proof runner that exercises one mission path from intent through policy, connector registry, relay envelope, relay store, trusted-worker claim, reference-only evidence, and completed relay status. |
 | `tests/test_local_proof_runner.py` | Local proof-runner tests for complete mission-to-evidence proof, reference-only payload safety, and stop-trigger failure before relay records are written. |
+| `packages/uaos-core/src/gail_ai_operating_system/read_model.py` | Shared trace, event, read-model, and Freedom relationship brief spine. It builds `GET /api/v1/read-model`, `GET /api/v1/traces/{cns_trace_id}`, and `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` payloads from local mission, evidence, authority, connector, event, and Graphify-context refs without external calls or execution authority. |
+| `tests/test_read_model.py` and `tests/test_api_read_model.py` | Core and authenticated API tests for shared read models, trace lookup, duplicate visibility, and read-only Freedom relationship briefs. |
 | `apps/command-center` | Browser-first Vite React TypeScript command-center cockpit shell with a read-only multi-viewport operator hub over `GET /api/v1/read-model`, including governed spokes, mission, approval-boundary, agent/device, evidence, and connector-posture areas plus loading, empty, missing local API key, unauthorized, offline, stale-data, and protocol-error states. No approval mutation, service worker, relay write, Freedom runtime, Microsoft 365 live read/write, Graphify ingest, R4 live execution, worker bootstrap, live connector, client data, or production behavior. |
 
 ## Active Placeholders To Promote

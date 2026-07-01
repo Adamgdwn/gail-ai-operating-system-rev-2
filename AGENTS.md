@@ -57,6 +57,9 @@ not authority and not execution.
 - `GET /api/v1/evidence/{mission_id}` — Retrieve mission evidence summaries
 - `GET /api/v1/connectors` — Return connector registry status
 - `GET /api/v1/agents` — Return agent registry status
+- `GET /api/v1/read-model` — Return shared read-only operator posture
+- `GET /api/v1/traces/{cns_trace_id}` — Return trace/evidence refs for one CNS trace
+- `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` — Return read-only Freedom posture brief with no execution authority
 - `GET /api/v1/m365/status` — Dry-run M365 bridge readiness
 - `POST /api/v1/m365/observe` — Synthetic dry-run observe proof
 - `POST /api/v1/m365/write/planner-task` — Dry-run Planner-task proof

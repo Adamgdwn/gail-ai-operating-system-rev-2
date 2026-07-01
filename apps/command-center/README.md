@@ -48,6 +48,9 @@ Optional local settings:
 
 - The operator hub, governed spokes, mission, approval, agent/device, evidence,
   and connector posture areas are rendered from `GET /api/v1/read-model`.
+- Freedom can read the same trace spine through
+  `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` for posture briefs
+  that carry no execution authority.
 - Loading, empty, missing local API key, unauthorized, offline, stale-data, and
   protocol-error states are visible in the cockpit.
 - The browser icon uses the symbol-only Guided AI Labs signal mark at
@@ -74,5 +77,7 @@ Optional local settings:
 
 ## Next Chunk
 
-EX-3 should add the Freedom relationship/posture brief over the same read-model
-and trace layer, without granting execution authority.
+The next chunk should be explicitly selected from the remediation plan. The
+current command center and Freedom brief paths remain read-only until a later
+owner-approved action, connector, OAuth, or execution boundary is built and
+tested.

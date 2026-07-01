@@ -14,6 +14,7 @@ from gail_ai_operating_system.connector_registry import ConnectorRegistry
 from gail_ai_operating_system.m365_auth import graph_auth_status_from_env
 from gail_ai_operating_system.read_model import (
     SHARED_READ_MODEL_SCHEMA_VERSION,
+    build_freedom_relationship_brief,
     build_trace_read_model,
     recent_evidence_refs,
     utc_z_timestamp,
@@ -53,6 +54,27 @@ def trace_lookup(cns_trace_id: str) -> dict[str, Any]:
 
     try:
         return build_trace_read_model(cns_trace_id, store_root=get_store_root())
+    except ValueError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+
+
+@router.get("/freedom/relationship-briefs/{cns_trace_id}")
+def freedom_relationship_brief(
+    cns_trace_id: str,
+    brief_type: str = Query(default="mission_context"),
+    operator_question: str | None = Query(default=None),
+    stale_after_seconds: int = Query(default=900, ge=0, le=86_400),
+) -> dict[str, Any]:
+    """Return a read-only Freedom posture brief for one CNS trace."""
+
+    try:
+        return build_freedom_relationship_brief(
+            cns_trace_id,
+            store_root=get_store_root(),
+            brief_type=brief_type,
+            operator_question=operator_question,
+            stale_after_seconds=stale_after_seconds,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
 

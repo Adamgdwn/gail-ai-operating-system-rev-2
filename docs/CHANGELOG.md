@@ -2,6 +2,14 @@
 
 ## 2026-07-01
 
+- Added EX-3 Freedom relationship brief runtime support:
+  `GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` now returns a
+  `rev2.freedom-relationship-brief.v1` payload over the shared local trace
+  spine with mission, authority, connector, evidence, event, and
+  Graphify-context references plus explicit not-found, stale, unauthorized,
+  unavailable, and no-execution semantics. This is read-only and does not add
+  OAuth, live Microsoft 365 behavior, Graphify ingest, Freedom runtime
+  activation, or R4 live execution.
 - Updated active Rev 2 control documents to record Adam's feature-integrity
   direction: GAIL OS is the CNS mid-brain and brain-stem layer, feature work
   must be planned before writing, built as tested vertical slices, and reported

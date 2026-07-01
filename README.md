@@ -57,6 +57,12 @@ actions, service workers, live connectors, Microsoft 365 live reads or writes,
 Graphify ingest, Freedom runtime access, hosted relay, workers, or production
 behavior.
 
+The same local trace layer exposes
+`GET /api/v1/freedom/relationship-briefs/{cns_trace_id}` for read-only Freedom
+posture briefs. The brief gives Freedom mission, authority, connector,
+evidence, event, and Graphify-context references without granting execution
+authority.
+
 For local live read-only cockpit use, run the API and command center in
 separate shells with the same local key:
 
